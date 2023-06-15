@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+/* 글꼴 */
+@font-face{
+	font-family: 'IBMPlexSansKR-Light';
+    src: url('../fonts/IBMPlexSansKR-Light.woff') format('woff');
+}
+
+/* 전체 적용 */
+body{
+	margin:0;
+	background:white;
+	font-family: 'IBMPlexSansKR-Light';
+	
+}
+
+a {
+  text-decoration: none; /* 언더바 제거 */
+  color:black;
+}
+
+a:hover {
+  text-decoration: none; /* 호버링 시 언더바 제거 */
+  color:#E19B50;
+}
+
+div {
+	/*border : 1px solid red;*/
+}
+
+li {
+	/*border : 1px solid blue;*/
+}
+
+
+/* 메인 헤드의 고정 값*/
+.main-head {
+	width:	1600px;
+	margin : 0 auto;
+	height : 200px;
+	
+	
+}
+
+.top-box {
+	height : 40px;
+	position : relative;
+	font-size:15px;
+	text-align : right;
+	margin-top:0;
+}
+
+.top-box ul li {
+	margin-right : 10px;
+	margin-top:0;
+	display : inline-block;
+}
+
+.mid-box {
+	height:90px;
+	margin-top:0;
+	margin: 0 auto;
+	position : relative;
+	
+}
+
+.main-head .mid-box ul {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* 간격 설정 */
+}
+
+.mid-box ul li {
+	
+	margin-top:0;
+	display : inline-block;
+}
+
+#search {
+  width: 300px;
+  height: 30px;
+}
+
+.category-box {
+	height : 70px;
+	margin-top:0;
+	margin : 0 auto;
+	position : relative;
+	
+}
+
+.category-box ul {
+  display: flex;
+  justify-content: center;
+  gap: 100px;  /* 간격 설정 */ 
+}
+
+.category-box ul li {
+	font-size: 20px;	
+	display : inline-block;
+}
