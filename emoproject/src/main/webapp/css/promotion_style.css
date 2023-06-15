@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.promotion-box{
+	width:1920px;
+	height:400px;
+	margin: 0 auto;
+	
+}
+
+.promotion-box img{
+	margin: 0 auto;
+}
