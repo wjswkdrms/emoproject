@@ -1,6 +1,5 @@
 package kr.main.action;
 
 public class loginFormAction {
-//Å×½ºÆ®¿ë ÆÄÀÏ
+    //intellj í…ŒìŠ¤íŠ¸
 }
-  
