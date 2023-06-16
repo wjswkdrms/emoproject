@@ -18,20 +18,24 @@
 	<div class="mid-box">
 		<ul>
 			<li>
-				<a href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/images/emo-logo.png"></a>
+				<input type="hidden" class="hidden-box-1">
+			</li>
+			<li class="main-logo">
+				<a href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/images/emo_main_logo.png"></a>
+			</li>
+			<li class="li-search">
+				<div id="search-product">
+					<input type="text" id="search" class="search">
+					<img src="${pageContext.request.contextPath}/images/emo_icon_search01.png">
+				</div>
+			</li>
+			<li class="icons-menu">
+				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_fav01.png"></a>
+				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png"></a>
+				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_home01.png"></a>
 			</li>
 			<li>
-				<label for="search">상품검색창</label>
-				<input type="text" id="search" class="search">
-			</li>
-			<li>
-				<a href="#">찜</a>
-			</li>
-			<li>
-				<a href="#">장바구니</a>
-			</li>
-			<li>
-				<a href="#">배송지</a>
+				<input type="hidden" class="hidden-box-2">
 			</li>
 		</ul>
 	</div>
