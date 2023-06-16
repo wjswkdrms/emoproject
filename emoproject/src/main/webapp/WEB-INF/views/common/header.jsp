@@ -4,12 +4,36 @@
 <div class="main-head">
 	<div class="top-box">
 		<ul>
+			<c:if test="${!empty user_num && user_auth == 9}">
 			<li>
-				<a href="#">로그인</a>
+				<a href="${pageContext.request.contextPath}/member/memberList.do">회원관리</a>
 			</li>
 			<li>
-				<a href="#">회원가입</a>
+				<a href="${pageContext.request.contextPath}/item/list.do">상품관리</a>
 			</li>
+			</c:if>
+			<c:if test="${!empty user_num && user_auth == 2}">
+			<li>
+				<a href="${pageContext.request.contextPath}/cart/list.do">장바구니</a>
+			</li>
+			<li>
+				<a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a>
+			</li>
+			</c:if>
+			<c:if test="${empty user_num}">
+			<li>
+				<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
+			</li>
+			<li>
+				<a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
+			</li>
+			</c:if>
+			<c:if test="${!empty user_num}">
+			<li class="menu-logout">
+				[<span>${user_id}</span>]
+				<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+			</li>
+			</c:if>
 			<li>
 				<a href="#">고객센터</a>
 			</li>
