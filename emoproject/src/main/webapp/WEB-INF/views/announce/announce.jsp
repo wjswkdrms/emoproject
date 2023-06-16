@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/announce_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
