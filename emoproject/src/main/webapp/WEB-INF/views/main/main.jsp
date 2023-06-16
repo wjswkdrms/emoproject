@@ -19,6 +19,7 @@
 		<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 	</li>
 	현재 로그인 중인 아이디 [${user_id}]
+	hello
 </body>
 </html>
 
