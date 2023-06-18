@@ -6,15 +6,15 @@
 	font-family: 'IBMPlexSansKR-Light';
 	src: url('../fonts/IBMPlexSansKR-Light.woff') format('woff');
 }
-
-    div{
-      background-color: #e9ecef;
-    }
-    #footer{
+	body{
+		margin:0;
+		font-family: 'IBMPlexSansKR-Light';
+	}
+    .footer{
       width:	1600px;
       margin : 0 auto;
       height : 200px;
-
+      background-color: #e9ecef;
     }
     .inner{
       padding-left : 10px;
@@ -25,10 +25,6 @@
       padding-left : 20px;
       font-size: 12px;
       color : black;
-    }
-
-    .footer_top{
-
     }
     .footer_mid{
       font-size: 12px;
@@ -66,7 +62,6 @@
       color : black;
     }
     h6{
-      background-color: lightgray;
       width: 80px;
       height:22px;
       text-align: center;

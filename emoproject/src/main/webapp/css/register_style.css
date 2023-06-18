@@ -3,8 +3,10 @@
 /* 전체 레이아웃
 ------------------*/
 body{
-	width:960px;
-	margin:0 auto;
+	width:1920px;
+	height:400px;
+	margin: 0 auto;
+	font-family: 'IBMPlexSansKR-Light';
 	background:#E6E6E6;
 }
 a:link{
