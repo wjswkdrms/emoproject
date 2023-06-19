@@ -4,12 +4,31 @@
 <div class="main-head">
 	<div class="top-box">
 		<ul>
-			<li>
-				<a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
-			</li>
-			<li>
-				<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
-			</li>
+			<c:if test="${user_id != null }">
+			<!--${user_id } 로그인 중<br /> -->
+				<li>
+					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+				</li>
+			</c:if>
+			
+			<c:if test="${user_id != null }">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/memberEditForm.do">내 정보(임시)</a>
+				</li>
+			</c:if>
+			
+			<c:if test="${user_id == null }">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
+				</li>
+			</c:if>
+			
+			<c:if test="${user_id == null }">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
+				</li>
+			</c:if>
+			
 			<li>
 				<a href="${pageContext.request.contextPath}/announce/announce.do">고객센터</a>
 			</li>
