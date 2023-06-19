@@ -4,12 +4,65 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
- 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<title>상품등록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+ -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productForm_style.css">
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#write_form').submit(function(){
+			//카테고리 선택 여부
+			if(!$('#category > option:selected').val()) {
+    			alert('카테고리를 지정하세요');
+    			return false;
+			}
+			//radio버튼 반드시 하나 선택해야한다, 선택 X인 경우
+			if($('input[type=radio]:checked').length<1){//length가 1보다 작을 때 하나도 선택 X일 때
+				alert('상품표시여부를 지정하세요');
+				return false;
+			}
+			if($('#name').val().trim() == ''){
+				alert('상품을 입력하세요');
+				$('#name').val('').focus();
+				return false;
+			}
+			if($('#price').val().trim() == ''){
+				alert('가격을 입력하세요');
+				$('#price').val('').focus();
+				return false;
+			}
+			if($('#stock').val().trim() == ''){
+				alert('재고를 입력하세요');
+				$('#stock').val('').focus();
+				return false;
+			}
+			if($('#origin').val().trim() == ''){
+				alert('원산지를 입력하세요');
+				$('#origin').val('').focus();
+				return false;
+			}
+			if($('#photo1').val() == ''){
+				alert('상품사진1을 선택하세요');
+				$('#photo1').val('').focus();
+				return false;
+			}
+			if($('#photo2').val() == ''){
+				alert('상품사진2를 선택하세요');
+				$('#photo2').val('').focus();
+				return false;
+			}
+			if($('#info').val().trim() == ''){
+				alert('상품설명을 입력하세요');
+				$('#info').val('').focus();
+				return false;
+			}
+		});
+		
+	});
+</script>
 </head>
 <body>
 <div>
@@ -22,7 +75,7 @@
 		<ul>
 			<li class="dis-in box-half">
 				<span class="box-left">카테고리</span>
-				<select name="category" required>
+				<select id="category" name="category" required>
 					<option value="">카테고리</option>
 					<option value="1">농산물</option>
 					<option value="2">수산물</option>
