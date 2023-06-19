@@ -7,7 +7,7 @@
 <title>Insert title here</title>
  
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productForm_style.css">
 </head>
@@ -16,7 +16,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="form-basic">
-		<form action="#" method="post" enctype="multipart/form-data" id="write_form">
+		<form action="write.do" method="post" enctype="multipart/form-data" id="write_form">
 		<h2>상품 등록</h2>
 		<ul>
 			<li class="dis-in box-half">
@@ -38,11 +38,11 @@
 			</li>
 			<li>
 				<label class="box-left" for="name">상품 이름</label>
-				<input class="box-right" type="text" name="name" id="name" min="1" max="99999999">
+				<input class="box-right" type="text" name="name" id="name" >
 			</li>
 			<li>
 				<label class="box-left" for="title">상품 타이틀</label>
-				<input class="box-right" type="text" name="title" id="title" min="1" max="99999999">
+				<input class="box-right" type="text" name="title" id="title" >
 			</li>
 			<li class="dis-in box-half">
 				<label class="box-left" for="real_price">원가</label>
@@ -53,8 +53,12 @@
 				<input type="number" name="price" id="price" maxlength="5">
 			</li>
 			<li>
-				<label class="box-left" for="quantity">재고</label>
-				<input type="number" name="quantity" id="quantity" min="0" max="99999">
+				<label class="box-left" for="stock">재고</label>
+				<input type="number" name="stock" id="stock" min="0" max="99999">
+			</li>
+			<li>
+				<label class="box-left" for="origin">원산지</label>
+				<input type="text" name="origin" id="origin">
 			</li>
 			<li>
 				<label class="box-left" for="photo1">상품 이미지</label>
