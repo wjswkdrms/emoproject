@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/promotion_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -136,10 +135,11 @@
             <label for="gender">성별</label>
             <span class="gender_span">남자</span>
             <input type="radio" name="gender"
-                   id="gender" class="gender">
+                   id="gender" class="gender" value="1">
             <span class="gender_span">여자</span>
             <input type="radio" name="gender"
-                   id="gender" class="gender">
+                   id="gender" class="gender" value="2">
+            </li>
         </ul>
         <div class="align-center">
           <input type="submit" class="bt" value="등록">

@@ -30,32 +30,32 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
   <div id="center_set">
-	<!-- 내용 시작 -->
-	<h2 id="main_title">로그인</h2>
-	<div class="content-main">
-		<form id="login_form" action="login.do"
-		                        method="post">
-			<ul>
-				<li>
-					<label for="id">아이디</label>
-					<input type="text" name="id"
-					  id="id" maxlength="12"
-					          autocomplete="off">
-				</li>
-				<li>
-					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd"
-					  id="passwd" maxlength="12">
-				</li>
-			</ul>
-			<div class="align-center">
-				<input type="submit" value="로그인">
-				<input type="button" value="홈으로"
-				  onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>                       
-		</form>
-	</div>
-	<!-- 내용 끝 -->
+    <!-- 내용 시작 -->
+    <h2 id="main_title">로그인</h2>
+    <div class="content-main">
+      <form id="login_form" action="login.do"
+            method="post">
+        <ul>
+          <li>
+            <label for="id">아이디</label>
+            <input type="text" name="id" class="input_style"
+                   id="id" maxlength="12"
+                   autocomplete="off">
+          </li>
+          <li>
+            <label for="passwd">비밀번호</label>
+            <input type="password" name="passwd" class="input_style"
+                   id="passwd" maxlength="12">
+          </li>
+        </ul>
+        <div class="align-center">
+          <input type="submit" class="bt" value="로그인">
+          <input type="button" class="bt" value="홈으로"
+                 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+        </div>
+      </form>
+    </div>
+    <!-- 내용 끝 -->
   </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

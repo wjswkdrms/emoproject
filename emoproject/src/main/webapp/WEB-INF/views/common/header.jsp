@@ -13,6 +13,9 @@
 			<li>
 				<a href="${pageContext.request.contextPath}/announce/announce.do">고객센터</a>
 			</li>
+			<li>
+				<a href="#">상품등록</a>
+			</li>
 		</ul>
 	</div>
 	<div class="mid-box">
