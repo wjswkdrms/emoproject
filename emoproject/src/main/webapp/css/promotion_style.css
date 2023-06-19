@@ -4,9 +4,10 @@
 	width:1920px;
 	height:400px;
 	margin: 0 auto;
-	
+	display:flex;
 }
 
 .promotion-box img{
-	margin: 0 auto;
+	align-items: center; /* 수직으로 가운데 정렬 */
+    justify-content: center; /* 수평으로 가운데 정렬 */
 }
