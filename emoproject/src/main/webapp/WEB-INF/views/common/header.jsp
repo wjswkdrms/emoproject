@@ -17,9 +17,6 @@
 	</div>
 	<div class="mid-box">
 		<ul>
-			<li>
-				<input type="hidden" class="hidden-box-1">
-			</li>
 			<li class="main-logo">
 				<a href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/images/emo_main_logo.png"></a>
 			</li>
@@ -33,9 +30,6 @@
 				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_fav01.png"></a>
 				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png"></a>
 				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_home01.png"></a>
-			</li>
-			<li>
-				<input type="hidden" class="hidden-box-2">
 			</li>
 		</ul>
 	</div>
