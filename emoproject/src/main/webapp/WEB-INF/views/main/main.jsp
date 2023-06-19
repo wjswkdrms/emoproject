@@ -7,6 +7,8 @@
 <title>이모마켓 | 메인화면</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/promotion_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css"> --%>
 
 </head>
@@ -19,7 +21,7 @@
 	현재 로그인 중인 아이디 [${user_id}]
 	hello
 	
-	<%-- <jsp:include page="/WEB-INF/views/common/footer.jsp"/> --%>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
 
