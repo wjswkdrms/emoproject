@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- header 시작 -->
+<!--  -->
 <div class="main-head">
 	<div class="top-box">
 		<ul>
@@ -33,7 +34,7 @@
 				<a href="${pageContext.request.contextPath}/announce/announce.do">고객센터</a>
 			</li>
 			<li>
-				<a href="#">상품등록</a>
+				<a href="${pageContext.request.contextPath}/product/writeForm.do">상품등록</a>
 			</li>
 		</ul>
 	</div>
@@ -58,22 +59,22 @@
 	<div class="category-box">
 		<ul>
 			<li>
-				<a href="#">농산물</a>
+				<a href="${pageContext.request.contextPath}/search/nongsan.do">농산물</a>
 			</li>
 			<li>
-				<a href="#">수산물</a>
+				<a href="${pageContext.request.contextPath}/search/fish.do">수산물</a>
 			</li>
 			<li>
-				<a href="#">정육</a>
+				<a href="${pageContext.request.contextPath}/search/meats.do">정육</a>
 			</li>
 			<li>
-				<a href="#">유제품</a>
+				<a href="${pageContext.request.contextPath}/search/milk.do">유제품</a>
 			</li>
 			<li>
-				<a href="#">음료</a>
+				<a href="${pageContext.request.contextPath}/search/drink.do">음료</a>
 			</li>
 			<li>
-				<a href="#">베이커리</a>
+				<a href="${pageContext.request.contextPath}/search/bakery.do">베이커리</a>
 			</li>
 		</ul>
 	</div>
