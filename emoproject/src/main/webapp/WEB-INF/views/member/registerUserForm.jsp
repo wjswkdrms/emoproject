@@ -101,7 +101,7 @@
 				</li>
 				<li>
 					<label for="cell">전화번호</label>
-					<input type="text" name="cell"
+					<input type="tel" name="cell"
 					  id="cell" maxlength="15">
 				</li>
 				<li>
@@ -122,19 +122,23 @@
 					  id="address1" maxlength="30">
 				</li>
 				<li>
-					<label for="address2">나머지 주소</label>
+					<label for="address2">상세 주소</label>
 					<input type="text" name="address2"
 					  id="address2" maxlength="30">
 				</li>
 				<li>
 					<label for="birth">생년월일</label>
 					<input type="text" name="birth"
-					  id="birth" maxlength="30">
+					  id="birth" maxlength="6">
 				</li>
 				<li>
 					<label for="gender">성별</label>
-					<input type="text" name="gender"
-					  id="gender" maxlength="30">
+					남자
+					<input type="radio" name="gender"
+					  id="gender">
+				    여자
+					<input type="radio" name="gender"
+					  id="gender">
 				</li>
 				
 			</ul> 
