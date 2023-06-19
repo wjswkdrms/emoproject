@@ -93,7 +93,7 @@ public class AnnounceDAO {
 				announce.setAnn_title(rs.getString("ann_title"));
 				announce.setAnn_content(rs.getString("ann_content"));
 				announce.setAnn_date(rs.getDate("ann_date"));
-				announce.setId(rs.getString("mem_id"));
+				announce.setMem_id(rs.getString("mem_id"));
 				list.add(announce);
 			}
 		}catch(Exception e) {

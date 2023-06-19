@@ -51,8 +51,8 @@
 				<c:forEach var="announce" items="${list}">
 				<ul class="list">
 					<li>${announce.ann_num}</li>
-					<li>${announce.ann_title}</li>
-					<li>${announce.id}</li>
+					<li><a>${announce.ann_title}</a></li>
+					<li>${announce.mem_id}</li>
 					<li>${announce.ann_date}</li>
 					
 				</ul>
