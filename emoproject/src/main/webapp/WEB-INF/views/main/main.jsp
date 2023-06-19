@@ -16,7 +16,7 @@
 	<jsp:include page="/WEB-INF/views/common/adver.jsp"/> 
 	
 	<p>contents</p>
-	<br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

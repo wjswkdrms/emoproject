@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/java/kr/controller/Action.java=UTF-8
 encoding//src/main/java/kr/member/action/LogoutAction.java=UTF-8
+encoding//src/main/java/kr/member/action/MemberEditAction.java=UTF-8
+encoding//src/main/java/kr/member/action/PwdCheckAction.java=UTF-8
+encoding//src/main/java/kr/member/dao/MemberDAO.java=UTF-8
