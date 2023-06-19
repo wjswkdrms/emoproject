@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -25,11 +27,12 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  <div id="center_set">
 	<!-- 내용 시작 -->
+	<h2 id="main_title">로그인</h2>
 	<div class="content-main">
-		<h2>로그인</h2>
 		<form id="login_form" action="login.do"
 		                        method="post">
 			<ul>
@@ -53,7 +56,9 @@
 		</form>
 	</div>
 	<!-- 내용 끝 -->
+  </div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
 
