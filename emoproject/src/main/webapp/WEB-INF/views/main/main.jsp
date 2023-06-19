@@ -16,8 +16,8 @@
 	<jsp:include page="/WEB-INF/views/common/adver.jsp"/> 
 	
 	<p>contents</p>
+	<br>
 
-	현재 로그인 중인 아이디 [${user_id}]
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

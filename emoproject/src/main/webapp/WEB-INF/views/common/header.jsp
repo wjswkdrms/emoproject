@@ -4,12 +4,31 @@
 <div class="main-head">
 	<div class="top-box">
 		<ul>
-			<li>
-				<a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
-			</li>
-			<li>
-				<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
-			</li>
+			<c:if test="${user_id != null }">
+			<!--${user_id } 로그인 중<br /> -->
+				<li>
+					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+				</li>
+			</c:if>
+			
+			<c:if test="${user_id != null }">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/memberEditForm.do">내 정보(임시)</a>
+				</li>
+			</c:if>
+			
+			<c:if test="${user_id == null }">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
+				</li>
+			</c:if>
+			
+			<c:if test="${user_id == null }">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
+				</li>
+			</c:if>
+			
 			<li>
 				<a href="${pageContext.request.contextPath}/announce/announce.do">고객센터</a>
 			</li>
@@ -39,22 +58,22 @@
 	<div class="category-box">
 		<ul>
 			<li>
-				<a href="#">농산물</a>
+				<a href="${pageContext.request.contextPath}/search/nongsan.do">농산물</a>
 			</li>
 			<li>
-				<a href="#">수산물</a>
+				<a href="${pageContext.request.contextPath}/search/fish.do">수산물</a>
 			</li>
 			<li>
-				<a href="#">정육</a>
+				<a href="${pageContext.request.contextPath}/search/meats.do">정육</a>
 			</li>
 			<li>
-				<a href="#">유제품</a>
+				<a href="${pageContext.request.contextPath}/search/milk.do">유제품</a>
 			</li>
 			<li>
-				<a href="#">음료</a>
+				<a href="${pageContext.request.contextPath}/search/drink.do">음료</a>
 			</li>
 			<li>
-				<a href="#">베이커리</a>
+				<a href="${pageContext.request.contextPath}/search/bakery.do">베이커리</a>
 			</li>
 		</ul>
 	</div>

@@ -20,7 +20,7 @@
 		<h2>회원 정보</h2>
 		<div class="result-display">
 			<div class="align-center">
-				정지된 회원 ID입니다.<p>
+				asdfasdf<p>
 				<input type="button" value="홈으로"
 				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
@@ -34,7 +34,7 @@
   <%-- auth가 1이 아닌 경우 --%>
   <c:otherwise>
   <script>
-  	alert('아이디 또는 비밀번호가 불일치합니다.');
+  	alert('이메일 또는 이름이 불일치합니다.');
   	history.go(-1);
   </script>
   </c:otherwise>
