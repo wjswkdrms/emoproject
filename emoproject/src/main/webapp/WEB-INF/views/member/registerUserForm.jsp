@@ -73,82 +73,82 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<!-- 내용 시작 -->
-	<div class="content-main">
-		<h2>회원가입</h2>
-		<form id="register_form" 
-		  action="registerUser.do" method="post">
-			<ul>
-				<li>
-					<label for="id">아이디</label>
-					<input type="text" name="id"
-					   id="id" maxlength="12"
-					   autocomplete="off">
-					<input type="button" 
-					 value="id중복체크" id="id_check">
-					<span id="message_id"></span>
-					<div class="form-notice">*영문 또는 숫자(4자~12자)</div>    
-				</li>
-				<li>
-					<label for="name">이름</label>
-					<input type="text" name="name"
-					  id="name" maxlength="10">
-				</li>
-				<li>
-					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd"
-					  id="passwd" maxlength="12">
-				</li>
-				<li>
-					<label for="cell">전화번호</label>
-					<input type="tel" name="cell"
-					  id="cell" maxlength="15">
-				</li>
-				<li>
-					<label for="email">이메일</label>
-					<input type="email" name="email"
-					  id="email" maxlength="50">
-				</li>
-				<li>
-					<label for="zipcode">우편번호</label>
-					<input type="text" name="zipcode"
-					  id="zipcode" maxlength="5">
-					<input type="button" value="우편번호 찾기"
-					 onclick="execDaumPostcode()">  
-				</li>
-				<li>
-					<label for="address1">주소</label>
-					<input type="text" name="address1"
-					  id="address1" maxlength="30">
-				</li>
-				<li>
-					<label for="address2">상세 주소</label>
-					<input type="text" name="address2"
-					  id="address2" maxlength="30">
-				</li>
-				<li>
-					<label for="birth">생년월일</label>
-					<input type="text" name="birth"
-					  id="birth" maxlength="6">
-				</li>
-				<li>
-					<label for="gender">성별</label>
-					남자
-					<input type="radio" name="gender"
-					  id="gender">
-				    여자
-					<input type="radio" name="gender"
-					  id="gender">
-				</li>
-				
-			</ul> 
-			<div class="align-center">
-				<input type="submit" value="등록">
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div> 
-		</form>
-	</div>
+  <div id="center_set">
+    <!-- 내용 시작 -->
+    <h2 id="main_title">회원가입</h2>
+    <div class="content-main">
+      <form id="register_form"
+            action="registerUser.do" method="post">
+        <ul>
+          <li>
+            <label for="id">아이디</label>
+            <input type="text" name="id"
+                   id="id" class="input_style" maxlength="12"
+                   autocomplete="off">
+            <input type="button" class="input_style"
+                   value="id중복체크" id="id_check">
+            <span id="message_id"></span>
+            <div class="form-notice">*영문 또는 숫자(4자~12자)</div>
+          </li>
+          <li>
+            <label for="name">이름</label>
+            <input type="text" class="input_style" name="name"
+                   id="name" maxlength="10">
+          </li>
+          <li>
+            <label for="passwd">비밀번호</label>
+            <input type="password" class="input_style" name="passwd"
+                   id="passwd" maxlength="12">
+          </li>
+          <li>
+            <label for="cell">전화번호</label>
+            <input type="text" name="cell" class="input_style"
+                   id="cell" maxlength="15">
+          </li>
+          <li>
+            <label for="email">이메일</label>
+            <input type="email" name="email" class="input_style"
+                   id="email" maxlength="50">
+          </li>
+          <li>
+            <label for="zipcode">우편번호</label>
+            <input type="text" name="zipcode" class="input_style"
+                   id="zipcode" maxlength="5">
+            <input type="button" value="우편번호 찾기" class="input_style"
+                   onclick="execDaumPostcode()">
+          </li>
+          <li>
+            <label for="address1">주소</label>
+            <input type="text" name="address1" class="input_style"
+                   id="address1" maxlength="30">
+          </li>
+          <li>
+            <label for="address2">상세 주소</label>
+            <input type="text" name="address2" class="input_style"
+                   id="address2" maxlength="30">
+          </li>
+          <li>
+            <label for="birth">생년월일</label>
+            <input type="text" name="birth" class="input_style"
+                   id="birth" maxlength="6">
+          </li>
+          <li>
+            <label for="gender">성별</label>
+            <span class="gender_span">남자</span>
+            <input type="radio" name="gender"
+                   id="gender" class="gender">
+            <span class="gender_span">여자</span>
+            <input type="radio" name="gender"
+                   id="gender" class="gender">
+        </ul>
+        <div class="align-center">
+          <input type="submit" class="bt" value="등록">
+          <input type="button" class="bt" value="홈으로"
+                 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

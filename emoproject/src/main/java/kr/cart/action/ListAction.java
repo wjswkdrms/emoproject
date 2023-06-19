@@ -1,7 +1,5 @@
 package kr.cart.action;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,5 +12,4 @@ public class ListAction implements Action{
 		
 		return "/WEB-INF/views/cart/list.jsp";
 	}
-
 }
