@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 정보</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>

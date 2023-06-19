@@ -6,105 +6,33 @@
 	font-family: 'IBMPlexSansKR-Light';
 	src: url('../fonts/IBMPlexSansKR-Light.woff') format('woff');
 }
-
-    div{
-      background-color: #e9ecef;
-    }
+	body{
+		margin:0;
+		font-family: 'IBMPlexSansKR-Light';
+	}
     #footer{
-      width:	1600px;
+      width : 1600px;
       margin : 0 auto;
-      height : 200px;
-
+      height : auto;
+      background-color: gray;
     }
-    .inner{
-      padding-left : 10px;
-    }
-
-    /* 상단 푸터 */
-    .footer_top{
-      padding-left : 20px;
-      font-size: 12px;
-      color : black;
-    }
-
-    .footer_top{
-
-    }
-    .footer_mid{
-      font-size: 12px;
-      color : black;
-
-    }
-
-    .footer_bot{
-      font-size: 12px;
-      color : black;
-    }
-    #footer_top_time{
-      font-size : 15px;
-      color : gray;
-    }
-    .mont h3{
-      font-size: 10px;
-      color : lightgray;
-    }
-    .mont li {
-      display: flex;
-      align-items: center;
-    }
-    h3{
-      font-size : 30px;
-      margin: 0;
-    }
-    h4{
-      font-size : 20px;
-      color : gray;
-      padding-top: 20px;
-    }
-    h5{
-      font-size : 15px;
-      color : black;
-    }
-    h6{
-      background-color: lightgray;
-      width: 80px;
-      height:22px;
-      text-align: center;
-      font-size : 15px;
-      border-radius : 10px;
-      list-style: none;
-      margin: 0;
-    }
-    ul{
-      list-style:none;
-    }
-    li{
-      display: inline-block;
-    }
-    p{
-      font-size : 13px;
-      color : black;
-    }
-    a{
-      margin-left: 10px;
-    }
-    .logo{
-      display: inline-block;
-      margin-bottom: 50px;
-    }
-    #f1{
-      float:left;
-      margin-right:100px;
-    }
-    #sns{ /*수정해야되ㅣㅁ*/
-      margin-left:500px;
-      width : 50px;
-      height : 50px;
-    }
-    #f1, #f2{
-      flex: 1;
-      padding: 10px;
-    }
-    .cpr{
-      margin-left:10px;
-    }
+    #inner{
+		width: 1200px;
+		margin : 0 auto;
+	}
+	#footer_top{
+		height:auto;
+	}
+	#footer_top_time{
+		font-size:10px;
+		color:lightblue;
+	}
+	#footer_mid1{
+		height:auto;
+	}
+	#footer_mid2{
+		height:auto;
+	}
+	#footer_bot{
+		height:auto;
+	}
