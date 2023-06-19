@@ -8,11 +8,12 @@
 <title>고객센터</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<!-- 내용 시작 -->
-	<div>
+	<div class="whole">
 		<div class="container">
 			<div class="left-div">
 				<div class="page-name">고객센터</div>
@@ -27,32 +28,44 @@
 				<div class="list-name">
 					<h2>공지사항</h2>
 				</div>
-	<%-- 			<c:if test="${count==0}"> --%>
-	<!-- 			<div>
+				
+	 			<c:if test="${count==0}"> 
+	 			<div class="list">
+					<div>번호</div>
+					<div>제목</div>
+					<div>작성자</div>
+					<div>작성일</div>
+				</div>
+	 			<div>
 					표시할 게시물이 없습니다.
-				</div> -->
-	<%-- 			</c:if> --%>
-	<%-- 			<c:if test="${count>0}"> --%>
+				</div> 
+	 			</c:if>
+	 			<c:if test="${count>0}">
 				<div class="list">
 					<div>번호</div>
 					<div>제목</div>
 					<div>작성자</div>
 					<div>작성일</div>
 				</div>
-				<%-- <c:forEach> --%>
+				
+				<c:forEach var="announce" items="${list}">
 				<ul class="list">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
+					<li>${announce.ann_num}</li>
+					<li>${announce.ann_title}</li>
+					<li>${announce.id}</li>
+					<li>${announce.ann_date}</li>
+					
 				</ul>
+				</c:forEach>
+	 			</c:if> 
+				<c:if test="${!empty user_num && user_auth==9}">
 				<input type="button" value="글쓰기" onclick="location.href='announceForm.do'"> 
-				<%-- </c:forEach> --%>
-	<%-- 			</c:if> --%>
-	<%-- 			<div>${page}</div> --%>
+				</c:if>
+				<div>${page}</div>  
 			</div>
 		</div>
 		<!-- 내용 끝 -->
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
