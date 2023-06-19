@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>이모마켓 | 메인화면</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style_test.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
 
 	<p>contents</p>

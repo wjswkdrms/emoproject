@@ -1,13 +1,12 @@
 @charset "UTF-8";
 
 .promotion-box{
-	width:1920px;
+	width: 100%; /* width 나중에 설정*/
 	height:400px;
 	margin: 0 auto;
 	display:flex;
-}
-
-.promotion-box img{
-	align-items: center; /* 수직으로 가운데 정렬 */
-    justify-content: center; /* 수평으로 가운데 정렬 */
+	overflow:hidden;
+	
+	justify-content: center;
+	align-items: center;
 }

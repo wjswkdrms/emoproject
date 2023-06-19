@@ -11,7 +11,7 @@
 				<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 			</li>
 			<li>
-				<a href="#">고객센터</a>
+				<a href="${pageContext.request.contextPath}/announce/announce.do">고객센터</a>
 			</li>
 		</ul>
 	</div>
