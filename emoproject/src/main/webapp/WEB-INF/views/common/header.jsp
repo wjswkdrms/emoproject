@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- header 시작 -->
+<!--  -->
 <div class="main-head">
 	<div class="top-box">
 		<ul>
@@ -33,7 +34,7 @@
 				<a href="${pageContext.request.contextPath}/announce/announce.do">고객센터</a>
 			</li>
 			<li>
-				<a href="#">상품등록</a>
+				<a href="${pageContext.request.contextPath}/product/writeForm.do">상품등록</a>
 			</li>
 		</ul>
 	</div>
