@@ -15,6 +15,7 @@
 <div>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
+	<!-- 커닛 -->
 	<div class="form-basic">
 		<form action="write.do" method="post" enctype="multipart/form-data" id="write_form">
 		<h2>상품 등록</h2>
@@ -72,6 +73,7 @@
 				<label class="box-left" for="info">상품 설명</label>
 				<textarea rows="5" cols="30" name="info" id="info">상품 상세 설명</textarea>
 			</li>
+			
 		</ul>
 		<div class="align-center">
 			<input type="submit" value="상품 등록">

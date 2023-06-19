@@ -33,6 +33,7 @@ public class ProductDAO {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
 			//product_num 구하기
+			//커밋
 			sql = "SELECT em_product_manage_seq.nextval FROM dual";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

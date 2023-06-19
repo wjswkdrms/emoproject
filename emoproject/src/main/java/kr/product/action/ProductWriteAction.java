@@ -19,7 +19,7 @@ public class ProductWriteAction implements Action{
 		HttpSession session = request.getSession();
 		
 		//로그인, 관리자 조건체크 나중에
-		
+		//커ㄴ밋
 		//관리자로 로그인한 경우
 		MultipartRequest multi = FileUtil.createFile(request);
 		

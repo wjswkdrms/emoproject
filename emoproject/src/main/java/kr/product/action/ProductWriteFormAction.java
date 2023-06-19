@@ -12,7 +12,8 @@ public class ProductWriteFormAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		//조건체크 나중에
-		
+		//주석
+		//커밋
 		return "/WEB-INF/views/product/product_writeForm.jsp";
 	}
 	
