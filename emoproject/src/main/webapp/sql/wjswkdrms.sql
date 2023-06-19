@@ -74,4 +74,4 @@ create table em_member_cart(
                  foreign key (product_num) 
                  references em_product_manage (product_num)
 );
-create sequence em_member_cart_seq;
+create sequence em_member_cart_seq;--seq
