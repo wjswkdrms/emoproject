@@ -28,7 +28,7 @@
 			</li>
 			<li class="icons-menu">
 				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_fav01.png"></a>
-				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png"></a>
+				<a href="${pageContext.request.contextPath}/cart/list.do"><img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png"></a>
 				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_home01.png"></a>
 			</li>
 		</ul>
