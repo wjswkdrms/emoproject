@@ -8,12 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/promotion_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
-<<<<<<< HEAD
-=======
-
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css"> --%>
-
->>>>>>> branch 'main' of https://github.com/wjswkdrms/emoproject.git
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -22,11 +17,7 @@
 	<p>contents</p>
 
 	현재 로그인 중인 아이디 [${user_id}]
-	hello
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
-
-
-
