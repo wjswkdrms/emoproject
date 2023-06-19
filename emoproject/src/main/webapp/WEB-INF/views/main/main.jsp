@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/promotion_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css"> --%>
+
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>

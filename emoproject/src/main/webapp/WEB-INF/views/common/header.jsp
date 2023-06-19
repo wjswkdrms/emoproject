@@ -23,7 +23,7 @@
 			<li class="li-search">
 				<div id="search-product">
 					<input type="text" id="search" class="search">
-					<img src="${pageContext.request.contextPath}/images/emo_icon_search01.png">
+					<img src="${pageContext.request.contextPath}/images/emo_icon_search01.svg">
 				</div>
 			</li>
 			<li class="icons-menu">
