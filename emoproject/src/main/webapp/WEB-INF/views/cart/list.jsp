@@ -6,6 +6,46 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.cart-modify').on('click',function(){
+			let input_quantity = 
+				$(this).parent().find(
+					'input[name="order_quantity"]');
+			//서버와 통신
+			$.ajax({
+				url:'modifyCart.do',
+				type:'post',
+				data:{cart_num:$(this).attr('data-cartnum'),order_quantity:input_quantity.val(),simm:$(this).val()},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'logout'){
+						alert('로그인 후 사용하세요');
+					}else if(param.result == 'noSale'){
+						alert('판매가 중지되었습니다.');
+						location.href='list.do';
+					}else if(param.result == 'noQuantity'){
+						alert('상품의 수량이 부족합니다.');
+						location.href='list.do';
+					}else if(param.result == 'success'){
+						
+						location.href='list.do';
+					}else{
+						alert('장바구니 상품 개수 수정 오류');
+					}
+				},
+				error:function(){
+					alert('네트워크 오류 발생');
+				}
+			});
+			
+		});
+	});
+</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -20,34 +60,51 @@
 		<c:if test="${!empty list}">
 		<form id="cart_order" 
 		  action="${pageContext.request.contextPath}/order/orderForm.do" method="post">
+		
 			<table>
-				<tr>
-					<th>상품이름</th>
-					<th>이미지</th>
-					<th>주문수량</th>
-					<th>가격</th>
-				</tr>
 				<c:forEach var="cart" items="${list}">
 				<tr>
 					<td>
-						${cart.product.product_title}
+						<input type="checkbox">
 					</td>
 					<td>
 						<img src="${pageContext.request.contextPath}/upload/${cart.product.product_photo1}" width="80">
 					</td>
 					<td>
-						${cart.cart_quantity}
+						${cart.product.product_title}
 					</td>
 					<td>
-						${cart.product.product_price}
+						<input type="button" value="-" class="quntity" data-cartnum="${cart.mem_cart_num}">
+						<input type="number" id="order-quantity" name="order_quantity" value="${cart.cart_quantity}" maxlength="3">
+						<input type="button" value="+" class="quntity" data-cartnum="${cart.mem_cart_num}">
+					</td>
+					<td>
+						${cart.product.product_price*cart.cart_quantity}
 					</td>
 				</tr>
 				</c:forEach>
 			</table>
+			<div >
+				
+				<div>
+					<span>보유 포인트</span>
+					<span>${point}원</span>
+				</div>
+				<div>
+					<span>최종금액</span>
+					<span>${all_total}원</span>
+				</div>
+				<hr size="1" noshade="noshade" width="100%">
+				<div>
+					<span>결제시 포인트 잔액</span>
+					<span>${point-all_total}원</span>
+				</div>
+				<input type="button" value="결제">
+			</div>
 		</form>
+		
 		</c:if>
 	</div>
-		
-임시)<a href="${pageContext.request.contextPath}/cart/writeForm.do">상품등록</a>
+
 </body>
 </html>

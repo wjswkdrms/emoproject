@@ -19,10 +19,54 @@ public class CartDAO {
 	}
 	private CartDAO() {}
 	
-	
+	//회원 보유 포인트 구하기
+	public int getMemPoint(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int point = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT mem_point FROM em_member_detail WHERE mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				point = (rs.getInt("mem_point"));
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return point;
+	}
 	//회원별 장바구니 총 구매 금액 구하기
 	public int getTotalByMem_num(int mem_num) throws Exception{
-		return 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int sum = 0;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "select * FROM em_member_cart c join em_product_detail d on c.product_num = d.product_num join em_product_manage m on d.product_num = m.product_num WHERE c.mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				sum += (rs.getInt("cart_quantity")*rs.getInt("product_price"));
+			}
+		}catch(Exception e) {
+			
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		return sum;
 	}
 	//카트에 상품 등록하기
 	public void insertCart(CartVO cart) throws Exception{
@@ -87,5 +131,77 @@ public class CartDAO {
 		}
 		
 		return list;
+	}
+	public void plusQuantity(
+            int cart_num)
+          throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		String sql = null;
+		int quant = 0;
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			sql = "SELECT cart_quantity FROM em_member_cart WHERE mem_cart_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, cart_num);
+			rs = pstmt2.executeQuery();
+			if(rs.next()) {
+				quant = rs.getInt("cart_quantity");
+				quant++;
+			}
+			sql = "UPDATE em_member_cart SET cart_quantity=? "
+					+ "WHERE mem_cart_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, quant);
+			pstmt.setInt(2, cart_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+			conn.commit();
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, null);
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+	}
+	public void minusQuantity(
+            int cart_num)
+          throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		String sql = null;
+		int quant = 0;
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			sql = "SELECT cart_quantity FROM em_member_cart WHERE mem_cart_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, cart_num);
+			rs = pstmt2.executeQuery();
+			if(rs.next()) {
+				quant = rs.getInt("cart_quantity");
+				quant--;
+			}
+			sql = "UPDATE em_member_cart SET cart_quantity=? "
+					+ "WHERE mem_cart_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, quant);
+			pstmt.setInt(2, cart_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+			conn.commit();
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, null);
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
 	}
 }

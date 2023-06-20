@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/* 페이지 레이아웃
+------------------*/
+.page-main{
+	background:#FFFFFF;
+	margin:40px 0;
+	border-radius:5px;
+	box-shadow:0 2px 6px rgba(100,100,100,0.3);
+	min-height:650px;
+}
+.content-main{
+	padding:10px 20px;
+}
+/* 공통 메시지
+------------------*/
+.result-display{
+	width:400px;
+	height:200px;
+	margin:50px auto;
+	border:1px solid #000;
+	display:flex;
+	align-items:center;/*세로 정렬*/
+	justify-content:center;/*가로 정렬*/
+}
+
+/* 공통 정렬
+------------------*/
+.align-center{
+	text-align:center;
+}
+.align-right{
+	text-align:right;
+}
+table{
+	width:100%;
+	border-collapse:collapse;
+	margin-top:5px;
+}
+table td, table th{
+	font-size:20pt;
+	padding:5px;
+}
+input[id="quantity"]{
+	font-size:20pt;
+	width:40px;
+	margin:0;
+	padding:0;
+}
+input.quntity{
+	font-size:20pt;
+	width:35px;
+	margin:0;
+	padding:0;
+}
