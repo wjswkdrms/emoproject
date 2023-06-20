@@ -1,5 +1,16 @@
 package kr.member.action;
 
-public class FindIdFormAction {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.controller.Action;
+
+public class FindIdFormAction implements Action{
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//JSP 경로 반환
+		return "/WEB-INF/views/member/findIdForm.jsp";
+	}
 
 }
