@@ -56,3 +56,13 @@ form textarea{
 	border: 1px solid rgb(201,201,201);
 }
 
+/*---------*/
+
+.page{
+	width: 1050px;
+	margin: 0 auto;
+	padding: 0px;
+}
+.page-content{
+	margin: 40px;
+}
