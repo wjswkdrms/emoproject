@@ -36,12 +36,11 @@
     .input_idpw_outer { /* 전체 입력 박스 설정  */
       width: 400px;
       height: 60px;
-      border: 1px solid #dadada;
+      border: 1px solid #7878E1;
       padding: 16px 18px 15px;
       border-radius: 6px;
       box-sizing: border-box;
       text-align: left;
-      box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
     }
     .input_idpw_inner{ /* 타이틀, 박스 배치 */
       display: flex;
