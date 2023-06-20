@@ -1,5 +1,5 @@
 package kr.ask.dao;
 
-public class AskDAO {
+public class AnswerDAO {
 
 }

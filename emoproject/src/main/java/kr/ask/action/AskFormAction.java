@@ -1,4 +1,4 @@
-package kr.announce.action;
+package kr.ask.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
-public class AnnounceFormAction implements Action{
+public class AskFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,7 +17,7 @@ public class AnnounceFormAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
-		return "/WEB-INF/views/announce/announceForm.jsp";
+		return "/WEB-INF/views/ask/askForm.jsp";
 	}
 
 }
