@@ -129,6 +129,7 @@ public class AnnounceDAO {
 				announce.setAnn_photo1(rs.getString("ann_photo1"));
 				announce.setAnn_date(rs.getDate("ann_date"));
 				announce.setMem_id(rs.getString("mem_id"));
+				announce.setMem_num(rs.getInt("mem_num"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);

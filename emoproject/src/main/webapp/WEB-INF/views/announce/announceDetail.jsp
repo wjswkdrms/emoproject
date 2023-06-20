@@ -38,7 +38,7 @@
 					</div>	
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_auth==9}">
-						<input type="button" value="수정" onclick="location.href='announceModify.do'">
+						<input type="button" value="수정" onclick="location.href='announceUpdateForm.do?ann_num=${announce.ann_num}'">
 						</c:if>
 						<input type="button" value="목록" onclick="location.href='announce.do'">
 					</div>
