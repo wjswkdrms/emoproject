@@ -9,7 +9,7 @@ import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 
 public class MemberDAO {
-	//�떛湲��꽩 �뙣�꽩
+	//싱글턴 패턴
 		private static MemberDAO instance = 
 				            new MemberDAO();
 		public static MemberDAO getInstance() {
@@ -17,7 +17,7 @@ public class MemberDAO {
 		}
 		private MemberDAO() {}
 		
-		//�쉶�썝媛��엯
+		//회원정보 저장
 		public void insertMember(MemberVO member)
 		                         throws Exception{
 			Connection conn = null;
@@ -28,7 +28,7 @@ public class MemberDAO {
 			String sql = null;
 			int num = 0; //�떆���뒪 踰덊샇 ���옣
 			try {
-				//而ㅻ꽖�뀡��濡쒕��꽣 而ㅻ꽖�뀡�쓣 �븷�떦
+				//커넥션풀로부터 커넥션을 할당
 				conn = DBUtil.getConnection();
 				//�삤�넗 而ㅻ컠 �빐�젣
 				conn.setAutoCommit(false);
@@ -80,7 +80,7 @@ public class MemberDAO {
 			}
 			
 		}
-		//ID 以묐났 泥댄겕 諛� 濡쒓렇�씤 泥섎━
+		//ID 중복체크
 		public MemberVO checkMember(String id)
 		                      throws Exception{
 			Connection conn = null;
@@ -125,7 +125,7 @@ public class MemberDAO {
 			return member;
 		}
 		
-		//email 중복체크
+		//email 중복체크 수정필요
 		public MemberVO checkMemberEmail(String email)
 		                      throws Exception{
 			Connection conn = null;
@@ -182,25 +182,54 @@ public class MemberDAO {
 			
 			try {
 				conn = DBUtil.getConnection();
-				sql = "SELECT manage.mem_id FROM EM_MEMBER_MANAGE manage \r\n"
-						+ "INNER JOIN EM_MEMBER_DETAIL detail ON manage.mem_num = detail.mem_num \r\n"
-						+ "WHERE detail.mem_name = ? AND detail.mem_email = ?;";
+				sql = "SELECT manage.mem_id FROM EM_MEMBER_MANAGE manage "
+						+ "INNER JOIN EM_MEMBER_DETAIL detail ON manage.mem_num = detail.mem_num "
+						+ "WHERE detail.mem_name = ? AND detail.mem_email = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, email);
+				//입력받은 데이터(이름,이메일) 바인딩
+				pstmt.setString(1, name);
+				pstmt.setString(2, email);
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
 					member = new MemberVO();
-					member.setMem_num(
-							rs.getInt("mem_num"));
 					member.setId(
 							rs.getString("mem_id"));
-					member.setAuth(
-							   rs.getInt("mem_auth"));
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				//�옄�썝�젙由�
+				DBUtil.executeClose(rs, pstmt, conn);
+			}	
+			return member;
+		}
+		//비밀번호 찾기
+		public MemberVO checkpw(String id,String name,String email)
+		                      throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			MemberVO member = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT detail.mem_passwd FROM EM_MEMBER_DETAIL detail "
+						+ "INNER JOIN EM_MEMBER_MANAGE manage ON detail.mem_num = manage.mem_num "
+						+ "WHERE manage.mem_id = ? AND detail.mem_name = ? AND detail.mem_email = ?";
+				pstmt = conn.prepareStatement(sql);
+				//입력받은 데이터(이름,이메일) 바인딩
+				pstmt.setString(1, id);
+				pstmt.setString(2, name);
+				pstmt.setString(3, email);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					member = new MemberVO();
 					member.setPasswd(
-						  rs.getString("mem_passwd"));
-					member.setEmail(
-							rs.getString("mem_email"));
+							rs.getString("mem_passwd"));
 				}
 				
 			}catch(Exception e) {

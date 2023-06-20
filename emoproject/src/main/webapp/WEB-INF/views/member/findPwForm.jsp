@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>아이디 찾기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
@@ -17,9 +17,14 @@
 				$('#id').val('').focus();
 				return false;
 			}
-			if($('#passwd').val().trim()==''){
-				alert('비밀번호를 입력하세요');
-				$('#passwd').val('').focus();
+			if($('#name').val().trim()==''){
+				alert('이름을 입력하세요');
+				$('#name').val('').focus();
+				return false;
+			}
+			if($('#email').val().trim()==''){
+				alert('이메일을 입력하세요');
+				$('#email').val('').focus();
 				return false;
 			}
 		});
@@ -31,37 +36,31 @@
 <div class="page-main">
   <div id="center_set">
     <!-- 내용 시작 -->
-    <h2 id="main_title">로그인</h2>
+    <h2 id="main_title">비밀번호 찾기</h2>
     <div class="content-main">
-      <form id="login_form" action="login.do"
+      <form id="login_form" action="findPw.do"
             method="post">
         <ul>
           <li>
             <label for="id">아이디</label>
-            <input type="text" name="id" class="input_style"
-                   id="id" maxlength="12"
-                   autocomplete="off">
+            <input type="text" class="input_style" name="id"
+                   id="id" maxlength="12">
           </li>
           <li>
-            <label for="passwd">비밀번호</label>
-            <input type="password" name="passwd" class="input_style"
-                   id="passwd" maxlength="12">
+            <label for="name">이름</label>
+            <input type="text" class="input_style" name="name"
+                   id="name" maxlength="30">
+          </li>
+          <li>
+            <label for="email">이메일</label>
+            <input type="email" name="email" class="input_style"
+                   id="email" maxlength="50">
           </li>
         </ul>
         <div class="align-center">
-          <input type="submit" class="bt" value="로그인">
-          <!-- <input type="button" class="bt" value="홈으로"
-                 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-           -->
-        </div>
-        <div class="align-but">
-          <input type="button" class="bt" value="회원가입"
-                 onclick="location.href='${pageContext.request.contextPath}/main/registerUser.do'">
-          <input type="button" class="bt" value="아이디 찾기"
-                 onclick="location.href='${pageContext.request.contextPath}/main/findId.do'">
-          <input type="button" class="bt" value="비밀번호 찾기"
-                 onclick="location.href='${pageContext.request.contextPath}/main/findPw.do'">
-        
+          <input type="submit" class="bt" value="확인">
+          <input type="button" class="bt" value="취소"
+                 onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
         </div>
       </form>
     </div>

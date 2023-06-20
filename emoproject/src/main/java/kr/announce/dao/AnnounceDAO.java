@@ -138,4 +138,28 @@ public class AnnounceDAO {
 		return announce;
 	}
 	
+	//글 수정
+	public void updateAnnounce(AnnounceVO announce)throws Exception{
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql=null;
+		
+		try {
+			conn=DBUtil.getConnection();
+			sql="UPDATE em_board_announce SET ann_title=?,ann_content=?,ann_photo1=? WHERE ann_num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, announce.getAnn_title());
+			pstmt.setString(2, announce.getAnn_content());
+			pstmt.setInt(3, announce.getAnn_num());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//글 삭제
+	
 }
