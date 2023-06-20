@@ -51,6 +51,4 @@ public class OrderDetailVO {
 	public void setOrder_product_total(int order_product_total) {
 		this.order_product_total = order_product_total;
 	}
-	
-	
 }
