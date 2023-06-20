@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/promotion_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/content_view_style.css">
 
 </head>
 <body>
@@ -17,10 +17,13 @@
 	<jsp:include page="/WEB-INF/views/common/adver.jsp"/> 
 	
 	<div class="main-contents">
+		<div class="contents-head">전체 상품 보기</div>
 		<c:forEach var="product" items="${productList}">
-		<img src="${product.product_photo1}">
-		<span>{products.product_title}</span>
-		<p>가격 : ${products.product_price}</p>
+		<div class="product-nums"> <!-- 수정 필요 -->
+		<img src="${pageContext.request.contextPath}/upload/${product.product_photo1}" width="350px" height="350px">
+		<span>${product.product_title}</span>
+		<p>가격 : ${product.product_price} 원</p>
+		</div>
 		</c:forEach>
 	</div>
 	

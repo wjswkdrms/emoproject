@@ -57,4 +57,46 @@ public class SearchDAO {
 		}
 		return list;
 	}
+	
+	public List<SearchVO> getProductMainEverything() throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<SearchVO> list = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM)";
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<SearchVO>();
+			
+			while (rs.next()) {
+				SearchVO searchvo = new SearchVO();
+				searchvo.setProduct_num(rs.getInt("product_num"));
+				searchvo.setProduct_category(rs.getInt("product_category"));
+				searchvo.setProduct_status(rs.getInt("product_status"));
+				searchvo.setProduct_name(rs.getString("product_name"));
+				searchvo.setProduct_title(rs.getString("product_title"));
+				searchvo.setProduct_info(rs.getString("product_info"));
+				searchvo.setProduct_photo1(rs.getString("product_photo1"));
+				searchvo.setProduct_photo2(rs.getString("product_photo2"));
+				searchvo.setProduct_origin(rs.getString("product_origin"));
+				searchvo.setProduct_real_price(rs.getInt("product_real_price"));
+				searchvo.setProduct_price(rs.getInt("product_price"));
+				searchvo.setProduct_stock(rs.getInt("product_stock"));
+				list.add(searchvo);
+			}
+			
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 }
