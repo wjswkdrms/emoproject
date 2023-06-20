@@ -151,7 +151,8 @@ public class AnnounceDAO {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, announce.getAnn_title());
 			pstmt.setString(2, announce.getAnn_content());
-			pstmt.setInt(3, announce.getAnn_num());
+			pstmt.setString(3, announce.getAnn_photo1());
+			pstmt.setInt(4, announce.getAnn_num());
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {

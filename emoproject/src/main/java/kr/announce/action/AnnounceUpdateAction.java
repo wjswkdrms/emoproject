@@ -24,7 +24,7 @@ public class AnnounceUpdateAction implements Action{
 		
 		MultipartRequest multi=FileUtil.createFile(request);
 		
-		int ann_num=Integer.parseInt(request.getParameter("ann_num"));
+		int ann_num=Integer.parseInt(multi.getParameter("ann_num"));
 		String ann_photo1=multi.getFilesystemName("ann_photo1");
 		
 		Integer user_auth=(Integer)session.getAttribute("user_auth");
@@ -38,10 +38,11 @@ public class AnnounceUpdateAction implements Action{
 		AnnounceVO db_announce=dao.getAnnounce(ann_num);
 		announce.setAnn_num(ann_num);
 		announce.setAnn_title(multi.getParameter("ann_title"));
-		announce.setAnn_content(multi.getParameter("content"));
+		announce.setAnn_content(multi.getParameter("ann_content"));
 		announce.setAnn_photo1(ann_photo1);
 		
 		dao.updateAnnounce(announce);
+		
 		if(ann_photo1!=null) {
 			FileUtil.removeFile(request, db_announce.getAnn_photo1());
 		}

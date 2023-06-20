@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 글쓰기</title>
+<title>공지사항 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
@@ -37,12 +37,11 @@
 						</tr>
 						<tr>
 							<th><label for="ann_photo1">사진첨부</label></th>
-							<c:if test="${!empty announce.ann_photo1}">
 							<td>
+							<c:if test="${!empty announce.ann_photo1}">
 								<div>
 									(${announce.ann_photo1})이 등록되어 있습니다.
 									<input type="button" value="삭제" id="photo_del"><br>
-									<input type="file" name="ann_photo1" id="ann_photo1" accept="image/gif,image/png,image/jpeg">
 								</div>
 <!-- 								<script type="text/javascript">
 									$(function(){
@@ -55,6 +54,8 @@
 									});
 								</script> -->
 							</c:if>
+							<input type="file" name="ann_photo1" id="ann_photo1" accept="image/gif,image/png,image/jpeg">
+							</td>
 						</tr>
 					</table>
 					<div>
