@@ -155,6 +155,7 @@ public class askDAO {
 				ask.setAsk_status(rs.getInt("ask_status"));
 				ask.setAsk_num(rs.getInt("ask_num"));
 				ask.setMem_num(rs.getInt("mem_num"));
+				
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
