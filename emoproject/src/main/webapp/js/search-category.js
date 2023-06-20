@@ -2,12 +2,6 @@
  * 
  */
 
-$(function() { //ajax start
-	
-	
-
-});
-
 
 
 

@@ -13,12 +13,10 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		
 		<div class="main-content">
-			<div class="search-category-title">
-				${product_category_name.product_category_name}
-			</div>
+			<div class="search-category-title">${product_category_name}</div>
 			
 			<div class="product-category-contents">
-					
+						
 			</div>
 		</div>
 		
