@@ -2,14 +2,18 @@ package kr.search.action;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
 import kr.controller.Action;
+import kr.search.dao.SearchDAO;
+import kr.search.vo.SearchVO;
 
 
-public class SearchCategoryAction implements Action {
+public class SearchCategoryMainAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -20,12 +24,12 @@ public class SearchCategoryAction implements Action {
 		Integer mem_num = (Integer) session.getAttribute("mem_num");
 		*/
 		
+		//product category number 받기
 		request.setCharacterEncoding("utf-8");
 		int product_category_num = Integer.parseInt(request.getParameter("product_category"));
 		
 		//product name 처리
 		String product_category_name = null;
-		
 		if(product_category_num == 1) {
 			product_category_name = "농산물";
 		} else if (product_category_num == 2) {
@@ -40,6 +44,13 @@ public class SearchCategoryAction implements Action {
 			product_category_name = "베이커리";
 		} 
 		request.setAttribute("product_category_name", product_category_name);
+		
+		SearchDAO dao = SearchDAO.getInstance();
+		
+		List<SearchVO> categoryList = null;
+		categoryList = dao.getProductCategories(product_category_num);
+		
+		request.setAttribute("categoryList",categoryList);
 		
 		/*
 		 * Map<String, Object> mapAjax = new HashMap<String, Object>();
@@ -62,7 +73,7 @@ public class SearchCategoryAction implements Action {
 		request.setAttribute("ajaxData", ajaxData);
 		*/
 		//ajax 등록 끝
-		return "/WEB-INF/views/search/searchCategory.jsp";
+		return "/WEB-INF/views/search/searchCategoryMain.jsp";
 	}
 
 }

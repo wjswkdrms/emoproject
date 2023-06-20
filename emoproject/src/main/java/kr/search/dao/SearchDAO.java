@@ -15,7 +15,7 @@ public class SearchDAO {
 	public static SearchDAO getInstance() {return instance;};
 	private SearchDAO() {}
 	
-	//category 받아서 list로 뿌려줌..
+	//Product Category 조건 목록
 	public List<SearchVO> getProductCategories(int product_category) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

@@ -59,22 +59,22 @@
 	<div class="category-box">
 		<ul>
 			<li>
-				<a href="${pageContext.request.contextPath}/search/searchCategory.do?product_category=1" id="nongsan" class="nongsan">농산물</a>
+				<a href="${pageContext.request.contextPath}/search/searchCategoryMain.do?product_category=1" id="nongsan" class="nongsan">농산물</a>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath}/search/searchCategory.do?product_category=2" id="fish" class="fish">수산물</a>
+				<a href="${pageContext.request.contextPath}/search/searchCategoryMain.do?product_category=2" id="fish" class="fish">수산물</a>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath}/search/searchCategory.do?product_category=3" id="meats" class="meats">정육</a>
+				<a href="${pageContext.request.contextPath}/search/searchCategoryMain.do?product_category=3" id="meats" class="meats">정육</a>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath}/search/searchCategory.do?product_category=4" id="milk" class="milk">유제품</a>
+				<a href="${pageContext.request.contextPath}/search/searchCategoryMain.do?product_category=4" id="milk" class="milk">유제품</a>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath}/search/searchCategory.do?product_category=5" id="drink" class="drink">음료</a>
+				<a href="${pageContext.request.contextPath}/search/searchCategoryMain.do?product_category=5" id="drink" class="drink">음료</a>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath}/search/searchCategory.do?product_category=6" id="bakery" class="bakery">베이커리</a>
+				<a href="${pageContext.request.contextPath}/search/searchCategoryMain.do?product_category=6" id="bakery" class="bakery">베이커리</a>
 			</li>
 		</ul>
 	</div>
