@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- header 시작 -->
 <!--  -->
+<title></title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <div class="main-head">
 	<div class="top-box">
 		<ul>
@@ -20,15 +22,17 @@
 			
 			<c:if test="${user_id == null }">
 				<li>
-					<a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
+					<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 				</li>
 			</c:if>
 			
 			<c:if test="${user_id == null }">
 				<li>
-					<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
+					<a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
 				</li>
 			</c:if>
+			
+
 			
 			<li>
 				<a href="${pageContext.request.contextPath}/announce/announce.do">고객센터</a>
