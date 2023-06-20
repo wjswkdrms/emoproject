@@ -8,8 +8,14 @@ public class CartVO {
 	private int product_num;//상품번호
 	private int cart_quantity;//구매 상품 수량
 	private ProductDetailVO product;//상품
+	private int product_Status;//상품 상태
 	
-	
+	public int getProduct_Status() {
+		return product_Status;
+	}
+	public void setProduct_Status(int product_Status) {
+		this.product_Status = product_Status;
+	}
 	public ProductDetailVO getProduct() {
 		return product;
 	}
