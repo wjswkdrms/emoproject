@@ -57,7 +57,7 @@ public class ProductWriteAction implements Action{
 		//response.addHeader("Refresh", "2;url=list.do");
 				
 		request.setAttribute("accessMsg", "성공적으로 등록되었습니다.");
-		request.setAttribute("accessUrl", "list.do");
+		request.setAttribute("accessUrl", "productlist.do");
 				
 		//accessMsg,accessUrl 설정시 잘못된 접근입니다 라는 문구가아니라 지정된 문구, 경로로 이동
 		return "/WEB-INF/views/common/notice.jsp";
