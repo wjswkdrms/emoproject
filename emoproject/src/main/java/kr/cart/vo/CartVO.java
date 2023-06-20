@@ -3,7 +3,7 @@ package kr.cart.vo;
 import kr.product.vo.ProductDetailVO;
 
 public class CartVO {
-	private int cart_num;//장바구니 번호
+	private int mem_cart_num;//장바구니 번호
 	private int mem_num;//회원번호
 	private int product_num;//상품번호
 	private int cart_quantity;//구매 상품 수량
@@ -16,11 +16,11 @@ public class CartVO {
 	public void setProduct(ProductDetailVO product) {
 		this.product = product;
 	}
-	public int getCart_num() {
-		return cart_num;
+	public int getMem_cart_num() {
+		return mem_cart_num;
 	}
-	public void setCart_num(int cart_num) {
-		this.cart_num = cart_num;
+	public void setMem_cart_num(int cart_num) {
+		this.mem_cart_num = cart_num;
 	}
 	public int getMem_num() {
 		return mem_num;
