@@ -58,9 +58,9 @@
           <input type="button" class="bt" value="회원가입"
                  onclick="location.href='${pageContext.request.contextPath}/member/registerUserForm.do'">
           <input type="button" class="bt" value="아이디 찾기"
-                 onclick="location.href='${pageContext.request.contextPath}/member/findId.do'">
+                 onclick="location.href='${pageContext.request.contextPath}/member/findIdForm.do'">
           <input type="button" class="bt" value="비밀번호 찾기"
-                 onclick="location.href='${pageContext.request.contextPath}/member/findPw.do'">
+       onclick="location.href='${pageContext.request.contextPath}/member/findPwForm.do'">
         
         </div>
       </form>
