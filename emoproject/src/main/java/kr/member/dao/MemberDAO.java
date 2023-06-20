@@ -81,47 +81,134 @@ public class MemberDAO {
 			
 		}
 		//ID 以묐났 泥댄겕 諛� 濡쒓렇�씤 泥섎━
-				public MemberVO checkMember(String id)
-				                      throws Exception{
-					Connection conn = null;
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
-					MemberVO member = null;
-					String sql = null;
-					
-					try {
-						//而ㅻ꽖�뀡��濡쒕��꽣 而ㅻ꽖�뀡�쓣 �븷�떦
-						conn = DBUtil.getConnection();
-						sql = "SELECT * FROM em_member_manage m LEFT OUTER JOIN "
-							+ "em_member_detail d ON m.mem_num = d.mem_num "
-							+ "WHERE m.mem_id=?";
-						//PreparedStatement 媛앹껜 �깮�꽦
-						pstmt = conn.prepareStatement(sql);
-						//?�뿉 �뜲�씠�꽣 諛붿씤�뵫
-						pstmt.setString(1, id);
-						//SQL臾� �떎�뻾
-						rs = pstmt.executeQuery();
-						
-						if(rs.next()) {
-							member = new MemberVO();
-							member.setMem_num(
-									rs.getInt("mem_num"));
-							member.setId(
-									rs.getString("mem_id"));
-							member.setAuth(
-									   rs.getInt("mem_auth"));
-							member.setPasswd(
-								  rs.getString("mem_passwd"));
-							member.setEmail(
-									rs.getString("mem_email"));
-						}
-						
-					}catch(Exception e) {
-						throw new Exception(e);
-					}finally {
-						//�옄�썝�젙由�
-						DBUtil.executeClose(rs, pstmt, conn);
-					}	
-					return member;
+		public MemberVO checkMember(String id)
+		                      throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			MemberVO member = null;
+			String sql = null;
+			
+			try {
+				//而ㅻ꽖�뀡��濡쒕��꽣 而ㅻ꽖�뀡�쓣 �븷�떦
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM em_member_manage m LEFT OUTER JOIN "
+					+ "em_member_detail d ON m.mem_num = d.mem_num "
+					+ "WHERE m.mem_id=?";
+				//PreparedStatement 媛앹껜 �깮�꽦
+				pstmt = conn.prepareStatement(sql);
+				//?�뿉 �뜲�씠�꽣 諛붿씤�뵫
+				pstmt.setString(1, id);
+				//SQL臾� �떎�뻾
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					member = new MemberVO();
+					member.setMem_num(
+							rs.getInt("mem_num"));
+					member.setId(
+							rs.getString("mem_id"));
+					member.setAuth(
+							   rs.getInt("mem_auth"));
+					member.setPasswd(
+						  rs.getString("mem_passwd"));
+					member.setEmail(
+							rs.getString("mem_email"));
 				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				//�옄�썝�젙由�
+				DBUtil.executeClose(rs, pstmt, conn);
+			}	
+			return member;
+		}
+		
+		//email 중복체크
+		public MemberVO checkMemberEmail(String email)
+		                      throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			MemberVO member = null;
+			String sql = null;
+			
+			try {
+				//而ㅻ꽖�뀡��濡쒕��꽣 而ㅻ꽖�뀡�쓣 �븷�떦
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM em_member_manage m LEFT OUTER JOIN "
+					+ "em_member_detail d ON m.mem_num = d.mem_num "
+					+ "WHERE m.mem_email=?";
+				//PreparedStatement 媛앹껜 �깮�꽦
+				pstmt = conn.prepareStatement(sql);
+				//?�뿉 �뜲�씠�꽣 諛붿씤�뵫
+				pstmt.setString(1, email);
+				//SQL臾� �떎�뻾
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					member = new MemberVO();
+					member.setMem_num(
+							rs.getInt("mem_num"));
+					member.setId(
+							rs.getString("mem_id"));
+					member.setAuth(
+							   rs.getInt("mem_auth"));
+					member.setPasswd(
+						  rs.getString("mem_passwd"));
+					member.setEmail(
+							rs.getString("mem_email"));
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				//�옄�썝�젙由�
+				DBUtil.executeClose(rs, pstmt, conn);
+			}	
+			return member;
+		}
+		
+		
+		//ID 찾기
+		public MemberVO checkid(String name,String email)
+		                      throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			MemberVO member = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT manage.mem_id FROM EM_MEMBER_MANAGE manage \r\n"
+						+ "INNER JOIN EM_MEMBER_DETAIL detail ON manage.mem_num = detail.mem_num \r\n"
+						+ "WHERE detail.mem_name = ? AND detail.mem_email = ?;";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, email);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					member = new MemberVO();
+					member.setMem_num(
+							rs.getInt("mem_num"));
+					member.setId(
+							rs.getString("mem_id"));
+					member.setAuth(
+							   rs.getInt("mem_auth"));
+					member.setPasswd(
+						  rs.getString("mem_passwd"));
+					member.setEmail(
+							rs.getString("mem_email"));
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				//�옄�썝�젙由�
+				DBUtil.executeClose(rs, pstmt, conn);
+			}	
+			return member;
+		}
 }
