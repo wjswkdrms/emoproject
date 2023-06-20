@@ -33,6 +33,7 @@
 						<div class="specific">${announce.ann_date}</div>
 					</div>	
 					<div class="main-content">
+						<div><img src=${pageContext.request.contextPath}/upload/${announce.ann_photo1}></div>
 						<div>${announce.ann_content}</div>
 					</div>	
 					<div class="button-box">
