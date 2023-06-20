@@ -12,7 +12,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import kr.cart.dao.CartDAO;
 import kr.cart.vo.CartVO;
 import kr.controller.Action;
-import kr.product.dao.ProductDAO;
 import kr.product.vo.ProductManageVO;
 
 
