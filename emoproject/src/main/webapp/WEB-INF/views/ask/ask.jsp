@@ -18,9 +18,9 @@
 			<div class="left-div">
 				<div class="page-name">고객센터</div>
 				<ul class="menu-box">
-					<li><a class="detail-menu">공지사항<img></a></li>
+					<li><a class="detail-menu" href="${pageContext.request.contextPath}/announce/announce.do">공지사항<img></a></li>
 					<li><a class="detail-menu">자주하는 질문<img></a></li>
-					<li><a class="detail-menu">1:1 문의<img></a></li>
+					<li><a class="detail-menu" href="ask.do">1:1 문의<img></a></li>
 				</ul>
 			</div>
 			<div class="right-div">

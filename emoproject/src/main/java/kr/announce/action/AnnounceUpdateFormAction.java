@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.announce.dao.AnnounceDAO;
+import kr.announce.vo.AnnounceVO;
 import kr.controller.Action;
 
 public class AnnounceUpdateFormAction implements Action{
@@ -22,9 +23,16 @@ public class AnnounceUpdateFormAction implements Action{
 		if(user_auth<9) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
-		int ann_num=Integer.parseInt(request.getParameter("ann_num"));
-		AnnounceDAO dao=AnnounceDAO.getInstance();
 		
+		int ann_num=Integer.parseInt(request.getParameter("ann_num"));
+		
+		AnnounceDAO dao=AnnounceDAO.getInstance();
+		AnnounceVO announce=dao.getAnnounce(ann_num);
+		if(user_num!=announce.getMem_num()) {
+			return "/WEB-INF/views/common/notice.jsp";
+		}
+		
+		request.setAttribute("announce", announce);
 		
 		return "/WEB-INF/views/announce/announceUpdateForm.jsp";
 	}

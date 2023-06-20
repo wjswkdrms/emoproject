@@ -33,12 +33,12 @@
 						<div class="specific">${announce.ann_date}</div>
 					</div>	
 					<div class="main-content">
-						<div><img src=${pageContext.request.contextPath}/upload/${announce.ann_photo1}></div>
+						<div><img src="${pageContext.request.contextPath}/upload/${announce.ann_photo1}"></div>
 						<div>${announce.ann_content}</div>
 					</div>	
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_auth==9}">
-						<input type="button" value="수정" onclick="location.href='announceModify.do'">
+						<input type="button" value="수정" onclick="location.href='announceUpdateForm.do?ann_num=${announce.ann_num}'">
 						</c:if>
 						<input type="button" value="목록" onclick="location.href='announce.do'">
 					</div>

@@ -129,6 +129,7 @@ public class AnnounceDAO {
 				announce.setAnn_photo1(rs.getString("ann_photo1"));
 				announce.setAnn_date(rs.getDate("ann_date"));
 				announce.setMem_id(rs.getString("mem_id"));
+				announce.setMem_num(rs.getInt("mem_num"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -150,7 +151,8 @@ public class AnnounceDAO {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, announce.getAnn_title());
 			pstmt.setString(2, announce.getAnn_content());
-			pstmt.setInt(3, announce.getAnn_num());
+			pstmt.setString(3, announce.getAnn_photo1());
+			pstmt.setInt(4, announce.getAnn_num());
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {
