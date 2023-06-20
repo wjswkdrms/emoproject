@@ -11,40 +11,77 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		$('.cart-modify').on('click',function(){
-			let input_quantity = 
-				$(this).parent().find(
-					'input[name="order_quantity"]');
-			//서버와 통신
-			$.ajax({
-				url:'modifyCart.do',
-				type:'post',
-				data:{cart_num:$(this).attr('data-cartnum'),order_quantity:input_quantity.val(),simm:$(this).val()},
-				dataType:'json',
-				success:function(param){
-					if(param.result == 'logout'){
-						alert('로그인 후 사용하세요');
-					}else if(param.result == 'noSale'){
-						alert('판매가 중지되었습니다.');
-						location.href='list.do';
-					}else if(param.result == 'noQuantity'){
-						alert('상품의 수량이 부족합니다.');
-						location.href='list.do';
-					}else if(param.result == 'success'){
-						
-						location.href='list.do';
-					}else{
-						alert('장바구니 상품 개수 수정 오류');
-					}
-				},
-				error:function(){
-					alert('네트워크 오류 발생');
+$(function(){
+	//장바구니 상품 삭제 이벤트 연결
+	$('.cart-del').on('click',function(){
+		$.ajax({
+			url:'deleteCart.do',
+			type:'post',
+			data:{cart_num:$(this).attr('data-cartnum')},
+			dataType:'json',
+			success:function(param){
+				if(param.result == 'logout'){
+					alert('로그인 후 사용하세요!');
+				}else if(param.result == 'success'){
+					alert('선택하신 상품을 삭제했습니다.');
+					location.href='list.do';
+				}else{
+					alert('장바구니 상품 삭제 오류');
 				}
-			});
-			
+			},
+			error:function(){
+				alert('네트워크 오류 발생');
+			}
 		});
 	});
+	
+	//장바구니 상품 수량 변경 이벤트 연결
+	$('.cart-modify').on('click',function(){
+		let input_quantity = 
+			$(this).parent().find(
+				'input[name="order_quantity"]');
+		if(input_quantity.val()==''){
+			alert('수량을 입력하세요');
+			input_quantity.focus();
+			return;
+		}
+		if(input_quantity.val()<1){
+			alert('상품의 최소 수량은 1입니다.');
+			                   //태그에 명시한 변경전 value 값을 읽어옴
+			input_quantity.val(input_quantity.attr('value'));
+			return;                   
+		}
+		
+		//서버와 통신
+		$.ajax({
+			url:'modifyCart.do',
+			type:'post',
+			data:{cart_num:$(this).attr('data-cartnum'),item_num:$(this).attr('data-itemnum'),order_quantity:input_quantity.val()},
+			dataType:'json',
+			success:function(param){
+				if(param.result == 'logout'){
+					alert('로그인 후 사용하세요');
+				}else if(param.result == 'noSale'){
+					alert('판매가 중지되었습니다.');
+					location.href='list.do';
+				}else if(param.result == 'noQuantity'){
+					alert('상품의 수량이 부족합니다.');
+					location.href='list.do';
+				}else if(param.result == 'success'){
+					alert('상품의 개수가 수정되었습니다.');
+					location.href='list.do';
+				}else{
+					alert('장바구니 상품 개수 수정 오류');
+				}
+			},
+			error:function(){
+				alert('네트워크 오류 발생');
+			}
+		});
+		
+	});
+	
+});
 </script>
 </head>
 <body>
@@ -73,10 +110,16 @@
 					<td>
 						${cart.product.product_title}
 					</td>
-					<td>
-						<input type="button" value="-" class="quntity" data-cartnum="${cart.mem_cart_num}">
-						<input type="number" id="order-quantity" name="order_quantity" value="${cart.cart_quantity}" maxlength="3">
-						<input type="button" value="+" class="quntity" data-cartnum="${cart.mem_cart_num}">
+					<td class="align-center">						
+							<input type="number" name="order_quantity"
+							  min="1" max="${cart.product.product_stock}"
+							  autocomplete="off" 
+							  value="${cart.cart_quantity}">
+							<br>
+							<input type="button" value="변경" 
+							 class="cart-modify" 
+							 data-cartnum="${cart.mem_cart_num}"
+							 data-itemnum="${cart.product_num}">
 					</td>
 					<td>
 						${cart.product.product_price*cart.cart_quantity}
