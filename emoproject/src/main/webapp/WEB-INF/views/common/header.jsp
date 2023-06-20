@@ -34,7 +34,7 @@
 				<a href="${pageContext.request.contextPath}/announce/announce.do">고객센터</a>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath}/product/writeForm.do">상품등록</a>
+				<a href="${pageContext.request.contextPath}/product/productlist.do">상품등록</a>
 			</li>
 		</ul>
 	</div>

@@ -5,6 +5,7 @@ public class ProductManageVO {
 	private int product_num;
 	private int product_category;
 	private int product_status;
+	private ProductDetailVO productdetailVO;
 	
 	public int getProduct_num() {
 		return product_num;
@@ -23,5 +24,11 @@ public class ProductManageVO {
 	}
 	public void setProduct_status(int product_status) {
 		this.product_status = product_status;
+	}
+	public ProductDetailVO getProductdetailVO() {
+		return productdetailVO;
+	}
+	public void setProductdetailVO(ProductDetailVO productdetailVO) {
+		this.productdetailVO = productdetailVO;
 	}
 }
