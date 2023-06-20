@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.cart.vo.CartVO;
 import kr.product.vo.ProductDetailVO;
+import kr.product.vo.ProductManageVO;
 import kr.util.DBUtil;
 
 public class CartDAO {
@@ -132,76 +133,55 @@ public class CartDAO {
 		
 		return list;
 	}
-	public void plusQuantity(
-            int cart_num)
-          throws Exception{
+	//장바구니 수정 (개별 상품 수량 수정)
+		public void updateCart(CartVO cart)
+		                        throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "UPDATE em_member_cart SET cart_quantity=? "
+					+ "WHERE mem_cart_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cart.getCart_quantity());
+				pstmt.setInt(2, cart.getMem_cart_num());
+				//SQL문 실행
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+	//제품상세정보
+	public ProductManageVO getItem(int item_num) throws Exception{
+		ProductManageVO product = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		String sql = null;
-		int quant = 0;
+		
 		try {
 			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
-			sql = "SELECT cart_quantity FROM em_member_cart WHERE mem_cart_num=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, cart_num);
-			rs = pstmt2.executeQuery();
-			if(rs.next()) {
-				quant = rs.getInt("cart_quantity");
-				quant++;
-			}
-			sql = "UPDATE em_member_cart SET cart_quantity=? "
-					+ "WHERE mem_cart_num=?";
+			sql = "SELECT * FROM em_product_manage m JOIN em_product_detail d ON m.product_num = d.product_num WHERE m.product_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, quant);
-			pstmt.setInt(2, cart_num);
-			//SQL문 실행
-			pstmt.executeUpdate();
-			conn.commit();
+			pstmt.setInt(1, item_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				product = new ProductManageVO();
+				ProductDetailVO productDetail = new ProductDetailVO();
+				productDetail.setProduct_stock(rs.getInt("product_stock"));
+				
+				product.setProductdetailVO(productDetail);
+			}
 		}catch(Exception e) {
-			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			DBUtil.executeClose(null, pstmt, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-	}
-	public void minusQuantity(
-            int cart_num)
-          throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
-		ResultSet rs = null;
-		String sql = null;
-		int quant = 0;
-		try {
-			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
-			sql = "SELECT cart_quantity FROM em_member_cart WHERE mem_cart_num=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, cart_num);
-			rs = pstmt2.executeQuery();
-			if(rs.next()) {
-				quant = rs.getInt("cart_quantity");
-				quant--;
-			}
-			sql = "UPDATE em_member_cart SET cart_quantity=? "
-					+ "WHERE mem_cart_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, quant);
-			pstmt.setInt(2, cart_num);
-			//SQL문 실행
-			pstmt.executeUpdate();
-			conn.commit();
-		}catch(Exception e) {
-			conn.rollback();
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(null, pstmt, null);
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
+		
+		return product;
 	}
 }

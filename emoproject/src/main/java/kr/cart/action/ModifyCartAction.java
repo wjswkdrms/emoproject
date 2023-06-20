@@ -13,7 +13,8 @@ import kr.cart.dao.CartDAO;
 import kr.cart.vo.CartVO;
 import kr.controller.Action;
 import kr.product.dao.ProductDAO;
-import kr.product.vo.ProductDetailVO;
+import kr.product.vo.ProductManageVO;
+
 
 public class ModifyCartAction implements Action{
 
@@ -31,24 +32,39 @@ public class ModifyCartAction implements Action{
 		}else {//로그인 된 경우
 			//전송된 데이터 인코딩 처리
 			request.setCharacterEncoding("utf-8");
-			//전송된 데이터 반
+			//전송된 데이터 반환
+			int item_num = 
+					Integer.parseInt(
+			          request.getParameter(
+			        		    "item_num"));
 			int item_quantity =
 					Integer.parseInt(
 					  request.getParameter(
 							  "order_quantity"));
-			String simm = request.getParameter("simm");
-			CartVO cart = new CartVO(); 
-			cart.setMem_cart_num(Integer.parseInt(request.getParameter("cart_num")));
-			cart.setCart_quantity(item_quantity); 
-			CartDAO cartDao = CartDAO.getInstance(); 
-			if(simm=="+") {
-				cartDao.plusQuantity(cart.getMem_cart_num());
-			}else if(simm=="-") {
-				cartDao.minusQuantity(cart.getMem_cart_num());
+			
+			CartDAO itemDao = CartDAO.getInstance();
+			ProductManageVO item = itemDao.getItem(item_num);
+			if(item.getProduct_status()==1) {//미표시
+				mapAjax.put("result", "noSale");
+			}else if(item.getProductdetailVO().getProduct_stock()<item_quantity) {
+				//상품 재고 수량보다 장바구니에 담은 구매 수량이
+				//더 많음
+				mapAjax.put("result", "noQuantity");
+			}else {//표시 상품이면서 재고가 부족하지 않음
+				CartVO cart = new CartVO();
+				cart.setMem_cart_num(
+						Integer.parseInt(
+								request.getParameter(
+										"cart_num")));
+				cart.setCart_quantity(item_quantity);
+				
+				CartDAO cartDao = CartDAO.getInstance();
+				cartDao.updateCart(cart);
+				
+				mapAjax.put("result", "success");
 			}
-			mapAjax.put("result", "success"); 
 		}
-
+		
 		//JSON 데이터 생성
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = 
