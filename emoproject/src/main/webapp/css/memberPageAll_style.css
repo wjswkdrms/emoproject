@@ -1,9 +1,9 @@
 @charset "UTF-8";
 @font-face{
 	font-family: 'maple';
-    src: url('../fonts/Malestory_Light.ttf') format('maple');
+    src: url('../fonts/Malestory_Light_ttf') format('maple');
 }
-	div {
+	body {
 		font-family: 'maple';
 	}
     .page_outer{ /* 전체 페이지 설정 */
@@ -13,10 +13,26 @@
       padding-left: 100px;
       padding-top: 100px;
     }
+    .page_outer_register{ /* 전체 페이지 설정 register페이지 */
+      width:1600px;
+      height:1200px;
+      display: flex;
+      padding-left: 100px;
+      padding-top: 100px;
+    }
     .page_inner{ /* 전체 데이터 박스 설정 */
+      display:block;
       margin: 0 auto;
       width:1200px;
       height: 600px;
+      border : 2px solid black;
+      border-radius: 10px;
+    }
+    .page_inner_register{ /* 전체 데이터 박스 설정 register페이지 */
+      display:block;
+      margin: 0 auto;
+      width:1200px;
+      height: 1100px;
       border : 2px solid black;
       border-radius: 10px;
     }
@@ -24,16 +40,23 @@
       text-align: center;
       padding-top: 15px;
     }
+    .page_inner_register #title{ /* 제목 중앙 정렬 register페이지 */
+      text-align: center;
+      padding-top: 15px;
+    }
     .button_all{ /* li 형식 점 없애기 */
       list-style-type: none;
+      padding-right: 38px;
     }
     .page_login{
       display: block;
-      width:400px;
-      margin : 0 auto;
+      width:800px;
+      margin : auto;
       padding-top: 50px;
     }
     .input_idpw_outer { /* 전체 입력 박스 설정  */
+      display: block;
+      margin: 0 auto;
       width: 400px;
       height: 60px;
       border: 1px solid #7878E1;
@@ -52,7 +75,7 @@
       height: 150px;
     }
     .input_box{ /* 전체 입력 박스 설정 */
-      display:flex;
+      display: flex;
       width:150px;
       height: 35px;
       margin: -5px auto;
@@ -61,13 +84,58 @@
     }
     .button { /* 버튼 디자인 */
       display: block;
+      margin: 5px auto;
       width:400px;
       padding: 13px 13px;
       background-color: #AAB9FF;
       box-sizing: border-box;
       cursor: pointer;
-      margin-top: 10px;
-      margin-left: -40px;
       border : 2px solid #7878E1;
       border-radius: 7px;
+    }
+    .input_style{ /* 정보 입력칸 */
+      margin-left: 20px;
+      border : 2px solid #7878E1;
+      border-radius: 7px;
+      background-color: white;
+    }
+    .input-notice{ /* register페이지 알림문구 */
+      width: 300px;
+      height: 30px;
+      margin-top: 5px;
+      margin-bottom: 3px;
+      margin-left: 220px;
+      color: dimgray;
+    }
+    .input_title_radio label{ /* register페이지 "성별" 전용 */
+      display: inline-block;
+      width:50px;
+      height: 30px;
+      margin-left: 20px;
+    }
+    .input_title_radio .gender_span{ /* register페이지 "성별" 전용 */
+      margin-left: 60px;
+      height: 30px;
+    }
+    [type="radio"] { /* 라디오 버튼 꾸미기 */
+      vertical-align: middle;
+      appearance: none;
+      border: max(2px, 0.1em) solid gray;
+      border-radius: 50%;
+      width: 1.5em;
+      height: 1.5em;
+      transition: border 0.5s ease-in-out;
+    }
+    [type="radio"]:checked { /* 라디오 버튼 체크됐을 때 꾸미기 */
+      border: 0.8em solid #7878E1;
+    }
+    [type="radio"]:hover { /* 라디오 버튼 호버링 꾸미기 */
+      box-shadow: 0 0 0 max(4px, 0.2em) #AAB9FF;
+      cursor: pointer;
+    }
+    .output_outer{ /* 회원가입 완료 창 */
+      text-align: center;
+      font-size: 30px;
+      margin-top: 140px;
+      color: purple;
     }

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/register_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberPageAll_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -63,90 +63,142 @@
 			idChecked = 0;
 			$('#message_id').text('');
 		});//end of keydown
+
 	});
 </script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
-  <div id="center_set">
-    <!-- 내용 시작 -->
-    <h2 id="main_title">회원가입</h2>
-    <div class="content-main">
-      <form id="register_form"
-            action="registerUser.do" method="post">
-        <ul>
-          <li>
-            <label for="id">아이디</label>
-            <input type="text" name="id"
-                   id="id" class="input_style" maxlength="12"
-                   autocomplete="off">
-            <input type="button" class="input_style"
-                   value="id중복체크" id="id_check">
-            <span id="message_id"></span>
-            <div class="form-notice">*영문 또는 숫자(4자~12자)</div>
-          </li>
-          <li>
-            <label for="name">이름</label>
-            <input type="text" class="input_style" name="name"
-                   id="name" maxlength="10">
-          </li>
-          <li>
-            <label for="passwd">비밀번호</label>
-            <input type="password" class="input_style" name="passwd"
-                   id="passwd" maxlength="12">
-          </li>
-          <li>
-            <label for="cell">전화번호</label>
-            <input type="text" name="cell" class="input_style"
-                   id="cell" maxlength="15">
-          </li>
-          <li>
-            <label for="email">이메일</label>
-            <input type="email" name="email" class="input_style"
-                   id="email" maxlength="50">
-            <input type="button" class="input_style"
-                   value="eamil중복체크" id="email_check">
-          </li>
-          <li>
-            <label for="zipcode">우편번호</label>
-            <input type="text" name="zipcode" class="input_style"
-                   id="zipcode" maxlength="5">
-            <input type="button" value="우편번호 찾기" class="input_style"
-                   onclick="execDaumPostcode()">
-          </li>
-          <li>
-            <label for="address1">주소</label>
-            <input type="text" name="address1" class="input_style"
-                   id="address1" maxlength="30">
-          </li>
-          <li>
-            <label for="address2">상세 주소</label>
-            <input type="text" name="address2" class="input_style"
-                   id="address2" maxlength="30">
-          </li>
-          <li>
-            <label for="birth">생년월일</label>
-            <input type="text" name="birth" class="input_style"
-                   id="birth" maxlength="6">
-          </li>
-          <li>
-            <label for="gender">성별</label>
-            <span class="gender_span">남자</span>
-            <input type="radio" name="gender"
-                   id="gender" class="gender" value="1">
-            <span class="gender_span">여자</span>
-            <input type="radio" name="gender"
-                   id="gender" class="gender" value="2">
-            </li>
-        </ul>
-        <div class="align-center">
-          <input type="submit" class="bt" value="등록">
-          <input type="button" class="bt" value="홈으로"
-                 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+<div class="page_outer_register"> <!-- 전체 페이지 크기 지정 -->
+  <div class="page_inner_register"> <!--메인 페이지 중앙 정렬, 크기 지정-->
+    <h2 id="title">회원가입</h2>
+    <form id="register_form" action="registerUser.do" method="post">
+      <div class="page_login">
+        <div class="input_idpw_outer" id="input_id">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="id">아이디</label>
+            </div>
+            <div class="input_box">
+              <input type="text" name="id" id="id" class="input_style" maxlength="12" autocomplete="off">
+              <input type="button" class="input_style" value="id중복체크" id="id_check">
+              <span id="message_id"></span>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
+        <div class="text_announce">
+          <div class="input-notice"><strong>* 영문 또는 숫자(4자~12자)</strong></div>
+        </div>
+        <div class="input_idpw_outer" id="input_name">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="name">이름</label>
+            </div>
+            <div class="input_box">
+              <input type="text" class="input_style" name="name" id="name" maxlength="10">
+            </div>
+          </div>
+        </div>
+        <div class="input_idpw_outer" id="input_passwd">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="passwd">비밀번호</label>
+            </div>
+            <div class="input_box">
+              <input type="password" class="input_style" name="passwd" id="passwd" maxlength="12">
+            </div>
+          </div>
+        </div>
+        <div class="text_announce">
+          <div class="input-notice"><strong>* 영문 또는 숫자(4자~12자)</strong></div>
+        </div>
+        <div class="input_idpw_outer" id="input_cell">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="cell">전화번호</label>
+            </div>
+            <div class="input_box">
+              <input type="text" name="cell" class="input_style" id="cell" maxlength="15">
+            </div>
+          </div>
+        </div>
+        <div class="input_idpw_outer" id="input_email">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="email">이메일</label>
+            </div>
+            <div class="input_box">
+              <input type="email" name="email" class="input_style" id="email" maxlength="50">
+              <input type="button" class="input_style" value="eamil중복체크" id="email_check">
+            </div>
+          </div>
+        </div>
+        <div class="input_idpw_outer" id="input_zipcode">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="zipcode">우편번호</label>
+            </div>
+            <div class="input_box">
+              <input type="text" name="zipcode" class="input_style" id="zipcode" maxlength="5">
+              <input type="button" value="우편번호 찾기" class="input_style" onclick="execDaumPostcode()">
+            </div>
+          </div>
+        </div>
+        <div class="input_idpw_outer" id="input_address1">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="address1">주소</label>
+            </div>
+            <div class="input_box">
+              <input type="text" name="address1" class="input_style" id="address1" maxlength="30">
+            </div>
+          </div>
+        </div>
+        <div class="input_idpw_outer" id="input_address2">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="address2">상세 주소</label>
+            </div>
+            <div class="input_box">
+              <input type="text" name="address2" class="input_style" id="address2" maxlength="30">
+            </div>
+          </div>
+        </div>
+        <div class="input_idpw_outer" id="input_birth">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="birth">생년월일</label>
+            </div>
+            <div class="input_box">
+              <input type="text" name="birth" class="input_style" id="birth" maxlength="6">
+            </div>
+          </div>
+        </div>
+        <div class="text_announce">
+          <div class="input-notice"><strong>ex) 961221</strong></div>
+        </div>
+        <div class="input_idpw_outer" id="input_gender">
+          <div class="input_idpw_inner">
+            <div class="input_title_radio">
+              <label for="gender">성별</label>
+              <span class="gender_span">남자</span>
+              <input type="radio" name="gender"
+                     id="gender" class="gender" value="1">
+              <span class="gender_span">여자</span>
+              <input type="radio" name="gender"
+                     id="gender" class="gender" value="2">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="page_login">
+        <ul class="button_all" id="page_button_4">
+          <li><input type="submit" class="button" value="확인"></li>
+          <li><input type="button" class="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"></li>
+        </ul>
+      </div>
+    </form>
   </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
