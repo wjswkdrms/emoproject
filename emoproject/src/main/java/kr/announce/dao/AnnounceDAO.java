@@ -104,4 +104,38 @@ public class AnnounceDAO {
 		
 		return list;
 	}
+	
+	//글 상세
+	public AnnounceVO getAnnounce(int ann_num) throws Exception{
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		AnnounceVO announce=null;
+		String sql=null;
+		
+		try {
+			conn=DBUtil.getConnection();
+			sql="SELECT * FROM em_board_announce a JOIN em_member_manage m "
+					+ "USING(mem_num) WHERE ann_num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, ann_num);
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				announce=new AnnounceVO();
+				announce.setAnn_num(rs.getInt("ann_num"));
+				announce.setAnn_title(rs.getString("ann_title"));
+				announce.setAnn_content(rs.getString("ann_content"));
+				announce.setAnn_photo1(rs.getString("ann_photo1"));
+				announce.setAnn_date(rs.getDate("ann_date"));
+				announce.setMem_id(rs.getString("mem_id"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return announce;
+	}
+	
 }
