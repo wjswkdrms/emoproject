@@ -33,7 +33,7 @@
 						${cart.product.product_title}
 					</td>
 					<td>
-						<img src="#">
+						<img src="${pageContext.request.contextPath}/upload/${cart.product.product_photo1}" width="80">
 					</td>
 					<td>
 						${cart.cart_quantity}
