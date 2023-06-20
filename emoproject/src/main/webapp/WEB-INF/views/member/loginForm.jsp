@@ -50,8 +50,18 @@
         </ul>
         <div class="align-center">
           <input type="submit" class="bt" value="로그인">
-          <input type="button" class="bt" value="홈으로"
+          <!-- <input type="button" class="bt" value="홈으로"
                  onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+           -->
+        </div>
+        <div class="align-but">
+          <input type="button" class="bt" value="회원가입"
+                 onclick="location.href='${pageContext.request.contextPath}/member/registerUserForm.do'">
+          <input type="button" class="bt" value="아이디 찾기"
+                 onclick="location.href='${pageContext.request.contextPath}/member/findId.do'">
+          <input type="button" class="bt" value="비밀번호 찾기"
+                 onclick="location.href='${pageContext.request.contextPath}/member/findPw.do'">
+        
         </div>
       </form>
     </div>

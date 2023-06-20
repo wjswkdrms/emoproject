@@ -9,15 +9,15 @@ public class AnnounceVO {
 	private String ann_content;
 	private String ann_photo1;
 	private Date ann_date;
+	private String mem_id;//회원 아이디
 	
-	private String id;//회원 아이디
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public int getAnn_num() {
 		return ann_num;
 	}
