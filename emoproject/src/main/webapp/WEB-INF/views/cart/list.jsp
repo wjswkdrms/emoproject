@@ -22,16 +22,24 @@
 		  action="${pageContext.request.contextPath}/order/orderForm.do" method="post">
 			<table>
 				<tr>
-					<th>상품번호</th>
+					<th>상품이름</th>
+					<th>이미지</th>
 					<th>주문수량</th>
+					<th>가격</th>
 				</tr>
 				<c:forEach var="cart" items="${list}">
 				<tr>
 					<td>
-						${cart.product_num}
+						${cart.product.product_title}
+					</td>
+					<td>
+						<img src="#">
 					</td>
 					<td>
 						${cart.cart_quantity}
+					</td>
+					<td>
+						${cart.product.product_price}
 					</td>
 				</tr>
 				</c:forEach>
