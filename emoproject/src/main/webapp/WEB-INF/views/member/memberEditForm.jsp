@@ -15,19 +15,22 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-  <div id="center_set">
-    <!-- 내용 시작 -->
-    <ul>
-	    <li>주문 내역</li>
-	    <li>문의 내역</li>
-	    <li>찜한 상품</li>
-	    <li>상품 후기</li>
-	    <li>쿠폰함</li>
-	    <li>개인정보 수정</li>
-	    <li>회원 탈퇴</li>
-    </ul>
-    <!-- 내용 끝 -->
-  </div>
+	<div class="content-main">
+  		<div id="side_list">
+    		<ul>
+	    		<li>주문 내역</li>
+	    		<li>문의 내역</li>
+	    		<li>찜한 상품</li>
+	    		<li>상품 후기</li>
+	    		<li>	쿠폰함</li>
+	    		<li>개인정보 수정</li>
+	    		<li>회원 탈퇴</li>
+    		</ul>
+  		</div>
+  		<div class="main_list">
+  		<form id="memberEdit_Form" action="member" method="get"></form>
+  		</div>
+  	</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
