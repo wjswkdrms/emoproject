@@ -18,18 +18,18 @@
 			<div class="left-div">
 				<div class="page-name">고객센터</div>
 				<ul class="menu-box">
-					<li><a class="detail-menu" href="announce.do">공지사항<img></a></li>
+					<li><a class="detail-menu">공지사항<img></a></li>
 					<li><a class="detail-menu">자주하는 질문<img></a></li>
-					<li><a class="detail-menu" href="${pageContext.request.contextPath}/ask/ask.do">1:1 문의<img></a></li>
+					<li><a class="detail-menu">1:1 문의<img></a></li>
 				</ul>
 			</div>
 			<div class="right-div">
 				
 				<div class="list-name">
-					<h2>공지사항</h2>
+					<h2>1:1 문의</h2>
 				</div>
 				
-	 			<c:if test="${count==0}"> 
+<%-- 	 			<c:if test="${count==0}"> 
 	 			<div class="list">
 					<div>번호</div>
 					<div>제목</div>
@@ -39,27 +39,40 @@
 	 			<div>
 					표시할 게시물이 없습니다.
 				</div> 
-	 			</c:if>
-	 			<c:if test="${count>0}">
+	 			</c:if> --%>
+<%-- 	 			<c:if test="${count>0}"> --%>
 				<div class="list">
+					<div>답변상태</div>
 					<div>번호</div>
 					<div>제목</div>
 					<div>작성자</div>
 					<div>작성일</div>
 				</div>
 				
-				<c:forEach var="announce" items="${list}">
+				<c:forEach var="ask" items="${list}">
 				<ul class="list">
-					<li>${announce.ann_num}</li>
-					<li><a href="announceDetail.do?ann_num=${announce.ann_num}">${announce.ann_title}</a></li>
-					<li>${announce.mem_id}</li>
-					<li>${announce.ann_date}</li>
+					<li>
+						<div class="no-answer">
+						<c:if test="${ask.ask_status<1}">
+							답변 대기
+						</c:if>
+						</div>
+						<div class="answer">
+						<c:if test="${ask.ask_status==1}">
+							답변 완료
+						</c:if>
+						</div>
+					</li>
+					<li>${ask.ask_num}</li>
+					<li><a href="askDetail.do?ask_num=${ask.ask_num}">${ask.ask_title}</a></li>
+					<li>${ask.mem_id}</li>
+					<li>${ask.ask_date}</li>
 					
 				</ul>
 				</c:forEach>
-	 			</c:if> 
-				<c:if test="${!empty user_num && user_auth==9}">
-				<input type="button" value="글쓰기" onclick="location.href='announceForm.do'"> 
+<%-- 	 			</c:if>  --%>
+				<c:if test="${!empty user_num && user_auth==2}">
+				<input type="button" value="글쓰기" onclick="location.href='askForm.do'"> 
 				</c:if>
 				<div>${page}</div>  
 			</div>

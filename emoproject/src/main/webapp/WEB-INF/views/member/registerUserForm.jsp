@@ -63,9 +63,6 @@
 			idChecked = 0;
 			$('#message_id').text('');
 		});//end of keydown
-		
-		
-		
 	});
 </script>
 </head>
@@ -108,6 +105,8 @@
             <label for="email">이메일</label>
             <input type="email" name="email" class="input_style"
                    id="email" maxlength="50">
+            <input type="button" class="input_style"
+                   value="eamil중복체크" id="email_check">
           </li>
           <li>
             <label for="zipcode">우편번호</label>
