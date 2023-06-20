@@ -1,15 +1,19 @@
 @charset "UTF-8";
 
 /* 글꼴 */
+/*
 @font-face{
 	font-family: 'IBMPlexSansKR-Light';
     src: url('../fonts/IBMPlexSansKR-Light.woff') format('woff');
 }
-
+*/
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/Malestory_Light.ttf') format('maple');
+}
 /* 전체 적용 */
 body{
 	margin:0;
-	
 }
 
 a {
@@ -37,7 +41,7 @@ li {
 /* 메인 헤드의 고정 값*/
 .main-head {
 	background:white;
-	font-family: 'IBMPlexSansKR-Light';
+	font-family: 'maple';
 	width:	1600px;
 	height : 200px;
 	margin : 0 auto;

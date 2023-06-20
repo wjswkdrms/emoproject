@@ -22,13 +22,15 @@
 	    		<li>문의 내역</li>
 	    		<li>찜한 상품</li>
 	    		<li>상품 후기</li>
-	    		<li>	쿠폰함</li>
+	    		<li>쿠폰함</li>
 	    		<li>개인정보 수정</li>
 	    		<li>회원 탈퇴</li>
     		</ul>
   		</div>
-  		<div class="main_list">
-  		<form id="memberEdit_Form" action="member" method="get"></form>
+  		<div id="main_content">
+  		 <form>
+  		 
+  		 </form>
   		</div>
   	</div>
 </div>

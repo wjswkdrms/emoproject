@@ -1,0 +1,74 @@
+@charset "UTF-8";
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/Malestory_Light.ttf') format('maple');
+}
+	div {
+		font-family: 'maple';
+	}
+    .page_outer{ /* 전체 페이지 설정 */
+      width:1600px;
+      height:700px;
+      display: flex;
+      padding-left: 100px;
+      padding-top: 100px;
+    }
+    .page_inner{ /* 전체 데이터 박스 설정 */
+      margin: 0 auto;
+      width:1200px;
+      height: 600px;
+      border : 2px solid black;
+      border-radius: 10px;
+    }
+    .page_inner #title{ /* 제목 중앙 정렬 */
+      text-align: center;
+      padding-top: 15px;
+    }
+    .button_all{ /* li 형식 점 없애기 */
+      list-style-type: none;
+    }
+    .page_login{
+      display: block;
+      width:400px;
+      margin : 0 auto;
+      padding-top: 50px;
+    }
+    .input_idpw_outer { /* 전체 입력 박스 설정  */
+      width: 400px;
+      height: 60px;
+      border: 1px solid #dadada;
+      padding: 16px 18px 15px;
+      border-radius: 6px;
+      box-sizing: border-box;
+      text-align: left;
+      box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
+    }
+    .input_idpw_inner{ /* 타이틀, 박스 배치 */
+      display: flex;
+    }
+    .input_title{ /* 전체 입력 타이틀 설정 */
+      display:flex;
+      margin: 0 auto;
+      width: 120px;
+      height: 150px;
+    }
+    .input_box{ /* 전체 입력 박스 설정 */
+      display:flex;
+      width:150px;
+      height: 35px;
+      margin: -5px auto;
+      border-radius: 10px;
+      padding-right: 20px;
+    }
+    .button { /* 버튼 디자인 */
+      display: block;
+      width:400px;
+      padding: 13px 13px;
+      background-color: #AAB9FF;
+      box-sizing: border-box;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-left: -40px;
+      border : 2px solid #7878E1;
+      border-radius: 7px;
+    }

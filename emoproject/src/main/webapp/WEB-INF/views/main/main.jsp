@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/content_view_style.css">
 
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>

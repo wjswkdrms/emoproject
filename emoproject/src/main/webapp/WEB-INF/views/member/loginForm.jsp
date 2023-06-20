@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberPageAll_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -28,45 +28,40 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
-  <div id="center_set">
-    <!-- 내용 시작 -->
-    <h2 id="main_title">로그인</h2>
-    <div class="content-main">
-      <form id="login_form" action="login.do"
-            method="post">
-        <ul>
-          <li>
-            <label for="id">아이디</label>
-            <input type="text" name="id" class="input_style"
-                   id="id" maxlength="12"
-                   autocomplete="off">
-          </li>
-          <li>
-            <label for="passwd">비밀번호</label>
-            <input type="password" name="passwd" class="input_style"
-                   id="passwd" maxlength="12">
-          </li>
+<div class="page_outer"> <!-- 전체 페이지 크기 지정 -->
+    <div class="page_inner"> <!--메인 페이지 중앙 정렬, 크기 지정-->
+      <h2 id="title">로그인</h2>
+      <div class="page_login">
+        <div class="input_idpw_outer" id="input_id">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+                <label for="id">아이디</label>
+            </div>
+            <div class="input_box">
+                <input type="text" name="id" class="input_style" id="id" maxlength="12" autocomplete="off">
+            </div>
+          </div>
+        </div>
+        <div class="input_idpw_outer" id="input_pw">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="passwd">비밀번호</label>
+            </div>
+            <div class="input_box">
+              <input type="password" name="passwd" class="input_style" id="passwd" maxlength="12">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page_login">
+        <ul class="button_all" id="page_button_4">
+          <li><input type="submit" class="button" value="로그인"></li>
+          <li><input type="button" class="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath}/member/registerUserForm.do'"></li>
+          <li><input type="button" class="button" value="아이디 찾기" onclick="location.href='${pageContext.request.contextPath}/member/findIdForm.do'"></li>
+          <li><input type="button" class="button" value="비밀번호 찾기" onclick="location.href='${pageContext.request.contextPath}/member/findPwForm.do'"></li>
         </ul>
-        <div class="align-center">
-          <input type="submit" class="bt" value="로그인">
-          <!-- <input type="button" class="bt" value="홈으로"
-                 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-           -->
-        </div>
-        <div class="align-but">
-          <input type="button" class="bt" value="회원가입"
-                 onclick="location.href='${pageContext.request.contextPath}/member/registerUserForm.do'">
-          <input type="button" class="bt" value="아이디 찾기"
-                 onclick="location.href='${pageContext.request.contextPath}/member/findIdForm.do'">
-          <input type="button" class="bt" value="비밀번호 찾기"
-       onclick="location.href='${pageContext.request.contextPath}/member/findPwForm.do'">
-        
-        </div>
-      </form>
+      </div>
     </div>
-    <!-- 내용 끝 -->
-  </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

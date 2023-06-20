@@ -26,7 +26,7 @@ $(function(){
 <div class="page-main">
   <div id="center_set">
     <!-- 내용 시작 -->
-    <h2 id="main_title">비밀번호 입력</h2>
+    <h2 id="main_title">아이디 및 비밀번호 입력</h2>
     <div class="content-main">
       <form id="pwdCheck_form" action="pwdCheck.do"
             method="get">

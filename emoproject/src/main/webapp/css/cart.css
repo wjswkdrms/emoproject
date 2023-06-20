@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/Malestory_Light.ttf') format('maple');
+}
+	div {
+		font-family: 'maple';
+	}
 /* 페이지 레이아웃
 ------------------*/
 .page-main{
