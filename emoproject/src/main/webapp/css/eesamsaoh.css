@@ -143,3 +143,14 @@ textarea{
 div.faq_writeform{
 	display:none;
 }
+div.reply_div div{
+	display:flex;
+	flex-direction:row;
+}
+div.reply_name{
+	padding:13px 10px;
+	margin:0;
+}
+.button-box span{
+	padding:0 10px;
+}
