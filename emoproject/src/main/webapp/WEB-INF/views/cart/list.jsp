@@ -11,8 +11,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+function fnCalCount(type, ths){
+    var $input = $(ths).parents("td").find("input[name='order_quantity']");
+    var tCount = Number($input.val());
+    
+    if(type=='p'){
+        if(tCount < 99)$input.val(Number(tCount)+1);
+        
+    }else{
+        if(tCount > 0)$input.val(Number(tCount)-1);    
+    }
+}
 $(function(){
-	//장바구니 상품 삭제 이벤트 연결
+	//장바구니 상품 삭제 이벤트 연결	
 	$('.cart-del').on('click',function(){
 		$.ajax({
 			url:'deleteCart.do',
@@ -110,11 +121,13 @@ $(function(){
 					<td>
 						${cart.product.product_title}
 					</td>
-					<td class="align-center">						
-							<input type="number" name="order_quantity"
+					<td class="align-center">
+							<button type="button" onclick="fnCalCount('m', this);">-</button>						
+							<input type="text" name="order_quantity" id="result"
 							  min="1" max="${cart.product.product_stock}"
-							  autocomplete="off" 
+							  autocomplete="off" readonly="readonly"
 							  value="${cart.cart_quantity}">
+							<button type="button" onclick="fnCalCount('p', this);">+</button>
 							<br>
 							<input type="button" value="변경" 
 							 class="cart-modify" 
@@ -142,7 +155,7 @@ $(function(){
 					<span>결제시 포인트 잔액</span>
 					<span>${point-all_total}원</span>
 				</div>
-				<input type="button" value="결제">
+				<input type="submit" value="결제">
 			</div>
 		</form>
 		
