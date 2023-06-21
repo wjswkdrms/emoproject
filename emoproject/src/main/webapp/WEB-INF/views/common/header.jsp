@@ -32,9 +32,17 @@ $(function(){
 					<a href="${pageContext.request.contextPath}/member/pwdCheckForm.do">회원 탈퇴 - 비밀번호 확인</a>
 				</li>
 			 -->
+			 	<c:if test="${user_auth <= 2}">
 			 	<li>
+			 		
 					<a href="${pageContext.request.contextPath}/member/memberEditForm.do">내 정보</a>
 				</li>
+				</c:if>
+				<c:if test="${user_auth == 9 && user_id == admin}">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/adminPage.do">관리자 페이지</a>
+				</li>
+				</c:if>
 				<li>
 					<a href="${pageContext.request.contextPath}/member/pwdCheckForm.do">회원 탈퇴(임시)</a>
 				</li>
