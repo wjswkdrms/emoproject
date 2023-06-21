@@ -60,9 +60,75 @@ form textarea{
 
 .page{
 	width: 1050px;
-	margin: 0 auto;
+	margin: 0px auto;
 	padding: 0px;
 }
 .page-content{
-	margin: 40px;
+	width: 1050px;
+	margin: 0px auto;
+	padding: 0px;;
+}
+
+form#search_form{
+	border:none;
+}
+ul.search{
+	width:340px;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+}
+ul.search li{
+	margin:0 0 9px 0;
+	padding:0;
+	display:inline;
+}
+.list-space{
+	margin-bottom:10px;
+}
+table{
+	width:100%;
+	border:1px solid #000;
+	border-collapse:collapse;
+	margin-top:5px;
+}
+table td, table th{
+	border:1px solid #000;
+	padding:5px;
+}
+
+/* 공통 정렬
+------------------*/
+.align-center{
+	text-align:center;
+}
+.align-right{
+	text-align:right;
+}
+/*----상세 페이지--*/
+.page-detail{
+	display: flex;
+	flex-direction: column;	/*세로정렬*/
+}
+.detail-top{
+	display: flex;
+	flex-direction: row;
+}
+.top-content{
+	display: flex;
+	flex-direction: column;
+}
+.top-box{
+	display: flex;
+	flex-direction: row;
+}
+
+#detail-info{
+	height: 600px;
+}
+#detail-reiview{
+	height: 400px;
+}
+#detail-QA{
+	height: 400px;
 }

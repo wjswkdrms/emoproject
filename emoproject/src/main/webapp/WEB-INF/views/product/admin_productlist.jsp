@@ -8,14 +8,14 @@
 <meta charset="UTF-8">
 <title>등록 상품 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/productForm_style.css">
 
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
-<div class="page">
+<div>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="page-content">
@@ -38,7 +38,7 @@
 			</ul>                          
 		</form>
 		<!-- 검색창 끝 -->
-		<div>
+		<div class="list-space">
 			<input type="button" value="상품등록" onclick="location.href='writeForm.do'">
 			<input type="button" value="목록" onclick="location.href='productlist.do'"> 
 			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">  
@@ -76,6 +76,7 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<div class="align-center">${page}</div>
 		</c:if>
 	</div>
 	<!-- 내용 끝 -->

@@ -188,7 +188,53 @@ public class ProductDAO {
 		return list;
 	}
 	
+	/*------------------------------------------------*/
 	// 관리자/사용자 - 상품 상세
+	public ProductManageVO getProduct(int product_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ProductManageVO product = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM em_product_manage m INNER JOIN em_product_detail d ON m.product_num=d.product_num WHERE m.product_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				product = new ProductManageVO();
+				product.setProduct_num(rs.getInt("product_num"));
+				product.setProduct_category(rs.getInt("product_category"));
+				product.setProduct_status(rs.getInt("product_status"));
+				
+				//상품 상세정보 담기 위해 객체 생성
+				ProductDetailVO product_detail = new ProductDetailVO();
+				product_detail.setProduct_name(rs.getString("product_name"));
+				product_detail.setProduct_title(rs.getString("product_title"));
+				product_detail.setProduct_info(rs.getString("product_info"));
+				product_detail.setProduct_photo1(rs.getString("product_photo1"));
+				product_detail.setProduct_photo2(rs.getString("product_photo2"));
+				product_detail.setProduct_origin(rs.getString("product_origin"));
+				product_detail.setProduct_origin(rs.getString("product_origin"));
+				product_detail.setProduct_real_price(rs.getInt("product_real_price"));
+				product_detail.setProduct_price(rs.getInt("product_price"));
+				product_detail.setProduct_stock(rs.getInt("product_stock"));
+				
+				//ProductDetailVO를 ProductManageVO에 저장
+				product.setProductdetailVO(product_detail);
+			}
+		}catch(Exception e){
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return product;
+	}
+	
+	
+	/*----------------------------------------------*/
 	// 관리자 - 상품 수정
 	// 관리자 - 상품 삭제
 

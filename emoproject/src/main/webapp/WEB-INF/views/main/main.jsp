@@ -21,9 +21,11 @@
 		<div class="contents-head">전체 상품 보기</div>
 		<c:forEach var="product" items="${productList}">
 		<div class="product-nums"> <!-- 수정 필요 -->
+		<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${product.product_num}">
 		<img src="${pageContext.request.contextPath}/upload/${product.product_photo1}" width="350px" height="350px">
 		<span>${product.product_title}</span>
 		<p>가격 : ${product.product_price} 원</p>
+		</a>
 		</div>
 		</c:forEach>
 	</div>
