@@ -51,7 +51,7 @@ function sortProducts(sorted_num) {
         success: function (param) {
             $(param.list).each(function (index, item) {
                 let output = '<div class="product-nums">';
-                output += '<a href="productDetail.do?product_num=' + item.product_num + '">';
+                output += '<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=' + item.product_num + '">';
                 output += '<img src="${pageContext.request.contextPath}/upload/' + item.product_photo1 + '">';
                 output += '</a>';
                 output += '<span>' + item.product_title + '</span>';
