@@ -15,8 +15,16 @@
 			</c:if>
 			
 			<c:if test="${user_id != null }">
+			<!-- 
 				<li>
-					<a href="${pageContext.request.contextPath}/member/pwdCheckForm.do">내 정보(임시)</a>
+					<a href="${pageContext.request.contextPath}/member/pwdCheckForm.do">회원 탈퇴 - 비밀번호 확인</a>
+				</li>
+			 -->
+			 	<li>
+					<a href="${pageContext.request.contextPath}/member/memberEditForm.do">내 정보</a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/member/pwdCheckForm.do">회원 탈퇴(임시)</a>
 				</li>
 			</c:if>
 			
