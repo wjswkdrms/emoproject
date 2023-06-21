@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.announce.vo.AnnounceVO;
 import kr.ask.vo.AskVO;
 import kr.util.DBUtil;
 
@@ -35,6 +36,29 @@ public class askDAO {
 			pstmt.setString(3, ask.getAsk_photo1());
 			pstmt.setInt(4, ask.getAsk_status());
 			pstmt.setInt(5, ask.getMem_num());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//글 수정
+	public void updateAsk(AskVO ask)throws Exception{
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql=null;
+		
+		try {
+			conn=DBUtil.getConnection();
+			sql="UPDATE em_board_ask SET ask_title=?,ask_content=?,ask_photo1=? WHERE ask_num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, ask.getAsk_title());
+			pstmt.setString(2, ask.getAsk_content());
+			pstmt.setString(3, ask.getAsk_photo1());
+			pstmt.setInt(4, ask.getAsk_num());
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {

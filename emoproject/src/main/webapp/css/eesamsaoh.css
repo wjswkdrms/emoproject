@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .whole{
+	line-height: 1.15;
 	box-sizing:border-box;
 	margin:0;
 	padding:0;
@@ -11,17 +12,18 @@
     display:flex;
 }
 .left-div{
-	width:200px;
+	width:360px;
+	
 }
 .right-div{
-	width:860px;
+	width:1240px;
 	padding:0px 30px 0px;
 }
 .page-name{
 	display:flex;
 	flex-direction:row;
 	height: 75px;
-    padding: 5px 0px 35px 1px;
+    padding:0.83em 0px 20px 35px;
     font-weight: 500;
     font-size: 28px;
     line-height: 35px;
@@ -29,11 +31,24 @@
     letter-spacing: -1px;
 }
 ul.menu-box{
+	display:flex;
+	justify-content:flex-end;
+	width:200px;
 	border: 1px solid rgb(242, 242, 242);
 }
-ul{
+a.detail-menu{
+	display:flex;
+	align-items:center;
+	cursor:pointer;
+	font-weight:500;
+	font-size:16px;
+	padding: 15px 13px 15px 20px;
+	border-bottom: 1px solid rgb(242, 242, 242);
+}
+ul.menu-box, .list{
 	list-style:none;
 	display: block;
+	flex-direction:row;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
@@ -49,7 +64,8 @@ ul{
 	display:flex;
 	flex-direction:row;
 }
-li{
+ul.menu-box li{
+	margin:0;
 	display: list-item;
 }
 .list-name{
@@ -59,6 +75,10 @@ li{
     justify-content: space-between;
 	padding-bottom: 27px;
     width:100%;
+}
+.list-name h2{
+	margin:0;
+	padding:0.83em 0;
 }
 table{
 	border-spacing: 0;
@@ -110,4 +130,13 @@ div.button-box{
 }
 textarea{
 	resize:none;
+}
+.align-center{
+	text-align:center;
+}
+.no-answer{
+	color:black;
+}
+.answer{
+	color:#1f60a1;
 }

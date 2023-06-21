@@ -11,7 +11,6 @@ public class AnswerVO {
 	private int ask_num;
 	
 	private String mem_id;
-	private AskVO AskVO;
 	
 	public int getAnswer_num() {
 		return answer_num;
@@ -54,12 +53,6 @@ public class AnswerVO {
 	}
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
-	}
-	public AskVO getAskVO() {
-		return AskVO;
-	}
-	public void setAskVO(AskVO askVO) {
-		AskVO = askVO;
 	}
 	
 	

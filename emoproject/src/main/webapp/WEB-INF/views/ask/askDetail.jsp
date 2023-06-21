@@ -38,11 +38,31 @@
 					</div>	
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_num==ask.mem_num}">
-						<input type="button" value="수정" onclick="location.href='askModify.do'">
+						<input type="button" value="수정" onclick="location.href='askUpdateForm.do?ask_num=${ask.ask_num}'">
 						</c:if>
 						<input type="button" value="목록" onclick="location.href='ask.do'">
 					</div>
 				</div>
+				<!-- 댓글 시작 -->
+				<div id="reply_div">
+					<c:if test="${!empty user_num&&user_auth==9}">
+					<form id="re_form" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="ask_num" value="${ask.ask_num}" id="ask_num">
+						<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"></textarea>
+						<div></div>
+					</form>
+					</c:if>
+				</div>
+				<!-- 댓글 목록 출력 시작 -->
+				<div id="output"></div>
+				<div class="paging-button" style="display:none;">
+					<input type="button" value="다음글 보기">
+				</div>
+				<div id="loading" style="display:none;">
+					<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
+				</div>
+				<!-- 댓글 목록 출력 끝 -->
+				<!-- 댓글 끝 -->
 			</div>
 		</div>
 	</div>

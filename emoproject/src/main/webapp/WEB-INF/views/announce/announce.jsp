@@ -59,9 +59,11 @@
 				</c:forEach>
 	 			</c:if> 
 				<c:if test="${!empty user_num && user_auth==9}">
-				<input type="button" value="글쓰기" onclick="location.href='announceForm.do'"> 
+				<div class="button-box">
+					<input type="button" value="글쓰기" onclick="location.href='announceForm.do'">
+				</div> 
 				</c:if>
-				<div>${page}</div>  
+				<div class="align-center">${page}</div>  
 			</div>
 		</div>
 		<!-- 내용 끝 -->
