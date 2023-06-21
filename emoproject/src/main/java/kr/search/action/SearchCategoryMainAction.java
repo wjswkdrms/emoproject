@@ -28,17 +28,21 @@ public class SearchCategoryMainAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		
 		//null값 생길 시에 어떻게 할지..
-		
+		int product_category_num = 0;
 		if(request.getParameter("product_category") == null) { //search box로 들어 왔을 때 ////////////////////
+			
 			String searchText = request.getParameter("searchText");
+			String search_Result_Text = "";
+			
+			search_Result_Text += searchText;
 			
 			//dao
-			SearchDAO dao = SearchDAO.getInstance();
-			List<SearchVO> name_like_list = null;
+			request.setAttribute("product_category_name",searchText);
+			
 			
 			return "/WEB-INF/views/search/searchCategoryMain.jsp";
 		} 
-		int product_category_num = Integer.parseInt(request.getParameter("product_category"));
+		product_category_num = Integer.parseInt(request.getParameter("product_category"));
 		
 		
 		//product name 처리
@@ -60,13 +64,13 @@ public class SearchCategoryMainAction implements Action {
 		}
 		request.setAttribute("product_category_name", product_category_name);
 		request.setAttribute("product_category", product_category_num);
+		/*
 		SearchDAO dao = SearchDAO.getInstance();
-		
 		List<SearchVO> categoryList = null;
 		categoryList = dao.getProductCategories(product_category_num);
 		
 		request.setAttribute("categoryList",categoryList);
-		request.setAttribute("firstVisited","firstVisited");
+		*/
 		/*
 		 * Map<String, Object> mapAjax = new HashMap<String, Object>();
 		SearchDAO dao = SearchDAO.getInstance();

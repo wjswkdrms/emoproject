@@ -100,15 +100,20 @@ public class SearchDAO {
 		return list;
 	}
 	
-	public List<SearchVO> getSortingProductWithProductCategory(int sorted_navigator_num, int product_category) throws Exception {
+	public List<SearchVO> getSortingProductWithProductCategory(String searchText ,int sorted_navigator_num, int product_category) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql = "";
+		String sub_sql_search ="";
+		int cnt = 0;
 		List<SearchVO> list = null;
-		
+		///////////////////////////////////////////고쳐야 하는 부분
 		try {
+			//searchText로 넣을 시에 sorted_navigator는 1로 들어오고 product_category는 0으로 들어옴
+			
+			//navigator 값들에 대한 order by
 			if (sorted_navigator_num == 1) {
 				sub_sql = ""; //최신순
 			} else if (sorted_navigator_num == 2) {
@@ -122,10 +127,31 @@ public class SearchDAO {
 				//낮은 가격 순
 				sub_sql = " ORDER BY product_price";
 			}
+			
+			if (product_category != 0 ) {
+				sub_sql_search += " WHERE product_category=? ";
+			} else if (product_category == 0 && searchText != null) {
+				sub_sql_search += " WHERE (product_name LIKE ? OR product_title LIKE ?) ";
+			} else if (product_category !=0 && searchText != null) {
+				sub_sql_search += " WHERE product_category = ? AND (product_name LIKE ? OR product_title LIKE ?)" ;
+			}
+			
+			
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) WHERE product_category=?" + sub_sql;
+			sql = "SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search + sub_sql;
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, product_category);
+			
+			if(product_category != 0) {
+				pstmt.setInt(++cnt, product_category);
+			} else if (product_category == 0 && searchText != null) {
+				pstmt.setString(++cnt, "%"+searchText+"%");
+				pstmt.setString(++cnt, "%"+searchText+"%");
+			} else if (product_category !=0 && searchText != null) {
+				pstmt.setInt(++cnt, product_category);
+				pstmt.setString(++cnt, "%"+searchText+"%");
+				pstmt.setString(++cnt, "%"+searchText+"%");
+			}
+			
 			
 			rs = pstmt.executeQuery();
 			list = new ArrayList<SearchVO>();

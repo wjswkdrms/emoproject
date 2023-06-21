@@ -7,11 +7,21 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-    $('#search-icon').click(function(){
-		let searchText = $('#search-text-box').val();
+    function performSearch() {
+        let searchText = $('#search-text-box').val();
         
         // 검색 페이지로 이동
         window.location.href = '../search/searchCategoryMain.do?searchText=' + encodeURIComponent(searchText);
+    }
+
+    $('#search-icon').click(function(){
+        performSearch();
+    });
+
+    $('#search-text-box').keypress(function(event) {
+        if (event.which === 13) {  // Enter 키의 keyCode는 13입니다.
+            performSearch();
+        }
     });
 });
 

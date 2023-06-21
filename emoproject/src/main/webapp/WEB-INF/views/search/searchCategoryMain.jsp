@@ -45,7 +45,8 @@ function sortProducts(sorted_num) {
         type: 'post',
         data: {
             'product_category': $('#cat_num').val(),
-            'sorted_navigator_num': sorted_num
+            'sorted_navigator_num': sorted_num,
+            'searchText': $('#sch_name').val()
         },
         dataType: 'json',
         success: function (param) {
@@ -70,6 +71,7 @@ function sortProducts(sorted_num) {
 </head>
 <body>
 	<input type="hidden" id="cat_num" value="${product_category}">
+	<input type="hidden" id="sch_name" value="${product_category_name}">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<hr class="horizon-bar-01">
 	<div class="main-contents">
