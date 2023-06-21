@@ -13,7 +13,7 @@
 <script type="text/javascript">
 $(function(){
     $('#output').empty();
-    
+    sortProducts(1);
     $('#sorted_01').click(function(){
         sortProducts(1);
     });
