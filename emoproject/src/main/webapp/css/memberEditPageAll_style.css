@@ -1,0 +1,191 @@
+@charset "UTF-8";
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/Malestory_Light_ttf') format('maple');
+}
+	body {
+		font-family: 'maple';
+	}
+    .page_outer{ /* 전체 페이지 설정 */
+      width:1600px;
+      height:1200px;
+      display: flex;
+      padding-top: 100px;
+      margin: 0 auto;
+    }
+    .page_outer_register{ /* 전체 페이지 설정 register페이지 */
+      width:1600px;
+      height:1200px;
+      display: flex;
+      padding-left: 100px;
+      padding-top: 100px;
+    }
+    .page_inner{ /* 전체 데이터 박스 설정 */
+      display:block;
+      width:1200px;
+      height: 1000px;
+      border : 2px solid #7878E1;
+      border-radius: 10px;
+    }
+    .page_inner_register{ /* 전체 데이터 박스 설정 register페이지 */
+      display:block;
+      margin: 0 auto;
+      width:1200px;
+      height: 1100px;
+      border : 2px solid black;
+      border-radius: 10px;
+    }
+    .page_inner #title{ /* 제목 중앙 정렬 */
+      text-align: center;
+      padding-top: 15px;
+    }
+    .page_inner_register #title{ /* 제목 중앙 정렬 register페이지 */
+      text-align: center;
+      padding-top: 15px;
+    }
+    .button_all{ /* li 형식 점 없애기 */
+      list-style-type: none;
+      padding-right: 38px;
+    }
+    .page_login{ /* 실제 데이터 박스 */
+      display: block;
+      width:800px;
+      margin : auto;
+      padding-top: 50px;
+    }
+    .input_idpw_outer { /* 전체 입력 박스 설정  */
+      display: block;
+      margin: 0 auto;
+      width: 400px;
+      height: 60px;
+      border: 1px solid #7878E1;
+      padding: 16px 18px 15px;
+      border-radius: 6px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    .input_idpw_inner{ /* 타이틀, 박스 배치 */
+      display: flex;
+    }
+    .input_title{ /* 전체 입력 타이틀 설정 */
+      display:flex;
+      margin: 0 auto;
+      width: 120px;
+      height: 150px;
+    }
+    .input_box{ /* 전체 입력 박스 설정 */
+      display: flex;
+      width:150px;
+      height: 35px;
+      margin: -5px auto;
+      border-radius: 10px;
+      padding-right: 20px;
+    }
+    .button { /* 버튼 디자인 */
+      display: block;
+      margin: 5px auto;
+      width:400px;
+      padding: 13px 13px;
+      background-color: #AAB9FF;
+      box-sizing: border-box;
+      cursor: pointer;
+      border : 2px solid #7878E1;
+      border-radius: 7px;
+    }
+    .button:hover{ /* 버튼 디자인 호버링 */
+      display: block;
+      margin: 5px auto;
+      width:400px;
+      padding: 13px 13px;
+      background-color: #D0CEDD;
+      box-sizing: border-box;
+      cursor: pointer;
+      border : 2px solid #7878E1;
+      border-radius: 7px;
+    }
+    .input_style{ /* 정보 입력칸 */
+      margin-left: 20px;
+      border : 2px solid #7878E1;
+      border-radius: 7px;
+      background-color: white;
+    }
+    .input-notice{ /* register페이지 알림문구 */
+      width: 300px;
+      height: 30px;
+      margin-top: 5px;
+      margin-bottom: 3px;
+      margin-left: 220px;
+      color: dimgray;
+    }
+    .input_title_radio label{ /* register페이지 "성별" 전용 */
+      display: inline-block;
+      width:50px;
+      height: 30px;
+      margin-left: 20px;
+    }
+    .input_title_radio .gender_span{ /* register페이지 "성별" 전용 */
+      margin-left: 60px;
+      height: 30px;
+    }
+    [type="radio"] { /* 라디오 버튼 꾸미기 */
+      vertical-align: middle;
+      appearance: none;
+      border: max(2px, 0.1em) solid gray;
+      border-radius: 50%;
+      width: 1.5em;
+      height: 1.5em;
+      transition: border 0.5s ease-in-out;
+    }
+    [type="radio"]:checked { /* 라디오 버튼 체크됐을 때 꾸미기 */
+      border: 0.8em solid #7878E1;
+    }
+    [type="radio"]:hover { /* 라디오 버튼 호버링 꾸미기 */
+      box-shadow: 0 0 0 max(4px, 0.2em) #AAB9FF;
+      cursor: pointer;
+    }
+    .output_outer{ /* 회원가입 완료 창 */
+      text-align: center;
+      font-size: 30px;
+      margin-top: 140px;
+      color: purple;
+    }
+    .page_outer > .page_left{ /* 좌측 메뉴바 전체 */ /* page_outer 상속 */
+      text-align: left;
+      padding-top: 0;
+      width: 200px;
+      /* page_outer : 1600, page_inner : 1200 page_left : 200 */
+      /* main.do : 1920 header,footer : 1600*/
+      height: 1000px;
+      margin-top: 40px; /* 유동적 */
+    }
+    .page_left li{ /* 좌측 메뉴바 리스트*/
+      list-style-type: none;
+    }
+    .page_left li a{
+      margin-left: -40px;
+    }
+    .button_left{ /* 좌측 메뉴 버튼 스타일 */
+      width: 200px;
+      height: 110px;
+      background-color: white;
+      border-color: white;
+      border-right: white;
+      border-top: white;
+      border-left: white;
+      border-bottom: 2px solid #7878E1;
+      font-size: 22px;
+    }
+    .button_left:hover{ /* 좌측 메뉴 버튼 호버링 */
+      width: 200px;
+      height: 110px;
+      background-color: #AAB9FF;
+      border-color: white;
+      border-right: white;
+      border-top: white;
+      border-left: white;
+      border-bottom: 2px solid #7878E1;
+      cursor: pointer;
+    }
+    #button_left_1{ /* 좌측 메뉴 버튼 최상단 테두리 */
+      border-top: 2px solid #7878E1;
+    }

@@ -240,4 +240,45 @@ public class MemberDAO {
 			}	
 			return member;
 		}
+		
+		
+		//아이디 비밀번호가 일치하는지 
+		public void MemberOut(int mem_num)
+                throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			ResultSet rs = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션을 할당
+				conn = DBUtil.getConnection();
+				//auto commit 해제
+				conn.setAutoCommit(false);
+				
+				//zmember의 auth 값 변경
+				sql = "UPDATE zmember SET auth=0 WHERE mem_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				pstmt.executeUpdate();
+				
+				//zmember_detail의 레코드 삭제
+				sql = "DELETE FROM zmember_detail WHERE mem_num=?";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, mem_num);
+				pstmt2.executeUpdate();
+				
+				//모든 SQL문의 실행이 성공하면 커밋
+				conn.commit();
+			}catch(Exception e) {
+				//SQL문이 하나라도 실패하면 롤백
+				conn.rollback();
+				throw new Exception(e);
+			}finally {
+				//자원정리
+				DBUtil.executeClose(null, pstmt2, null);
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 }
+

@@ -11,7 +11,7 @@
   <div id="inner">
     <div id="footer_top">
       <h4 id="footer_top_service">이모 고객센터</h4>
-      <h1 id="footer_top_service2">EMO CUSTOMER CENTER <span id="footer_top_time">09 : 00 - 17 : 50</span></h1>
+      <h1 id="footer_top_service2">EMO CUSTOMER CENTER<span id="footer_top_time"> 09 : 00 - 17 : 50</span></h1>
       <div class="footer_top_sns">
         <a href="https://cafe.naver.com/javaz">
           <img class="sns" id="sns_right" src="${pageContext.request.contextPath}/images/footer_icon01.png">
@@ -40,7 +40,7 @@
       <hr>
     </div>
     <h1 class="footer_mid1_logo">
-      <a href="/">
+      <a href="${pageContext.request.contextPath}/main/main.do">
         <img id="sns" src="${pageContext.request.contextPath}/images/emo_main_logo.png">
       </a>
     </h1>
@@ -71,8 +71,8 @@
           <li>입점문의</li>
           <li>이용약관</li>
           <li>개인정보처리방침</li>
-          <li>찾아오시는 길</li>
-          <li>공지사항</li>
+          <li><a href="https://map.naver.com/v5/directions/-/14141273.687056389,4508936.736905865,%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%ED%85%8C%ED%97%A4%EB%9E%80%EB%A1%9C%20132,,/-/car?c=15,0,0,0,dh">찾아오시는 길</a></li>
+          <li><a href="${pageContext.request.contextPath}/announce/announce.do">공지사항</a></li>
         </ol>
       </div>
     </div>

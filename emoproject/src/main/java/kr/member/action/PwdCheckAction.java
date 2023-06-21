@@ -43,7 +43,7 @@ public class PwdCheckAction implements Action{
 					              member.getAuth());
 			
 			//�씤利� �꽦怨듭떆 �샇異�
-			return "/member/memberEditForm.do";
+			return "/member/memberOutForm.do";
 		}
 		//�씤利� �떎�뙣�떆 �샇異�
 		return "/WEB-INF/views/member/pwdCheck.jsp";
