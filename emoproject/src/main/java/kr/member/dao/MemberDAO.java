@@ -246,8 +246,15 @@ public class MemberDAO {
 		public void MemberOut(int mem_num)
                 throws Exception{
 			Connection conn = null;
-			PreparedStatement pstmt = null;
+			PreparedStatement pstmt1 = null;
 			PreparedStatement pstmt2 = null;
+			PreparedStatement pstmt3 = null;
+			PreparedStatement pstmt4 = null;
+			PreparedStatement pstmt5 = null;
+			PreparedStatement pstmt6 = null;
+			PreparedStatement pstmt7 = null;
+			PreparedStatement pstmt8 = null;
+			
 			ResultSet rs = null;
 			String sql = null;
 			try {
@@ -255,18 +262,48 @@ public class MemberDAO {
 				conn = DBUtil.getConnection();
 				//auto commit 해제
 				conn.setAutoCommit(false);
-				
-				//zmember의 auth 값 변경
-				sql = "UPDATE zmember SET auth=0 WHERE mem_num=?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, mem_num);
-				pstmt.executeUpdate();
-				
-				//zmember_detail의 레코드 삭제
-				sql = "DELETE FROM zmember_detail WHERE mem_num=?";
+			
+				//em_member_manage 이블의 auth(회원상태)를 0(탈퇴), exp_date(탈퇴일)를 입력
+				sql = "UPDATE em_member_manage SET mem_auth=0 ,mem_exp_date=SYSDATE WHERE mem_num=?";
+				pstmt1 = conn.prepareStatement(sql);
+				pstmt1.setInt(1, mem_num);
+				pstmt1.executeUpdate();
+				System.out.println("1");
+				//em_memer_detail 테이블의 모든 데이터 삭제
+				sql = "DELETE FROM em_member_detail WHERE mem_num=?";
 				pstmt2 = conn.prepareStatement(sql);
 				pstmt2.setInt(1, mem_num);
-				pstmt2.executeUpdate();
+				pstmt2.executeUpdate();System.out.println("2");
+				//em_member_home 테이블의 모든 데이터 삭제
+				sql = "DELETE FROM em_member_home WHERE mem_num=?";
+				pstmt3 = conn.prepareStatement(sql);
+				pstmt3.setInt(1, mem_num);
+				pstmt3.executeUpdate();System.out.println("3");
+				//em_member_zzim 테이블의 모든 데이터 삭제
+				sql = "DELETE FROM em_member_zzim WHERE mem_num=?";
+				pstmt4 = conn.prepareStatement(sql);
+				pstmt4.setInt(1, mem_num);
+				pstmt4.executeUpdate();System.out.println("4");
+				//em_cart 테이블의 모든 데이터 삭제
+				sql = "DELETE FROM em_member_cart WHERE mem_num=?";
+				pstmt5 = conn.prepareStatement(sql);
+				pstmt5.setInt(1, mem_num);
+				pstmt5.executeUpdate();System.out.println("5");
+				//em_review 테이블의 모든 데이터 삭제
+				sql = "DELETE FROM em_review WHERE mem_num=?";
+				pstmt6 = conn.prepareStatement(sql);
+				pstmt6.setInt(1, mem_num);
+				pstmt6.executeUpdate();System.out.println("6");
+				//em_board_answer 테이블의 모든 데이터 삭제
+				sql = "DELETE FROM em_board_answer WHERE ask_num IN (SELECT ask_num FROM em_board_ask WHERE mem_num=?)";
+				pstmt7 = conn.prepareStatement(sql);
+				pstmt7.setInt(1, mem_num);
+				pstmt7.executeUpdate();System.out.println("7");
+				//em_board_ask 테이블의 모든 데이터 삭제, 하기전에 위 sql문 선행 필수
+				sql = "DELETE FROM em_board_ask WHERE mem_num=?";
+				pstmt8 = conn.prepareStatement(sql);
+				pstmt8.setInt(1, mem_num);
+				pstmt8.executeUpdate();System.out.println("8");
 				
 				//모든 SQL문의 실행이 성공하면 커밋
 				conn.commit();
@@ -276,8 +313,14 @@ public class MemberDAO {
 				throw new Exception(e);
 			}finally {
 				//자원정리
+				DBUtil.executeClose(null, pstmt8, null);
+				DBUtil.executeClose(null, pstmt7, null);
+				DBUtil.executeClose(null, pstmt6, null);
+				DBUtil.executeClose(null, pstmt5, null);
+				DBUtil.executeClose(null, pstmt4, null);
+				DBUtil.executeClose(null, pstmt3, null);
 				DBUtil.executeClose(null, pstmt2, null);
-				DBUtil.executeClose(null, pstmt, conn);
+				DBUtil.executeClose(null, pstmt1, conn);
 			}
 		}
 }

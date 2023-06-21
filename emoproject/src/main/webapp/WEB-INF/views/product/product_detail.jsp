@@ -7,15 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세 보기</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagedetail_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/productdetail_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/product-zzim.js"></script>
 <script type="text/javascript">
 	$(function(){
 		
 		
 		$('#order_quantity').on('keyup mouseup', function() {
 			if ($('#order_quantity').val() == '') {
-				$('#item_total_txt').text('총주문 금액 : 0원');
+				$('#item_total_txt').text('총 주문 금액 : 0원');
 				return;
 			}
 			if ($('#order_quantity').val() <= 0) {
@@ -31,7 +32,7 @@
 
 			//총주문 금액 표시
 			let total = $('#product_price').val() * $('#order_quantity').val();
-			$('#product_total_txt').text('총주문 금액 : ' + total.toLocaleString() + '원');//숫자 세자리 쉼표
+			$('#product_total_txt').text('총 주문 금액 : ' + total.toLocaleString() + '원');//숫자 세자리 쉼표
 
 		});
 			
@@ -84,8 +85,8 @@
 				<img src="${pageContext.request.contextPath}/upload/${product.productdetailVO.product_photo2}">
 			</div>
 			<div class="top-info">
-				<div><h1>${product.productdetailVO.product_title}</h1></div>
-				<div class="top-cate">
+				<div class="pro-title"><h1>${product.productdetailVO.product_title}</h1></div>
+				<div class="top-cate pro-cate">
 					<span>카테고리 > </span>
 					<a href="${pageContext.request.contextPath}/search/searchCategoryMain.do?product_category=${product.product_category}">
 						<c:if test="${product.product_category == 1}">농산물</c:if>
@@ -125,12 +126,12 @@
 					</div>
 					
 					<div class="total-price">
-						<span id="product_total_txt">총주문 금액 : 0원</span>
+						<span id="product_total_txt">총 주문 금액 : 0원</span>
 					</div>
+					<!-- 찜(좋아요) -->
 					<div class="box-button">
 						<button class="button-zzim" type="button">
-							찜
-							<img>
+							<img id="output_zzim" data-num="${product.product_num}" src="${pageContext.request.contextPath}/images/zzim_01.png" width="50">
 						</button>
 						<input type="submit" value="장바구니에 담기">
 					</div>
@@ -138,7 +139,7 @@
 			</div>
 		</div>
 		
-		<div class="nav">
+		<div class="nav sticky">
 			<ul>
 				<li><a href="#detail-info"><span class="nav-li">상품 상세정보</span></a></li>
 				<li><a href="#detail-review"><span class="nav-li">상품 리뷰</span></a></li>
@@ -146,12 +147,12 @@
 			</ul>
 		</div>
 		
-		<div id="detail-info">
+		<div id="detail-info" class="div-h">
 			상품 상세 설명 자리<br>
 			${product.productdetailVO.product_info}
 		</div>
 		
-		<div id="detail-review">
+		<div id="detail-review" class="div-h">
 			<div class="review-star">
 				리뷰 평균 별점 자리
 			</div>
@@ -159,8 +160,8 @@
 				상품 리뷰 리스트 자리
 			</div>
 		</div>
-		
-		<div id="detail-QA">
+			
+		<div id="detail-QA" class="div-h">
 			상품 문의 리스트 자리
 		</div>
 	</div>

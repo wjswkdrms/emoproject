@@ -43,6 +43,10 @@
       text-align: center;
       padding-top: 15px;
     }
+    .page_inner #title_content{ /* 내용 정렬 */
+      text-align: center;
+      padding-top: 300px;
+    }
     .button_all{ /* li 형식 점 없애기 */
       list-style-type: none;
       padding-right: 38px;

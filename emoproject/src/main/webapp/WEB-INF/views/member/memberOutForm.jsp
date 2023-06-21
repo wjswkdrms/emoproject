@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberOutButton8_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditButton8_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#login_form').submit(function(){
+		$('#memberOut_form').submit(function(){
 			if($('#id').val().trim()==''){
 				alert('아이디를 입력하세요');
 				$('#id').val('').focus();
@@ -39,12 +39,12 @@
       <li><a href=""><input type="submit" class="button_left" id="button_left_5" value="상품후기"></a></li>
       <li><a href=""><input type="submit" class="button_left" id="button_left_6" value="쿠폰함"></a></li>
       <li><a href=""><input type="submit" class="button_left" id="button_left_7" value="개인정보수정"></a></li>
-      <li><a href="${pageContext.request.contextPath}/member/memberOutForm.do"><input type="submit" class="button_left" value="회원탈퇴"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/memberOutForm.do"><input type="submit" class="button_left" id="button_left_8" value="회원탈퇴"></a></li>
     </ul>
   </div>
     <div class="page_inner"> <!--메인 페이지 중앙 정렬, 크기 지정-->
       <h2 id="title">아이디 및 비밀번호 확인</h2>
-        <form id="login_form" action="login.do" method="post">
+        <form id="memberOut_form" action="memberOut.do" method="post">
       		<div class="page_login">
 		        <div class="input_idpw_outer" id="input_id">
 		          <div class="input_idpw_inner">
@@ -69,8 +69,8 @@
 	      </div>
 	      <div class="page_login">
 	        <ul class="button_all" id="page_button_4">
-	          <li><input type="submit" class="button" value="로그인"></li>
-	          <li><input type="button" class="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath}/member/memberOut.do'"></li>
+	          <li><input type="submit" class="button" value="탈퇴"></li>
+	          <li><input type="button" class="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/member/memberOut.do'"></li>
 	        </ul>
 	      </div>
       </form>

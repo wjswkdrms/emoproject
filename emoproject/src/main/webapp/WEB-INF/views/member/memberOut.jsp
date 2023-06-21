@@ -2,31 +2,27 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <c:choose>
-  <c:when test="${auth == 1}">
+  <c:when test="${check == 1}">
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 정보</title>
+<title>탈퇴 완료</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberPageAll_style.css">
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<!-- 내용 시작 -->
-	<div class="content-main">
-		<h2>회원 정보</h2>
-		<div class="result-display">
-			<div class="align-center">
-				탈퇴 완료<p>
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
-		</div>
-	</div>
-	<!-- 내용 끝 -->
+<div class="page_outer"> <!-- 전체 페이지 크기 지정 -->
+  <div class="page_inner"> <!--메인 페이지 중앙 정렬, 크기 지정-->
+    <h2 id="title">탈퇴 완료</h2>
+    <h2 id="title_content"><a>아이디는 <strong>${mem_id}</strong> 입니다.</a></h2>
+      <div class="page_login">
+        <ul class="button_all" id="page_button_4">
+          <li><input type="button" class="button" value="확인" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"></li>
+        </ul>
+      </div>
+  </div>
 </div>
 </body>
 </html>
