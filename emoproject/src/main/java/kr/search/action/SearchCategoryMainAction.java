@@ -26,7 +26,9 @@ public class SearchCategoryMainAction implements Action {
 		
 		//product category number 받기
 		request.setCharacterEncoding("utf-8");
+		
 		int product_category_num = Integer.parseInt(request.getParameter("product_category"));
+		
 		
 		//product name 처리
 		String product_category_name = null;
@@ -44,14 +46,14 @@ public class SearchCategoryMainAction implements Action {
 			product_category_name = "베이커리";
 		} 
 		request.setAttribute("product_category_name", product_category_name);
-		
+		request.setAttribute("product_category", product_category_num);
 		SearchDAO dao = SearchDAO.getInstance();
 		
 		List<SearchVO> categoryList = null;
 		categoryList = dao.getProductCategories(product_category_num);
 		
 		request.setAttribute("categoryList",categoryList);
-		
+		request.setAttribute("firstVisited","firstVisited");
 		/*
 		 * Map<String, Object> mapAjax = new HashMap<String, Object>();
 		SearchDAO dao = SearchDAO.getInstance();

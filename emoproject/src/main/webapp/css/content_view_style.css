@@ -12,9 +12,8 @@
 	margin:0 auto;
 	display:flex;	
 	justify-content: center;
-	
 	flex-wrap: wrap;
-	margin-top:100px;
+	margin-top:20px;
 }
 
 .contents-head {
@@ -36,4 +35,64 @@
 	width : 350px;
 	height : 550px;
 	font-size : 25px;
+	
+}
+
+#output {
+	width:1600px;
+	
+	display:flex;	
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top:20px;
+}
+.product-nums img {
+	width:350px;
+	height:350px;
+	
+}
+.search-navigator {
+	width : 1600px;
+	height:40px;
+	display:flex;
+}
+
+.search-navigator ul {
+	width:1600px;
+	height:40px;
+	display:flex;
+	margin-top:0;
+	justify-content: flex-end;
+	align-items:center;
+}
+
+.search-navigator ul li {
+	font-size:15px;
+	margin-right:40px;
+	list-style-type:none;
+}
+
+.search-navigator ul li:hover, .search-navigator ul li.active {
+	cursor: pointer;
+	color:#E19B50;
+}
+/*	
+#sorted_01:hover, #sorted_01.active, 
+#sorted_02:hover, #sorted_02.active,
+#sorted_03:hover, #sorted_03.active,
+#sorted_04:hover, #sorted_04.active,
+#sorted_05:hover, #sorted_05.active{
+  cursor: pointer;
+  
+}	
+*/
+.search-navigator ul li.active {
+  /* 활성화된 상태일 때의 스타일을 적용합니다 */
+  /* 예시로 배경색과 텍스트 색상을 변경해보겠습니다 */
+  color:#E19B50;
+}
+
+.horizon-bar-01 {
+	width:1600px;
+	border: solid 1.5px black;
 }
