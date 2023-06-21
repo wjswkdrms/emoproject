@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/board.reply.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -49,7 +50,12 @@
 					<form id="re_form" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="ask_num" value="${ask.ask_num}" id="ask_num">
 						<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"></textarea>
-						<div></div>
+						<div id="re_first">
+							<span class="letter-count">333/333</span>
+						</div>
+						<div id="re_second" class="button-box">
+							<input type="submit" value="전송">
+						</div>
 					</form>
 					</c:if>
 				</div>

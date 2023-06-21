@@ -140,3 +140,6 @@ textarea{
 .answer{
 	color:#1f60a1;
 }
+div.faq_writeform{
+	display:none;
+}

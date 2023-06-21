@@ -12,6 +12,19 @@ CREATE TABLE em_board_announce(
 
 CREATE SEQUENCE em_board_announce_seq;
 
+--FAQ
+CREATE TABLE em_board_faq(
+ faq_num number,
+ mem_num number not null,
+ faq_title varchar2(300) not null,
+ faq_content varchar2(3000) not null,
+ faq_category number(1) default 1 not null,
+ faq_date date default sysdate not null,
+ constraint em_board_faq_pk primary key (faq_num),
+ constraint em_board_faq_fk foreign key (mem_num) references em_member_manage(mem_num)
+);
+CREATE SEQUENCE em_board_faq_seq;
+
 --1:1 문의 게시판
 CREATE TABLE em_board_ask(
  ask_num number,--문의글 번호

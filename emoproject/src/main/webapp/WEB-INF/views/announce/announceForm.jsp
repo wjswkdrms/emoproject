@@ -27,11 +27,11 @@
 					<table>
 						<tr>
 							<td>제목</td>
-							<th><input type="text" name="ann_title" id="ann_title" maxlength="100"></th>
+							<th><input type="text" name="ann_title" id="ann_title" ></th>
 						</tr>
 						<tr>
 							<td>내용</td>
-							<th><textarea rows="5" cols="30" name="ann_content" id="ann_content" maxlength="100"></textarea></th>
+							<th><textarea rows="5" cols="30" name="ann_content" id="ann_content"></textarea></th>
 						</tr>
 						<tr>
 							<td><label for="ann_photo1">사진첨부</label></td>

@@ -16,7 +16,7 @@
 		<div>
 			<ul>
 				<li>
-					<a><span></span>상품 등록</a>
+					<a href="${pageContext.request.contextPath}/product/productlist.do"><span></span>상품 등록</a>
 				</li>
 				<li>
 					<a><span></span>회원 관리</a>
@@ -25,10 +25,10 @@
 					<a><span></span>매출 확인</a>
 				</li>
 				<li>
-					<a><span></span>쿠폰 관리</a>
+					<a href="${pageContext.request.contextPath}/"><span></span>쿠폰 관리</a>
 				</li>
 				<li>
-					<a><span></span>고객 센터</a>
+					<a href="${pageContext.request.contextPath}/announce/announce.do"><span></span>고객 센터</a>
 				</li>
 				<li>
 					<a><span></span>주문 관리</a>

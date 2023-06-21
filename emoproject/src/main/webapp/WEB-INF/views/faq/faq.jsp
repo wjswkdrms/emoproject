@@ -5,10 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객센터</title>
+<title>자주하는 질문</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function (){
+		$("#faq_write").click(function (){
+	  	$(".faq_writeform").toggle();
+	  });
+	});
+
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -26,44 +35,34 @@
 			<div class="right-div">
 				
 				<div class="list-name">
-					<h2>공지사항</h2>
+					<h2>자주하는 질문</h2>
 				</div>
 				
-	 			<c:if test="${count==0}"> 
-	 			<div class="list">
-					<div>번호</div>
-					<div>제목</div>
-					<div>작성자</div>
-					<div>작성일</div>
-				</div>
-	 			<div>
-					표시할 게시물이 없습니다.
-				</div> 
-	 			</c:if>
-	 			<c:if test="${count>0}">
+				<!-- faq 목록 출력 시작 -->
 				<div class="list">
-					<div>번호</div>
-					<div>제목</div>
-					<div>작성자</div>
-					<div>작성일</div>
+					<div class="faq_writeform">
+						<form id="re_form">
+						<input type="hidden" name="mem_num" value="${faq.mem_num}" id="mem_num">
+							<textarea rows="3" cols="100" name="re_content" id="re_content" class="rep-content"
+							<c:if test="${empty user_num||user_auth<9}">disabled="disabled"</c:if>><c:if test="${empty user_num}">관리자만 작성할 수 있습니다.</c:if>faq작성</textarea>
+							<c:if test="${!empty user_num&&user_auth==9}">
+							<div id="re_second" class="button-box">
+								<input type="submit" value="전송">
+							</div>
+							</c:if>
+						</form>
+					</div>
+					<div class="paging-button" style="display:none;">
+						<input type="button" value="다음글 보기">
+					</div>
+					<!-- faq 목록 출력 끝 -->
 				</div>
-				
-				<c:forEach var="announce" items="${list}">
-				<ul class="list">
-					<li>${announce.ann_num}</li>
-					<li><a href="announceDetail.do?ann_num=${announce.ann_num}">${announce.ann_title}</a></li>
-					<li>${announce.mem_id}</li>
-					<li>${announce.ann_date}</li>
-					
-				</ul>
-				</c:forEach>
-	 			</c:if> 
+				<div class="align-center">${page}</div>  
 				<c:if test="${!empty user_num && user_auth==9}">
 				<div class="button-box">
-					<input type="button" value="글쓰기" onclick="location.href='announceForm.do'">
+					<button id="faq_write">글쓰기</button>
 				</div> 
 				</c:if>
-				<div class="align-center">${page}</div>  
 			</div>
 		</div>
 		<!-- 내용 끝 -->
