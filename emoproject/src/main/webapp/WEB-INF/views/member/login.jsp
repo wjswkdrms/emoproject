@@ -10,23 +10,19 @@
 <title>로그인 정보</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberPageAll_style.css">
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<!-- 내용 시작 -->
-	<div class="content-main">
-		<h2>회원 정보</h2>
-		<div class="result-display">
-			<div class="align-center">
-				정지된 회원 ID입니다.<p>
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
-		</div>
-	</div>
-	<!-- 내용 끝 -->
+<div class="page_outer"> <!-- 전체 페이지 크기 지정 -->
+  <div class="page_inner"> <!--메인 페이지 중앙 정렬, 크기 지정-->
+    <h2 id="title">회원 정보</h2>
+    <h2 id="title_content"><a>정지된 회원 아이디입니다.</a></h2>
+      <div class="page_login">
+        <ul class="button_all" id="page_button_1">
+          <li><input type="button" class="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"></li>
+        </ul>
+      </div>
+  </div>
 </div>
 </body>
 </html>

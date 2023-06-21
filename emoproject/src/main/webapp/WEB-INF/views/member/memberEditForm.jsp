@@ -25,7 +25,7 @@
       <li><a href=""><input type="submit" class="button_left" id="button_left_5" value="상품후기"></a></li>
       <li><a href=""><input type="submit" class="button_left" id="button_left_6" value="쿠폰함"></a></li>
       <li><a href=""><input type="submit" class="button_left" id="button_left_7" value="개인정보수정"></a></li>
-      <li><a href="${pageContext.request.contextPath}/member/memberOutForm.do"><input type="submit" class="button_left" value="회원탈퇴"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/memberOutForm.do"><input type="submit" class="button_left" id="button_left_8" value="회원탈퇴"></a></li>
     </ul>
   </div>
   <div class="page_inner">

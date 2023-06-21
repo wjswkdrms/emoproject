@@ -21,6 +21,7 @@
       </div>
       <div class="page_login">
         <ul class="button_all" id="page_button_4">
+          <li><input type="button" class="button" value="로그인" onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'"></li>
           <li><input type="button" class="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"></li>
         </ul>
       </div>
