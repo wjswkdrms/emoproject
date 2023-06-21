@@ -27,6 +27,17 @@ public class SearchCategoryMainAction implements Action {
 		//product category number 받기
 		request.setCharacterEncoding("utf-8");
 		
+		//null값 생길 시에 어떻게 할지..
+		
+		if(request.getParameter("product_category") == null) { //search box로 들어 왔을 때 ////////////////////
+			String searchText = request.getParameter("searchText");
+			
+			//dao
+			SearchDAO dao = SearchDAO.getInstance();
+			List<SearchVO> name_like_list = null;
+			
+			return "/WEB-INF/views/search/searchCategoryMain.jsp";
+		} 
 		int product_category_num = Integer.parseInt(request.getParameter("product_category"));
 		
 		
@@ -44,7 +55,9 @@ public class SearchCategoryMainAction implements Action {
 			product_category_name = "음료";
 		} else if (product_category_num == 6) {
 			product_category_name = "베이커리";
-		} 
+		} else {
+			product_category_name = "";
+		}
 		request.setAttribute("product_category_name", product_category_name);
 		request.setAttribute("product_category", product_category_num);
 		SearchDAO dao = SearchDAO.getInstance();
