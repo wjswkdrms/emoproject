@@ -20,7 +20,7 @@
 		<h2>회원 정보</h2>
 		<div class="result-display">
 			<div class="align-center">
-				1234.<p>
+				<p>
 				<input type="button" value="홈으로"
 				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
