@@ -95,7 +95,9 @@ li {
 	vertical-align:middle;
 	
 }
-
+.mid-box ul li img:hover, .mid-box ul li img.active{
+	cursor: pointer;
+}
 .li-search {
     display: flex;
     align-items: center;
@@ -118,7 +120,7 @@ li {
 		
 }
 
-#search {
+#search-text-box {
   width: 300px;
   height: 20px;
   background-color: inherit;

@@ -4,6 +4,18 @@
 <!--  -->
 <title></title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#search-icon').click(function(){
+		let searchText = $('#search-text-box').val();
+        
+        // 검색 페이지로 이동
+        window.location.href = '../search/searchCategoryMain.do?searchText=' + encodeURIComponent(searchText);
+    });
+});
+
+</script>
 <div class="main-head">
 	<div class="top-box">
 		<ul>
@@ -57,8 +69,11 @@
 			</li>
 			<li class="li-search">
 				<div id="search-product">
-					<input type="text" id="search" class="search">
-					<img src="${pageContext.request.contextPath}/images/emo_icon_search01.svg">
+				
+					<input type="text" id="search-text-box" class="search-text-box">
+					
+					<img src="${pageContext.request.contextPath}/images/emo_icon_search01.svg" id="search-icon">
+				
 				</div>
 			</li>
 			<li class="icons-menu">
