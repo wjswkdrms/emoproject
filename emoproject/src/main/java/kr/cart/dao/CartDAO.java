@@ -77,7 +77,7 @@ public class CartDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO em_member_cart (mem_cart_num, mem_num, product_num, cart_quantity) VALUES(em_member_cart_seq,?,?,?)";
+			sql = "INSERT INTO em_member_cart (mem_cart_num, mem_num, product_num, cart_quantity) VALUES(em_member_cart_seq.nextval,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cart.getMem_num());
 			pstmt.setInt(2, cart.getProduct_num());
@@ -173,7 +173,9 @@ public class CartDAO {
 				product = new ProductManageVO();
 				ProductDetailVO productDetail = new ProductDetailVO();
 				productDetail.setProduct_stock(rs.getInt("product_stock"));
-				
+				productDetail.setProduct_name(rs.getString("product_name"));
+				product.setProduct_num(rs.getInt("product_num"));
+				product.setProduct_status(rs.getInt("product_status"));
 				product.setProductdetailVO(productDetail);
 			}
 		}catch(Exception e) {
