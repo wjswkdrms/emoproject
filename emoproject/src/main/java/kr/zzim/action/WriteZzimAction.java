@@ -48,7 +48,7 @@ public class WriteZzimAction implements Action{
 				//찜 등록처리
 				dao.insertzzim(zzimVO);
 				mapAjax.put("result", "success");
-				mapAjax.put("status", "yseZzim");
+				mapAjax.put("status", "yesZzim");
 				mapAjax.put("zzim-count", dao.selectZzimCount(product_num));
 			}
 		}

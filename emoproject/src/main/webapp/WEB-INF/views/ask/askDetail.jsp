@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/board.reply.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -37,39 +36,34 @@
 						<div><img src=${pageContext.request.contextPath}/upload/${ask.ask_photo1}></div>
 						<div>${ask.ask_content}</div>
 					</div>	
+				<!-- 답변 시작 -->
+					<c:if test="${!empty answer.answer_num}">
+					<div class="answer-content">
+						<div class="detail-title">관리자</div>
+						<div class="specific">${answer.answer_date}</div>
+						<div class="specific">${answer.answer_content}</div>
+						<div><img src=${pageContext.request.contextPath}/upload/${answer.answer_photo}></div>
+					</div>
+					</c:if>	
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_num==ask.mem_num}">
 						<input type="button" value="수정" onclick="location.href='askUpdateForm.do?ask_num=${ask.ask_num}'">
 						</c:if>
 						<input type="button" value="목록" onclick="location.href='ask.do'">
 					</div>
+					<div class="button-box">
+						<c:if test="${!empty user_num&&user_auth==9}">
+						<input type="button" value="답변 수정" onclick="location.href='answerUpdateForm.do?answer_num=${answer.answer_num}'">
+						<form action="answerForm.do" method="post">
+							<input type="hidden" name="ask_num" value="${ask.ask_num}" >
+							<c:if test="${empty answer.answer_num}">
+								<input type="submit" value="글쓰기" >
+							</c:if>
+						</form>
+						</c:if>
+					</div>
+				<!-- 답변 끝 -->
 				</div>
-				<!-- 댓글 시작 -->
-				<div class="reply_div">
-					<c:if test="${!empty user_num&&user_auth==9}">
-					<form id="re_form" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="ask_num" value="${ask.ask_num}" id="ask_num">
-						<div>
-							<div class="reply_name"><b>관리자</b></div>
-							<textarea rows="3" cols="210" name="re_content" id="re_content" class="rep-content"></textarea>
-						</div>
-							<div id="re_first" class="button-box">
-								<span class="letter-count">333/333</span>
-								<input type="submit" value="전송">
-							</div>
-					</form>
-					</c:if>
-				</div>
-				<!-- 댓글 목록 출력 시작 -->
-				<div id="output"></div>
-				<div class="paging-button" style="display:none;">
-					<input type="button" value="다음글 보기">
-				</div>
-				<div id="loading" style="display:none;">
-					<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
-				</div>
-				<!-- 댓글 목록 출력 끝 -->
-				<!-- 댓글 끝 -->
 			</div>
 		</div>
 	</div>

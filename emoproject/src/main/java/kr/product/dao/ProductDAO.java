@@ -236,6 +236,71 @@ public class ProductDAO {
 	
 	/*----------------------------------------------*/
 	// 관리자 - 상품 수정
+	public void updateProduct(ProductManageVO product, ProductDetailVO product_detail) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			sql = "UPDATE em_product_manage SET product_category=?, product_status=? WHERE product_num=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, product.getProduct_category());
+			pstmt.setInt(2, product.getProduct_status());
+			pstmt.setInt(3, product.getProduct_num());
+			
+			pstmt.executeUpdate();
+			
+			if(product_detail.getProduct_photo1() != null) {
+				//파일1을 업로드한 경우
+				sub_sql += ", product_photo1=?";
+			}
+			if(product_detail.getProduct_photo2() != null) {
+				//파일2을 업로드한 경우
+				sub_sql += ", product_photo2=?";
+			}
+			
+			sql = "UPDATE em_product_detail SET product_name=?, "
+					+ "product_title=?, product_info=?"
+					+ sub_sql
+					+ ", product_origin=?, product_real_price=?, "
+					+ "product_price=?, product_stock=? WHERE product_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			
+			pstmt2.setString(++cnt, product_detail.getProduct_name());
+			pstmt2.setString(++cnt, product_detail.getProduct_title());
+			pstmt2.setString(++cnt, product_detail.getProduct_info());
+			if(product_detail.getProduct_photo1() != null) {
+				//파일1을 업로드한 경우
+				pstmt2.setString(++cnt, product_detail.getProduct_photo1());
+			}
+			if(product_detail.getProduct_photo2() != null) {
+				//파일2을 업로드한 경우
+				pstmt2.setString(++cnt, product_detail.getProduct_photo2());
+			}
+			pstmt2.setString(++cnt, product_detail.getProduct_origin());
+			pstmt2.setInt(++cnt, product_detail.getProduct_real_price());
+			pstmt2.setInt(++cnt, product_detail.getProduct_price());
+			pstmt2.setInt(++cnt, product_detail.getProduct_stock());
+			pstmt2.setInt(++cnt, product.getProduct_num());
+			
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+			
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	// 관리자 - 상품 삭제
 
 }
