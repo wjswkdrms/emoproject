@@ -57,10 +57,17 @@
 	margin-left:25px;
 	margin-right:25px;
     height: auto;
-    max-width: 100%;
+    max-width: 350px;
     object-fit: cover;
     margin-bottom:20px;
+    overflow:hidden;
 }
+
+.product-nums img:hover {
+	transform: scale(0.95);
+  	transition-duration: 0.5s;
+}
+
 
 .product-nums span {
 	margin:0;

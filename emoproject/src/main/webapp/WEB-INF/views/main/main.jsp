@@ -15,7 +15,22 @@
 		//초기값 설정
 		let promotion_img_num = 1;
 		
+		// 5초마다 promotion_img_num을 1씩 증가시키기
+		function incrementPromotionImgNum() {
+			$('#pro-0' + promotion_img_num).removeClass('active');
+			promotion_img_num++;
+
+			if (promotion_img_num > 6) {
+				promotion_img_num = 1;
+			}
+
+			$('#pro-0' + promotion_img_num).addClass('active');
+		}
+
+		setInterval(incrementPromotionImgNum, 4000);
+    	// 증가 시키기 끝
     	
+    	//클릭 시 작동
     	$('.arrow-right').click(function(){
     		$('#pro-0'+promotion_img_num).removeClass('active');
     		promotion_img_num++;
