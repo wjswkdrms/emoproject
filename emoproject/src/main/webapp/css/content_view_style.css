@@ -5,6 +5,7 @@
 }
 	div {
 		font-family: 'maple';
+		
 	}
 .main-contents {
 	
@@ -26,18 +27,6 @@
 	margin-bottom:100px;
 	
 }
-.product-nums {
-	display:flex;
-	flex-direction:column;
-	border : 50px;
-	margin-left:15px;
-	margin-right:15px;
-	width:350px;
-	height : 550px;
-	font-size : 18px;
-	overflow: hidden;
-	margin-bottom:50px;
-}
 
 #output {
 	width:1600px;
@@ -48,12 +37,36 @@
 	
 }
 
+.product-nums {
+	display:flex;
+	flex-direction:column;
+	width:400px;
+	height : 650px;
+	font-size : 18px;
+	overflow: hidden;
+	margin-bottom:50px;
+	align-items: center;
+	
+	text-align:center;
+}
+
 
 .product-nums img {
+	
 	width: 350px;
+	margin-left:25px;
+	margin-right:25px;
     height: auto;
     max-width: 100%;
     object-fit: cover;
+    margin-bottom:20px;
+}
+
+.product-nums span {
+	margin:0;
+}
+.product-nums p {
+	margin:0;
 }
 .search-navigator {
 	width : 1600px;
