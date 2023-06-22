@@ -15,3 +15,14 @@ constraint em_coupon_fk foreign key (mem_num) references em_member_manage (mem_n
 constraint em_coupon_fk2 foreign key (product_num) references em_product_manage (product_num)
 )
 create sequence em_coupon_seq;
+
+
+
+--Âò
+SELECT rnum, product_title, product_info, product_photo1, product_price, product_status FROM 
+(SELECT a.*, rownum rnum 
+FROM (SELECT zzim.zzim_num, data.product_title, data.product_info, data.product_photo1, data.product_price, data.product_status  
+FROM (SELECT detail.product_num, detail.product_title, detail.product_info, detail.product_photo1, detail.product_price, manage.product_status 
+    FROM em_product_detail detail INNER JOIN em_product_manage manage ON detail.product_num = manage.product_num) data 
+    INNER JOIN em_member_zzim zzim ON data.product_num = zzim.product_num  WHERE zzim.mem_num = 24 ORDER BY zzim.zzim_num DESC) a) 
+WHERE rnum>=1 AND rnum<=10;

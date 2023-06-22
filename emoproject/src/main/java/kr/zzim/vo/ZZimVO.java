@@ -4,7 +4,11 @@ public class ZZimVO {
 	private int zzim_num;
 	private int mem_num;
 	private int product_num;
-	
+	private String Product_title;
+	private String Product_info;
+	private String Product_photo1;
+	private int Product_price;
+	private int Product_status;
 	public ZZimVO() {}
 	
 	//생성자 정의 
@@ -15,6 +19,46 @@ public class ZZimVO {
 
 	public int getZzim_num() {
 		return zzim_num;
+	}
+
+	public String getProduct_title() {
+		return Product_title;
+	}
+
+	public void setProduct_title(String product_title) {
+		Product_title = product_title;
+	}
+
+	public String getProduct_info() {
+		return Product_info;
+	}
+
+	public void setProduct_info(String product_info) {
+		Product_info = product_info;
+	}
+
+	public String getProduct_photo1() {
+		return Product_photo1;
+	}
+
+	public void setProduct_photo1(String product_photo1) {
+		Product_photo1 = product_photo1;
+	}
+
+	public int getProduct_price() {
+		return Product_price;
+	}
+
+	public void setProduct_price(int product_price) {
+		Product_price = product_price;
+	}
+
+	public int getProduct_status() {
+		return Product_status;
+	}
+
+	public void setProduct_status(int product_status) {
+		Product_status = product_status;
 	}
 
 	public void setZzim_num(int zzim_num) {
