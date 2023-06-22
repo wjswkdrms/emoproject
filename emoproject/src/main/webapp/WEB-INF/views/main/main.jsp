@@ -60,7 +60,6 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<jsp:include page="/WEB-INF/views/common/adver.jsp"/> 
-	
 	<div class="main-contents">
 		<div class="contents-head">전체 상품 보기</div>
 		<c:forEach var="product" items="${productList}">
