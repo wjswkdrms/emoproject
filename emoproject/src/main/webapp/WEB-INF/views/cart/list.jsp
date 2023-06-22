@@ -98,8 +98,8 @@ $(function(){
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="content-main">
-		<h2>[${user_id}]님의 장바구니</h2>
+	<div class="main-contents">
+		<div><h2>[${user_id}]님의 장바구니</h2></div>
 		<c:if test="${empty list}">
 		<div class="result-display">
 			장바구니에 담은 상품이 없습니다.
@@ -108,7 +108,6 @@ $(function(){
 		<c:if test="${!empty list}">
 		<form id="cart_order" 
 		  action="${pageContext.request.contextPath}/order/orderForm.do" method="post">
-		
 			<table>
 				<c:forEach var="cart" items="${list}">
 				<tr>
@@ -136,6 +135,9 @@ $(function(){
 					</td>
 					<td>
 						${cart.product.product_price*cart.cart_quantity}
+					</td>
+					<td>
+						<input type="button" value="삭제" class="cart-del" data-cartnum="${cart.mem_cart_num}">
 					</td>
 				</tr>
 				</c:forEach>

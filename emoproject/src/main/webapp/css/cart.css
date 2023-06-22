@@ -16,8 +16,14 @@
 	box-shadow:0 2px 6px rgba(100,100,100,0.3);
 	min-height:650px;
 }
-.content-main{
-	padding:10px 20px;
+.main-contents {
+	
+	width:1600px;
+	margin:0 auto;
+
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	margin-top:20px;
 }
 /* 공통 메시지
 ------------------*/
