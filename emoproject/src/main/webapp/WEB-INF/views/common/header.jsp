@@ -37,6 +37,15 @@ $(function(){
 					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 				</li>
 			</c:if>
+			<!-- 쿠폰 기능 추가 후 활성화 예정. css 추가 필요
+			<c:if test="${count_coupon != 0}">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/coupon.do">
+					<img id="notify" src="${pageContext.request.contextPath}/images/notify.png">
+					</a>
+				</li>
+			</c:if>
+			 -->
 			
 			<c:if test="${user_id != null }">
 			<!-- 
