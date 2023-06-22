@@ -28,11 +28,17 @@ public class UserOrderFormAction implements Action{
 		int all_total = dao.getTotalByMem_num(user_num);
 		if(all_total<=0) {
 			request.setAttribute("notice_msg", "정상적인 주문이 아니거나 상품의 수량이 부족합니다.");
-			request.setAttribute("notice_url", request.getContextPath()+"/item/itemList.do");
+			request.setAttribute("notice_url", request.getContextPath()+"/cart/list.do");
 			
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
-		
+		int mem_point = dao.getMemPoint(user_num);
+		if(mem_point-all_total < 0) {
+			request.setAttribute("notice_msg", "보유중인 포인트가 부족합니다.");
+			request.setAttribute("notice_url", request.getContextPath()+"/cart/list.do");
+			
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
 		//장바구니에 담겨 있는 상품 정보 호출
 		List<CartVO> cartList = dao.getListCart(user_num);
 		CartDAO itemDao = CartDAO.getInstance();

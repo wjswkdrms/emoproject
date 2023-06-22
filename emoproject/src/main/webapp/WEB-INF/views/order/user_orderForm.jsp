@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 구매</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -33,7 +33,7 @@
 </script>
 </head>
 <body>
-<div class="page-main">
+<div class="main-contents">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="content-main">
@@ -47,17 +47,17 @@
 			<ul>
 				<li>
 					<label for="receive_name">이름</label>
-					<input type="text" name="receive_name"
+					<input type="text" name="receive_name" class="input_style"
 					  id="receive_name" maxlength="10">
 				</li>
 				<li>
 					<label for="receive_phone">전화번호</label>
-					<input type="text" name="receive_phone"
+					<input type="text" name="receive_phone" class="input_style"
 					  id="receive_phone" maxlength="15">
 				</li>
 				<li>
 					<label for="receive_email">이메일</label>
-					<input type="text" name="receive_email"
+					<input type="text" name="receive_email" class="input_style"
 					  id="receive_email" maxlength="15">
 				</li>
 			</ul>
@@ -66,19 +66,20 @@
 			<ul>
 				<li>
 					<label for="zipcode">우편번호</label>
-					<input type="text" name="receive_post"
+					<input type="text" name="receive_post" class="input_style"
 					  id="zipcode" maxlength="5">
-					<input type="button" value="우편번호 찾기"
+					<input type="button" value="우편번호 찾기" 
 					 onclick="execDaumPostcode()">  
 				</li>
 				<li>
 					<label for="address1">주소</label>
-					<input type="text" name="receive_address1"
+					<input type="text" name="receive_address1" class="input_style"
 					  id="address1" maxlength="30">
 				</li>
 				<li>
 					<label for="address2">상세 주소</label>
-					<input type="text" name="receive_address2"
+					
+					<input type="text" name="receive_address2" class="input_style"
 					  id="address2" maxlength="30">
 				</li>
 				<li>
