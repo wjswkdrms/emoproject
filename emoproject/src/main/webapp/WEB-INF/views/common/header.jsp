@@ -30,7 +30,9 @@ $(function(){
 	<div class="top-box">
 		<ul>
 			<c:if test="${user_id != null }">
-			<!--${user_id } 로그인 중<br /> -->
+				<li>
+				<strong>${user_id}</strong>님 환영합니다.
+				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 				</li>
@@ -53,9 +55,6 @@ $(function(){
 					<a href="${pageContext.request.contextPath}/member/adminPage.do">관리자 페이지</a>
 				</li>
 				</c:if>
-				<li>
-					<a href="${pageContext.request.contextPath}/member/pwdCheckForm.do">회원 탈퇴(임시)</a>
-				</li>
 			</c:if>
 			
 			<c:if test="${user_id == null }">

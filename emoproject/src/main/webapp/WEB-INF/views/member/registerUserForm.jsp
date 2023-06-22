@@ -81,7 +81,7 @@
             </div>
             <div class="input_box">
               <input type="text" name="id" id="id" class="input_style" maxlength="12" autocomplete="off">
-              <input type="button" class="input_style" value="id중복체크" id="id_check">
+              <input type="button" class="input_style_check" value="id중복체크" id="id_check">
               <span id="message_id"></span>
             </div>
           </div>
@@ -129,7 +129,7 @@
             </div>
             <div class="input_box">
               <input type="email" name="email" class="input_style" id="email" maxlength="50">
-              <input type="button" class="input_style" value="eamil중복체크" id="email_check">
+              <input type="button" class="input_style_check" value="eamil중복체크" id="email_check">
             </div>
           </div>
         </div>
@@ -140,7 +140,7 @@
             </div>
             <div class="input_box">
               <input type="text" name="zipcode" class="input_style" id="zipcode" maxlength="5">
-              <input type="button" value="우편번호 찾기" class="input_style" onclick="execDaumPostcode()">
+              <input type="button" value="우편번호 찾기" class="input_style_check" onclick="execDaumPostcode()">
             </div>
           </div>
         </div>

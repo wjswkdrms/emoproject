@@ -8,10 +8,11 @@
 	}
     .page_outer{ /* 전체 페이지 설정 */
       width:1600px;
-      height:1200px;
+      height:1000px;
       display: flex;
       padding-top: 100px;
       margin: 0 auto;
+      padding-left: 300px; /*임시 추가*/
     }
     .page_outer_register{ /* 전체 페이지 설정 register페이지 */
       width:1600px;
@@ -23,10 +24,10 @@
     .page_inner{ /* 전체 데이터 박스 설정 */
       display:block;
       width:1200px;
-      height: 1000px;
+      height: 800px;
       border : 2px solid #7878E1;
       border-radius: 10px;
-      position: relative;
+      background-color:#E8F0F8;
     }
     .page_inner_register{ /* 전체 데이터 박스 설정 register페이지 */
       display:block;
@@ -35,6 +36,7 @@
       height: 1100px;
       border : 2px solid black;
       border-radius: 10px;
+      background-color:#E8F0F8;
     }
     .page_inner #title{ /* 제목 중앙 정렬 */
       text-align: center;
@@ -58,7 +60,6 @@
       width:800px;
       margin : auto;
       padding-top: 50px;
-      transform: translate(0%,10%);
     }
     .input_idpw_outer { /* 전체 입력 박스 설정  */
       display: block;
@@ -115,6 +116,18 @@
       border : 2px solid #7878E1;
       border-radius: 7px;
       background-color: white;
+    }
+    .input_style_check{ /* 중복 체크칸 */
+      margin-left: 20px;
+      border : 2px solid #7878E1;
+      border-radius: 7px;
+      background-color: white;
+    }
+    .input_style_check:hover{ /* 중복 체크칸 호버링 처리 */
+      margin-left: 20px;
+      border : 2px solid #7878E1;
+      border-radius: 7px;
+      background-color: #AAB9FF;
     }
     .input-notice{ /* register페이지 알림문구 */
       width: 300px;
