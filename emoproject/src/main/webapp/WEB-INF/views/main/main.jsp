@@ -7,11 +7,40 @@
 <meta charset="UTF-8">
 <title>이모마켓 | 메인화면</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/promotion_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/content_view_style.css">
-
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//초기값 설정
+		let promotion_img_num = 1;
+		
+    	
+    	$('.arrow-right').click(function(){
+    		$('#pro-0'+promotion_img_num).removeClass('active');
+    		promotion_img_num++;
+    		
+    		if(promotion_img_num >6) {
+    			promotion_img_num = 1;
+    		} 
+    		
+    		
+    		$('#pro-0'+promotion_img_num).addClass('active');
+    	});
+    	
+    	$('.arrow-left').click(function(){
+    		$('#pro-0'+promotion_img_num).removeClass('active');
+    		promotion_img_num--;
+    		
+    		if(promotion_img_num <1){
+				promotion_img_num = 6;
+			}
+    		
+    		$('#pro-0'+promotion_img_num).addClass('active');
+    	});
+    	
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
