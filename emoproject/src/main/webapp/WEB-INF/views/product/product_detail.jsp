@@ -37,7 +37,7 @@
 		});
 			
 		//장바구니에 상품을 담기 위해 이벤트 처리
-		$('#item_cart').submit(function(event){
+		$('#product_cart').submit(function(event){
 			//기본 이벤트 제거
 			event.preventDefault();
 			
@@ -111,7 +111,7 @@
 					<div class="box-right">${product.productdetailVO.product_origin}</div>
 				</div>
 				
-				<form id="product-cart">
+				<form id="product_cart">
 					<input type="hidden" name="product_num" value="${product.product_num}" id="product_num">
 					<input type="hidden" name="product_price" value="${product.productdetailVO.product_price}" id="product_price">
 					<input type="hidden" name="item_stock" value="${product.productdetailVO.product_stock}" id="product_stock">

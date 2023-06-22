@@ -133,6 +133,38 @@ public class CartDAO {
 		
 		return list;
 	}
+	//장바구니 상세
+		public CartVO getcart(CartVO cart)throws Exception{
+			Connection conn= null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			CartVO cartSaved = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM em_member_cart WHERE product_num=? AND mem_num=?";
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, cart.getProduct_num());
+				pstmt.setInt(2, cart.getMem_num());
+				//sql문 실행
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					cartSaved = new CartVO();
+					cartSaved.setMem_cart_num(rs.getInt("mem_cart_num"));
+					cartSaved.setProduct_num(rs.getInt("product_num"));
+					cartSaved.setCart_quantity(rs.getInt("cart_quantity"));
+				}
+			}catch(Exception e) {
+				throw new Exception();
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			
+			
+			return cartSaved;
+		}
 	//장바구니 수정 (개별 상품 수량 수정)
 		public void updateCart(CartVO cart)
 		                        throws Exception{
@@ -148,6 +180,27 @@ public class CartDAO {
 				pstmt.setInt(1, cart.getCart_quantity());
 				pstmt.setInt(2, cart.getMem_cart_num());
 				//SQL문 실행
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		//장바구니 상품 번호와 회원 번호별 수정
+		public void updateCartByItem_num(CartVO cart) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "UPDATE em_member_cart SET cart_quantity=? WHERE product_num=? AND mem_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cart.getCart_quantity());
+				pstmt.setInt(2, cart.getProduct_num());
+				pstmt.setInt(3, cart.getMem_num());
+				//sql문 실행
 				pstmt.executeUpdate();
 			}catch(Exception e) {
 				throw new Exception(e);
