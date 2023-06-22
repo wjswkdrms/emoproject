@@ -82,10 +82,10 @@
 	<div class="page-detail">
 		<div class="detail-top">
 			<div class="top-img">
-				<img src="${pageContext.request.contextPath}/upload/${product.productdetailVO.product_photo2}">
+				<img src="${pageContext.request.contextPath}/upload/${product.productdetailVO.product_photo1}">
 			</div>
 			<div class="top-info">
-				<div class="pro-title"><h1>${product.productdetailVO.product_title}</h1></div>
+				<div class="pro-title"><h2>${product.productdetailVO.product_title}</h2></div>
 				<div class="top-cate pro-cate">
 					<span>카테고리 > </span>
 					<a href="${pageContext.request.contextPath}/search/searchCategoryMain.do?product_category=${product.product_category}">
@@ -148,13 +148,24 @@
 		</div>
 		
 		<div id="detail-info" class="div-h">
-			상품 상세 설명 자리<br>
-			${product.productdetailVO.product_info}
+			<!-- 상품 상세 설명 자리<br> 
+			${product.productdetailVO.product_info} -->
+			
+			<div class="pro-de-img">
+				<div class="crop">
+					<img class="crop-img" src="${pageContext.request.contextPath}/upload/${product.productdetailVO.product_photo1}">
+				</div>
+			</div>
+			<div class="context">
+				<h3 class="context-ti">[ ${product.productdetailVO.product_title} ] </h3>
+				<p class="de-word">${product.productdetailVO.product_info}</p>
+			</div>
 		</div>
 		
 		<div id="detail-review" class="div-h">
 			<div class="review-star">
 				리뷰 평균 별점 자리
+				<span> ㅁ</span>
 			</div>
 			<div class="review-list">
 				상품 리뷰 리스트 자리

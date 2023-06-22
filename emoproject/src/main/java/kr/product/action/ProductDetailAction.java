@@ -13,10 +13,10 @@ public class ProductDetailAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//상품 번호
-		int item_num = Integer.parseInt(request.getParameter("product_num"));
+		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		
 		ProductDAO dao = ProductDAO.getInstance();
-		ProductManageVO product = dao.getProduct(item_num);
+		ProductManageVO product = dao.getProduct(product_num);
 		
 		//내용 줄바꿈 처리
 		product.getProductdetailVO().setProduct_info(StringUtil.useBrHtml(product.getProductdetailVO().getProduct_info()));

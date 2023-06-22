@@ -31,7 +31,7 @@ public class GetZzimAction implements Action{
 			mapAjax.put("status", "noZzim");
 			mapAjax.put("zzim-count", dao.selectZzimCount(product_num));
 		}else {	//로그인O
-			ZZimVO zzim = dao.selectZzim(new ZZimVO());
+			ZZimVO zzim = dao.selectZzim(new ZZimVO(user_num, product_num));
 			if(zzim != null) {
 				//로그인한 회원이 해당 물품에 찜O
 				mapAjax.put("status", "yesZzim");
