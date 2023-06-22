@@ -32,11 +32,12 @@ public class AskDetailAction implements Action{
 		if(user_num==ask.getMem_num() || user_auth==9) {
 			ask.setAsk_title(StringUtil.useNoHtml(ask.getAsk_title()));
 			ask.setAsk_content(StringUtil.useBrNoHtml(ask.getAsk_content()));
-			
-			answer.setAsk_vo(ask);
-			answer.setAsk_num(ask_num);
 			request.setAttribute("ask", ask);
-			request.setAttribute("answer", answer);
+			if(answer!=null) {
+				answer.setAsk_vo(ask);
+				answer.setAsk_num(ask_num);
+				request.setAttribute("answer", answer);
+			}
 		}else {
 			return "/WEB-INF/views/common/notice.jsp";
 		}

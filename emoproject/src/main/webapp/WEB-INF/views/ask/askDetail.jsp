@@ -37,12 +37,14 @@
 						<div>${ask.ask_content}</div>
 					</div>	
 				<!-- 답변 시작 -->
+					<c:if test="${!empty answer.answer_num}">
 					<div class="answer-content">
 						<div class="detail-title">관리자</div>
 						<div class="specific">${answer.answer_date}</div>
 						<div class="specific">${answer.answer_content}</div>
 						<div><img src=${pageContext.request.contextPath}/upload/${answer.answer_photo}></div>
-					</div>	
+					</div>
+					</c:if>	
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_num==ask.mem_num}">
 						<input type="button" value="수정" onclick="location.href='askUpdateForm.do?ask_num=${ask.ask_num}'">
@@ -51,10 +53,12 @@
 					</div>
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_auth==9}">
-						<input type="button" value="수정" onclick="location.href='answerUpdateForm.do?answer_num=${answer.answer_num}'">
+						<input type="button" value="답변 수정" onclick="location.href='answerUpdateForm.do?answer_num=${answer.answer_num}'">
 						<form action="answerForm.do" method="post">
 							<input type="hidden" name="ask_num" value="${ask.ask_num}" >
-							<input type="submit" value="글쓰기" >
+							<c:if test="${empty answer.answer_num}">
+								<input type="submit" value="글쓰기" >
+							</c:if>
 						</form>
 						</c:if>
 					</div>
