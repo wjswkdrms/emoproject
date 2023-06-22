@@ -87,7 +87,7 @@ public class UserOrderAction implements Action{
 		home.setMem_home_address1(request.getParameter("receive_address1"));
 		home.setMem_home_address2(request.getParameter("receive_address2"));
 		home.setMem_home_cell(request.getParameter("receive_phone"));
-		home.setMem_home_name(request.getParameter("name"));
+		
 		home.setMem_num(user_num);
 		
 		OrderDAO orderDao = OrderDAO.getInstance();

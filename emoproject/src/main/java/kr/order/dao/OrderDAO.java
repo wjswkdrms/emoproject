@@ -30,6 +30,7 @@ public class OrderDAO {
 		PreparedStatement pstmt6 = null;
 		PreparedStatement pstmt7 = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 		String sql = null;
 		int order_num = 0;
 		int home_num = 0;
@@ -63,9 +64,9 @@ public class OrderDAO {
 			//order_num값 구하기
 			sql = "SELECT em_order_manage_seq.nextval FROM dual";
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				order_num = rs.getInt(1);
+			rs2 = pstmt.executeQuery();
+			if(rs2.next()) {
+				order_num = rs2.getInt(1);
 			}
 			//주문정보 저장
 			sql= "INSERT INTO em_order_manage (order_num,order_total_price,mem_num,mem_home_num,order_status,order_date,"
@@ -106,7 +107,7 @@ public class OrderDAO {
 			pstmt3.executeBatch();
 			
 			//상품의 재고 수 차감
-			sql = "UPDATE em_product_detail SET product_quantity=product_quantity-? WHERE product_num=?";
+			sql = "UPDATE em_product_detail SET product_stock=product_stock-? WHERE product_num=?";
 			pstmt4 = conn.prepareStatement(sql);
 			for(int i = 0; i < orderDetailList.size();i++) {
 				OrderDetailVO orderDetail = orderDetailList.get(i);
@@ -142,7 +143,7 @@ public class OrderDAO {
 			DBUtil.executeClose(null, pstmt5, null);
 			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);
-			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(rs2, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}

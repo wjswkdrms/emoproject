@@ -45,17 +45,18 @@
 					</div>
 				</div>
 				<!-- 댓글 시작 -->
-				<div id="reply_div">
+				<div class="reply_div">
 					<c:if test="${!empty user_num&&user_auth==9}">
 					<form id="re_form" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="ask_num" value="${ask.ask_num}" id="ask_num">
-						<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"></textarea>
-						<div id="re_first">
-							<span class="letter-count">333/333</span>
+						<div>
+							<div class="reply_name"><b>관리자</b></div>
+							<textarea rows="3" cols="210" name="re_content" id="re_content" class="rep-content"></textarea>
 						</div>
-						<div id="re_second" class="button-box">
-							<input type="submit" value="전송">
-						</div>
+							<div id="re_first" class="button-box">
+								<span class="letter-count">333/333</span>
+								<input type="submit" value="전송">
+							</div>
 					</form>
 					</c:if>
 				</div>
