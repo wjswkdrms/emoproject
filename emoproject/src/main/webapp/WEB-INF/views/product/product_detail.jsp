@@ -160,6 +160,36 @@
 				<h3 class="context-ti">[ ${product.productdetailVO.product_title} ] </h3>
 				<p class="de-word">${product.productdetailVO.product_info}</p>
 			</div>
+			<div class="context">
+				<h3>상품고시정보</h3>
+				<ul class="ul-box">
+					<li class="ul-b-left">품목 또는 명칭</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">포장단위별 내용물의 용량(중량), 수량, 크기</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">생산자, 수입품의 경우 수입자를 함께 표기</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">｢농수산물의 원산지 표시 등에 관한 법률｣에 따른 원산지</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">제조연월일, 소비기한 또는 품질유지기한</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">농수산물 – ｢농수산물 품질관리법｣에 따른 유전자변형농수산물 표시, 지리적 표시</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">축산물 - ｢축산법｣에 따른 등급 표시(1++ 등급 국내산 쇠고기의 경우 ｢소ㆍ돼지 식육의 표시방법 및 부위 구분기준｣에 따라 근내지방도 정보를 포함하여 표시), ｢가축 및 축산물 이력관리에 관한 법률｣에 따른 이력관리대상축산물 유무</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">수입 농수축산물 – “수입식품안전관리 특별법에 따른 수입신고를 필함”의 문구</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">상품구성</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">보관방법 또는 취급방법</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">소비자 안전을 위한 주의사항 (｢식품 등의 표시ㆍ광고에 관한 법률 시행규칙｣ 제5조 및 [별표 2]에 따른 표시사항을 말함)</li>
+					<li class="ul-b-right">상품설명 및 상품이미지 참조</li>
+					<li class="ul-b-left">소비자 상담 관련 전화번호</li>
+					<li class="ul-b-right">고객센터 (02-1234-5678)</li>
+					
+				</ul>
+			</div>
 		</div>
 		
 		<div id="detail-review" class="div-h">
