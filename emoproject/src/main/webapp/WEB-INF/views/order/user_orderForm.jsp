@@ -43,7 +43,7 @@
 		</div>
 		<hr size="1" noshade="noshade" width="100%">
 		<form id="order_form" 
-		  action="order.do" method="post">
+		  action="${pageContext.request.contextPath}/order/order.do" method="post">
 			<ul>
 				<li>
 					<label for="receive_name">이름</label>
