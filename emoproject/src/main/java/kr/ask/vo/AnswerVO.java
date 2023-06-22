@@ -11,7 +11,14 @@ public class AnswerVO {
 	private int ask_num;
 	
 	private String mem_id;
+	private AskVO ask_vo;
 	
+	public AskVO getAsk_vo() {
+		return ask_vo;
+	}
+	public void setAsk_vo(AskVO ask_vo) {
+		this.ask_vo = ask_vo;
+	}
 	public int getAnswer_num() {
 		return answer_num;
 	}
