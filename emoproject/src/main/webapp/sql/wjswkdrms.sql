@@ -34,8 +34,8 @@ create table em_member_home(
  mem_home_num number not null,--諛곕떖二쇱냼踰덊샇
  mem_home_cell varchar2(15) not null,--�쟾�솕踰덊샇
  mem_home_zipcode number(5) not null,--�슦�렪踰덊샇
- mem_home_address1 varchar2(50) not null,--諛곕떖諛쏅뒗二쇱냼
- mem_home_address2 varchar2(50) not null,--�긽�꽭二쇱냼
+ mem_home_address1 varchar2(90) not null,--諛곕떖諛쏅뒗二쇱냼
+ mem_home_address2 varchar2(90) not null,--�긽�꽭二쇱냼
  mem_home_name varchar2(50),--二쇱냼�쓽 紐낆묶
  constraint em_member_home_pk
  					primary key(mem_home_num),
