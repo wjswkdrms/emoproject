@@ -62,7 +62,6 @@ $(function(){
 			input_quantity.val(input_quantity.attr('value'));
 			return;                   
 		}
-		
 		//서버와 통신
 		$.ajax({
 			url:'modifyCart.do',
@@ -108,42 +107,41 @@ $(function(){
 		<c:if test="${!empty list}">
 		<form id="cart_order" 
 		  action="${pageContext.request.contextPath}/order/orderForm.do" method="post">
-			<table>
+			<table class="cart-content">
 				<c:forEach var="cart" items="${list}">
 				<tr>
-					<td>
-						<input type="checkbox">
-					</td>
 					<td>
 						<img src="${pageContext.request.contextPath}/upload/${cart.product.product_photo1}" width="80">
 					</td>
 					<td>
 						${cart.product.product_title}
 					</td>
-					<td class="align-center">
-							<button type="button" onclick="fnCalCount('m', this);">-</button>						
+					<td>
+						<div class="quantity">
+							<button type="button" onclick="fnCalCount('m', this);" class="button qpm">-</button>						
 							<input type="text" name="order_quantity" id="result"
 							  min="1" max="${cart.product.product_stock}"
 							  autocomplete="off" readonly="readonly"
 							  value="${cart.cart_quantity}">
-							<button type="button" onclick="fnCalCount('p', this);">+</button>
-							<br>
+							<button type="button" onclick="fnCalCount('p', this);" class="button qpm">+</button>
 							<input type="button" value="변경" 
-							 class="cart-modify" 
+							 class="cart-modify " 
 							 data-cartnum="${cart.mem_cart_num}"
-							 data-itemnum="${cart.product_num}">
+							 data-itemnum="${cart.product_num}"
+							 >
+						</div>
 					</td>
 					<td>
 						${cart.product.product_price*cart.cart_quantity}
 					</td>
 					<td>
-						<input type="button" value="삭제" class="cart-del" data-cartnum="${cart.mem_cart_num}">
+						<input type="button" value="삭제" class="cart-del button" data-cartnum="${cart.mem_cart_num}">
 					</td>
 				</tr>
 				</c:forEach>
 			</table>
-			<div >
-				
+			<div class="result-display">
+			<div class="result-text">
 				<div>
 					<span>보유 포인트</span>
 					<span>${point}원</span>
@@ -157,7 +155,8 @@ $(function(){
 					<span>결제시 포인트 잔액</span>
 					<span>${point-all_total}원</span>
 				</div>
-				<input type="submit" value="결제">
+				<input type="submit" value="결제 정보 입력" class="button">
+			</div>
 			</div>
 		</form>
 		

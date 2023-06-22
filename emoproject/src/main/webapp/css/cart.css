@@ -16,25 +16,25 @@
 	box-shadow:0 2px 6px rgba(100,100,100,0.3);
 	min-height:650px;
 }
-.main-contents {
-	
+.main-contents {	
 	width:1600px;
 	margin:0 auto;
-
-	justify-content: flex-start;
-	flex-wrap: wrap;
-	margin-top:20px;
 }
 /* 공통 메시지
 ------------------*/
 .result-display{
-	width:400px;
+	width:1000px;
 	height:200px;
 	margin:50px auto;
-	border:1px solid #000;
+	border:1px solid deepskyblue;
+	background: #D0CEDD;
 	display:flex;
 	align-items:center;/*세로 정렬*/
 	justify-content:center;/*가로 정렬*/
+    border-radius: 10px;
+}
+.result-text{
+	font-size:15pt;
 }
 
 /* 공통 정렬
@@ -45,16 +45,15 @@
 .align-right{
 	text-align:right;
 }
-table{
-	width:100%;
-	border-collapse:collapse;
-	margin-top:5px;
+.cart-content{
+	width:1000px;
+	margin:50px auto;
 }
 table td, table th{
 	font-size:20pt;
 	padding:5px;
 }
-input[id="quantity"]{
+input[id="result"]{
 	font-size:20pt;
 	width:40px;
 	margin:0;
@@ -65,4 +64,57 @@ input.quntity{
 	width:35px;
 	margin:0;
 	padding:0;
+}
+
+
+.button { /* 버튼 디자인 */
+    display: block;
+    margin: 5px auto;
+    width:400px;
+    padding: 13px 13px;
+    background-color: #AAB9FF;
+    box-sizing: border-box;
+    cursor: pointer;
+    border : 2px solid #7878E1;
+    border-radius: 7px;
+}
+.button:hover{ /* 버튼 디자인 호버링 */
+    display: block;
+    margin: 5px auto;
+    width:400px;
+    padding: 13px 13px;
+    background-color: #D0CEDD;
+    box-sizing: border-box;
+    cursor: pointer;
+    border : 2px solid #7878E1;
+    border-radius: 7px;
+}
+.cart-del{
+	width:70px;
+}
+.cart-del:hover{
+	width:70px;
+}
+.qpm{
+	width:40px;
+	margin:0;
+	padding:0;
+}
+.qpm:hover{
+	width:40px;
+	margin:0;
+	padding:0;
+}
+.cart-modify{
+	width:70px;
+	margin:0 5px;
+}
+.cart-modify:hover{
+	width:70px;
+}
+.quantity{
+	display:flex;
+}
+ul{
+	list-style:none;
 }

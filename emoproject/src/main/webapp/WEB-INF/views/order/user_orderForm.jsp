@@ -7,7 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 구매</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css">
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -33,10 +35,10 @@
 </script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="page_outer">	
 	<!-- 내용 시작 -->
-	<div class="content-main">
+	<div class="page_inner">
 		<h2>상품구매</h2>
 		<div>
 			상품명 : <a href="#">${item_name}</a> 총 ${all_total}원
@@ -46,44 +48,75 @@
 		  action="${pageContext.request.contextPath}/order/order.do" method="post">
 			<ul>
 				<li>
-					<label for="receive_name">이름</label>
-					<input type="text" name="receive_name"
-					  id="receive_name" maxlength="10">
+				<div class="input_idpw_outer" id="input_name">
+				<div class="input_idpw_inner">
+           	<div class="input_title">
+					<label for="receive_name">이름</label></div>
+					<div class="input_box">
+					<input type="text" name="receive_name" class="input_style"
+					  id="receive_name" maxlength="10"></div></div></div>
 				</li>
 				<li>
-					<label for="receive_phone">전화번호</label>
-					<input type="text" name="receive_phone"
-					  id="receive_phone" maxlength="15">
+				<div class="input_idpw_outer" id="input_name">
+				<div class="input_idpw_inner">
+           	<div class="input_title">
+					<label for="receive_phone">전화번호</label></div>
+					<div class="input_box">
+					<input type="text" name="receive_phone" class="input_style"
+					  id="receive_phone" maxlength="15"></div></div></div>
 				</li>
 				<li>
-					<label for="receive_email">이메일</label>
-					<input type="text" name="receive_email"
-					  id="receive_email" maxlength="15">
+				<div class="input_idpw_outer" id="input_name">
+            <div class="input_idpw_inner">
+           	<div class="input_title">
+					<label for="receive_email">이메일</label></div>
+					<div class="input_box">
+					<input type="text" name="receive_email" class="input_style"
+					  id="receive_email" maxlength="15"></div></div></div>
 				</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
 			<input type="button" value="이전에 사용한 주소 불러오기">
 			<ul>
 				<li>
+				<div class="input_idpw_outer" id="input_name">
+            <div class="input_idpw_inner">
+            <div class="input_title">
 					<label for="zipcode">우편번호</label>
-					<input type="text" name="receive_post"
+					          </div>
+					          <div class="input_box">
+					<input type="text" name="receive_post" class="input_style"
 					  id="zipcode" maxlength="5">
-					<input type="button" value="우편번호 찾기"
-					 onclick="execDaumPostcode()">  
+					<input type="button" value="우편번호 찾기"  class="input_style"
+					 onclick="execDaumPostcode()">  </div></div></div>
 				</li>
 				<li>
-					<label for="address1">주소</label>
-					<input type="text" name="receive_address1"
-					  id="address1" maxlength="30">
+				<div class="input_idpw_outer" id="input_name">
+				<div class="input_idpw_inner">
+           	<div class="input_title">
+					<label for="address1">주소</label></div>
+					<div class="input_box">
+					<input type="text" name="receive_address1" class="input_style"
+					  id="address1" maxlength="30"></div></div></div>
 				</li>
 				<li>
+				<div class="input_idpw_outer" id="input_name">
+				<div class="input_idpw_inner">
+           	<div class="input_title">
 					<label for="address2">상세 주소</label>
-					<input type="text" name="receive_address2"
-					  id="address2" maxlength="30">
+					</div>
+					<div class="input_box">
+					<input type="text" name="receive_address2" class="input_style"
+					  id="address2" maxlength="30"></div></div></div>
 				</li>
 				<li>
-					<label for="notice">배송 메모</label>
-					<textarea rows="5" cols="30" name="notice" id="notice" maxlength="1300"></textarea>
+				<div class="input_idpw_outer" id="input_name">
+				<div class="input_idpw_inner">
+           	<div class="input_title">
+					<label for="notice">배송 메모</label></div>
+					<div class="input_box">
+					<textarea rows="5" cols="30" name="notice" class="input_style" id="notice" maxlength="1300"></textarea>
+					</div></div></div>
 				</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
@@ -124,7 +157,7 @@
                 //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                     addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                } else { // 사용자가 지번 주소를 선택했을 경우(J).
                     addr = data.jibunAddress;
                 }
 
