@@ -29,6 +29,7 @@ public class OrderDAO {
 		PreparedStatement pstmt5 = null;
 		PreparedStatement pstmt6 = null;
 		PreparedStatement pstmt7 = null;
+		PreparedStatement pstmt8 = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
 		String sql = null;
@@ -45,7 +46,7 @@ public class OrderDAO {
 			pstmt6 = conn.prepareStatement(sql);
 			rs = pstmt6.executeQuery();
 			if(rs.next()) {
-				order_num = rs.getInt(1);
+				home_num = rs.getInt(1);
 			}
 			//home정보 저장
 			sql= "INSERT INTO em_member_home (mem_home_num,mem_num,mem_home_cell,mem_home_zipcode,"
@@ -105,6 +106,12 @@ public class OrderDAO {
 				
 			}
 			pstmt3.executeBatch();
+			//회원 포인트 차감
+			sql = "UPDATE em_member_detail SET mem_point=mem_point-? WHERE mem_num=?";
+			pstmt8 = conn.prepareStatement(sql);
+			pstmt8.setInt(1, order.getOrder_total_price());
+			pstmt8.setInt(2, order.getMem_num());
+			pstmt8.executeUpdate();
 			
 			//상품의 재고 수 차감
 			sql = "UPDATE em_product_detail SET product_stock=product_stock-? WHERE product_num=?";
@@ -138,6 +145,7 @@ public class OrderDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt8, null);
 			DBUtil.executeClose(null, pstmt7, null);
 			DBUtil.executeClose(null, pstmt6, null);
 			DBUtil.executeClose(null, pstmt5, null);
@@ -147,6 +155,7 @@ public class OrderDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
+	
 }
 		
 		

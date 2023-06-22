@@ -239,4 +239,25 @@ public class CartDAO {
 		
 		return product;
 	}
+	//장바구니에서 상품 삭제
+	public void deleteCart(int cart_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql="DELETE FROM em_member_cart WHERE mem_cart_num=?";
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, cart_num);
+			//sql문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e){
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
