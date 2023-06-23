@@ -21,28 +21,6 @@
     			return false;
 			}
 			
-			/*
-			//카테고리 값 가져와서 지정
-			if(${product.product_category} == 1){
-				$("#tmpSelect").val("1").prop("selected", true);
-			}else if(${product.product_category} == 2){
-				$("#tmpSelect").val("2").prop("selected", true);
-			}else if(${product.product_category} == 3){
-				$("#tmpSelect").val("3").prop("selected", true);
-			}else if(${product.product_category} == 4){
-				$("#tmpSelect").val("4").prop("selected", true);
-			}else if(${product.product_category} == 5){
-				$("#tmpSelect").val("5").prop("selected", true);
-			}else if(${product.product_category} == 6){
-				$("#tmpSelect").val("6").prop("selected", true);
-			}
-			*/
-			
-			//radio버튼 반드시 하나 선택해야한다, 선택 X인 경우
-			if($('input[type=radio]:checked').length<1){//length가 1보다 작을 때 하나도 선택 X일 때
-				alert('상품표시여부를 지정하세요');
-				return false;
-			}
 			if($('#name').val().trim() == ''){
 				alert('상품을 입력하세요');
 				$('#name').val('').focus();
@@ -147,13 +125,13 @@
 			</li>
 			<li>
 				<label class="box-left" for="info">상품 설명</label>
-				<textarea rows="5" cols="30" name="info" id="info">${product.productdetailVO.product_info}s</textarea>
+				<textarea rows="5" cols="30" name="info" id="info">${product.productdetailVO.product_info}</textarea>
 			</li>
 			
 		</ul>
 		<div class="align-center">
 			<input type="submit" value="상품 수정">
-			<input type="button" value="목록으로 돌아가기" onclick="location.href='#'">
+			<input type="button" value="목록으로 돌아가기" onclick="location.href='${pageContext.request.contextPath}/product/productlist.do'">
 		</div>
 		</form>
 	</div>

@@ -19,17 +19,16 @@ public class ProductModifyFormAction implements Action {
 		if (user_num == null) {// 로그인 X
 			return "redirect:/member/loginForm.do";
 		}
-		
-		int product_num = Integer.parseInt(request.getParameter("product_num"));
-		ProductDAO dao = ProductDAO.getInstance();
-		ProductManageVO product = dao.getProduct(product_num);
-		
 
 		// 회원등급 check - 관리자 계정 여부
 		Integer user_auth = (Integer) session.getAttribute("user_auth");
 		if (user_auth < 9) { // 관리자 계정이 아니다
 			return "/WEB-INF/views/common/notice.jsp";
 		}
+
+		int product_num = Integer.parseInt(request.getParameter("product_num"));
+		ProductDAO dao = ProductDAO.getInstance();
+		ProductManageVO product = dao.getProduct(product_num);
 
 		// 관리자로 로그인한 경우
 		request.setAttribute("product", product);
