@@ -16,7 +16,7 @@
 		//주문 유효성 체크
 		$('#order_form').submit(function(){
 			let items = document.querySelectorAll(
-					   'input[type="text"]');
+					   '.input_style');
 			 for(let i=0;i<items.length;i++){
 				 
 			    if(items[i].value.trim()==''){
@@ -124,16 +124,16 @@
 			<div class="result-text">
 				<div>
 					<span>보유 포인트</span>
-					<span>${point}원</span>
+					<span><fmt:formatNumber value="${point}"/>원</span>
 				</div>
 				<div>
 					<span>최종금액</span>
-					<span>${all_total}원</span>
+					<span><fmt:formatNumber value="${all_total}"/>원</span>
 				</div>
 				<hr size="1" noshade="noshade" width="100%">
 				<div>
 					<span>결제시 포인트 잔액</span>
-					<span>${point-all_total}원</span>
+					<span><fmt:formatNumber value="${point-all_total}"/>원</span>
 				</div>
 				<input type="submit" value="주문" class="button">
 				<input type="button" value="홈으로" class="button"

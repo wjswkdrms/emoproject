@@ -8,6 +8,9 @@ import java.util.List;
 import kr.order.vo.MemberHomeVO;
 import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
+import kr.product.dao.ProductDAO;
+import kr.product.vo.ProductDetailVO;
+import kr.product.vo.ProductManageVO;
 import kr.util.DBUtil;
 
 public class OrderDAO {
@@ -30,8 +33,11 @@ public class OrderDAO {
 		PreparedStatement pstmt6 = null;
 		PreparedStatement pstmt7 = null;
 		PreparedStatement pstmt8 = null;
+		PreparedStatement pstmt9 = null;
+		PreparedStatement pstmt10 = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
+		ResultSet rs3 = null;
 		String sql = null;
 		int order_num = 0;
 		int home_num = 0;
@@ -130,8 +136,8 @@ public class OrderDAO {
 				}
 				
 			}//end of for
-			pstmt4.executeBatch();
-			
+			pstmt4.executeBatch();			
+
 			//장바구니에서 주문 상품 삭제
 			sql="DELETE FROM em_member_cart WHERE mem_num=?";
 			pstmt5 = conn.prepareStatement(sql);
@@ -145,17 +151,44 @@ public class OrderDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt9, null);
 			DBUtil.executeClose(null, pstmt8, null);
 			DBUtil.executeClose(null, pstmt7, null);
 			DBUtil.executeClose(null, pstmt6, null);
 			DBUtil.executeClose(null, pstmt5, null);
 			DBUtil.executeClose(null, pstmt4, null);
-			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(rs3, pstmt3, null);
 			DBUtil.executeClose(rs2, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}
+	public void updateStatus(List<OrderDetailVO> list) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE em_product_manage m join em_product_detail d ON m.product_num=d.product_num SET m.status=1 WHERE d.product_stock=0 AND m.product_num=?";
+			pstmt = conn.prepareStatement(sql);
+			for(int i=0;i<list.size();i++) {
+				int product_num = list.get(i).getProduct_num();
+				pstmt.setInt(1, product_num);
+				
+				pstmt.addBatch();
+				if(i%1000 == 0) {
+					pstmt.executeBatch();
+				}
+			}
+			pstmt.executeBatch();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	
+	
+	}
 }
 		
 		

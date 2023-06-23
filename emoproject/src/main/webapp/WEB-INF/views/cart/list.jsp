@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,24 +145,23 @@ $(function(){
 			<div class="result-text">
 				<div>
 					<span>보유 포인트</span>
-					<span>${point}원</span>
+					<span><fmt:formatNumber value="${point}"/>원ㄴ</span>
 				</div>
 				<div>
 					<span>최종금액</span>
-					<span>${all_total}원</span>
+					<span><fmt:formatNumber value="${all_total}"/>원</span>
 				</div>
 				<hr size="1" noshade="noshade" width="100%">
 				<div>
 					<span>결제시 포인트 잔액</span>
-					<span>${point-all_total}원</span>
+					<span><fmt:formatNumber value="${point-all_total}"/>원</span>
 				</div>
 				<input type="submit" value="결제 정보 입력" class="button">
 			</div>
 			</div>
 		</form>
-		
 		</c:if>
 	</div>
-
+<input type="button" value="구매목록" onclick="location.href='${pageContext.request.contextPath}/cart/memberEditClone.do'">
 </body>
 </html>

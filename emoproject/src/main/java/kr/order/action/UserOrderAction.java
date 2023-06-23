@@ -14,6 +14,7 @@ import kr.order.dao.OrderDAO;
 import kr.order.vo.MemberHomeVO;
 import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
+import kr.product.dao.ProductDAO;
 import kr.product.vo.ProductManageVO;
 
 public class UserOrderAction implements Action{
@@ -53,6 +54,7 @@ public class UserOrderAction implements Action{
 		//개별 상품 정보 담기
 		List<OrderDetailVO> orderDetailList = new ArrayList<OrderDetailVO>();
 		CartDAO itemdao = CartDAO.getInstance();
+		OrderDetailVO orderDetail = null;
 		for(CartVO cart : cartList) {
 			ProductManageVO item = itemdao.getItem(cart.getProduct_num());
 			if(item.getProduct_status() == 1) {
@@ -67,7 +69,7 @@ public class UserOrderAction implements Action{
 				request.setAttribute("notice_url", request.getContextPath() + "/cart/list.do");
 				
 			}
-			OrderDetailVO orderDetail = new OrderDetailVO();
+			orderDetail = new OrderDetailVO();
 			orderDetail.setProduct_num(cart.getProduct_num());
 			orderDetail.setOrder_product_name(cart.getProduct().getProduct_name());
 			orderDetail.setOrder_product_price(cart.getProduct().getProduct_price());
@@ -93,8 +95,12 @@ public class UserOrderAction implements Action{
 		OrderDAO orderDao = OrderDAO.getInstance();
 		orderDao.insertOrder(order, home, orderDetailList);
 		
-		//refresh 정보를 응답 헤더에 추가
-		response.addHeader("Refresh", "2;url=../main/main.do");
+		orderDao.updateStatus(orderDetailList);
+		
+		/*
+		 * //refresh 정보를 응답 헤더에 추가 response.addHeader("Refresh",
+		 * "2;url=../main/main.do");
+		 */
 		request.setAttribute("accessMsg", "주문이 완료되었습니다.");
 		request.setAttribute("accessUrl", request.getContextPath()+"/main/main.do");
 		
