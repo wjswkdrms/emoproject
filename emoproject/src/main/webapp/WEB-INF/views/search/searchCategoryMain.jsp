@@ -76,14 +76,14 @@ $(function(){
 		
 		var add='';
 		if(startPage>pageBlock){
-			add += '<li data-page='+(startPage-1)+'>[이전]</li>';
+			add += '<li data-page='+(startPage-1)+'>&lt;</li>';
 		}
 		
 		for(var i=startPage;i<=endPage;i++){
 			add += '<li data-page='+i+'>'+i+'</li>';
 		}
 		if(endPage < totalPage){
-			add += '<li data-page='+(startPage+pageBlock)+'>[다음]</li>';;
+			add += '<li data-page='+(startPage+pageBlock)+'>&gt;</li>';;
 		}
 		//ul 태그에 생성한 li를 추가
 		$('.paging-btn').append(add);
@@ -160,8 +160,9 @@ $(function(){
 				<li id="sorted_05">낮은가격순</li>
 			</ul>
 		</div>
-		<div id="search_count"></div>
+		
 		<div class="contents-head">"${product_category_name}"<span> 에 대한 검색 결과</span></div>
+		<div id="search_count"></div>
 		<div id = "output" class="main-contents"></div>
 		<!-- 최초 방문시에 나옴 -->
 			<!--  

@@ -9,13 +9,15 @@
 	
 	
 	#nav_top_bottom {
+	
 		position:fixed;
-		width:100px;
-		height:100px;
+		width:200px;
+		height:200px;
 		top : 50%;
-		right : 25px;
+		right : 0;
 		display:flex;
 		flex-wrap: wrap;
+		flex-direction: column;
 		justify-content: center;
 		align-items:center;
 		z-index:5;

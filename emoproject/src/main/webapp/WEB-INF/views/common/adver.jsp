@@ -15,7 +15,7 @@
 	overflow:hidden;
 	margin-top:10px;
 	position: relative;
-	margin-top:200px;
+	
 }
 
 .promotion-box img {

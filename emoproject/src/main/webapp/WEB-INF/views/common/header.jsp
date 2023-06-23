@@ -26,6 +26,7 @@ $(function(){
 });
 
 </script>
+
 <div class="main-head" id="header_docker">
 	<div class="top-box">
 		<ul>
@@ -133,4 +134,5 @@ $(function(){
 	</div>
 	
 </div>
+<div id="unknown_box"></div>
 <!-- header 끝 -->

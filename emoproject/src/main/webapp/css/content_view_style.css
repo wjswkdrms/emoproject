@@ -14,19 +14,23 @@
 	display:flex;	
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	margin-top:220px;
+	margin-top:20px;
 }
 
 #total_count {
-	position:absolute;
-	top:650px;
-	right:170px;
+	width:1600px;
+	display:flex;
+	justify-content: flex-end;
+	margin-bottom:40px;
+	margin-right:30px;
 }
 
 #search_count {
-	position:absolute;
-	top:400px;
-	right:180px;
+	width:1600px;
+	display:flex;
+	justify-content: flex-end;
+	margin-bottom:40px;
+	margin-right:30px;
 }
 .contents-head {
 	display : flex;
@@ -35,7 +39,7 @@
 	justify-content: center;
 	align-items:center;
 	font-size : 50px;
-	margin-bottom:100px;
+	margin-bottom:20px;
 	
 }
 .contents-head span {
