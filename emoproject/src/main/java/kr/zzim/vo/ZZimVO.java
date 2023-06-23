@@ -8,7 +8,7 @@ public class ZZimVO {
 	private String Product_info;
 	private String Product_photo1;
 	private int Product_price;
-	private int Product_status;
+	private String Product_status;
 	public ZZimVO() {}
 	
 	//생성자 정의 
@@ -53,11 +53,11 @@ public class ZZimVO {
 		Product_price = product_price;
 	}
 
-	public int getProduct_status() {
+	public String getProduct_status() {
 		return Product_status;
 	}
 
-	public void setProduct_status(int product_status) {
+	public void setProduct_status(String product_status) {
 		Product_status = product_status;
 	}
 
