@@ -10,6 +10,7 @@
     .page_outer{ /* 전체 박스 */
       width:1920px;
       height: auto;
+      margin:0 auto;
       display: flex;
       margin-top: 50px;
       padding-bottom: 50px;
@@ -95,21 +96,32 @@
       display: flex;
       height: 100px;
       width: 400px;
+      text-align:center;
+      border-bottom: 1px double #7878E1;
+      border-right: 1px solid #7878E1;
     }
     .content_main #info{ /* 메인 컨텐츠 내용*/
       display: inline-block;
       height: 100px;
       width: 650px;
+      text-align:center;
+      border-bottom: 1px double #7878E1;
+      border-right: 1px solid #7878E1;
     }
     .content_main #price { /* 메인 컨텐츠 내용*/
       display: inline-block;
       height: 100px;
       width: 200px;
+      text-align:center;
+      border-bottom: 1px double #7878E1;
+      border-right: 1px solid #7878E1;
     }
     .content_main #status{ /* 메인 컨텐츠 내용*/
       display: inline-block;
       height: 100px;
       width: 130px;
+      text-align:center;
+      border-bottom: 1px double #7878E1;
     }
 
     .page_inner_post .hr_top{ /* 게시판 상단 목록바 hr 스타일 */

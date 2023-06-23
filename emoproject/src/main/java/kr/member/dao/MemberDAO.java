@@ -400,14 +400,38 @@ public class MemberDAO {
 				while(rs.next()) {
 					ZZimVO zzim = new ZZimVO();
 					zzim.setProduct_num(rs.getInt("product_num"));
-					zzim.setProduct_title(rs.getString("product_title"));
-					zzim.setProduct_info(rs.getString("product_info"));
 					zzim.setProduct_photo1(rs.getString("product_photo1"));
 					zzim.setProduct_price(rs.getInt("product_price"));
 					if(rs.getInt("product_status") == 2) {
 						zzim.setProduct_status("판매중");
 					}else {
 						zzim.setProduct_status("판매중지");
+					}
+					//문자열의 길이가 90 이상이면 잘라내고 ...처리
+					if((rs.getString("product_info")).length() > 90) {
+						String[] arr =  new String[(rs.getString("product_info")).length()];
+						String str = "";
+						arr = rs.getString("product_info").split("");
+						for(int i=0; i<90; i++) {
+							str += arr[i];
+						}
+						str += "...";
+						zzim.setProduct_info(str);
+					}else {
+						zzim.setProduct_info(rs.getString("product_info"));
+					}
+					
+					if((rs.getString("product_title")).length() > 90) {
+						String[] arr2 =  new String[(rs.getString("product_title")).length()];
+						String str2 = "";
+						arr2 = rs.getString("product_title").split("");
+						for(int i=0; i<90; i++) {
+							str2 += arr2[i];
+						}
+						str2 += "...";
+						zzim.setProduct_title(str2);
+					}else {
+						zzim.setProduct_title(rs.getString("product_title"));
 					}
 					list.add(zzim);
 				}
@@ -489,7 +513,6 @@ public class MemberDAO {
 					ZZimVO zzim = new ZZimVO();
 					zzim.setOrder_date(rs.getString("order_date"));
 					zzim.setProduct_num(rs.getInt("product_num"));
-					zzim.setProduct_title(rs.getString("order_product_name"));
 					zzim.setProduct_photo1(rs.getString("product_photo1"));
 					zzim.setProduct_price(rs.getInt("order_product_total"));
 					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
@@ -499,6 +522,19 @@ public class MemberDAO {
 						zzim.setProduct_status("배송중");
 					}else {
 						zzim.setProduct_status("배송완료");
+					}
+					//문자열의 길이가 90 이상이면 잘라내고 ...처리
+					if((rs.getString("order_product_name")).length() > 90) {
+						String[] arr =  new String[(rs.getString("order_product_name")).length()];
+						String str = "";
+						arr = rs.getString("order_product_name").split("");
+						for(int i=0; i<90; i++) {
+							str += arr[i];
+						}
+						str += "...";
+						zzim.setProduct_title(str);
+					}else {
+						zzim.setProduct_title(rs.getString("order_product_name"));
 					}
 					list.add(zzim);
 				}
