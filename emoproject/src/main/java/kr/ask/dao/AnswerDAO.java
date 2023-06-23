@@ -26,16 +26,19 @@ public class AnswerDAO {
 	public void insertAnswer(AnswerVO answer) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		String sql = null;
 
 		try {
 			// 커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
 			// SQL문 작성
 			sql = "INSERT INTO em_board_answer (answer_num,answer_content,answer_photo,mem_num,ask_num) "
 					+ "VALUES (em_board_answer_seq.nextval,?,?,?,?)";
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
+			
 			// ?에 데이터 바인딩
 			pstmt.setString(1, answer.getAnswer_content());
 			pstmt.setString(2, answer.getAnswer_photo());
@@ -43,46 +46,26 @@ public class AnswerDAO {
 			pstmt.setInt(4, answer.getAsk_num());
 			// SQL문 실행
 			pstmt.executeUpdate();
+			
+			sql="UPDATE em_board_ask SET ask_status=? WHERE ask_num=?";
+			pstmt2=conn.prepareStatement(sql);
+			pstmt2.setInt(1, 1);
+			pstmt2.setInt(2, answer.getAsk_num());
+			
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+			
 		} catch (Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		} finally {
 			// 자원정리
+			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 
-	// 댓글 개수
-	public int getAnswerCount(int ask_num) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		int count = 0;
-
-		try {
-			// 커넥션풀로부터 커넥션 할당
-			conn = DBUtil.getConnection();
-			// SQL문 작성
-			sql = "SELECT COUNT(*) FROM em_board_answer a JOIN em_member_manage m "
-					+ "ON a.mem_num=m.mem_num WHERE a.ask_num=?";
-			// PreparedStatement 객체 생성
-			pstmt = conn.prepareStatement(sql);
-			// ?에 데이터 바인딩
-			pstmt.setInt(1, ask_num);
-			// SQL문 실행
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				count = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			throw new Exception(e);
-		} finally {
-			// 자원정리
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
-
-		return count;
-	}
 	
 	//답변 목록
 	public AnswerVO getAnswer(int ask_num) throws Exception{
@@ -114,6 +97,7 @@ public class AnswerDAO {
 				ask.setAsk_content(rs.getString("ask_content"));
 				ask.setAsk_photo1(rs.getString("ask_photo1"));
 				ask.setAsk_title(rs.getString("ask_title"));
+				ask.setAsk_status(1);
 				answer.setAsk_vo(ask);
 			}
 		}catch(Exception e) {
