@@ -114,6 +114,7 @@ $(function(){
 	        },
 	        dataType: 'json',
 	        success: function (param) {
+	        	$('#search_count').text('검색에 대한 결과 '+param.count+' 건');
 	            $(param.list).each(function (index, item) {
 	                let output = '<div class="product-nums">';
 	                output += '<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=' + item.product_num + '">';
@@ -159,7 +160,8 @@ $(function(){
 				<li id="sorted_05">낮은가격순</li>
 			</ul>
 		</div>
-		<div class="contents-head">${product_category_name}</div>
+		<div id="search_count"></div>
+		<div class="contents-head">"${product_category_name}"<span> 에 대한 검색 결과</span></div>
 		<div id = "output" class="main-contents"></div>
 		<!-- 최초 방문시에 나옴 -->
 			<!--  

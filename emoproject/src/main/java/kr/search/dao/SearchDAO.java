@@ -17,6 +17,7 @@ public class SearchDAO {
 	
 	
 	//카테고리별 글 갯수 구하기 (count)
+	
 	public int getProductCategoriesCount(int product_category) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -48,6 +49,7 @@ public class SearchDAO {
 	}
 	
 	//Product Category 조건 목록
+	/*
 	public List<SearchVO> getProductCategories(int product_category) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -89,7 +91,7 @@ public class SearchDAO {
 		}
 		return list;
 	}
-	
+	*/
 	
 	
 	
@@ -121,7 +123,7 @@ public class SearchDAO {
 		return count;
 	}
 	//모든 상품 출력 하기
-	public List<SearchVO> getProductMainEverything() throws Exception {
+	public List<SearchVO> getProductMainEverything(int start, int end) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -130,9 +132,11 @@ public class SearchDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM)";
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM))a) WHERE rnum>=? AND rnum<=?";
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			rs = pstmt.executeQuery();
 			list = new ArrayList<SearchVO>();

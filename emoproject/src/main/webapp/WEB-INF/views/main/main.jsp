@@ -61,6 +61,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<jsp:include page="/WEB-INF/views/common/adver.jsp"/> 
 	<div class="main-contents">
+		<span id="total_count">총 상품 : ${count}건</span>
 		<div class="contents-head">전체 상품 보기</div>
 		<c:forEach var="product" items="${productList}">
 		<div class="product-nums"> <!-- 수정 필요 -->
@@ -72,7 +73,7 @@
 		</div>
 		</c:forEach>
 	</div>
-	
+	<div id = "paging-box-main">${page}</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

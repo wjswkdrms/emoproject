@@ -17,6 +17,17 @@
 	margin-top:20px;
 }
 
+#total_count {
+	position:absolute;
+	top:650px;
+	right:170px;
+}
+
+#search_count {
+	position:absolute;
+	top:400px;
+	right:180px;
+}
 .contents-head {
 	display : flex;
 	width : 1600px;
@@ -27,7 +38,12 @@
 	margin-bottom:100px;
 	
 }
-
+.contents-head span {
+	font-size : 20px;
+	margin-top : 20px;
+	margin-left:10px;
+	
+}
 #output {
 	width:1600px;
 	display:flex;	
@@ -107,12 +123,63 @@
   color:#E19B50;
 }
 
+#paging-box-main {
+	margin:0 auto;
+	width:1600px;
+	height:50px;
+	margin-bottom:50px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
+}
+
+#paging-box-main span {
+	margin:0;
+	font-size:30px;
+	width:50px;
+	height:50px;
+	
+	justify-content:center;
+	align-items:center;
+	display:flex;
+	color:#E19B50;
+}
+
+#paging-box-main b {
+	width:50px;
+	height:50px;
+	margin-right:50px;
+	margin-left:50px;
+	
+}
+
+#paging-box-main a {
+	margin:0;
+	width:50px;
+	height:50px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	list-style-type:none;
+	text-align:center;
+	font-size:30px;
+	margin-right:50px;
+	margin-left:50px;
+	
+}
+
+#paging-box-main span:hover, #paging-box-main b:hover{
+	color:#E19B50;
+}
+
 #paging-box {
 	width:1600px;
 	height:50px;
 
 	margin-bottom:50px;
 }
+
 
 #paging-box ul {
 	margin:0;
