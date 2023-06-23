@@ -32,3 +32,9 @@ SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT de2.product_photo1, data.ord
 FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de
 INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = 24) ORDER BY ma.order_num DESC) data
 INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=1 AND rnum<=10
+
+--주문 상세
+SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT order_date, product_num, order_product_name, order_total_price, order_num FROM 
+(SELECT ma.order_total_price, ma.order_date, ma.order_num, de.product_num, de.order_product_name FROM em_order_detail de
+INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = 24) 
+ORDER BY ma.order_num DESC) ORDER BY order_num DESC)a) b WHERE rnum>=1 AND rnum<=10

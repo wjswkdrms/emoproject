@@ -11,13 +11,30 @@ public class ZZimVO {
 	private String Product_status;
 	private int Product_quantity;
 	private String Order_date;
-	
+	private int Order_num;
+	private String Product_name;
+
+
 
 
 	public ZZimVO() {}
 	
 	//생성자 정의
+	public int getOrder_num() {
+		return Order_num;
+	}
 
+	public void setOrder_num(int order_num) {
+		Order_num = order_num;
+	}
+
+	public String getProduct_name() {
+		return Product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		Product_name = product_name;
+	}
 	public String getOrder_date() {
 		return Order_date;
 	}

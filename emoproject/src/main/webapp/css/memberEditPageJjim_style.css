@@ -95,15 +95,7 @@
     .content_main #title{ /* 메인 컨텐츠 내용*/
       display: flex;
       height: 100px;
-      width: 400px;
-      text-align:center;
-      border-bottom: 1px double #7878E1;
-      border-right: 1px solid #7878E1;
-    }
-    .content_main #info{ /* 메인 컨텐츠 내용*/
-      display: inline-block;
-      height: 100px;
-      width: 650px;
+      width: 800px;
       text-align:center;
       border-bottom: 1px double #7878E1;
       border-right: 1px solid #7878E1;
@@ -111,7 +103,7 @@
     .content_main #price { /* 메인 컨텐츠 내용*/
       display: inline-block;
       height: 100px;
-      width: 200px;
+      width: 300px;
       text-align:center;
       border-bottom: 1px double #7878E1;
       border-right: 1px solid #7878E1;
@@ -119,7 +111,7 @@
     .content_main #status{ /* 메인 컨텐츠 내용*/
       display: inline-block;
       height: 100px;
-      width: 130px;
+      width: 280px;
       text-align:center;
       border-bottom: 1px double #7878E1;
     }
@@ -150,19 +142,15 @@
     }
     #th1{
       display: inline-block;
-      width:400px;
+      width:800px;
       text-align: center;
       margin-left:100px;
     }
-    #th2{
-      display: inline-block;
-      width:650px;
-    }
     #th3{
       display: inline-block;
-      width:190px;
+      width:290px;
     }
     #th4{
       display: inline-block;
-      width:130px;
+      width:280px;
     }

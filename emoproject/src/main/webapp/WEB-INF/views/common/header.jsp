@@ -26,7 +26,7 @@ $(function(){
 });
 
 </script>
-<div class="main-head">
+<div class="main-head" id="header_docker">
 	<div class="top-box">
 		<ul>
 			<c:if test="${user_id != null }">

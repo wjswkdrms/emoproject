@@ -5,12 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>찜한 상품</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageJjim_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageOrderList_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditButton4_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditButton1_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript"> 
 </script>
 </head>
 <body>
@@ -30,33 +30,29 @@
   <div class="page_inner">
     <div class="page_inner_main">
       <c:if test="${count > 0}">
-          <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
-            <tr class="content_title">
-              <th id="th1">상품명</th>
-              <th id="th2">상품 정보</th>
-              <th id="th3">가격</th>
-              <th id="th4">판매 상태</th>
+        <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
+          <tr class="content_title">
+            <th id="th1">주문 번호</th>
+            <th id="th2">결제 금액</th>
+            <th id="th3">주문 날짜</th>
+          </tr>
+          <c:forEach var="zzim" items="${list}">
+            <c:if test="${count == 0}">
+              <div class="page_none">
+                주문한 상품이 없습니다.
+              </div>
+            </c:if>
+
+            <tr class="content_main">
+              <td id="title"><a href="${pageContext.request.contextPath}/member/memberEdit.do?product_num=${zzim.order_num}">${zzim.order_num}</a></td>
+              <td id="price">${zzim.product_price}원</td>
+              <td id="date">${zzim.order_date}</td>
             </tr>
-            <c:forEach var="zzim" items="${list}">
-
-              <c:if test="${count == 0}">
-                <div class="page_none">
-                  찜해둔 제품이 없습니다.
-                </div>
-              </c:if>
-
-              <tr class="content_main">
-                <td id="photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></td>
-                <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
-                <td id="price">${zzim.product_price}</td>
-                <td id="status">${zzim.product_status}</td>
-              </tr>
-
-            </c:forEach>
-          </table>
-          <div class="content_bottom">
-            <div class="content_bottom2">${page}</div>
-          </div>
+          </c:forEach>
+        </table>
+        <div class="content_bottom">
+          <div class="content_bottom2">${page}</div>
+        </div>
       </c:if>
     </div>
   </div>
