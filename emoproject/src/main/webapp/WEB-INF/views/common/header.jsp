@@ -134,6 +134,3 @@ $(function(){
 	
 </div>
 <!-- header 끝 -->
-
-
-
