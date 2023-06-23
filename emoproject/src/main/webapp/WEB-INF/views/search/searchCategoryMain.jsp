@@ -142,12 +142,12 @@ $(function(){
 });
 
 
-
 </script>
 </head>
 <body>
 	<input type="hidden" id="cat_num" value="${product_category}">
 	<input type="hidden" id="sch_name" value="${product_category_name}">
+	<jsp:include page="/WEB-INF/views/common/navigator.jsp"/>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<hr class="horizon-bar-01">
 	<div class="main-contents">
