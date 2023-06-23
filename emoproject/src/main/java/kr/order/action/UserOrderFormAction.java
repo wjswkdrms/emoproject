@@ -22,7 +22,7 @@ public class UserOrderFormAction implements Action{
 		}
 		//post방식의 접근만 허용
 		if(request.getMethod().toUpperCase().equals("GET")) {
-			return "redirect:/item/itemList.do";
+			return "redirect:/cart/list.do";
 		}
 		CartDAO dao = CartDAO.getInstance();
 		int all_total = dao.getTotalByMem_num(user_num);

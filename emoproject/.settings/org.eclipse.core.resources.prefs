@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/kr/cart/action/MemberEditCloneAction.java=UTF-8
 encoding//src/main/java/kr/controller/Action.java=UTF-8
 encoding//src/main/java/kr/member/action/CheckDuplicatedEmailAction.java=UTF-8
 encoding//src/main/java/kr/member/action/FindIdAction.java=UTF-8
