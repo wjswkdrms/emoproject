@@ -46,6 +46,7 @@ public class AnswerWriteAction implements Action{
 		answer.setAsk_num(ask_num);
 		answer.setAsk_vo(ask);
 		
+		
 		dao.insertAnswer(answer);		
 		request.setAttribute("answer", answer);
 		return "/WEB-INF/views/ask/answerWrite.jsp";

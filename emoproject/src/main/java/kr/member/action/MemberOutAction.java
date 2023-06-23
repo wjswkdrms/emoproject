@@ -14,9 +14,10 @@ public class MemberOutAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//로그인 여부 체크
 		HttpSession session = request.getSession();
-		Integer mem_num = 
-				    (Integer)session.getAttribute(
-				                         "user_num");
+		Integer mem_num = (Integer)session.getAttribute("user_num");
+		if(mem_num==null) {
+			return "redirect:/member/loginForm.do";
+		}
 		//로그인 된 경우
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");

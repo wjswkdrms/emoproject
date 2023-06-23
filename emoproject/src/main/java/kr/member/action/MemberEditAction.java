@@ -12,6 +12,11 @@ public class MemberEditAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		if(user_num==null) {
+			return "redirect:/member/loginForm.do";
+		}
 		//�쟾�넚�맂 �뜲�씠�꽣 �씤肄붾뵫 泥섎━
 		request.setCharacterEncoding("utf-8");
 		//�쟾�넚�맂 �뜲�씠�꽣 諛섑솚
@@ -31,9 +36,6 @@ public class MemberEditAction implements Action{
 					               member.getAuth());			
 		}
 		if(check) {//�씤利� �꽦怨�
-			//濡쒓렇�씤 泥섎━
-			HttpSession session = 
-					          request.getSession();
 			session.setAttribute("user_num", 
 					           member.getMem_num());
 			session.setAttribute("user_id", 

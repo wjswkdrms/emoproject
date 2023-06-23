@@ -20,8 +20,8 @@
     <ul>
       <li><a href="${pageContext.request.contextPath}/member/mberEditForm.do"><input type="submit" class="button_left" id="button_left_1" value="주문내역"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/questListForm.do"><input type="submit" class="button_left" id="button_left_2" value="문의내역"></a></li>
-      <li><a href="${pageContext.request.contextPath}/member/cartListForm.do"><input type="submit" class="button_left" id="button_left_3" value="장바구니"></a></li>
-      <li><a href="${pageContext.request.contextPath}/member/jjimListForm.do"></a><input type="submit" class="button_left" id="button_left_4" value="찜한상품"></a></li>
+      <li><a href="${pageContext.request.contextPath}/cart/list.do"><input type="submit" class="button_left" id="button_left_3" value="장바구니"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/jjimList.do"><input type="submit" class="button_left" id="button_left_4" value="찜한상품"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/productAfterForm.do"><input type="submit" class="button_left" id="button_left_5" value="상품후기"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/couponListForm.do"><input type="submit" class="button_left" id="button_left_6" value="쿠폰함"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/myEditForm.do"><input type="submit" class="button_left" id="button_left_7" value="개인정보수정"></a></li>

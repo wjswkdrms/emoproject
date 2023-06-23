@@ -33,6 +33,7 @@ public class AskAction implements Action{
 		}
 		//if(count>0) {
 		//}
+
 		
 		request.setAttribute("list", list);	
 			

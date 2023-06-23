@@ -2,11 +2,15 @@ package kr.member.dao;
 
 import java.sql.Connection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
+import kr.zzim.vo.ZZimVO;
 
 public class MemberDAO {
 	//싱글턴 패턴
@@ -322,6 +326,97 @@ public class MemberDAO {
 				DBUtil.executeClose(null, pstmt2, null);
 				DBUtil.executeClose(null, pstmt1, conn);
 			}
+		}
+		//찜목록 카운트
+		public int getListBoardCount(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int cnt = 0;
+			int count = 0;
+			try {
+				conn = DBUtil.getConnection();
+	
+	
+				sql = "SELECT COUNT(*) FROM (SELECT detail.product_num, detail.product_title, " 
+				+ "detail.product_info, detail.product_photo1, detail.product_price, manage.product_status " 
+				+ "FROM em_product_detail detail INNER JOIN em_product_manage manage ON detail.product_num "
+				+ "= manage.product_num) data INNER JOIN em_member_zzim zzim ON data.product_num = zzim.product_num "
+				+ "WHERE zzim.mem_num = ? ORDER BY zzim.zzim_num DESC";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+		
+		//찜 목록
+		public List<ZZimVO> getListBoard(int start, int end, int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ZZimVO> list = null;
+			String sql = null;
+			int cnt = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				//mem_num이 ?인 찜목록
+				//
+				//
+				//
+				sql = "SELECT rnum, product_num, product_title, product_info, product_photo1, product_price, product_status "
+					+ "FROM (SELECT a.*, rownum rnum FROM (SELECT zzim.product_num, zzim.zzim_num, data.product_title, data.product_info, "
+					+ "data.product_photo1, data.product_price, data.product_status  FROM (SELECT detail.product_num, "
+					+ "detail.product_title, detail.product_info, detail.product_photo1, detail.product_price, manage.product_status "
+					+ "FROM em_product_detail detail INNER JOIN em_product_manage manage ON detail.product_num = manage.product_num) data "
+					+ "INNER JOIN em_member_zzim zzim ON data.product_num = zzim.product_num  WHERE zzim.mem_num = ? "
+					+ "ORDER BY zzim.zzim_num DESC) a) WHERE rnum>=? AND rnum<=?";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<ZZimVO>();
+				while(rs.next()) {
+					ZZimVO zzim = new ZZimVO();
+					zzim.setProduct_num(rs.getInt("product_num"));
+					zzim.setProduct_title(rs.getString("product_title"));
+					zzim.setProduct_info(rs.getString("product_info"));
+					zzim.setProduct_photo1(rs.getString("product_photo1"));
+					zzim.setProduct_price(rs.getInt("product_price"));
+					if(rs.getInt("product_status") == 2) {
+						zzim.setProduct_status("판매중");
+					}else {
+						zzim.setProduct_status("판매중지");
+					}
+					list.add(zzim);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
 		}
 }
 

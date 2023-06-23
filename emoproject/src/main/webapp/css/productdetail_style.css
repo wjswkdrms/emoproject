@@ -230,3 +230,18 @@
 	padding-bottom: 35px;
 	border-bottom: 1px solid rgb(193, 193, 193);
 }
+/*------*/
+.ul-box{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.ul-box li{
+	list-style: none;
+}
+.ul-b-left{
+	width: 180px;
+}
+.ul-b-right{
+	width: 325px;
+}

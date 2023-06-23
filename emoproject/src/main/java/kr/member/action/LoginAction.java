@@ -1,6 +1,7 @@
 package kr.member.action;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,7 @@ public class LoginAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
@@ -32,8 +34,6 @@ public class LoginAction implements Action{
 		}
 		if(check) {//인증 성공
 			//로그인 처리
-			HttpSession session = 
-					          request.getSession();
 			session.setAttribute("user_num", 
 					           member.getMem_num());
 			session.setAttribute("user_id", 

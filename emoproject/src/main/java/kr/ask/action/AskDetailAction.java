@@ -36,6 +36,7 @@ public class AskDetailAction implements Action{
 			if(answer!=null) {
 				answer.setAsk_vo(ask);
 				answer.setAsk_num(ask_num);
+				
 				request.setAttribute("answer", answer);
 			}
 		}else {

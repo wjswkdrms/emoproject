@@ -72,7 +72,7 @@
 					<label for="receive_email">이메일</label></div>
 					<div class="input_box">
 					<input type="text" name="receive_email" class="input_style"
-					  id="receive_email" maxlength="15"></div></div></div>
+					  id="receive_email" maxlength="30"></div></div></div>
 				</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
