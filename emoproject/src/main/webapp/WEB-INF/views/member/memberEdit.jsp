@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>찜한 상품</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPagedOrderAll_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageOrderAll_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditButton1_style.css">
@@ -18,10 +18,23 @@
 <div class="page_outer">
   <div class="page_left">
     <ul>
-      <li><a href="${pageContext.request.contextPath}/member/memberEditForm.do"><input type="submit" class="button_left" id="button_left_1" value="주문내역"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/memberEdit.do"><input type="submit" class="button_left" id="button_left_1" value="주문내역"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/questListForm.do"><input type="submit" class="button_left" id="button_left_2" value="문의내역"></a></li>
       <li><a href="${pageContext.request.contextPath}/cart/list.do"><input type="submit" class="button_left" id="button_left_3" value="장바구니"></a></li>
-      <li><a href="${pageContext.request.contextPath}/member/jjimListForm.do"><input type="submit" class="button_left" id="button_left_4" value="찜한상품"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/jjimList.do"><input type="submit" class="button_left" id="button_left_4" value="찜한상품"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/productAfterForm.do"><input type="submit" class="button_left" id="button_left_5" value="상품후기"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/couponListForm.do"><input type="submit" class="button_left" id="button_left_6" value="쿠폰함"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/myEditForm.do"><input type="submit" class="button_left" id="button_left_7" value="개인정보수정"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/memberOutForm.do"><input type="submit" class="button_left" id="button_left_8" value="회원탈퇴"></a></li>
+    </ul>
+  </div>
+<div class="page_outer">
+  <div class="page_left">
+    <ul>
+      <li><a href="${pageContext.request.contextPath}/member/mberEditForm.do"><input type="submit" class="button_left" id="button_left_1" value="주문내역"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/questListForm.do"><input type="submit" class="button_left" id="button_left_2" value="문의내역"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/cartListForm.do"><input type="submit" class="button_left" id="button_left_3" value="장바구니"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/jjimListForm.do"></a><input type="submit" class="button_left" id="button_left_4" value="찜한상품"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/productAfterForm.do"><input type="submit" class="button_left" id="button_left_5" value="상품후기"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/couponListForm.do"><input type="submit" class="button_left" id="button_left_6" value="쿠폰함"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/myEditForm.do"><input type="submit" class="button_left" id="button_left_7" value="개인정보수정"></a></li>
@@ -31,34 +44,34 @@
   <div class="page_inner">
     <div class="page_inner_main">
       <c:if test="${count > 0}">
-          <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
-            <tr class="content_title">
-              <th id="th1">상품명</th>
-              <th id="th2">총 가격 (개수)</th>
-              <th id="th3">주문 날짜</th>
-              <th id="th4">배송 상태</th>
+        <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
+          <tr class="content_title">
+            <th id="th1">상품명</th>
+            <th id="th2">총 가격 (개수)</th>
+            <th id="th3">주문 날짜</th>
+            <th id="th4">배송 상태</th>
+          </tr>
+          <c:forEach var="zzim" items="${list}">
+
+            <c:if test="${count == 0}">
+              <div class="page_none">
+                주문한 상품이 없습니다.
+              </div>
+            </c:if>
+
+            <tr class="content_main">
+              <td id="photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></td>
+              <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
+              <td id="price">${zzim.product_price}원 (${zzim.product_quantity}개)</td>
+              <td id="date">${zzim.order_date}</td>
+              <td id="status">${zzim.product_status}</td>
             </tr>
-            <c:forEach var="zzim" items="${list}">
 
-              <c:if test="${count == 0}">
-                <div class="page_none">
-                  주문한 상품이 없습니다.
-                </div>
-              </c:if>
-
-              <tr class="content_main">
-                <td id="photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></td>
-                <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
-                <td id="price">${zzim.product_price}원 (${zzim.product_quantity}개)</td>
-                <td id="date">${zzim.order_date}</td>
-                <td id="status">${zzim.product_status}</td>
-              </tr>
-
-            </c:forEach>
-          </table>
-          <div class="content_bottom">
-            <div class="content_bottom2">${page}</div>
-          </div>
+          </c:forEach>
+        </table>
+        <div class="content_bottom">
+          <div class="content_bottom2">${page}</div>
+        </div>
       </c:if>
     </div>
   </div>

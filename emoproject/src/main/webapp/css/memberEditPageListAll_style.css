@@ -76,7 +76,8 @@
       border-top: 1px solid #7878E1;
       border-bottom: 1px solid #7878E1;
       display:block;
-      font-size:16px;
+      font-size:20px;
+      padding-top: 7px;
     }
     .content_main{ /* 메인 컨텐츠 목록 */
       display:flex;
@@ -137,8 +138,9 @@
     }
     #th1{
       display: inline-block;
-      width:500px;
+      width:400px;
       text-align: center;
+      margin-left:100px;
     }
     #th2{
       display: inline-block;
