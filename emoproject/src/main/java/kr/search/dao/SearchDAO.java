@@ -210,6 +210,7 @@ public class SearchDAO {
 			
 			conn = DBUtil.getConnection();
 			sql = "SELECT COUNT(*) FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search + sub_sql;
+			//sql = "SELECT COUNT(*) FROM (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_num, product_name, product_photo1, product_title, product_category FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search+" ) USING (PRODUCT_NUM) GROUP BY product_num, product_name, product_photo1, product_title, product_category" + sub_sql+")";
 			pstmt = conn.prepareStatement(sql);
 			
 			if(product_category != 0) {
@@ -254,11 +255,11 @@ public class SearchDAO {
 			
 			//navigator 값들에 대한 order by
 			if (sorted_navigator_num == 1) {
-				sub_sql = ""; //최신순
+				sub_sql = " ORDER BY product_num DESC"; //최신순
 			} else if (sorted_navigator_num == 2) {
-				sub_sql = ""; //
+				sub_sql = ""; //추천순
 			} else if (sorted_navigator_num == 3) {
-				sub_sql = "";
+				sub_sql = " ORDER BY order_cnt DESC"; //판매량 순
 			} else if (sorted_navigator_num == 4) {
 				sub_sql = " ORDER BY product_price DESC";
 				//높은 가격 순
@@ -277,7 +278,8 @@ public class SearchDAO {
 			
 			
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search + sub_sql+")a) WHERE rnum>=? AND rnum<=? ";
+			//sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search + sub_sql+")a) WHERE rnum>=? AND rnum<=? ";
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_num, product_name, product_photo1, product_title, product_category, product_price FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search+" ) USING (PRODUCT_NUM) GROUP BY product_num, product_name, product_photo1, product_title, product_category, product_price )a) WHERE rnum>=? AND rnum<=? " + sub_sql;
 			pstmt = conn.prepareStatement(sql);
 			
 			if(product_category != 0) {
@@ -305,16 +307,17 @@ public class SearchDAO {
 				SearchVO searchvo = new SearchVO();
 				searchvo.setProduct_num(rs.getInt("product_num"));
 				searchvo.setProduct_category(product_category);
-				searchvo.setProduct_status(rs.getInt("product_status"));
+				//searchvo.setProduct_status(rs.getInt("product_status"));
 				searchvo.setProduct_name(rs.getString("product_name"));
 				searchvo.setProduct_title(rs.getString("product_title"));
-				searchvo.setProduct_info(rs.getString("product_info"));
+				//searchvo.setProduct_info(rs.getString("product_info"));
 				searchvo.setProduct_photo1(rs.getString("product_photo1"));
-				searchvo.setProduct_photo2(rs.getString("product_photo2"));
-				searchvo.setProduct_origin(rs.getString("product_origin"));
-				searchvo.setProduct_real_price(rs.getInt("product_real_price"));
+				//searchvo.setProduct_photo2(rs.getString("product_photo2"));
+				//searchvo.setProduct_origin(rs.getString("product_origin"));
+				//searchvo.setProduct_real_price(rs.getInt("product_real_price"));
 				searchvo.setProduct_price(rs.getInt("product_price"));
-				searchvo.setProduct_stock(rs.getInt("product_stock"));
+				//searchvo.setProduct_stock(rs.getInt("product_stock"));
+				searchvo.setOrder_count(rs.getInt("order_cnt"));
 				list.add(searchvo);
 			}
 			

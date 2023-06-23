@@ -13,8 +13,14 @@ public class SearchVO {
 	private int product_real_price;	//원가
 	private int product_price;		//정가
 	private int product_stock;		//재고
+	private int order_count;
 	
-	
+	public int getOrder_count() {
+		return order_count;
+	}
+	public void setOrder_count(int order_count) {
+		this.order_count = order_count;
+	}
 	public int getProduct_num() {
 		return product_num;
 	}
