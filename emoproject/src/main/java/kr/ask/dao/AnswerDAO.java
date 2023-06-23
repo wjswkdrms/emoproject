@@ -67,7 +67,7 @@ public class AnswerDAO {
 	}
 
 	
-	//답변 목록
+	//답변 
 	public AnswerVO getAnswer(int ask_num) throws Exception{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -145,5 +145,27 @@ public class AnswerDAO {
 		}
 
 		return answer;
+	}
+	
+	//글 수정
+	public void updateAnswer(AnswerVO answer)throws Exception{
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql=null;
+		
+		try {
+			conn=DBUtil.getConnection();
+			sql="UPDATE em_board_answer SET answer_content=?,answer_photo=? WHERE answer_num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, answer.getAnswer_content());
+			pstmt.setString(2, answer.getAnswer_photo());
+			pstmt.setInt(3, answer.getAnswer_num());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	}
 }

@@ -53,7 +53,10 @@
 					</div>
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_auth==9}">
-						<input type="button" value="답변 수정" onclick="location.href='answerUpdateForm.do?answer_num=${answer.answer_num}'">
+						<form action="answerUpdateForm.do" method="post">
+							<input type="hidden" name="ask_num" value="${ask.ask_num}" >
+							<input type="submit" value="답변 수정">
+						</form>
 						<form action="answerForm.do" method="post">
 							<input type="hidden" name="ask_num" value="${ask.ask_num}" >
 							<c:if test="${empty answer.answer_num}">
