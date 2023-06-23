@@ -12,7 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	let pageSize = 4;//화면에 보여줄 레코드 수
+	let pageSize = 12;//화면에 보여줄 레코드 수
 	let pageBlock = 10;//페이지 표시 단위
 	let currentPage;//현재 보고 있는 화면
 	let sorted_num;

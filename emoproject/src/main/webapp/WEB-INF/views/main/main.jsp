@@ -59,7 +59,8 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<jsp:include page="/WEB-INF/views/common/adver.jsp"/> 
+	<jsp:include page="/WEB-INF/views/common/adver.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/navigator.jsp"/>
 	<div class="main-contents">
 		<span id="total_count">총 상품 : ${count}건</span>
 		<div class="contents-head">전체 상품 보기</div>
