@@ -4,6 +4,7 @@
 <style>
 
 .promotion-box{
+	
 	width: 1600px; /* width 나중에 설정*/
 	height:370px;
 	margin: 0 auto;
@@ -14,7 +15,7 @@
 	overflow:hidden;
 	margin-top:10px;
 	position: relative;
-	
+	margin-top:200px;
 }
 
 .promotion-box img {
@@ -76,7 +77,7 @@
 
 </style>
 
-<div class="promotion-box">
+<div class="promotion-box" id="promotion_docker">
 		<div class="arrow-right">
 			<img src="${pageContext.request.contextPath}/images/emo_icon_right01.svg">
 		</div>

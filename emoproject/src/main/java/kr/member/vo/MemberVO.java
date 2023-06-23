@@ -21,6 +21,8 @@ public class MemberVO {
 	private Date reg_date;//가입일
 	private Date mdate;//정보 수정일
 	
+	private int order_total_price;//누적 금액
+
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(
 			            String userPasswd) {
@@ -32,6 +34,14 @@ public class MemberVO {
 		return false;
 	}
 		
+	public int getOrder_total_price() {
+		return order_total_price;
+	}
+	
+	public void setOrder_total_price(int order_total_price) {
+		this.order_total_price = order_total_price;
+	}
+	
 	public int getMem_num() {
 		return mem_num;
 	}

@@ -2,15 +2,14 @@ package kr.search.action;
 
 
 
-import java.util.List;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
 import kr.controller.Action;
-import kr.search.dao.SearchDAO;
-import kr.search.vo.SearchVO;
+
 
 
 public class SearchCategoryMainAction implements Action {

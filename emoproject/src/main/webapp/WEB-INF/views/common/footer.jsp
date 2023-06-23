@@ -24,7 +24,7 @@
         </a>
       </div>
       <div id="footer_top_mont">
-        <ul class="footer_top_mont">
+        <ul class="footer_top_mont" id="footer_anker">
           <li>
             <h6 class="mont_title">고객센터</h6>
             <a class="call">02.1234.5678</a>

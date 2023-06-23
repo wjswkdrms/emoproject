@@ -45,7 +45,11 @@ li {
 	width:	1600px;
 	height : 200px;
 	margin : 0 auto;
-	
+	position:fixed;
+	top: 0;
+  	left: 0;
+  	right: 0;
+  	z-index:3;
 }
 
 .top-box {

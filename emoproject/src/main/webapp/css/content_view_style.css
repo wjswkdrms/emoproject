@@ -14,9 +14,20 @@
 	display:flex;	
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	margin-top:20px;
+	margin-top:220px;
 }
 
+#total_count {
+	position:absolute;
+	top:650px;
+	right:170px;
+}
+
+#search_count {
+	position:absolute;
+	top:400px;
+	right:180px;
+}
 .contents-head {
 	display : flex;
 	width : 1600px;
@@ -27,7 +38,12 @@
 	margin-bottom:100px;
 	
 }
-
+.contents-head span {
+	font-size : 20px;
+	margin-top : 20px;
+	margin-left:10px;
+	
+}
 #output {
 	width:1600px;
 	display:flex;	
@@ -100,20 +116,96 @@
 	cursor: pointer;
 	color:#E19B50;
 }
-/*	
-#sorted_01:hover, #sorted_01.active, 
-#sorted_02:hover, #sorted_02.active,
-#sorted_03:hover, #sorted_03.active,
-#sorted_04:hover, #sorted_04.active,
-#sorted_05:hover, #sorted_05.active{
-  cursor: pointer;
-  
-}	
-*/
+
 .search-navigator ul li.active {
   /* 활성화된 상태일 때의 스타일을 적용합니다 */
   /* 예시로 배경색과 텍스트 색상을 변경해보겠습니다 */
   color:#E19B50;
+}
+
+#paging-box-main {
+	margin:0 auto;
+	width:1600px;
+	height:50px;
+	margin-bottom:50px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
+}
+
+#paging-box-main span {
+	margin:0;
+	font-size:30px;
+	width:50px;
+	height:50px;
+	
+	justify-content:center;
+	align-items:center;
+	display:flex;
+	color:#E19B50;
+}
+
+#paging-box-main b {
+	width:50px;
+	height:50px;
+	margin-right:50px;
+	margin-left:50px;
+	
+}
+
+#paging-box-main a {
+	margin:0;
+	width:50px;
+	height:50px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	list-style-type:none;
+	text-align:center;
+	font-size:30px;
+	margin-right:50px;
+	margin-left:50px;
+	
+}
+
+#paging-box-main span:hover, #paging-box-main b:hover{
+	color:#E19B50;
+}
+
+#paging-box {
+	width:1600px;
+	height:50px;
+
+	margin-bottom:50px;
+}
+
+
+#paging-box ul {
+	margin:0;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+
+}
+#paging-box ul li {
+	margin:0;
+	width:50px;
+	height:50px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	list-style-type:none;
+	
+	text-align:center;
+	font-size:30px;
+	margin-right:50px;
+	margin-left:50px;
+}
+
+#paging-box ul li:hover {
+	cursor : pointer;
+	color:#E19B50;
 }
 
 .horizon-bar-01 {
