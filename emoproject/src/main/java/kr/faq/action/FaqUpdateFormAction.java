@@ -1,12 +1,14 @@
-package kr.announce.action;
+package kr.faq.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.faq.dao.FaqDAO;
+import kr.faq.vo.FaqVO;
 
-public class AnnounceFormAction implements Action{
+public class FaqUpdateFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,13 +19,19 @@ public class AnnounceFormAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
-		Integer user_auth=(Integer)session.getAttribute("user_auth");
+		int faq_num=Integer.parseInt(request.getParameter("faq_num"));
 		
+		Integer user_auth=(Integer)session.getAttribute("user_auth");
 		if(user_auth<9) {
-			return "/WEB-INF/views/common/notice.jsp";			
+			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		return "/WEB-INF/views/announce/announceForm.jsp";
+		FaqDAO dao=FaqDAO.getInstance();
+		FaqVO faq=dao.getFaq(faq_num);
+		
+		request.setAttribute("faq", faq);
+		
+		return "/WEB-INF/views/faq/faqUpdateForm.jsp";
 	}
-
 }
+

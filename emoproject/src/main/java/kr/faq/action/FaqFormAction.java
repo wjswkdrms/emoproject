@@ -1,4 +1,4 @@
-package kr.announce.action;
+package kr.faq.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
-public class AnnounceFormAction implements Action{
+public class FaqFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -23,7 +23,8 @@ public class AnnounceFormAction implements Action{
 			return "/WEB-INF/views/common/notice.jsp";			
 		}
 		
-		return "/WEB-INF/views/announce/announceForm.jsp";
+		return "/WEB-INF/views/faq/faqForm.jsp";
 	}
 
 }
+

@@ -418,5 +418,96 @@ public class MemberDAO {
 			}
 			return list;
 		}
+		
+		//주문내역 카운트
+		public int getOrderListBoardCount(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int cnt = 0;
+			int count = 0;
+			try {
+				conn = DBUtil.getConnection();
+	
+	
+				sql = "SELECT count(*) FROM(SELECT de2.product_photo1, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
+						+ "FROM (SELECT ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
+						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC)";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+		
+		//주문내역 목록
+		public List<ZZimVO> getOrderListBoard(int start, int end, int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ZZimVO> list = null;
+			String sql = null;
+			int cnt = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				//mem_num이 ?인 찜목록
+				//
+				//
+				//
+				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT de2.product_photo1, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
+						+ "FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
+						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=? AND rnum<=?";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<ZZimVO>();
+				while(rs.next()) {
+					ZZimVO zzim = new ZZimVO();
+					zzim.setOrder_date(rs.getString("order_date"));
+					zzim.setProduct_num(rs.getInt("product_num"));
+					zzim.setProduct_title(rs.getString("order_product_name"));
+					zzim.setProduct_photo1(rs.getString("product_photo1"));
+					zzim.setProduct_price(rs.getInt("order_product_total"));
+					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
+					if(rs.getInt("order_status") == 0) {
+						zzim.setProduct_status("주문 완료");
+					}else if(rs.getInt("order_status") == 1){
+						zzim.setProduct_status("배송중");
+					}else {
+						zzim.setProduct_status("배송완료");
+					}
+					list.add(zzim);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
 }
 

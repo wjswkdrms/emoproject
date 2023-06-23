@@ -88,28 +88,28 @@
     }
     .content_main #photo1 img{ /* 메인 컨텐츠 내용*/
       display:flex;
-      height: 100px;
-      width: 100px;
+      height: 200px;
+      width: 200px;
     }
     .content_main #title{ /* 메인 컨텐츠 내용*/
       display: flex;
-      height: 100px;
-      width: 400px;
+      height: 200px;
+      width: 550px;
     }
-    .content_main #info{ /* 메인 컨텐츠 내용*/
+    .content_main #price{ /* 메인 컨텐츠 내용*/
       display: inline-block;
-      height: 100px;
-      width: 650px;
+      height: 200px;
+      width: 300px;
     }
-    .content_main #price { /* 메인 컨텐츠 내용*/
+    .content_main #date { /* 메인 컨텐츠 내용*/
       display: inline-block;
-      height: 100px;
-      width: 200px;
+      height: 200px;
+      width: 210px;
     }
     .content_main #status{ /* 메인 컨텐츠 내용*/
       display: inline-block;
-      height: 100px;
-      width: 130px;
+      height: 200px;
+      width: 210px;
     }
 
     .page_inner_post .hr_top{ /* 게시판 상단 목록바 hr 스타일 */
@@ -138,19 +138,19 @@
     }
     #th1{
       display: inline-block;
-      width:400px;
+      width:550px;
       text-align: center;
-      margin-left:100px;
+      margin-left: 200px;
     }
     #th2{
       display: inline-block;
-      width:650px;
+      width:300px;
     }
     #th3{
       display: inline-block;
-      width:190px;
+      width:200px;
     }
     #th4{
       display: inline-block;
-      width:130px;
+      width:200px;
     }

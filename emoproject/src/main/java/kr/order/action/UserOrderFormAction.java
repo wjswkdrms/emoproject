@@ -62,8 +62,11 @@ public class UserOrderFormAction implements Action{
 		}else {
 			item_name = cartList.get(0).getProduct().getProduct_title() + "외 " + (cartList.size() - 1) + "건";
 		}
+		//회원 보유 보인트
+		int point = dao.getMemPoint(user_num);
 		
 		request.setAttribute("item_name", item_name);
+		request.setAttribute("point", point);
 		request.setAttribute("list", cartList);
 		request.setAttribute("all_total", all_total);
 		

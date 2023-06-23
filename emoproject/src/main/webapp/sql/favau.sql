@@ -26,3 +26,9 @@ FROM (SELECT detail.product_num, detail.product_title, detail.product_info, deta
     FROM em_product_detail detail INNER JOIN em_product_manage manage ON detail.product_num = manage.product_num) data 
     INNER JOIN em_member_zzim zzim ON data.product_num = zzim.product_num  WHERE zzim.mem_num = 24 ORDER BY zzim.zzim_num DESC) a) 
 WHERE rnum>=1 AND rnum<=10;
+
+--주문내역
+SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT de2.product_photo1, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity
+FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de
+INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = 24) ORDER BY ma.order_num DESC) data
+INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=1 AND rnum<=10

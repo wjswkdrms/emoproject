@@ -9,9 +9,30 @@ public class ZZimVO {
 	private String Product_photo1;
 	private int Product_price;
 	private String Product_status;
+	private int Product_quantity;
+	private String Order_date;
+	
+
+
 	public ZZimVO() {}
 	
-	//생성자 정의 
+	//생성자 정의
+
+	public String getOrder_date() {
+		return Order_date;
+	}
+
+	public void setOrder_date(String order_date) {
+		Order_date = order_date;
+	}
+
+	public int getProduct_quantity() {
+		return Product_quantity;
+	}
+
+	public void setProduct_quantity(int product_quantity) {
+		Product_quantity = product_quantity;
+	}
 	public ZZimVO(int mem_num, int product_num) {
 		this.mem_num = mem_num;
 		this.product_num = product_num;
