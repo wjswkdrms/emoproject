@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 글쓰기</title>
+<title>faq 글쓰기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
@@ -16,30 +16,38 @@
 				<div class="left-div">
 					<div class="page-name">고객센터</div>
 					<ul class="menu-box">
-						<li><a class="detail-menu" href="announce.do">공지사항<img></a></li>
-						<li><a class="detail-menu" href="${pageContext.request.contextPath}/faq/faq.do">자주하는 질문<img></a></li>
+						<li><a class="detail-menu" href="${pageContext.request.contextPath}/announce/announce.do">공지사항<img></a></li>
+						<li><a class="detail-menu" href="faq.do">자주하는 질문<img></a></li>
 						<li><a class="detail-menu" href="${pageContext.request.contextPath}/ask/ask.do">1:1 문의<img></a></li>
 					</ul>
 				</div>
 				<div class="right-div">
-				<h2>공지사항</h2>
-				<form id="announce_form" action="announceWrite.do" method="post" enctype="multipart/form-data">
+				<h2>자주하는 질문 글쓰기</h2>
+				<form id="faq_form" action="faqWrite.do" method="post">
 					<table>
 						<tr>
 							<td>제목</td>
-							<th><input type="text" name="ann_title" id="ann_title" ></th>
+							<th><input type="text" name="faq_title" id="faq_title" ></th>
+						</tr>
+						<tr>
+							<td>카테고리</td>
+							<th>
+								<select id="faq_category" name="faq_category" required>
+									<option value="">카테고리</option>
+									<option value="1">회원</option>
+									<option value="2">이벤트/쿠폰</option>
+									<option value="3">서비스 이용</option>
+									<option value="4">시스템 오류</option>
+								</select> 
+							</th>
 						</tr>
 						<tr>
 							<td>내용</td>
-							<th><textarea rows="5" cols="30" name="ann_content" id="ann_content"></textarea></th>
-						</tr>
-						<tr>
-							<td><label for="ann_photo1">사진첨부</label></td>
-							<th><input type="file" name="ann_photo1" id="ann_photo1" accept="image/gif,image/png,image/jpeg"></th>
+							<th><textarea rows="5" cols="30" name="faq_content" id="faq_content"></textarea></th>
 						</tr>
 					</table>
 					<div>
-						<input type="submit" value="등록"> <input type="button" value="목록" onclick="location.href='announce.do'">
+						<input type="submit" value="등록"> <input type="button" value="목록" onclick="location.href='faq.do'">
 					</div>
 				</form>
 				</div>

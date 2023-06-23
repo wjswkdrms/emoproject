@@ -154,3 +154,12 @@ div.reply_name{
 .button-box span{
 	padding:0 10px;
 }
+.list-num{
+	width:70px;
+}
+.list-title{
+	width:650px;
+}
+.list-category{
+	width:135px;
+}
