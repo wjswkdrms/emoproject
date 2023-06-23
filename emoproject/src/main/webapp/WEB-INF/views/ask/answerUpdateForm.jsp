@@ -43,29 +43,37 @@
 							<div>${ask.ask_content}</div>
 						</div>	
 					</div>	
-					<form id="answerUpdate_form" action="answerUpdate.do" method="post" enctype="multipart/form-data">
+					<form id="answer_form" action="answerUpdate.do" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="mem_num" value="${ask.mem_num}">
 						<input type="hidden" name="ask_num" value="${ask.ask_num}">
 						<table>
 							<tr>
 								<th>내용</th>
-								<td><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="100"></textarea></td>
+								<td><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="100">${answer.answer_content}</textarea></td>
 							</tr>
 							<tr>
 								<th><label for="answer_photo">사진첨부</label></th>
+								<c:if test="${!empty answer.answer_photo}">
+								<div>
+									<div>
+									<img src="${pageContext.request.contextPath}/upload/${answer.answer_photo}" width="50" height="50" class="photo" data-img="${answer.answer_photo}">
+									</div>
+									(${answer.answer_photo})이 등록되어 있습니다.
+									<input type="button" value="삭제" id="photo_del"><br>
+								</div>
+								</c:if>
 								<td>
 									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg">
 								</td>
 							</tr>
 						</table>
 						<div>
-							<input type="submit" value="등록"> <input type="button" value="목록" onclick="location.href='askDetail.do?ask_num=${ask.ask_num}'">
+							<input type="submit" value="등록"> <input type="button" value="목록" onclick="location.href='ask.do'">
 						</div>
 					</form>
 				</div>
 			<!-- 내용 끝 -->
 		</div>
-	</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
