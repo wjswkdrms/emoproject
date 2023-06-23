@@ -41,6 +41,10 @@
 							<td>
 								<c:if test="${!empty ask.ask_photo1}">
 								<div>
+									<div>
+									<img src="${pageContext.request.contextPath}/upload/${ask.ask_photo1}" width="50" height="50" 
+					class="photo" data-img="${ask.ask_photo1}">
+									</div>
 									(${ask.ask_photo1})이 등록되어 있습니다.
 									<input type="button" value="삭제" id="photo_del"><br>
 								</div>

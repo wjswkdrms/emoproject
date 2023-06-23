@@ -72,7 +72,7 @@
 					<label for="receive_email">이메일</label></div>
 					<div class="input_box">
 					<input type="text" name="receive_email" class="input_style"
-					  id="receive_email" maxlength="15"></div></div></div>
+					  id="receive_email" maxlength="30"></div></div></div>
 				</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
@@ -120,11 +120,27 @@
 				</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
-			<div class="align-center">
-				<input type="submit" value="주문">
-				<input type="button" value="홈으로"
+			<div class="result-display">
+			<div class="result-text">
+				<div>
+					<span>보유 포인트</span>
+					<span>${point}원</span>
+				</div>
+				<div>
+					<span>최종금액</span>
+					<span>${all_total}원</span>
+				</div>
+				<hr size="1" noshade="noshade" width="100%">
+				<div>
+					<span>결제시 포인트 잔액</span>
+					<span>${point-all_total}원</span>
+				</div>
+				<input type="submit" value="주문" class="button">
+				<input type="button" value="홈으로" class="button"
 				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div> 
+			</div>
+			</div>
+			 
 		</form>
 	</div>
 	<!-- 내용 끝 -->
