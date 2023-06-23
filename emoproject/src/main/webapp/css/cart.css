@@ -24,7 +24,7 @@
 ------------------*/
 .result-display{
 	width:1000px;
-	height:200px;
+	padding:10px 0;
 	margin:50px auto;
 	border:1px solid deepskyblue;
 	background: #D0CEDD;

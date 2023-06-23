@@ -60,13 +60,15 @@ CREATE TABLE em_review(
  review_num number,--리뷰 글 번호
  product_num number not null,--상품 번호
  mem_num number not null,--회원 번호
+ order_detail_num unique not null,--주문내역
  review_title varchar2(100) not null,--리뷰 제목
  review_content varchar2(1000) not null,--리뷰 내용
  review_photo1 varchar2(100),--리뷰 사진
  review_score number(2) not null,--평점(0~10)
  constraint em_review_pk primary key (review_num),
  constraint em_review_fk1 foreign key (product_num) references em_product_manage (product_num),
- constraint em_review_fk2 foreign key (mem_num) references em_member_manage (mem_num)
+ constraint em_review_fk2 foreign key (mem_num) references em_member_manage (mem_num),
+ constraint em_review_fk3 foreign key (order_detail_num) references em_order_detail (order_detail_num)
 );
 
 CREATE SEQUENCE em_review_seq;
