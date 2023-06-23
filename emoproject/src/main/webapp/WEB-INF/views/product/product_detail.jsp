@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>상품 상세 보기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productdetail_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/product-zzim.js"></script>
 <script type="text/javascript">
@@ -23,18 +24,20 @@
 				$('#order_quantity').val('');
 				return;
 			}
+			 
 			/* if (Number($('#product_stock') < $('#order_quantity').val()) {
 				alert('수량이 부족합니다.');
 				$('#order_quantity').val('');
 				$('#item_total_txt').text('총주문 금액 : 0원');
 				return;
-			} */
-
+			} 
+ */
 			//총주문 금액 표시
 			let total = $('#product_price').val() * $('#order_quantity').val();
 			$('#product_total_txt').text('총 주문 금액 : ' + total.toLocaleString() + '원');//숫자 세자리 쉼표
 
 		});
+		
 			
 		//장바구니에 상품을 담기 위해 이벤트 처리
 		$('#product_cart').submit(function(event){
@@ -72,6 +75,9 @@
 			});
 		});
 		
+		$('#btn_soldout').on('click', function(){
+			alert('해당 상품은 품절 입니다.');
+		});
 	});
 </script>
 </head>
@@ -80,7 +86,20 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="page-detail">
+	<!-- status==1(미표시) 상품의 상세페이지에 들어갔을 때 -->
+	<c:if test="${product.product_status == 1}">
+	<div class="result-display">
+		<div class="align-center">
+			본 상품은 판매 중지되었습니다.
+			<p>
+			<input type="button" value="판매상품 보기" onclick="location.href='itemList.do'">
+		</div>
+	</div>
+	</c:if>
+	<!-- status==2(표시) 상품의 상세페이지에 들어갔을 때 -->
+	<c:if test="${product.product_status == 2}">
 		<div class="detail-top">
+		
 			<div class="top-img">
 				<img src="${pageContext.request.contextPath}/upload/${product.productdetailVO.product_photo1}">
 			</div>
@@ -133,7 +152,15 @@
 						<button class="button-zzim" type="button">
 							<img id="output_zzim" data-num="${product.product_num}" src="${pageContext.request.contextPath}/images/zzim_01.png" width="50">
 						</button>
+						
+						<c:if test="${product.productdetailVO.product_stock <= 0}">
+						<input type="button" id="btn_soldout" value="Sold Out">
+						</c:if>
+						
+						<c:if test="${product.productdetailVO.product_stock > 0}">
 						<input type="submit" value="장바구니에 담기">
+						</c:if>
+						
 					</div>
 				</form>
 			</div>
@@ -160,7 +187,7 @@
 				<h3 class="context-ti">[ ${product.productdetailVO.product_title} ] </h3>
 				<p class="de-word">${product.productdetailVO.product_info}</p>
 			</div>
-			<div class="context">
+			<div class="context-de">
 				<h3>상품고시정보</h3>
 				<ul class="ul-box">
 					<li class="ul-b-left">품목 또는 명칭</li>
@@ -195,7 +222,7 @@
 		<div id="detail-review" class="div-h">
 			<div class="review-star">
 				리뷰 평균 별점 자리
-				<span> ㅁ</span>
+				<span></span>
 			</div>
 			<div class="review-list">
 				상품 리뷰 리스트 자리
@@ -205,8 +232,10 @@
 		<div id="detail-QA" class="div-h">
 			상품 문의 리스트 자리
 		</div>
+	</c:if>
 	</div>
 	<!-- 내용 끝 -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
 </body>
 </html>

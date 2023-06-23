@@ -61,6 +61,8 @@
 			}
 		});
 		
+		
+		
 	});
 </script>
 </head>
@@ -125,12 +127,17 @@
 			<li>
 				<label class="box-left" for="info">상품 설명</label>
 				<textarea rows="5" cols="30" name="info" id="info">상품 상세 설명</textarea>
+				<!-- 
+				<div id="re_first">
+					<span class="letter-count">300/300</span>
+				 -->
+				</div>
 			</li>
 			
 		</ul>
 		<div class="align-center">
 			<input type="submit" value="상품 등록">
-			<input type="button" value="목록으로 돌아가기" onclick="location.href='#'">
+			<input type="button" value="목록으로 돌아가기" onclick="location.href='${pageContext.request.contextPath}/product/productlist.do'">
 		</div>
 		</form>
 	</div>

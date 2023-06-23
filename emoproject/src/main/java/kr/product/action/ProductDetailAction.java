@@ -18,6 +18,11 @@ public class ProductDetailAction implements Action{
 		ProductDAO dao = ProductDAO.getInstance();
 		ProductManageVO product = dao.getProduct(product_num);
 		
+		/*
+		 * //리뷰 페이징 String review_pageNum = request.getParameter("pageNum");
+		 * if(review_pageNum == null) review_pageNum="1";
+		 */
+		
 		//내용 줄바꿈 처리
 		product.getProductdetailVO().setProduct_info(StringUtil.useBrHtml(product.getProductdetailVO().getProduct_info()));
 		
