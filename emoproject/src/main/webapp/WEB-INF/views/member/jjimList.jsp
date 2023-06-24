@@ -19,7 +19,7 @@
   <div class="page_left">
     <ul>
       <li><a href="${pageContext.request.contextPath}/member/orderList.do"><input type="submit" class="button_left" id="button_left_1" value="주문내역"></a></li>
-      <li><a href="${pageContext.request.contextPath}/member/questListForm.do"><input type="submit" class="button_left" id="button_left_2" value="문의내역"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/questList.do"><input type="submit" class="button_left" id="button_left_2" value="문의내역"></a></li>
       <li><a href="${pageContext.request.contextPath}/cart/list.do"><input type="submit" class="button_left" id="button_left_3" value="장바구니"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/jjimList.do"><input type="submit" class="button_left" id="button_left_4" value="찜한상품"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/productAfterForm.do"><input type="submit" class="button_left" id="button_left_5" value="상품후기"></a></li>
@@ -40,7 +40,7 @@
 
                     <c:if test="${count == 0}">
                         <div class="page_none">
-                            찜해둔 제품이 없습니다.
+                            찜해둔 상품이 없습니다.
                         </div>
                     </c:if>
 
@@ -48,7 +48,14 @@
                         <td id="photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></td>
                         <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
                         <td id="price">${zzim.product_price}</td>
-                        <td id="status">${zzim.product_status}</td>
+                        <td id="status">
+						<c:if test="${zzim.product_status==2}">
+						   판매중
+						</c:if>
+						<c:if test="${zzim.product_status!=2}">
+						   판매 중지
+						</c:if>
+					    </td>
                     </tr>
 
                 </c:forEach>

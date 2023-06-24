@@ -44,3 +44,7 @@ SELECT b.* FROM(SELECT a.*, rownum rnum FROM(
 SELECT * FROM (SELECT order_num, substr(XMLAGG(XMLELEMENT(nm, ', ',ORDER_PRODUCT_NAME)).EXTRACT('//text()').GETSTRINGVAL(),2) AS product_names 
 FROM (SELECT * FROM EM_ORDER_MANAGE LEFT INNER JOIN em_order_detail USING (order_num) WHERE mem_num=27) GROUP BY ORDER_NUM ORDER BY order_num DESC) a INNER JOIN em_order_manage b ON a.order_num=b.order_num
 )a) b WHERE rnum>=1 AND rnum<=10
+
+--문의 내역
+SELECT b.* FROM (SELECT a.*, rownum rnum FROM (SELECT ask_num, ask_title, ask_content, ask_date, ask_status 
+FROM em_board_ask WHERE mem_num = 24 ORDER BY ask_num DESC) a ) b WHERE rnum>=1 AND rnum<=10

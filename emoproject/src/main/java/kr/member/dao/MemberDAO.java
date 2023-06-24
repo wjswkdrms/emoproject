@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.ask.vo.AskVO;
 import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 import kr.zzim.vo.ZZimVO;
@@ -398,16 +399,12 @@ public class MemberDAO {
 					ZZimVO zzim = new ZZimVO();
 					zzim.setProduct_num(rs.getInt("product_num"));
 					zzim.setProduct_photo1(rs.getString("product_photo1"));
+					zzim.setProduct_status(rs.getInt("product_status"));
 					
 					//금액 천단위 , 처리
 					price = rs.getInt("product_price") + ""; 
 					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 					zzim.setProduct_price(price);
-					if(rs.getInt("product_status") == 2) {
-						zzim.setProduct_status("판매중");
-					}else {
-						zzim.setProduct_status("판매중지");
-					}
 					//문자열의 길이가 90 이상이면 잘라내고 ...처리
 					if((rs.getString("product_title")).length() > 90) {
 						String[] arr2 =  new String[(rs.getString("product_title")).length()];
@@ -432,7 +429,109 @@ public class MemberDAO {
 		}
 		
 		//주문상세 카운트
-		public int getOrderListBoardCount(int mem_num) throws Exception{
+		public int getOrderListBoardCount(int mem_num, String order_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int cnt = 0;
+			int count = 0;
+			try {
+				conn = DBUtil.getConnection();
+	
+	
+				sql = "SELECT count(*) FROM(SELECT de2.product_photo1, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
+						+ "FROM (SELECT ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ? AND order_num=?) ORDER BY ma.order_num DESC) data "
+						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC)";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				pstmt.setString(++cnt,order_num);
+				
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+		
+		
+		
+		//주문상세 목록
+		public List<ZZimVO> getOrderListBoard(int start, int end, int mem_num, String order_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ZZimVO> list = null;
+			String sql = null;
+			int cnt = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT de2.product_photo1, data.order_num, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
+						+ "FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
+						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=? AND rnum<=? AND order_num=?";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+				pstmt.setString(++cnt,order_num);
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<ZZimVO>();
+				String price = "";
+				while(rs.next()) {
+					ZZimVO zzim = new ZZimVO();
+					zzim.setOrder_date(rs.getString("order_date"));
+					zzim.setProduct_num(rs.getInt("product_num"));
+					zzim.setProduct_photo1(rs.getString("product_photo1"));
+					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
+					zzim.setOrder_num(rs.getInt("order_num"));
+					zzim.setProduct_status(rs.getInt("order_status"));
+					//금액 천단위 , 처리
+					price = rs.getInt("order_product_total") + ""; 
+					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+					zzim.setProduct_price(price);
+					//문자열의 길이가 90 이상이면 잘라내고 ...처리
+					if((rs.getString("order_product_name")).length() > 90) {
+						String[] arr =  new String[(rs.getString("order_product_name")).length()];
+						String str = "";
+						arr = rs.getString("order_product_name").split("");
+						for(int i=0; i<90; i++) {
+							str += arr[i];
+						}
+						str += "...";
+						zzim.setProduct_title(str);
+					}else {
+						zzim.setProduct_title(rs.getString("order_product_name"));
+					}
+					list.add(zzim);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
+		//주문상세 카운트 -- 카트용
+		public int getOrderListBoardCount2(int mem_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -467,8 +566,10 @@ public class MemberDAO {
 			return count;
 		}
 		
-		//주문상세 목록
-		public List<ZZimVO> getOrderListBoard(int start, int end, int mem_num) throws Exception{
+		
+		
+		//주문상세 목록 -- 카트용
+		public List<ZZimVO> getOrderListBoard2(int start, int end, int mem_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -501,19 +602,11 @@ public class MemberDAO {
 					zzim.setProduct_photo1(rs.getString("product_photo1"));
 					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
 					zzim.setOrder_num(rs.getInt("order_num"));
-					
+					zzim.setProduct_status(rs.getInt("order_status"));
 					//금액 천단위 , 처리
 					price = rs.getInt("order_product_total") + ""; 
 					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 					zzim.setProduct_price(price);
-					//주문 상태 처리
-					if(rs.getInt("order_status") == 0) {
-						zzim.setProduct_status("주문 완료");
-					}else if(rs.getInt("order_status") == 1){
-						zzim.setProduct_status("배송중");
-					}else {
-						zzim.setProduct_status("배송완료");
-					}
 					//문자열의 길이가 90 이상이면 잘라내고 ...처리
 					if((rs.getString("order_product_name")).length() > 90) {
 						String[] arr =  new String[(rs.getString("order_product_name")).length()];
@@ -599,19 +692,11 @@ public class MemberDAO {
 					ZZimVO zzim = new ZZimVO();
 					zzim.setOrder_num(rs.getInt("order_num"));
 					zzim.setOrder_date(rs.getString("order_date"));
-					
+					zzim.setOrder_status(rs.getInt("order_status"));
 					//금액 천단위 , 처리
 					price = rs.getInt("order_total_price") + ""; 
 					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 					zzim.setProduct_price(price);
-					//배송 상태 0:주문완료 1:배송중 2:배송완료
-					if(rs.getInt("order_status")==0) {
-						zzim.setOrder_status("주문 완료");
-					}else if(rs.getInt("order_status")==1){
-						zzim.setOrder_status("배송 중");
-					}else {
-						zzim.setOrder_status("배송 완료");
-					}
 					//문자열의 길이가 90 이상이면 잘라내고 ...처리
 					if((rs.getString("product_names")).length() > 90) {
 						String[] arr =  new String[(rs.getString("product_names")).length()];
@@ -626,6 +711,94 @@ public class MemberDAO {
 						zzim.setProduct_name(rs.getString("product_names"));
 					}
 					list.add(zzim);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+		//문의 목록 카운트
+		public int getQuestListCount(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int cnt = 0;
+			int count = 0;
+			try {
+				conn = DBUtil.getConnection();
+	
+	
+				sql = "SELECT COUNT(*) FROM (SELECT ask_num, ask_title, ask_content, ask_date, ask_status "
+						+ "FROM em_board_ask WHERE mem_num = ? ORDER BY ask_num DESC)";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+		
+		//문의 목록
+		public List<AskVO> getQuestList(int start, int end, int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<AskVO> list = null;
+			String sql = null;
+			int cnt = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT b.* FROM (SELECT a.*, rownum rnum FROM (SELECT ask_num, ask_title, ask_content, ask_date, ask_status "
+						+ "FROM em_board_ask WHERE mem_num = ? ORDER BY ask_num DESC) a ) b WHERE rnum>=? AND rnum<=?";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<AskVO>();
+				while(rs.next()) {
+					AskVO ask = new AskVO();
+					ask.setAsk_num(rs.getInt("ask_num"));
+					ask.setAsk_title(rs.getString("ask_title"));
+					ask.setAsk_date_2(rs.getString("ask_date"));
+					ask.setAsk_status(rs.getInt("ask_status"));
+					
+					
+
+					//문자열의 길이가 90 이상이면 잘라내고 ...처리
+					if((rs.getString("ask_content")).length() > 90) {
+						String[] arr =  new String[(rs.getString("ask_content")).length()];
+						String str = "";
+						arr = rs.getString("ask_content").split("");
+						for(int i=0; i<90; i++) {
+							str += arr[i];
+						}
+						str += "...";
+						ask.setAsk_content(str);
+					}else {
+						ask.setAsk_content(rs.getString("ask_content"));
+					}
+					list.add(ask);
 				}
 			}catch(Exception e){
 				throw new Exception(e);

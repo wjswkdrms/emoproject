@@ -29,7 +29,7 @@ public class MemberEditCloneAction implements Action{
 		if(pageNum==null) pageNum = "1";
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		int count = dao.getOrderListBoardCount(user_num);
+		int count = dao.getOrderListBoardCount2(user_num);
 		//keyfield,keyword,currentPage,count,
 		//rowCount,pageCount,요청URL
 		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,10,10,"memberEdit.do");
@@ -38,7 +38,7 @@ public class MemberEditCloneAction implements Action{
 		if(count > 0) {
 			//list로 dao에서 뽑은 데이터 저장
 			//${zzim.변수명}으로 jsp에서 출력해야 됨
-			list = dao.getOrderListBoard(page.getStartRow(),page.getEndRow(),user_num);
+			list = dao.getOrderListBoard2(page.getStartRow(),page.getEndRow(),user_num);
 		}
 		
 		

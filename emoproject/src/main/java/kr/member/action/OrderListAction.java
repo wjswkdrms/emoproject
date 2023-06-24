@@ -32,7 +32,7 @@ public class OrderListAction implements Action{
 		int count = dao.getOrderListBoardAllCount(user_num);
 		//keyfield,keyword,currentPage,count,
 		//rowCount,pageCount,요청URL
-		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,10,10,"memberEdit.do");
+		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,10,10,"orderList.do");
 		
 		List<ZZimVO> list = null;
 		if(count > 0) {

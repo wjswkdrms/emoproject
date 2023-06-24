@@ -1,0 +1,179 @@
+@charset "UTF-8";
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/Malestory_Light.ttf') format('maple');
+}
+	body {
+		font-family: 'maple';
+	}
+
+        .page_outer{ /* 전체 박스 */
+            width:1920px;
+            height: auto;
+            display: flex;
+            margin-top: 50px;
+            padding-bottom: 50px;
+            margin:0 auto;
+        }
+        .page_outer > .page_left{ /* 좌측 메뉴바 전체 */ /* page_outer 상속 */
+            display: flex;
+            text-align: left;
+            padding-top: 60px;
+            width: 160px;
+            /* page_outer : 1600, page_inner : 1200 page_left : 200 */
+            /* main.do : 1920 header,footer : 1600*/
+            height: 1000px;
+            margin-left: 40px;
+        }
+        .page_left li{ /* 좌측 메뉴바 리스트*/
+            list-style-type: none;
+        }
+        .page_left li a{
+            margin-left: -40px;
+        }
+        .button_left{ /* 좌측 메뉴 버튼 스타일 */
+            width: 160px;
+            height: 110px;
+            background-color: white;
+            border-color: white;
+            border-right: white;
+            border-top: white;
+            border-left: white;
+            border-bottom: 2px solid #7878E1;
+            font-size: 22px;
+        }
+        .button_left:hover{ /* 좌측 메뉴 버튼 호버링 */
+            width: 160px;
+            height: 110px;
+            background-color: #AAB9FF;
+            border-color: white;
+            border-right: white;
+            border-top: white;
+            border-left: white;
+            border-bottom: 2px solid #7878E1;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        #button_left_1{ /* 좌측 메뉴 버튼 최상단 테두리 */
+            border-top: 2px solid #7878E1;
+        }
+        /* 게시판 시작 */
+        .page_inner_post{ /* 게시판 2차 박스 */
+            width:1600px;
+            display: flex;
+            height:auto;
+        }
+        .page_inner_post{ /* 게시판 3차 박스*/
+            display: block;
+            width:1600px;
+            height: auto;
+            margin : auto;
+            padding-top: 70px;
+        }
+        .content_title{ /* 게시판 상단 목록바 */
+            margin-left: 40px;
+            width: 1500px;
+            height: 40px;
+            border-top: 1px solid #7878E1;
+            border-bottom: 1px solid #7878E1;
+            display:block;
+            font-size:20px;
+            padding-top: 7px;
+        }
+        .content_main{ /* 메인 컨텐츠 목록 */
+            display:flex;
+            height: auto;
+            margin-left: 40px;
+            text-align:center;
+            font-size:22px;
+        }
+        .content_main #num{ /* 메인 컨텐츠 내용*/
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+            text-align:center;
+            border-bottom: 1px double #7878E1;
+            border-right: 1px solid #7878E1;
+        }
+        .content_main #title{ /* 메인 컨텐츠 내용*/
+            display: inline-block;
+            height: 100px;
+            width: 700px;
+            text-align:center;
+            border-bottom: 1px double #7878E1;
+            border-right: 1px solid #7878E1;
+        }
+        .content_main #price{ /* 메인 컨텐츠 내용*/
+            display: inline-block;
+            height: 100px;
+            width: 250px;
+            text-align:center;
+            border-bottom: 1px double #7878E1;
+            border-right: 1px solid #7878E1;
+        }
+        .content_main #date { /* 메인 컨텐츠 내용*/
+            display: inline-block;
+            height: 100px;
+            width: 250px;
+            text-align:center;
+            border-bottom: 1px double #7878E1;
+            border-right: 1px solid #7878E1;
+        }
+        .content_main #status { /* 메인 컨텐츠 내용*/
+            display: inline-block;
+            height: 100px;
+            width: 185px;
+            text-align:center;
+            border-bottom: 1px double #7878E1;
+            border-right: 1px solid #7878E1;
+        }
+
+        .page_inner_post .hr_top{ /* 게시판 상단 목록바 hr 스타일 */
+            background-color: blue;
+        }
+        .content_bottom{ /* 게시판 하단 페이징 */
+            display: block;
+            width: auto;
+            height: 100px;
+            padding-top: 30px;
+        }
+        .content_bottom2{ /* 하단 페이징2 */
+            display: block;
+            width: 1400px;
+            height: 80px;
+            margin-left: 100px;
+            margin-top: -5px;
+            text-align: center;
+            font-size: 30px;
+            padding-top: 20px;
+        }
+        .page_none{ /* 내용이 없을 때 */
+            display: block;
+            margin: 0 auto;
+            font-size: 40px;
+        }
+        #th1{
+            display: inline-block;
+            width:100px;
+            text-align: center;
+        }
+        #th2{
+            display: inline-block;
+            width:700px;
+            text-align: center;
+        }
+        #th3{
+            display: inline-block;
+            width:250px;
+            text-align: center;
+        }
+        #th4{
+            display: inline-block;
+            width:250px;
+            text-align: center;
+        }
+        #th5{
+            display: inline-block;
+            width:140px;
+            text-align: center;
+        }

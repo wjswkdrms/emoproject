@@ -19,7 +19,7 @@
   <div class="page_left">
     <ul>
       <li><a href="${pageContext.request.contextPath}/member/orderList.do"><input type="submit" class="button_left" id="button_left_1" value="주문내역"></a></li>
-      <li><a href="${pageContext.request.contextPath}/member/questListForm.do"><input type="submit" class="button_left" id="button_left_2" value="문의내역"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/questList.do"><input type="submit" class="button_left" id="button_left_2" value="문의내역"></a></li>
       <li><a href="${pageContext.request.contextPath}/cart/list.do"><input type="submit" class="button_left" id="button_left_3" value="장바구니"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/jjimList.do"><input type="submit" class="button_left" id="button_left_4" value="찜한상품"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/productAfterForm.do"><input type="submit" class="button_left" id="button_left_5" value="상품후기"></a></li>
@@ -49,7 +49,17 @@
               <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
               <td id="price">${zzim.product_price}원 (${zzim.product_quantity}개)</td>
               <td id="date">${zzim.order_date}</td>
-              <td id="status">${zzim.product_status}</td>
+              <td id="status">
+				<c:if test="${zzim.order_status==0}">
+				  <b>주문 완료</b>
+				</c:if>
+				<c:if test="${zzim.order_status==1}">
+			      <b>배송중</b>
+				</c:if>
+				<c:if test="${zzim.order_status==2}">
+				  <b>배송 완료</b>
+				</c:if>
+		      </td>
             </tr>
           </c:forEach>
         </table>

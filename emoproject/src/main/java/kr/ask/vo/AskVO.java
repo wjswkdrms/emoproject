@@ -10,8 +10,18 @@ public class AskVO {
 	private Date ask_date;
 	private int ask_status;
 	private int mem_num;
+	private String ask_date_2;
 	
+
 	private String mem_id;
+	
+	public String getAsk_date_2() {
+		return ask_date_2;
+	}
+
+	public void setAsk_date_2(String ask_date_2) {
+		this.ask_date_2 = ask_date_2;
+	}
 
 	public int getAsk_num() {
 		return ask_num;
