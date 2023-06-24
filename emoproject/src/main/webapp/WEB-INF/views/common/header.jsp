@@ -32,7 +32,7 @@ $(function(){
 		<ul>
 			<c:if test="${user_id != null }">
 				<li>
-				<strong>${user_id}</strong>님 환영합니다.
+				<strong>${user_id}</strong>님 환영합니다. 
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
