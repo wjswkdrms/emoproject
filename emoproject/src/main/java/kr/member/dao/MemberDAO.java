@@ -393,11 +393,16 @@ public class MemberDAO {
 				//SQL문 실행
 				rs = pstmt.executeQuery();
 				list = new ArrayList<ZZimVO>();
+				String price = "";
 				while(rs.next()) {
 					ZZimVO zzim = new ZZimVO();
 					zzim.setProduct_num(rs.getInt("product_num"));
 					zzim.setProduct_photo1(rs.getString("product_photo1"));
-					zzim.setProduct_price(rs.getInt("product_price"));
+					
+					//금액 천단위 , 처리
+					price = rs.getInt("product_price") + ""; 
+					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+					zzim.setProduct_price(price);
 					if(rs.getInt("product_status") == 2) {
 						zzim.setProduct_status("판매중");
 					}else {
@@ -488,14 +493,20 @@ public class MemberDAO {
 				//SQL문 실행
 				rs = pstmt.executeQuery();
 				list = new ArrayList<ZZimVO>();
+				String price = "";
 				while(rs.next()) {
 					ZZimVO zzim = new ZZimVO();
 					zzim.setOrder_date(rs.getString("order_date"));
 					zzim.setProduct_num(rs.getInt("product_num"));
 					zzim.setProduct_photo1(rs.getString("product_photo1"));
-					zzim.setProduct_price(rs.getInt("order_product_total"));
 					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
 					zzim.setOrder_num(rs.getInt("order_num"));
+					
+					//금액 천단위 , 처리
+					price = rs.getInt("order_product_total") + ""; 
+					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+					zzim.setProduct_price(price);
+					//주문 상태 처리
 					if(rs.getInt("order_status") == 0) {
 						zzim.setProduct_status("주문 완료");
 					}else if(rs.getInt("order_status") == 1){
@@ -538,8 +549,8 @@ public class MemberDAO {
 				conn = DBUtil.getConnection();
 	
 	
-				sql = "SELECT COUNT(*) FROM (SELECT order_total_price, order_date, order_num FROM em_order_manage WHERE "
-						+ "order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY order_num DESC) ORDER BY order_num DESC";
+				sql = "SELECT COUNT(*) FROM (SELECT order_num, substr(XMLAGG(XMLELEMENT(nm, ', ',ORDER_PRODUCT_NAME)).EXTRACT('//text()').GETSTRINGVAL(),2) AS product_names "
+						+ "FROM (SELECT * FROM EM_ORDER_MANAGE LEFT INNER JOIN em_order_detail USING (order_num) WHERE mem_num=?) GROUP BY ORDER_NUM ORDER BY order_num DESC) a INNER JOIN em_order_manage b ON a.order_num=b.order_num";
 				pstmt = conn.prepareStatement(sql);
 				
 				//?에 데이터 바인딩
@@ -571,9 +582,8 @@ public class MemberDAO {
 			
 			try {
 				conn = DBUtil.getConnection();
-				sql = "(SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT order_date, order_total_price, order_num FROM "
-						+ "(SELECT order_total_price, order_date, order_num FROM em_order_manage WHERE order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) "
-						+ "ORDER BY order_num DESC) ORDER BY order_num DESC)a) b WHERE rnum>=? AND rnum<=? )";
+				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT * FROM (SELECT order_num, substr(XMLAGG(XMLELEMENT(nm, ', ',ORDER_PRODUCT_NAME)).EXTRACT('//text()').GETSTRINGVAL(),2) AS product_names "
+						+ "FROM (SELECT * FROM EM_ORDER_MANAGE LEFT INNER JOIN em_order_detail USING (order_num) WHERE mem_num=?) GROUP BY ORDER_NUM ORDER BY order_num DESC) a INNER JOIN em_order_manage b ON a.order_num=b.order_num)a) b WHERE rnum>=? AND rnum<=?";
 				pstmt = conn.prepareStatement(sql);
 				
 				//?에 데이터 바인딩
@@ -584,13 +594,37 @@ public class MemberDAO {
 				//SQL문 실행
 				rs = pstmt.executeQuery();
 				list = new ArrayList<ZZimVO>();
-				
+				String price ="";
 				while(rs.next()) {
 					ZZimVO zzim = new ZZimVO();
-					zzim.setOrder_date(rs.getString("order_date"));
-					zzim.setProduct_price(rs.getInt("order_total_price"));
 					zzim.setOrder_num(rs.getInt("order_num"));
-
+					zzim.setOrder_date(rs.getString("order_date"));
+					
+					//금액 천단위 , 처리
+					price = rs.getInt("order_total_price") + ""; 
+					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+					zzim.setProduct_price(price);
+					//배송 상태 0:주문완료 1:배송중 2:배송완료
+					if(rs.getInt("order_status")==0) {
+						zzim.setOrder_status("주문 완료");
+					}else if(rs.getInt("order_status")==1){
+						zzim.setOrder_status("배송 중");
+					}else {
+						zzim.setOrder_status("배송 완료");
+					}
+					//문자열의 길이가 90 이상이면 잘라내고 ...처리
+					if((rs.getString("product_names")).length() > 90) {
+						String[] arr =  new String[(rs.getString("product_names")).length()];
+						String str = "";
+						arr = rs.getString("product_names").split("");
+						for(int i=0; i<90; i++) {
+							str += arr[i];
+						}
+						str += "...";
+						zzim.setProduct_name(str);
+					}else {
+						zzim.setProduct_name(rs.getString("product_names"));
+					}
 					list.add(zzim);
 				}
 			}catch(Exception e){

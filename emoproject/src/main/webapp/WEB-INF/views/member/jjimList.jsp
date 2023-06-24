@@ -27,39 +27,38 @@
       <li><a href="${pageContext.request.contextPath}/member/memberOutForm.do"><input type="submit" class="button_left" id="button_left_8" value="회원탈퇴"></a></li>
     </ul>
   </div>
-  <div class="page_inner">
+<div class="page_inner">
     <div class="page_inner_main">
-      <c:if test="${count > 0}">
-          <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
-            <tr class="content_title">
-              <th id="th1">상품명</th>
-              <th id="th2">상품 정보</th>
-              <th id="th3">가격</th>
-              <th id="th4">판매 상태</th>
-            </tr>
-            <c:forEach var="zzim" items="${list}">
+        <c:if test="${count > 0}">
+            <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
+                <tr class="content_title">
+                    <th id="th1">상품명</th>
+                    <th id="th2">가격</th>
+                    <th id="th3">판매 상태</th>
+                </tr>
+                <c:forEach var="zzim" items="${list}">
 
-              <c:if test="${count == 0}">
-                <div class="page_none">
-                  찜해둔 제품이 없습니다.
-                </div>
-              </c:if>
+                    <c:if test="${count == 0}">
+                        <div class="page_none">
+                            찜해둔 제품이 없습니다.
+                        </div>
+                    </c:if>
 
-              <tr class="content_main">
-                <td id="photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></td>
-                <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
-                <td id="price">${zzim.product_price}</td>
-                <td id="status">${zzim.product_status}</td>
-              </tr>
+                    <tr class="content_main">
+                        <td id="photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></td>
+                        <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
+                        <td id="price">${zzim.product_price}</td>
+                        <td id="status">${zzim.product_status}</td>
+                    </tr>
 
-            </c:forEach>
-          </table>
-          <div class="content_bottom">
-            <div class="content_bottom2">${page}</div>
-          </div>
-      </c:if>
+                </c:forEach>
+            </table>
+            <div class="content_bottom">
+                <div class="content_bottom2">${page}</div>
+            </div>
+        </c:if>
     </div>
-  </div>
+</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
