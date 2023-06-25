@@ -169,12 +169,12 @@ public class OrderDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "UPDATE em_product_manage m join em_product_detail d ON m.product_num=d.product_num SET m.status=1 WHERE d.product_stock=0 AND m.product_num=?";
+			sql = "UPDATE em_product_manage SET product_status=1 WHERE product_num=? AND (SELECT product_stock FROM em_product_detail where product_num=?)=0";
 			pstmt = conn.prepareStatement(sql);
 			for(int i=0;i<list.size();i++) {
 				int product_num = list.get(i).getProduct_num();
 				pstmt.setInt(1, product_num);
-				
+				pstmt.setInt(2, product_num);
 				pstmt.addBatch();
 				if(i%1000 == 0) {
 					pstmt.executeBatch();

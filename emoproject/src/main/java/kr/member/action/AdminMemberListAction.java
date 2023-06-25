@@ -40,13 +40,13 @@ public class AdminMemberListAction implements Action{
 		
 		//페이지 처리
 		PageUtil page=new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,20,10,"adminMemberList.do");
-		List<MemberVO> list=null;
+		List<MemberVO> member=null;
 		if(count>0) {
-			list=dao.getListMemberByAdmin(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			member=dao.getListMemberByAdmin(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
 		
 		request.setAttribute("count", count);
-		request.setAttribute("list", list);
+		request.setAttribute("member", member);
 		request.setAttribute("page", page.getPage());
 		
 		//JSP 경로 반환

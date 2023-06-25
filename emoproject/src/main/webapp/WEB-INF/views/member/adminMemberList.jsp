@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +36,6 @@
 					<select name="keyfield">
 						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>회원번호</option>
 						<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>ID</option>
-						<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>이름</option>
-						<option value="4" <c:if test="${param.keyfield==4}">selected</c:if>>email</option>
 					</select>
 				</li>
 				<li>
@@ -63,24 +62,22 @@
 			<tr>
 				<th>회원번호</th>
 				<th>아이디</th>
-				<th>이름</th>
 				<th>누적금액</th>
 				<th>등급</th>
 			</tr>
-			<c:forEach var="member" items="${list}">
+			<c:forEach var="member" items="${member}">
 			<tr>
 				<td>${member.mem_num}</td>
 				<td>
 					<c:if test="${member.auth>0}">
-					<a href="adminDetailUserForm.do?mem_num=${member.mem_num}">${member.id}</a>
+					<a href="adminMemberDetail.do?mem_num=${member.mem_num}">${member.id}</a>
 					</c:if>
 					<c:if test="${member.auth==0}">
 					${member.id}
 					</c:if>
 				</td>
-				<td>${member.name}</td>
 				<td>
-					${member.order_total_price}
+					<fmt:formatNumber value="${member.order_total_price}"/> 포인트
 				</td>
 				<td>
 					<c:if test="${member.auth==0}">탈퇴</c:if>

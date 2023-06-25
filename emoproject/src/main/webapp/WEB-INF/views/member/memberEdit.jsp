@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>찜한 상품</title>
+<title>주문 상세 내역</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageOrder_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
@@ -22,7 +22,7 @@
       <li><a href="${pageContext.request.contextPath}/member/questList.do"><input type="submit" class="button_left" id="button_left_2" value="문의내역"></a></li>
       <li><a href="${pageContext.request.contextPath}/cart/list.do"><input type="submit" class="button_left" id="button_left_3" value="장바구니"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/jjimList.do"><input type="submit" class="button_left" id="button_left_4" value="찜한상품"></a></li>
-      <li><a href="${pageContext.request.contextPath}/member/productAfterForm.do"><input type="submit" class="button_left" id="button_left_5" value="상품후기"></a></li>
+      <li><a href="${pageContext.request.contextPath}/member/productAfter.do"><input type="submit" class="button_left" id="button_left_5" value="상품후기"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/myEditForm.do"><input type="submit" class="button_left" id="button_left_7" value="개인정보수정"></a></li>
       <li><a href="${pageContext.request.contextPath}/member/memberOutForm.do"><input type="submit" class="button_left" id="button_left_8" value="회원탈퇴"></a></li>
     </ul>
@@ -32,6 +32,7 @@
       <c:if test="${count > 0}">
         <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
           <tr class="content_title">
+          <td id="th0">주문 번호 : ${zzim.order_num}</td>
             <th id="th1">상품명</th>
             <th id="th2">총 가격 (개수)</th>
             <th id="th3">주문 날짜</th>

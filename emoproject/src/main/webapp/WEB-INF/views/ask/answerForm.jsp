@@ -43,7 +43,7 @@
 							<div>${ask.ask_content}</div>
 						</div>	
 					</div>	
-					<form id="answerUpdate_form" action="answerUpdate.do" method="post" enctype="multipart/form-data">
+					<form id="answer_form" action="answerWrite.do" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="mem_num" value="${ask.mem_num}">
 						<input type="hidden" name="ask_num" value="${ask.ask_num}">
 						<table>
@@ -65,7 +65,6 @@
 				</div>
 			<!-- 내용 끝 -->
 		</div>
-	</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 

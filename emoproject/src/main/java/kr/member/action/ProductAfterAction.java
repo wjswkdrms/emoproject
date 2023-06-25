@@ -7,12 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.ask.vo.AskVO;
+
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.util.PageUtil;
+import kr.zzim.vo.ZZimVO;
 
-public class QuestListAction implements Action{
+public class ProductAfterAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,28 +25,29 @@ public class QuestListAction implements Action{
 		if(user_num==null) {
 			return "redirect:/member/loginForm.do";
 		}
-		
+		String orderNum = request.getParameter("orderNum");		
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum = "1";
-		
 		MemberDAO dao = MemberDAO.getInstance();
-		int count = dao.getQuestListCount(user_num);
+		int count = dao.getOrderListBoardCount3(user_num);
 		//keyfield,keyword,currentPage,count,
 		//rowCount,pageCount,요청URL
-		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,10,10,"questList.do");
+		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,10,10,"productAfter.do");
 		
-		List<AskVO> list = null;
+		List<ZZimVO> list = null;
 		if(count > 0) {
 			//list로 dao에서 뽑은 데이터 저장
-			list = dao.getQuestList(page.getStartRow(),page.getEndRow(),user_num);
+			//${zzim.변수명}으로 jsp에서 출력해야 됨
+			list = dao.getOrderListBoard3(page.getStartRow(),page.getEndRow(),user_num);
 		}
 		
-		System.out.println(list);
+		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());		
 		
 		//JSP 경로 반환
-		return "/WEB-INF/views/member/questList.jsp";
+		return "/WEB-INF/views/member/productAfter.jsp";
 	}
+
 }

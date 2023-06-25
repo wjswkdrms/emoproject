@@ -33,7 +33,9 @@
 						<div class="specific">${ask.ask_date}</div>
 					</div>	
 					<div class="main-content">
+						<c:if test="${!empty ask.ask_photo1}">
 						<div><img src=${pageContext.request.contextPath}/upload/${ask.ask_photo1}></div>
+						</c:if>
 						<div>${ask.ask_content}</div>
 					</div>	
 				<!-- 답변 시작 -->
@@ -42,12 +44,15 @@
 						<div class="detail-title">관리자</div>
 						<div class="specific">${answer.answer_date}</div>
 						<div class="specific">${answer.answer_content}</div>
+						<c:if test="${!empty answer.answer_photo}">
 						<div><img src=${pageContext.request.contextPath}/upload/${answer.answer_photo}></div>
+						</c:if>
 					</div>
 					</c:if>	
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_num==ask.mem_num}">
 						<input type="button" value="수정" onclick="location.href='askUpdateForm.do?ask_num=${ask.ask_num}'">
+						<input type="button" value="삭제" onclick="location.href='askDelete.do?ask_num=${ask.ask_num}'">
 						</c:if>
 						<input type="button" value="목록" onclick="location.href='ask.do'">
 					</div>
