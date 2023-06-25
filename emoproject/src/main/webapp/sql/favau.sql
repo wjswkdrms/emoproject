@@ -1,5 +1,5 @@
--- Å×ÀÌºí Á¦¾àÁ¶°Ç ¼öÁ¤
-alter table Å×ÀÌºí¸í modify ÄÃ·³¸í Á¦¾àÁ¶°Ç;
+--í…Œì´ë¸” ì œì•½ì¡°ê±´ ìˆ˜ì •
+alter table í…Œì´ë¸”ëª… modify ì»¬ëŸ¼ëª… ì œì•½ì¡°ê±´;
 
 
 CREATE TABLE em_coupon(
@@ -7,7 +7,7 @@ coupon_num number not null,
 coupon_name varchar2(50) unique not null,
 coupon_info varchar2(100) not null,
 coupon_price number(7) not null,
-coupon_status number(1) default 1 not null, --1:¹Ì»ç¿ë 2:»ç¿ë 3:±â°£¸¸·á
+coupon_status number(1) default 1 not null, --1:ë¯¸ì‚¬ìš© 2:ì‚¬ìš© 3:ê¸°ê°„ë§Œë£Œ
 mem_num number not null,
 product_num number(5),
 constraint em_coupon_pk primary key (coupon_num),
@@ -18,7 +18,7 @@ create sequence em_coupon_seq;
 
 
 
---Âò
+--ì°œ
 SELECT rnum, product_title, product_info, product_photo1, product_price, product_status FROM 
 (SELECT a.*, rownum rnum 
 FROM (SELECT zzim.zzim_num, data.product_title, data.product_info, data.product_photo1, data.product_price, data.product_status  
@@ -27,14 +27,24 @@ FROM (SELECT detail.product_num, detail.product_title, detail.product_info, deta
     INNER JOIN em_member_zzim zzim ON data.product_num = zzim.product_num  WHERE zzim.mem_num = 24 ORDER BY zzim.zzim_num DESC) a) 
 WHERE rnum>=1 AND rnum<=10;
 
---ÁÖ¹®³»¿ª
+--ì£¼ë¬¸ë‚´ì—­
 SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT de2.product_photo1, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity
 FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de
 INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = 24) ORDER BY ma.order_num DESC) data
 INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=1 AND rnum<=10
 
---ÁÖ¹® »ó¼¼
+--ì£¼ë¬¸ ìƒì„¸
 SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT order_date, product_num, order_product_name, order_total_price, order_num FROM 
 (SELECT ma.order_total_price, ma.order_date, ma.order_num, de.product_num, de.order_product_name FROM em_order_detail de
 INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = 24) 
 ORDER BY ma.order_num DESC) ORDER BY order_num DESC)a) b WHERE rnum>=1 AND rnum<=10
+
+--ì£¼ë¬¸ ë‚´ì—­ fixed
+SELECT b.* FROM(SELECT a.*, rownum rnum FROM(
+SELECT * FROM (SELECT order_num, substr(XMLAGG(XMLELEMENT(nm, ', ',ORDER_PRODUCT_NAME)).EXTRACT('//text()').GETSTRINGVAL(),2) AS product_names 
+FROM (SELECT * FROM EM_ORDER_MANAGE LEFT INNER JOIN em_order_detail USING (order_num) WHERE mem_num=27) GROUP BY ORDER_NUM ORDER BY order_num DESC) a INNER JOIN em_order_manage b ON a.order_num=b.order_num
+)a) b WHERE rnum>=1 AND rnum<=10
+
+--ë¬¸ì˜ ë‚´ì—­
+SELECT b.* FROM (SELECT a.*, rownum rnum FROM (SELECT ask_num, ask_title, ask_content, ask_date, ask_status 
+FROM em_board_ask WHERE mem_num = 24 ORDER BY ask_num DESC) a ) b WHERE rnum>=1 AND rnum<=10

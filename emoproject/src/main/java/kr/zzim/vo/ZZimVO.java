@@ -7,12 +7,14 @@ public class ZZimVO {
 	private String Product_title;
 	private String Product_info;
 	private String Product_photo1;
-	private int Product_price;
-	private String Product_status;
+	private String Product_price;
+	private int Product_status;
 	private int Product_quantity;
 	private String Order_date;
 	private int Order_num;
 	private String Product_name;
+	private int Order_status;
+
 
 
 
@@ -20,6 +22,14 @@ public class ZZimVO {
 	public ZZimVO() {}
 	
 	//생성자 정의
+	public int getOrder_status() {
+		return Order_status;
+	}
+
+	public void setOrder_status(int order_status) {
+		Order_status = order_status;
+	}
+
 	public int getOrder_num() {
 		return Order_num;
 	}
@@ -83,19 +93,19 @@ public class ZZimVO {
 		Product_photo1 = product_photo1;
 	}
 
-	public int getProduct_price() {
+	public String getProduct_price() {
 		return Product_price;
 	}
 
-	public void setProduct_price(int product_price) {
+	public void setProduct_price(String product_price) {
 		Product_price = product_price;
 	}
 
-	public String getProduct_status() {
+	public int getProduct_status() {
 		return Product_status;
 	}
 
-	public void setProduct_status(String product_status) {
+	public void setProduct_status(int product_status) {
 		Product_status = product_status;
 	}
 

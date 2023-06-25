@@ -32,7 +32,7 @@ $(function(){
 		<ul>
 			<c:if test="${user_id != null }">
 				<li>
-				<strong>${user_id}</strong>님 환영합니다.
+				<strong>${user_id}</strong>님 환영합니다. 
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
@@ -57,7 +57,7 @@ $(function(){
 			 	<c:if test="${user_auth <= 2}">
 			 	<li>
 			 		
-					<a href="${pageContext.request.contextPath}/member/memberEdit.do">내 정보</a>
+					<a href="${pageContext.request.contextPath}/member/orderList.do">내 정보</a>
 				</li>
 				</c:if>
 				<c:if test="${user_auth == 9 && !empty user_num}">
