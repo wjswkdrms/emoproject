@@ -11,7 +11,7 @@ import kr.member.dao.AdminMemberDAO;
 import kr.member.vo.MemberVO;
 import kr.util.PageUtil;
 
-public class AdminMemberListAction implements Action{
+public class AdminOrderListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -39,18 +39,18 @@ public class AdminMemberListAction implements Action{
 		int count = dao.getMemberCountByAdmin(keyfield, keyword);
 		
 		//페이지 처리
-		PageUtil page=new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,20,10,"adminMemberList.do");
+		PageUtil page=new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,20,10,"adminOrderList.do");
 		List<MemberVO> list=null;
 		if(count>0) {
-			list=dao.getListMemberByAdmin(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			list=dao.getListOrderByAdmin(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
 		
 		request.setAttribute("count", count);
-		request.setAttribute("list", list);
+		request.setAttribute("order", list);
 		request.setAttribute("page", page.getPage());
 		
 		//JSP 경로 반환
-		return "/WEB-INF/views/member/adminMemberList.jsp";
+		return "/WEB-INF/views/member/adminOrderList.jsp";
 	}
 
 }

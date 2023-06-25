@@ -28,7 +28,7 @@
 					<a href="${pageContext.request.contextPath}/announce/announce.do"><span></span>고객 센터</a>
 				</li>
 				<li>
-					<a><span></span>주문 관리</a>
+					<a href="${pageContext.request.contextPath}/member/adminOrderList.do"><span></span>주문 관리</a>
 				</li>
 			</ul>
 		</div>
