@@ -10,6 +10,7 @@ public class ReviewVO {
 	private String review_content;
 	private String review_photo1;
 	private int review_score;
+	private int order_num;
 	
 	private String mem_id;
 	private ProductManageVO ProductManageVO;
@@ -31,6 +32,12 @@ public class ReviewVO {
 	}
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+	public int getOrder_num() {
+		return order_num;
+	}
+	public void setOrder_num(int order_num) {
+		this.order_num = order_num;
 	}
 	public String getReview_title() {
 		return review_title;

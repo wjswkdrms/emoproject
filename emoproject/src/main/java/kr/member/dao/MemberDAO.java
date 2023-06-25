@@ -10,6 +10,7 @@ import java.util.List;
 
 import kr.ask.vo.AskVO;
 import kr.member.vo.MemberVO;
+import kr.review.vo.ReviewVO;
 import kr.util.DBUtil;
 import kr.zzim.vo.ZZimVO;
 
@@ -530,7 +531,9 @@ public class MemberDAO {
 			return list;
 		}
 		
-		//주문상세 카운트 -- 카트용
+		
+		
+		//주문상세 카운트 -- 카트
 		public int getOrderListBoardCount2(int mem_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -568,7 +571,7 @@ public class MemberDAO {
 		
 		
 		
-		//주문상세 목록 -- 카트용
+		//주문상세 목록 -- 카트
 		public List<ZZimVO> getOrderListBoard2(int start, int end, int mem_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -602,7 +605,106 @@ public class MemberDAO {
 					zzim.setProduct_photo1(rs.getString("product_photo1"));
 					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
 					zzim.setOrder_num(rs.getInt("order_num"));
-					zzim.setProduct_status(rs.getInt("order_status"));
+					zzim.setOrder_status(rs.getInt("order_status"));
+					//금액 천단위 , 처리
+					price = rs.getInt("order_product_total") + ""; 
+					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+					zzim.setProduct_price(price);
+					//문자열의 길이가 90 이상이면 잘라내고 ...처리
+					if((rs.getString("order_product_name")).length() > 90) {
+						String[] arr =  new String[(rs.getString("order_product_name")).length()];
+						String str = "";
+						arr = rs.getString("order_product_name").split("");
+						for(int i=0; i<90; i++) {
+							str += arr[i];
+						}
+						str += "...";
+						zzim.setProduct_title(str);
+					}else {
+						zzim.setProduct_title(rs.getString("order_product_name"));
+					}
+					list.add(zzim);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+		//주문상세 카운트 -- 상품후기
+		public int getOrderListBoardCount3(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int cnt = 0;
+			int count = 0;
+			try {
+				conn = DBUtil.getConnection();
+	
+	
+				sql = "SELECT count(*) FROM(SELECT de2.product_photo1, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
+						+ "FROM (SELECT ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
+						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC)";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+		
+		
+		
+		//주문상세 목록 -- 상품후기
+		public List<ZZimVO> getOrderListBoard3(int start, int end, int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ZZimVO> list = null;
+			String sql = null;
+			int cnt = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT de2.product_photo1, data.order_num, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
+						+ "FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
+						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=? AND rnum<=?";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(++cnt,mem_num);
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<ZZimVO>();
+				String price = "";
+				while(rs.next()) {
+					ZZimVO zzim = new ZZimVO();
+					zzim.setOrder_date(rs.getString("order_date"));
+					zzim.setProduct_num(rs.getInt("product_num"));
+					zzim.setProduct_photo1(rs.getString("product_photo1"));
+					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
+					zzim.setOrder_num(rs.getInt("order_num"));
+					zzim.setOrder_status(rs.getInt("order_status"));
 					//금액 천단위 , 처리
 					price = rs.getInt("order_product_total") + ""; 
 					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
@@ -806,6 +908,36 @@ public class MemberDAO {
 				DBUtil.executeClose(rs, pstmt, conn);
 			}
 			return list;
+		}
+		
+		//상품 후기 작성
+		public void getProductAfterWrite(ReviewVO review) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "INSERT INTO em_review (review_num,product_num,mem_num,order_num,review_title,review_content,review_photo1,review_score) VALUES (em_review_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";
+				pstmt = conn.prepareStatement(sql);
+				
+
+				//?에 데이터 바인딩
+				                              //review_num - nextval
+				pstmt.setInt(1,review.getProduct_num()); //product_num - 쿼리스트링
+				pstmt.setInt(2,review.getMem_num()); //mem_num - 세션
+				pstmt.setInt(3,review.getOrder_num()); //order_num - sql문
+				pstmt.setString(4,review.getReview_title()); //review_title - 입력
+				pstmt.setString(5,review.getReview_content()); //review_content - 입력
+				pstmt.setString(6,review.getReview_photo1()); //review_photo1 - 입력
+				pstmt.setInt(7,review.getReview_score()); //review_score - 입력
+				
+				pstmt.executeUpdate();
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
 		}
 }
 

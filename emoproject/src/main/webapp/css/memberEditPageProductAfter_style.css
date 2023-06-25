@@ -89,37 +89,45 @@
     }
     .content_main #photo1 img{ /* 메인 컨텐츠 내용*/
       display:flex;
-      height: 200px;
-      width: 200px;
+      height: 100px;
+      width: 100px;
     }
     .content_main #title{ /* 메인 컨텐츠 내용*/
       display: flex;
-      height: 200px;
-      width: 550px;
+      height: 100px;
+      width: 500px;
       text-align:center;
       border-bottom: 1px double #7878E1;
       border-right: 1px solid #7878E1;
     }
     .content_main #price{ /* 메인 컨텐츠 내용*/
       display: inline-block;
-      height: 200px;
-      width: 300px;
+      height: 100px;
+      width: 200px;
       text-align:center;
       border-bottom: 1px double #7878E1;
       border-right: 1px solid #7878E1;
     }
     .content_main #date { /* 메인 컨텐츠 내용*/
       display: inline-block;
-      height: 200px;
-      width: 210px;
+      height: 100px;
+      width: 300px;
       text-align:center;
       border-bottom: 1px double #7878E1;
       border-right: 1px solid #7878E1;
     }
     .content_main #status{ /* 메인 컨텐츠 내용*/
       display: inline-block;
-      height: 200px;
+      height: 100px;
       width: 210px;
+      text-align:center;
+      border-bottom: 1px double #7878E1;
+      border-right: 1px solid #7878E1;
+    }
+    .content_main #after{ /* 메인 컨텐츠 내용*/
+      display: inline-block;
+      height: 100px;
+      width: 150px;
       text-align:center;
       border-bottom: 1px double #7878E1;
     }
@@ -148,25 +156,31 @@
       margin: 0 auto;
       font-size: 40px;
     }
-    #th0{
-      display: inline-block;
-      width:200px;
-      text-align: center;
-    }
     #th1{
       display: inline-block;
-      width:550px;
+      width:500px;
       text-align: center;
+      margin-left:100px;
     }
     #th2{
       display: inline-block;
-      width:300px;
+      width:200px;
     }
     #th3{
       display: inline-block;
-      width:200px;
+      width:290px;
     }
     #th4{
       display: inline-block;
       width:200px;
     }
+    #th5{
+      display: inline-block;
+      width:150px;
+    }
+    .button_after{ /* 상품 후기 버튼 th5 넓이 따라감 */
+		width:120px;
+		height:70px;
+		margin-top: 15px;
+		font-size:20px;
+	}

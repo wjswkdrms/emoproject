@@ -48,3 +48,11 @@ FROM (SELECT * FROM EM_ORDER_MANAGE LEFT INNER JOIN em_order_detail USING (order
 --문의 내역
 SELECT b.* FROM (SELECT a.*, rownum rnum FROM (SELECT ask_num, ask_title, ask_content, ask_date, ask_status 
 FROM em_board_ask WHERE mem_num = 24 ORDER BY ask_num DESC) a ) b WHERE rnum>=1 AND rnum<=10
+
+--리뷰 조회
+--if로 배송 상태가 완료가 아니면 0을 주고 1~10이면 점수를 준다.
+SELECT ma.order_num, ma.order_status, re.review_score FROM em_order_manage ma INNER JOIN em_review re ON ma.mem_num = re.mem_num WHERE re.mem_num=24
+
+--문의글 삽입
+INSERT INTO em_review (review_num,product_num,mem_num,order_num,review_title,review_content,review_photo1,review_score) VALUES ('1', '44', '24', '22', '제목', '내용', '사진', '7')
+
