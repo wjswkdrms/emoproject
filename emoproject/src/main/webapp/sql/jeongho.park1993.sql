@@ -18,3 +18,10 @@ SELECT COUNT(*), ORDER_NUM, MEM_NUM, ORDER_TOTAL_PRICE FROM EM_ORDER_MANAGE LEFT
 SELECT product_num, product_name, product_title, product_price, product_discount, FLOOR(((PRODUCT_PRICE)*(100-PRODUCT_DISCOUNT))/100) AS PRODUCT_PRICE_SALES FROM em_product_manage m LEFT JOIN em_product_detail d USING(product_num) ORDER BY PRODUCT_DISCOUNT DESC;
 --상품 바꿀 때 할인 form 넣는것도 추가하면 되겠네요
 ---------------------------------------------------------------
+
+
+--------------------------정은--------------------------------
+
+SELECT mem_num, mem_id, SUM(order_product_total) AS mem_using_price , mem_auth FROM em_member_manage LEFT INNER JOIN (SELECT * FROM em_member_detail LEFT INNER JOIN (SELECT * FROM em_order_manage LEFT INNER JOIN em_order_detail USING(order_num) ) USING (mem_num)) USING (mem_num) GROUP BY mem_num, mem_id, mem_auth;
+
+-----------------------------------------------------------
