@@ -22,6 +22,9 @@ public class MemberVO {
 	private Date mdate;//정보 수정일
 	
 	private int order_total_price;//누적 금액
+	private int order_num;
+	private int order_status;
+
 
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(
@@ -34,6 +37,21 @@ public class MemberVO {
 		return false;
 	}
 		
+	public int getOrder_num() {
+		return order_num;
+	}
+	
+	public void setOrder_num(int order_num) {
+		this.order_num = order_num;
+	}
+	
+	public int getOrder_status() {
+		return order_status;
+	}
+	
+	public void setOrder_status(int order_status) {
+		this.order_status = order_status;
+	}
 	public int getOrder_total_price() {
 		return order_total_price;
 	}

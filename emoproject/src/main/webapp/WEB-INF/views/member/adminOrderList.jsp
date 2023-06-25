@@ -71,7 +71,7 @@
 				<td>${order.order_num}</td>
 				<td>${order.mem_num}</td>
 				<td>
-					<a href="adminDetailOrder.do?order_num=${order.order_num}" data-hidden="${order.mem_num}">${order.id}</a>
+					<a href="adminOrderDetail.do?order_num=${order.order_num}" data-hidden="${order.mem_num}">${order.id}</a>
 				</td>
 				<td>
 					<c:if test="${order.order_status==0}">

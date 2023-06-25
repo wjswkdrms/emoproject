@@ -25,14 +25,16 @@ public class AnnounceDeleteAction implements Action{
 		AnnounceDAO dao=AnnounceDAO.getInstance();
 		AnnounceVO db_announce=dao.getAnnounce(ann_num);
 		
-		if(user_num!=db_announce.getMem_num()) {//작성자와 다른 아이디
-			return "/WEB-INF/views/common/notice.jsp";
+		Integer user_auth=(Integer)session.getAttribute("user_auth");
+		
+		if(user_auth<9) {
+			return "/WEB-INF/views/common/notice.jsp";			
 		}
 		//글 삭제
 		dao.deleteAnnounce(ann_num);
+		
 		//파일 삭제
 		FileUtil.removeFile(request, db_announce.getAnn_photo1());
-		
 		return "redirect:/announce/announce.do";
 	}
 

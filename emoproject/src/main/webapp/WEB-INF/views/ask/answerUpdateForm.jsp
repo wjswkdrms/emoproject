@@ -43,7 +43,7 @@
 							<div>${ask.ask_content}</div>
 						</div>	
 					</div>	
-					<form id="answer_form" action="answerUpdate.do" method="post" enctype="multipart/form-data">
+					<form id="answerupdate_form" action="answerUpdate.do" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="mem_num" value="${ask.mem_num}">
 						<input type="hidden" name="ask_num" value="${ask.ask_num}">
 						<table>

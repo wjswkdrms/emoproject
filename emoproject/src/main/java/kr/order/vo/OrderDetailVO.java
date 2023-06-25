@@ -1,5 +1,7 @@
 package kr.order.vo;
 
+import java.sql.Date;
+
 public class OrderDetailVO {
 	private int order_detail_num;//ORDER_DETAIL_NUM	NUMBER
 	private int order_num;//ORDER_NUM	NUMBER
@@ -9,6 +11,28 @@ public class OrderDetailVO {
 	private int order_product_quantity;//ORDER_PRODUCT_QUANTITY	NUMBER(5,0)
 	private int order_product_total; //ORDER_PRODUCT_TOTAL	NUMBER(7,0)
 	
+	private String mem_id;
+	private MemberHomeVO memberhome;
+	private Date order_date;
+	
+	public Date getOrder_date() {
+		return order_date;
+	}
+	public void setOrder_date(Date order_date) {
+		this.order_date = order_date;
+	}
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+	public MemberHomeVO getMemberhome() {
+		return memberhome;
+	}
+	public void setMemberhome(MemberHomeVO memberhome) {
+		this.memberhome = memberhome;
+	}
 	public int getOrder_detail_num() {
 		return order_detail_num;
 	}
