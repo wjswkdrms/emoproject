@@ -29,3 +29,13 @@ SELECT mem_num, mem_id, SUM(order_product_total) AS mem_using_price , mem_auth F
 
 --SQL문 수정 (Search DAO)
 SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt, COUNT(mem_num) AS ZZIM FROM em_member_zzim RIGHT OUTER JOIN (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_num, product_name, product_photo1, product_title, product_category, product_price, product_status FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM)) USING (PRODUCT_NUM) GROUP BY product_num, product_name, product_photo1, product_title, product_category, product_price, product_status ) USING (product_num) GROUP BY product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt ) a) WHERE  rnum >=1 AND rnum <=10;
+
+--SQL문 4차 수정 
+SELECT * FROM (SELECT a.*,rownum rnum FROM (
+SELECT c.*, FLOOR(((PRODUCT_PRICE)*(100-PRODUCT_DISCOUNT))/100) AS PRODUCT_PRICE_SALES FROM em_product_manage f LEFT JOIN
+(SELECT product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt, product_discount, COUNT(mem_num) AS ZZIM  
+FROM em_member_zzim z RIGHT OUTER JOIN (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_discount, product_num, product_name, product_photo1, product_title, product_category, product_price, product_status 
+FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) ) 
+USING (product_num) GROUP BY product_num, product_name, product_photo1, product_title, product_category, product_price, product_status, product_discount  )
+USING (product_num) GROUP BY product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt, product_discount) c ON c.product_num = f.product_num
+)a) WHERE  rnum >=1 AND rnum <=10;

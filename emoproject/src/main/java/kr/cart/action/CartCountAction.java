@@ -19,7 +19,7 @@ public class CartCountAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-
+		request.setCharacterEncoding("utf-8");
 		Map<String, Object> mapAjax = new HashMap<>();
 
 		HttpSession session = request.getSession();
@@ -29,7 +29,7 @@ public class CartCountAction implements Action {
 			
 		} else {// 로그인이 된 경우
 				// 전송된 데이터 인코딩 처리
-			request.setCharacterEncoding("utf-8");
+			
 			
 			mapAjax.put("result", "success");
 			// Object로 바꿔서 null처리를 해 줘야함

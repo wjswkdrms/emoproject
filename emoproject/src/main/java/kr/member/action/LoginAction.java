@@ -28,8 +28,7 @@ public class LoginAction implements Action {
 		boolean check = false;
 		
 		//cart count 추가를 위한 영역
-		SearchDAO searchDao = SearchDAO.getInstance();
-		SearchVO searchVo = new SearchVO();
+		
 		int cartCount = 0;
 		//by 박정호...
 		
@@ -48,11 +47,7 @@ public class LoginAction implements Action {
 					                member.getId());
 			session.setAttribute("user_auth", 
 					              member.getAuth());
-			//cartCount 영역...
 			
-			cartCount = searchDao.getCartCount(member.getMem_num());
-			session.setAttribute("cartCount", cartCount);
-			//carCount 끝
 			//인증 성공시 호출
 			return "redirect:/main/main.do";
 		}

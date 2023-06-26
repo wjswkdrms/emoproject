@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
@@ -15,8 +16,20 @@ public class MainAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		HttpSession session = request.getSession();
 		SearchDAO dao = SearchDAO.getInstance();
+		
+		
+		
+		//cart count 추가를 위한 영역 ///////////////////////////////////
+		if(session.getAttribute("user_num")!=null) {
+			Integer user_num=(Integer)session.getAttribute("user_num");
+			SearchDAO searchDao = SearchDAO.getInstance();
+			SearchVO searchVo = new SearchVO();
+			int cartCount = 0;
+			cartCount = searchDao.getCartCount(user_num);
+			request.setAttribute("cartCount", cartCount);
+		}
 		//페이징 처리를 위한 초기 세팅
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum == null) pageNum = "1";
@@ -35,6 +48,7 @@ public class MainAction implements Action{
 		request.setAttribute("count", count);
 		request.setAttribute("productList", productList);
 		request.setAttribute("page", page.getPage());
+		
 		/*
 		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "list.do");
 

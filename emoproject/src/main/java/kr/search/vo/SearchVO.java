@@ -15,7 +15,22 @@ public class SearchVO {
 	private int product_stock;		//재고
 	private int order_count;
 	private int cart_count;
+	private int product_discount;
+	private int product_price_sales;
 	
+	
+	public int getProduct_discount() {
+		return product_discount;
+	}
+	public void setProduct_discount(int product_discount) {
+		this.product_discount = product_discount;
+	}
+	public int getProduct_price_sales() {
+		return product_price_sales;
+	}
+	public void setProduct_price_sales(int product_price_sales) {
+		this.product_price_sales = product_price_sales;
+	}
 	public int getCart_count() {
 		return cart_count;
 	}

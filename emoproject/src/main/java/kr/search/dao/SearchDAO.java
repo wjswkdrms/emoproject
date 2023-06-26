@@ -281,6 +281,15 @@ public class SearchDAO {
 			//sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search + sub_sql+")a) WHERE rnum>=? AND rnum<=? ";
 			//sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_num, product_name, product_photo1, product_title, product_category, product_price FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search+" ) USING (PRODUCT_NUM) GROUP BY product_num, product_name, product_photo1, product_title, product_category, product_price "+sub_sql+" )a) WHERE rnum>=? AND rnum<=? ";
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt, COUNT(mem_num) AS ZZIM FROM em_member_zzim RIGHT OUTER JOIN (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_num, product_name, product_photo1, product_title, product_category, product_price, product_status FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) ) USING (PRODUCT_NUM) GROUP BY product_num, product_name, product_photo1, product_title, product_category, product_price, product_status  ) USING (product_num) "+sub_sql_search+" GROUP BY product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt "+sub_sql+")a) WHERE  rnum >=? AND rnum <=?";
+			/*sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM ("
+					+ "SELECT c.*, FLOOR(((PRODUCT_PRICE)*(100-PRODUCT_DISCOUNT))/100) AS PRODUCT_PRICE_SALES FROM em_product_manage f LEFT JOIN"
+					+ "(SELECT product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt, product_discount, COUNT(mem_num) AS ZZIM "
+					+ "FROM em_member_zzim z RIGHT OUTER JOIN (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_discount, product_num, product_name, product_photo1, product_title, product_category, product_price, product_status "
+					+ "FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) ) "
+					+ "USING (product_num) GROUP BY product_num, product_name, product_photo1, product_title, product_category, product_price, product_status, product_discount)"
+					+ "USING (product_num) "+sub_sql_search+" GROUP BY product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt, product_discount) c ON c.product_num = f.product_num "+sub_sql
+					+ ")a) WHERE  rnum >=? AND rnum <=?";
+			*/
 			pstmt = conn.prepareStatement(sql);
 			
 			if(product_category != 0) {
@@ -308,7 +317,7 @@ public class SearchDAO {
 				SearchVO searchvo = new SearchVO();
 				searchvo.setProduct_num(rs.getInt("product_num"));
 				searchvo.setProduct_category(product_category);
-				//searchvo.setProduct_status(rs.getInt("product_status"));
+				searchvo.setProduct_status(rs.getInt("product_status"));
 				searchvo.setProduct_name(rs.getString("product_name"));
 				searchvo.setProduct_title(rs.getString("product_title"));
 				//searchvo.setProduct_info(rs.getString("product_info"));
@@ -319,6 +328,8 @@ public class SearchDAO {
 				searchvo.setProduct_price(rs.getInt("product_price"));
 				//searchvo.setProduct_stock(rs.getInt("product_stock"));
 				searchvo.setOrder_count(rs.getInt("order_cnt"));
+				//searchvo.setProduct_discount(rs.getInt("product_discount"));
+				//searchvo.setProduct_price_sales(rs.getInt("product_price_sales"));
 				list.add(searchvo);
 			}
 			

@@ -45,6 +45,31 @@ $(function(){
     };
     */
     
+    let user_id_exsist = $('#id_check_tag').val();
+    if(user_id_exsist.length>0) {
+    	$.ajax({
+    		url:'../cart/cartCount.do',
+    		type:'post',
+    		dataType:'json',
+    		success:function(param){
+    			$('#cart_count').text()
+    			let count_output = '<span id ="cart_count">'+param.cartCount+'</span>';
+    			$('#cart-icon').append(count_output);
+    				
+    				
+    				/* 헤더에 들어가는 영역 입니다. */
+    				/*$('#cart_count').text();
+    				$('#cart_count').text(param.cartCount_ajax);*/
+    				
+    				
+    			
+    		},
+    		error:function(){
+    			alert('네트워크 오류 발생');
+    		}
+    	});
+    }
+    
 });
 
 
@@ -138,7 +163,9 @@ $(function(){
 
 				<a href="${pageContext.request.contextPath}/cart/list.do" id="cart-icon">
 					<img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png">
-					<span id ="add_cart_count"></span>
+					<!-- ajax 처리 필요 -->
+					<!--  <span id ="cart_count">${cartCount}</span>
+					 ajax 처리 -->
 				</a>
 				<a href="${pageContext.request.contextPath}/order/userHomeList.do"><img src="${pageContext.request.contextPath}/images/emo_icon_home01.png"></a>
 			</li>
