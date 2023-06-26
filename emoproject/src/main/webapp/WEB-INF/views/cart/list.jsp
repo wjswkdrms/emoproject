@@ -25,6 +25,7 @@ function fnCalCount(type, ths){
 }
 $(function(){
 	//장바구니 상품 삭제 이벤트 연결	
+	//ㅋㅁ
 	$('.cart-del').on('click',function(){
 		$.ajax({
 			url:'deleteCart.do',
