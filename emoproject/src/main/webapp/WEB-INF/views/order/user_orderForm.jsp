@@ -53,7 +53,7 @@
            	<div class="input_title">
 					<label for="receive_name">이름</label></div>
 					<div class="input_box">
-					<input type="text" name="receive_name" class="input_style"
+					<input type="text" name="receive_name" class="input_style" value="${user.getName()}"
 					  id="receive_name" maxlength="10"></div></div></div>
 				</li>
 				<li>
@@ -62,7 +62,7 @@
            	<div class="input_title">
 					<label for="receive_phone">전화번호</label></div>
 					<div class="input_box">
-					<input type="text" name="receive_phone" class="input_style"
+					<input type="text" name="receive_phone" class="input_style" value="${user.getCell()}"
 					  id="receive_phone" maxlength="15"></div></div></div>
 				</li>
 				<li>
@@ -71,7 +71,7 @@
            	<div class="input_title">
 					<label for="receive_email">이메일</label></div>
 					<div class="input_box">
-					<input type="text" name="receive_email" class="input_style"
+					<input type="text" name="receive_email" class="input_style" value="${user.getEmail()}"
 					  id="receive_email" maxlength="30"></div></div></div>
 				</li>
 			</ul>
@@ -85,7 +85,7 @@
 					<label for="zipcode">우편번호</label>
 					          </div>
 					          <div class="input_box">
-					<input type="text" name="receive_post" class="input_style"
+					<input type="text" name="receive_post" class="input_style" value="${user.getZipcode()}"
 					  id="zipcode" maxlength="5">
 					<input type="button" value="우편번호 찾기"  class="input_style"
 					 onclick="execDaumPostcode()">  </div></div></div>
@@ -96,7 +96,7 @@
            	<div class="input_title">
 					<label for="address1">주소</label></div>
 					<div class="input_box">
-					<input type="text" name="receive_address1" class="input_style"
+					<input type="text" name="receive_address1" class="input_style" value="${user.getAddress1()}"
 					  id="address1" maxlength="30"></div></div></div>
 				</li>
 				<li>
@@ -106,7 +106,7 @@
 					<label for="address2">상세 주소</label>
 					</div>
 					<div class="input_box">
-					<input type="text" name="receive_address2" class="input_style"
+					<input type="text" name="receive_address2" class="input_style" value="${user.getAddress2()}"
 					  id="address2" maxlength="30"></div></div></div>
 				</li>
 				<li>

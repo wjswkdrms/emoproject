@@ -97,6 +97,7 @@ public class UserOrderAction implements Action{
 		
 		orderDao.updateStatus(orderDetailList);
 		
+		
 		/*
 		 * //refresh 정보를 응답 헤더에 추가 response.addHeader("Refresh",
 		 * "2;url=../main/main.do");
