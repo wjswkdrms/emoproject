@@ -141,7 +141,7 @@ table.form-box {
 	font-size: 16px;
 	line-height: 22px;
 	letter-spacing: -0.01em;
-	text-align: left;
+	text-align: center;
 	vertical-align: top;
 	font-weight: 500;
 }
@@ -150,9 +150,10 @@ table.form-box {
 	padding: 14px 10px;
 	line-height: 22px;
 	letter-spacing: -0.01em;
-	text-align: left;
+	text-align: center;
 	vertical-align: top;
 	font-weight: 500;
+	
 }
 
 .row-content input[type="text"] {

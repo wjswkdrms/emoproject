@@ -69,10 +69,10 @@
 				<c:if test="${count > 0}">
 				<table class="form-box">
 					<tr>
-						<th class="row-content"><b>주문번호</b></th>
-						<th class="row-content"><b>회원번호</b></th>
-						<th class="row-content"><b>아이디</b></th>
-						<th class="row-content"><b>배송상태</b></th>
+						<th class="row-title"><b>주문번호</b></th>
+						<th class="row-title"><b>회원번호</b></th>
+						<th class="row-title"><b>아이디</b></th>
+						<th class="row-title"><b>배송상태</b></th>
 					</tr>
 					<c:forEach var="order" items="${order}">
 					<tr>
