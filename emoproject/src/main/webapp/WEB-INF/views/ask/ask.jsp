@@ -72,7 +72,9 @@
 				</c:forEach>
 <%-- 	 			</c:if>  --%>
 				<c:if test="${!empty user_num && user_auth==2}">
-				<input type="button" value="글쓰기" onclick="location.href='askForm.do'"> 
+				<div class="button-box">
+					<input class="button" type="button" value="글쓰기" onclick="location.href='askForm.do'">
+				</div> 
 				</c:if>
 				<div>${page}</div>  
 			</div>

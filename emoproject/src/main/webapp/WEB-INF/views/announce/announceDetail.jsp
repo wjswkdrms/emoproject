@@ -38,10 +38,12 @@
 					</div>	
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_auth==9}">
-						<input type="button" value="수정" onclick="location.href='announceUpdateForm.do?ann_num=${announce.ann_num}'">
-						<input type="button" value="삭제" onclick="location.href='announceDelete.do?ann_num=${announce.ann_num}'">
+						<input type="button" class="small-button" value="수정" onclick="location.href='announceUpdateForm.do?ann_num=${announce.ann_num}'">
+						<input type="button" class="small-button" value="삭제" onclick="location.href='announceDelete.do?ann_num=${announce.ann_num}'">
 						</c:if>
-						<input type="button" value="목록" onclick="location.href='announce.do'">
+					</div>
+					<div class="button-box">
+						<input type="button" class="button" value="목록" onclick="location.href='announce.do'">
 					</div>
 				</div>
 			</div>

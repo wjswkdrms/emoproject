@@ -5,10 +5,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1문의 답변</title>
+<title>1:1문의 답변 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#answer_updateform').submit(function(){
+		if($('#answer_content').val().trim() == ''){
+			alert('내용을 입력하세요');
+			$('#answer_content').val('').focus();
+			return false;
+		}
+	});
+	
+});
+
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -24,7 +38,7 @@
 					</ul>
 				</div>
 				<div class="right-div">
-					<h2>1:1문의 답변</h2>
+					<h2>1:1문의 답변 수정</h2>
 					<div class="content-box">
 						<div class="content-detail">
 							<div class="detail-title">제목</div>
@@ -43,32 +57,36 @@
 							<div>${ask.ask_content}</div>
 						</div>	
 					</div>	
-					<form id="answerupdate_form" action="answerUpdate.do" method="post" enctype="multipart/form-data">
+					<form id="answer_updateform" action="answerUpdate.do" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="mem_num" value="${ask.mem_num}">
 						<input type="hidden" name="ask_num" value="${ask.ask_num}">
-						<table>
+						<table class="form-box">
 							<tr>
-								<th>내용</th>
-								<td><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="100">${answer.answer_content}</textarea></td>
+								<th class="row-title">내용</th>
+								<td class="row-content"><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="100">${answer.answer_content}</textarea></td>
 							</tr>
 							<tr>
-								<th><label for="answer_photo">사진첨부</label></th>
-								<c:if test="${!empty answer.answer_photo}">
-								<div>
-									<div>
-									<img src="${pageContext.request.contextPath}/upload/${answer.answer_photo}" width="50" height="50" class="photo" data-img="${answer.answer_photo}">
-									</div>
-									(${answer.answer_photo})이 등록되어 있습니다.
-									<input type="button" value="삭제" id="photo_del"><br>
-								</div>
-								</c:if>
-								<td>
+								<th class="row-title"><label for="answer_photo">사진첨부</label></th>
+								<td  class="row-content">
+									<label for="answer_photo">
+										<div class="file-button">
+										</div>
+									</label>									
 									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg">
+									<c:if test="${!empty answer.answer_photo}">
+									<div>
+										<div>
+										<img src="${pageContext.request.contextPath}/upload/${answer.answer_photo}" width="50" height="50" class="photo" data-img="${answer.answer_photo}">
+										</div>
+										(${answer.answer_photo})이 등록되어 있습니다.
+										<input class="small-button" type="button" value="삭제" id="photo_del"><br>
+									</div>
+									</c:if>
 								</td>
 							</tr>
 						</table>
-						<div>
-							<input type="submit" value="등록"> <input type="button" value="목록" onclick="location.href='ask.do'">
+						<div class="button-box">
+							<input class="button" type="submit" value="등록"> <input class="button" type="button" value="목록" onclick="location.href='ask.do'">
 						</div>
 					</form>
 				</div>

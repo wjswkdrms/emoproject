@@ -9,6 +9,20 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#answer_form').submit(function(){
+		if($('#answer_content').val().trim() == ''){
+			alert('내용을 입력하세요');
+			$('#answer_content').val('').focus();
+			return false;
+		}
+	});
+	
+});
+
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -46,20 +60,24 @@
 					<form id="answer_form" action="answerWrite.do" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="mem_num" value="${ask.mem_num}">
 						<input type="hidden" name="ask_num" value="${ask.ask_num}">
-						<table>
+						<table class="form-box">
 							<tr>
-								<th>내용</th>
-								<td><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="100"></textarea></td>
+								<th class="row-title">내용</th>
+								<td class="row-content"><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="100"></textarea></td>
 							</tr>
 							<tr>
-								<th><label for="answer_photo">사진첨부</label></th>
-								<td>
+								<th class="row-title"><label for="answer_photo">사진첨부</label></th>
+								<td class="row-content">
+									<label  for="answer_photo">
+										<div class="file-button">
+										</div>
+									</label>								
 									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg">
 								</td>
 							</tr>
 						</table>
-						<div>
-							<input type="submit" value="등록"> <input type="button" value="목록" onclick="location.href='askDetail.do?ask_num=${ask.ask_num}'">
+						<div class="button-box">
+							<input class="button" type="submit" value="등록"> <input class="button" type="button" value="목록" onclick="location.href='askDetail.do?ask_num=${ask.ask_num}'">
 						</div>
 					</form>
 				</div>
