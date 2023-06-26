@@ -24,6 +24,7 @@ public class MyEditFormAction implements Action{
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.myEditGet(mem_num);
 		
+		//기존 개인정보 출력
 		request.setAttribute("mem_zipcode",member.getZipcode());
 		request.setAttribute("mem_address1",member.getAddress1());
 		request.setAttribute("mem_address2",member.getAddress2());

@@ -274,42 +274,41 @@ public class MemberDAO {
 				pstmt1 = conn.prepareStatement(sql);
 				pstmt1.setInt(1, mem_num);
 				pstmt1.executeUpdate();
-				System.out.println("1");
 				//em_memer_detail 테이블의 모든 데이터 삭제
 				sql = "DELETE FROM em_member_detail WHERE mem_num=?";
 				pstmt2 = conn.prepareStatement(sql);
 				pstmt2.setInt(1, mem_num);
-				pstmt2.executeUpdate();System.out.println("2");
+				
 				//em_member_home 테이블의 모든 데이터 삭제
 				sql = "DELETE FROM em_member_home WHERE mem_num=?";
 				pstmt3 = conn.prepareStatement(sql);
 				pstmt3.setInt(1, mem_num);
-				pstmt3.executeUpdate();System.out.println("3");
+				
 				//em_member_zzim 테이블의 모든 데이터 삭제
 				sql = "DELETE FROM em_member_zzim WHERE mem_num=?";
 				pstmt4 = conn.prepareStatement(sql);
 				pstmt4.setInt(1, mem_num);
-				pstmt4.executeUpdate();System.out.println("4");
+				
 				//em_cart 테이블의 모든 데이터 삭제
 				sql = "DELETE FROM em_member_cart WHERE mem_num=?";
 				pstmt5 = conn.prepareStatement(sql);
 				pstmt5.setInt(1, mem_num);
-				pstmt5.executeUpdate();System.out.println("5");
+				
 				//em_review 테이블의 모든 데이터 삭제
 				sql = "DELETE FROM em_review WHERE mem_num=?";
 				pstmt6 = conn.prepareStatement(sql);
 				pstmt6.setInt(1, mem_num);
-				pstmt6.executeUpdate();System.out.println("6");
+				
 				//em_board_answer 테이블의 모든 데이터 삭제
 				sql = "DELETE FROM em_board_answer WHERE ask_num IN (SELECT ask_num FROM em_board_ask WHERE mem_num=?)";
 				pstmt7 = conn.prepareStatement(sql);
 				pstmt7.setInt(1, mem_num);
-				pstmt7.executeUpdate();System.out.println("7");
+				
 				//em_board_ask 테이블의 모든 데이터 삭제, 하기전에 위 sql문 선행 필수
 				sql = "DELETE FROM em_board_ask WHERE mem_num=?";
 				pstmt8 = conn.prepareStatement(sql);
 				pstmt8.setInt(1, mem_num);
-				pstmt8.executeUpdate();System.out.println("8");
+				
 				
 				//모든 SQL문의 실행이 성공하면 커밋
 				conn.commit();
@@ -1029,6 +1028,69 @@ public class MemberDAO {
 				DBUtil.executeClose(rs, pstmt, conn);
 			}
 			return mem;
+		}
+		
+		
+		
+		//개인정보 수정
+		public void myEditSet(MemberVO mem, int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			PreparedStatement pstmt3 = null;
+			PreparedStatement pstmt4 = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
+				System.out.println("1");
+				if(mem.getPasswd()!=null) {
+					sql = "UPDATE em_member_detail SET mem_passwd=? WHERE mem_num=?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, mem.getPasswd());
+						pstmt.setInt(2, mem_num);
+						pstmt.executeUpdate();
+				}
+				System.out.println(mem.getCell()+"cell");
+				System.out.println(mem_num+"memnum");
+				if(mem.getCell()!=null) {
+					sql = "UPDATE em_member_detail SET mem_cell=? WHERE mem_num=?";
+						pstmt2 = conn.prepareStatement(sql);
+						pstmt2.setString(1,mem.getCell());
+						pstmt2.setInt(2, mem_num);
+						pstmt2.executeUpdate();
+				}
+				System.out.println(mem.getEmail()+123);
+				if(mem.getEmail()!=null) {
+					sql = "UPDATE em_member_detail SET mem_email=? WHERE mem_num=?";
+						pstmt3 = conn.prepareStatement(sql);
+						pstmt3.setString(1, mem.getEmail());
+						pstmt3.setInt(2, mem_num);
+						pstmt3.executeUpdate();
+				}
+				System.out.println("4");
+				sql = "UPDATE em_member_detail SET mem_zipcode=?, mem_address1=?, mem_address2=? WHERE mem_num=?";
+					pstmt4 = conn.prepareStatement(sql);
+					pstmt4.setString(1, mem.getZipcode());
+					pstmt4.setString(2, mem.getAddress1());
+					pstmt4.setString(3, mem.getAddress2());
+					pstmt4.setInt(4, mem_num);
+					pstmt4.executeUpdate();
+					
+				//
+				//SQL문 실행
+				conn.commit();
+			}catch(Exception e){
+				//SQL문이 하나라도 실패하면 롤백
+				conn.rollback();
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+				DBUtil.executeClose(null, pstmt2, conn);
+				DBUtil.executeClose(null, pstmt3, conn);
+				DBUtil.executeClose(null, pstmt4, conn);
+			}
 		}
 }
 
