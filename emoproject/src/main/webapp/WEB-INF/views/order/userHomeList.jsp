@@ -13,6 +13,7 @@
 <body>
 <div>
 	<div>
+		<form action="${pageContext.request.contextPath}/order/userAddressUpdate.do">
 		<table>
 			<tr>
 				<th>이름</th>
@@ -23,14 +24,18 @@
 			</tr>
 			<c:forEach var="home" items="${list}">
 			<tr>
+				<td><input type="radio" name="home_num" value="${home.getMem_home_num()}"></td>
 				<td>${home.getMem_home_name()}</td>
 				<td>${home.getMem_home_zipcode()}</td>
 				<td>${home.getMem_home_address1()}</td>
 				<td>${home.getMem_home_address2()}</td>
 				<td>${home.getMem_home_cell()}</td>
+				<td><input type="button" value="수정"><input type="button" value="삭제"></td>
 			</tr>
 			</c:forEach>
 		</table>
+		<input type="submit" value="내 주소를 해당 주소로 변경">
+		</form>
 	</div>
 </div>
 </body>

@@ -219,10 +219,59 @@ public class OrderDAO {
 		}finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		
 		return list;
 	}
-
+	public MemberHomeVO getHome(int home_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		MemberHomeVO home = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM em_member_home WHERE mem_home_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, home_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				home = new MemberHomeVO();
+				home.setMem_home_address1(rs.getString("mem_home_address1"));
+				home.setMem_home_address2(rs.getString("mem_home_address2"));
+				home.setMem_home_cell(rs.getString("mem_home_cell"));
+				home.setMem_home_name(rs.getString("mem_home_name"));
+				home.setMem_home_num(rs.getInt("mem_home_num"));
+				home.setMem_home_zipcode(rs.getInt("mem_home_zipcode"));
+				home.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return home;
+	}
+	public void updateMemberAddress(MemberHomeVO home, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE em_member_detail SET mem_cell=?, mem_zipcode=?, mem_address1=?, mem_address2=? WHERE mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, home.getMem_home_cell());
+			pstmt.setInt(2, home.getMem_home_zipcode());
+			pstmt.setString(3, home.getMem_home_address1());
+			pstmt.setString(4, home.getMem_home_address2());
+			pstmt.setInt(5, mem_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 }
 		
