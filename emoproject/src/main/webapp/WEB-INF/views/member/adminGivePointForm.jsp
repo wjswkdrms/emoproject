@@ -10,6 +10,27 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#point_form').submit(function(){
+		if($('#point_value').val().trim() == ''){
+			alert('값을 입력하세요');
+			$('#point_value').val('').focus();
+			return false;
+		}
+		if(!/^[0-9]{1,7}$/.test(
+	        $('#point_value').val())){
+			alert('숫자 사용, 최소 1자 ~ 최대 7자를 사용하세요');
+			$('#point_value').val('');
+			$('#point_value').focus();
+			return false;
+		}
+	});
+	
+});
+
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -21,7 +42,7 @@
 					포인트 부여
 				</div>
 				<div class="content-box">
-					<form method="post" action="adminGivePoint.do">
+					<form id="point_form" method="post" action="adminGivePoint.do">
 						<input type="hidden" name="mem_num" value="${member.mem_num}">
 						<div class="content-detail">
 							<div class="detail-title">회원번호</div>
@@ -49,12 +70,12 @@
 						<div class="content-detail">
 							<div class="detail-title">부여포인트</div>
 							<div class="specific">
-								<input type="text" name="give-point">
+								<input type="text" name="give-point" id="point_value">
 							</div>
 						</div>
 						<div class="button-box">
-							<input type="submit" value="확인">
-							<input type="button" value="목록" onclick="location.href='adminMemberList.do'">
+							<input class="button" type="submit" value="확인">
+							<input class="button" type="button" value="목록" onclick="location.href='adminMemberList.do'">
 						</div>
 					</form>	
 				</div>

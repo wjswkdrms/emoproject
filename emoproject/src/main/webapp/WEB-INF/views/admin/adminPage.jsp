@@ -6,32 +6,39 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div>
-		<div>
-			<div class="page-name">고객센터</div>
-		</div>
-		<div>
-			<ul>
-				<li>
-					<a href="${pageContext.request.contextPath}/product/productlist.do"><span></span>상품 등록</a>
-				</li>
-				<li>
-					<a href="${pageContext.request.contextPath}/member/adminMemberList.do"><span></span>회원 관리</a>
-				</li>
-				<li>
-					<a><span></span>매출 확인</a>
-				</li>
-				<li>
-					<a href="${pageContext.request.contextPath}/announce/announce.do"><span></span>고객 센터</a>
-				</li>
-				<li>
-					<a href="${pageContext.request.contextPath}/member/adminOrderList.do"><span></span>주문 관리</a>
-				</li>
-			</ul>
+	<div class="whole">
+		<div class="container">
+			<div class="box">
+				<div class="title">
+					관리자 페이지
+				</div>
+				<div class="content-box">
+					<ul class="main-content">
+						<li class="icon-detail">
+							<a href="${pageContext.request.contextPath}/product/productlist.do"><span class="icon1"></span>상품 등록</a>
+						</li>
+						<li class="icon-detail">
+							<a href="${pageContext.request.contextPath}/member/adminMemberList.do"><span class="icon2"></span>회원 관리</a>
+						</li>
+						<li class="icon-detail">
+							<a><span class="icon3"></span>매출 확인</a>
+						</li>
+						<li class="icon-detail">
+							<a href="${pageContext.request.contextPath}/announce/announce.do"><span class="icon4"></span>고객 센터</a>
+						</li>
+						<li class="icon-detail">
+							<a href="${pageContext.request.contextPath}/member/adminOrderList.do"><span class="icon5"></span>주문 관리</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
