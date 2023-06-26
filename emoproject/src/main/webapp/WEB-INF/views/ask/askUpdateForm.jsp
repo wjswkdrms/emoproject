@@ -59,30 +59,49 @@ $(function(){
 							<th class="row-title"><label for="ask_photo1">사진첨부</label></th>
 							<td class="row-content">
 								<c:if test="${!empty ask.ask_photo1}">
-								<div>
-									<div>
-									<img src="${pageContext.request.contextPath}/upload/${ask.ask_photo1}" width="50" height="50" 
-					class="photo" data-img="${ask.ask_photo1}">
-									</div>
-									(${ask.ask_photo1})이 등록되어 있습니다.
-									<input type="button" value="삭제" id="photo_del"><br>
-								</div>
-<!-- 								<script type="text/javascript">
-									$(function(){
-										$('#photo_del').click(function(){
-											let choice=confirm('삭제하시겠습니까?');
-											if(choice){
-												
-											}
-										})
-									});
-								</script> -->
-								</c:if>
 								<label  for="ask_photo1">
 									<div class="file-button">
 									</div>
 								</label>
 								<input type="file" name="ask_photo1" id="ask_photo1" accept="image/gif,image/png,image/jpeg">
+								<div>
+									<div id="file_detail">
+									<img src="${pageContext.request.contextPath}/upload/${ask.ask_photo1}" width="50" height="50" 
+					class="photo" data-img="${ask.ask_photo1}">
+									(${ask.ask_photo1})이 등록되어 있습니다.
+									</div>
+									<input type="button" value="삭제" id="photo_del"><br>
+								</div>
+									<script type="text/javascript">
+										$(function(){
+											$('#photo_del').click(function(){
+												let choice=confirm('삭제하시겠습니까?');
+												if(choice){
+													$.ajax({
+														url:'deleteAskFile.do',
+														type:'post',
+														data:{ask_num:${ask.ask_num}},
+														dataType:'json',
+														success:function(param){
+															if(param.result == 'logout'){
+																alert('로그인 후 사용하세요');
+															}else if(param.result == 'success'){
+																$('#file_detail').hide();
+															}else if(param.result == 'wrongAccess'){
+																alert('잘못된 접속입니다.');
+															}else{
+																alert('파일 삭제 오류 발생');
+															}														
+														},
+														error:function(){
+															alert('네트워크 오류 발생');														
+														}
+													});
+												}
+											})
+										});
+									</script>
+								</c:if>
 							</td>
 						</tr>
 					</table>

@@ -218,7 +218,7 @@ public class askDAO {
 	}
 	
 	//파일 삭제
-	public void deleteAskFile(int ask_num)
+	public void deleteFile(int ask_num)
             throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;

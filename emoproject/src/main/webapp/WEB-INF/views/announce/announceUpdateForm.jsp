@@ -58,28 +58,47 @@ $(function(){
 						<tr>
 							<th class="row-title"><label for="ann_photo1">사진첨부</label></th>
 							<td class="row-content">
-							<label  for="ann_photo1">
-								<div class="file-button">
-								</div>
-							</label>
+								<label  for="ann_photo1">
+									<div class="file-button">
+									</div>
+								</label>
 							<input type="file" name="ann_photo1" id="ann_photo1" accept="image/gif,image/png,image/jpeg">
 							<c:if test="${!empty announce.ann_photo1}">
-								<div class="row-content">
+								<div class="row-content" id="file_detail">
 									<img src="${pageContext.request.contextPath}/upload/${announce.ann_photo1}" width="50" height="50" 
 										class="photo" data-img="${announce.ann_photo1}">
 									(${announce.ann_photo1})이 등록되어 있습니다.
 									<input class="small-button" type="button" value="삭제" id="photo_del"><br>
 								</div>
-<!-- 								<script type="text/javascript">
+ 								<script type="text/javascript">
 									$(function(){
 										$('#photo_del').click(function(){
 											let choice=confirm('삭제하시겠습니까?');
 											if(choice){
-												
+												$.ajax({
+													url:'deleteFile.do',
+													type:'post',
+													data:{ann_num:${announce.ann_num}},
+													dataType:'json',
+													success:function(param){
+														if(param.result == 'logout'){
+															alert('로그인 후 사용하세요');
+														}else if(param.result == 'success'){
+															$('#file_detail').hide();
+														}else if(param.result == 'wrongAccess'){
+															alert('잘못된 접속입니다.');
+														}else{
+															alert('파일 삭제 오류 발생');
+														}														
+													},
+													error:function(){
+														alert('네트워크 오류 발생');														
+													}
+												});
 											}
 										})
 									});
-								</script> -->
+								</script>
 							</c:if>
 							</td>
 						</tr>

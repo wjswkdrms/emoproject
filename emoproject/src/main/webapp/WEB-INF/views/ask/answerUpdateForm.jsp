@@ -53,7 +53,9 @@ $(function(){
 							<div class="specific">${ask.ask_date}</div>
 						</div>	
 						<div class="main-content">
-							<div><img src=${pageContext.request.contextPath}/upload/${ask.ask_photo1}></div>
+							<c:if test="${!empty ask.ask_photo1}">
+								<div><img src=${pageContext.request.contextPath}/upload/${ask.ask_photo1}></div>
+							</c:if>
 							<div>${ask.ask_content}</div>
 						</div>	
 					</div>	
@@ -74,12 +76,41 @@ $(function(){
 									</label>									
 									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg">
 									<c:if test="${!empty answer.answer_photo}">
-									<div>
+									<div id="file_detail">
 										<div>
 										<img src="${pageContext.request.contextPath}/upload/${answer.answer_photo}" width="50" height="50" class="photo" data-img="${answer.answer_photo}">
 										</div>
 										(${answer.answer_photo})이 등록되어 있습니다.
 										<input class="small-button" type="button" value="삭제" id="photo_del"><br>
+										 	<script type="text/javascript">
+												$(function(){
+													$('#photo_del').click(function(){
+														let choice=confirm('삭제하시겠습니까?');
+														if(choice){
+															$.ajax({
+																url:'deleteAnswerFile.do',
+																type:'post',
+																data:{ask_num:${ask.ask_num}},
+																dataType:'json',
+																success:function(param){
+																	if(param.result == 'logout'){
+																		alert('로그인 후 사용하세요');
+																	}else if(param.result == 'success'){
+																		$('#file_detail').hide();
+																	}else if(param.result == 'wrongAccess'){
+																		alert('잘못된 접속입니다.');
+																	}else{
+																		alert('파일 삭제 오류 발생');
+																	}														
+																},
+																error:function(){
+																	alert('네트워크 오류 발생');														
+																}
+															});
+														}
+													})
+												});
+											</script>
 									</div>
 									</c:if>
 								</td>
