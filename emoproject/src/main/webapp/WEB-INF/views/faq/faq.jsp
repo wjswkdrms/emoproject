@@ -10,7 +10,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript">
-
+	function collapse(element) {
+	    var before = document.getElementsByClassName("active")[0]               // 기존에 활성화된 버튼
+	    if (before && document.getElementsByClassName("active")[0] != element) {  // 자신 이외에 이미 활성화된 버튼이 있으면
+	        before.nextElementSibling.style.maxHeight = null;   // 기존에 펼쳐진 내용 접고
+	        before.classList.remove("active");                  // 버튼 비활성화
+	    }
+	    element.classList.toggle("active");         // 활성화 여부 toggle
+	
+	    var content = element.nextElementSibling;
+	    if (content.style.maxHeight != 0) {         // 버튼 다음 요소가 펼쳐져 있으면
+	        content.style.maxHeight = null;         // 접기
+	    } else {
+	        content.style.maxHeight = content.scrollHeight + "px";  // 접혀있는 경우 펼치기
+	    }
+	}
 </script>
 </head>
 <body>
@@ -51,30 +65,30 @@
 				
 				<c:forEach var="faq" items="${list}">
 				<ul class="list">
-					<li><div class="list-num">${faq.faq_num}</div></li>
-					<li>
-						<div  class="list-category">
-						<c:if test="${faq.faq_category==1}">
-							회원
-						</c:if>
-						<c:if test="${faq.faq_category==2}">
-							이벤트/쿠폰
-						</c:if>
-						<c:if test="${faq.faq_category==3}">
-							서비스 이용
-						</c:if>
-						<c:if test="${faq.faq_category==4}">
-							시스템 오류
-						</c:if>
-						</div>
+					<li class="collapsible" onclick="collapse(this);">
+							<div class="list-num">${faq.faq_num}</div>
+							<div  class="list-category">
+							<c:if test="${faq.faq_category==1}">
+								회원
+							</c:if>
+							<c:if test="${faq.faq_category==2}">
+								이벤트/쿠폰
+							</c:if>
+							<c:if test="${faq.faq_category==3}">
+								서비스 이용
+							</c:if>
+							<c:if test="${faq.faq_category==4}">
+								시스템 오류
+							</c:if>
+							</div>
+							<div class="list-name">${faq.faq_title}</div>
 					</li>
-					<li>
-						<div class="list-name">${faq.faq_title}</div>
-						<div>
-							<img src="${pageContext.request.contextPath}/images/arw_reply.png">
-							${faq.faq_content}
-						</div>
-					</li>
+					<li class="content">
+							<div>
+							<img src="${pageContext.request.contextPath}/images/arw_reply.png" width="10px;">
+							<pre>${faq.faq_content}</pre>
+							</div>
+					</li>					
 					<li>
 						<c:if test="${!empty user_num && user_auth==9}">
 						<div class="button-box">

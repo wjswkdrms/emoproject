@@ -71,8 +71,27 @@ $(function(){
 									<label  for="answer_photo">
 										<div class="file-button">
 										</div>
-									</label>								
-									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg">
+									</label>
+									<div id="image_container"></div>
+									<script type="text/javascript">
+										function setThumbnail(event) {
+											var reader = new FileReader();
+	
+											reader.onload = function(event) {
+												var img = document
+														.createElement("img");
+												img.setAttribute("src",
+														event.target.result);
+												document.querySelector(
+														"div#image_container")
+														.appendChild(img);
+											};
+	
+											reader.readAsDataURL(event.target.files[0]);
+										}
+									</script>																	
+									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg"
+									  onchange="setThumbnail(event);">
 								</td>
 							</tr>
 						</table>
