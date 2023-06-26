@@ -53,7 +53,9 @@ $(function(){
 							<div class="specific">${ask.ask_date}</div>
 						</div>	
 						<div class="main-content">
+							<c:if test="${!empty ask.ask_photo1}">
 							<div><img src=${pageContext.request.contextPath}/upload/${ask.ask_photo1}></div>
+							</c:if>
 							<div>${ask.ask_content}</div>
 						</div>	
 					</div>	
