@@ -60,7 +60,7 @@
 						<div class="specific">${home.mem_home_cell}</div>
 					</div>	
 					<div class="button-box">
-						<input type="button" value="목록" onclick="location.href='adminOrderList.do'">
+						<input class="small-button" type="button" value="목록" onclick="location.href='adminOrderList.do'">
 					</div>
 				</div>
 			</div>

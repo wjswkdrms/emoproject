@@ -47,7 +47,7 @@ $(function(){
 				<div class="right-div">
 				<h2>자주하는 질문 글쓰기</h2>
 				<form id="faq_form" action="faqWrite.do" method="post">
-					<table class="form-box">
+					<table >
 						<tr>
 							<td class="row-title">제목</td>
 							<th class="row-content"><input class="text-title" type="text" name="faq_title" id="faq_title" ></th>

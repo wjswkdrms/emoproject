@@ -34,8 +34,8 @@
 							<c:if test="${detail.auth==9}">관리</c:if>
 						</div>
 						<div class="specific">
-						<input type="button" value="정지" onclick="location.href='adminMemberStop.do?mem_num=${detail.mem_num}'">
-						<input type="button" value="탈퇴" onclick="location.href='adminMemberExpire.do?mem_num=${detail.mem_num}'">
+						<input class="small-button" type="button" value="정지" onclick="location.href='adminMemberStop.do?mem_num=${detail.mem_num}'">
+						<input class="small-button" type="button" value="탈퇴" onclick="location.href='adminMemberExpire.do?mem_num=${detail.mem_num}'">
 						</div>
 					</div>	
 					<div class="content-detail">
@@ -76,7 +76,7 @@
 							<fmt:formatNumber value="${detail.point}"/> 포인트
 						</div>
 						<div class="specific">
-							<input type="button" value="포인트 입금" onclick="location.href='adminGivePointForm.do?mem_num=${detail.mem_num}'">
+							<input class="small-button" type="button" value="포인트 입금" onclick="location.href='adminGivePointForm.do?mem_num=${detail.mem_num}'">
 						</div>
 					</div>	
 					<div class="content-detail">
@@ -90,7 +90,7 @@
 						<div class="specific">${detail.reg_date}</div>
 					</div>	
 					<div class="button-box">
-						<input type="button" value="목록" onclick="location.href='adminMemberList.do'">
+						<input class="small-button" type="button" value="목록" onclick="location.href='adminMemberList.do'">
 					</div>
 				</div>
 			</div>
