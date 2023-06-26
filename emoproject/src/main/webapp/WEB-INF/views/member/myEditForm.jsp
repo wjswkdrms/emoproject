@@ -231,6 +231,16 @@
             </div>
           </div>
         </div>
+                <div class="input_idpw_outer" id="input_birth">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="birth">보유 포인트</label>
+            </div>
+            <div class="input_box">
+              <input type="button" class="output_style_check" value="${mem_point} pt">
+            </div>
+          </div>
+        </div>
 
       </div>
       <div class="page_login">

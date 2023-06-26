@@ -30,7 +30,7 @@ public class MyEditFormAction implements Action{
 		request.setAttribute("mem_address2",member.getAddress2());
 		request.setAttribute("mem_birth",member.getBirth());
 		request.setAttribute("mem_gender",member.getGender());
-		request.setAttribute("mem_point",member.getPoint());
+		request.setAttribute("mem_point",member.getPoint_str());
 		request.setAttribute("mem_id",member.getId());
 		request.setAttribute("mem_auth",member.getAuth());
 		request.setAttribute("mem_reg_date",member.getReg_date_2());

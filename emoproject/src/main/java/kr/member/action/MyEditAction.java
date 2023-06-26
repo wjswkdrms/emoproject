@@ -38,7 +38,6 @@ public class MyEditAction implements Action{
 			member.setEmail(request.getParameter("email"));
 		}
 		//전송된 데이터 dao로 이동
-		System.out.println(request.getParameter("zipcode")+"집코드");
 		member.setZipcode(request.getParameter("zipcode"));
 		member.setAddress1(request.getParameter("address1"));
 		member.setAddress2(request.getParameter("address2"));

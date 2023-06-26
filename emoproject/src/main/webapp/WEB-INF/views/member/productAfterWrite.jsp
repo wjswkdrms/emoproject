@@ -18,7 +18,7 @@
       <div class="page_login">
         <ul class="button_all" id="page_button_1">
           <li><input type="button" class="button" value="돌아가기" onclick="location.href='${pageContext.request.contextPath}/member/productAfter.do'"></li>
-          <li><input type="button" class="button" value="후기 등록 상품 보기" onclick="location.href='${pageContext.request.contextPath}/product/productDetail.do?product_num=24'"></li>
+          <li><input type="button" class="button" value="후기 등록 상품 보기" onclick="location.href='${pageContext.request.contextPath}/product/productDetail.do?product_num=${product_num}'"></li>
           <li><input type="button" class="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"></li>
         </ul>
       </div>

@@ -10,6 +10,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
+import kr.product.vo.ProductDetailVO;
 import kr.review.vo.ReviewVO;
 import kr.util.FileUtil;
 
@@ -29,8 +30,16 @@ public class ProductAfterWriteAction implements Action{
 		String order_num = request.getParameter("order_num"); //쿼리스트링으로 입력
 		
 		MultipartRequest multi=FileUtil.createFile(request);
-
+		
+		System.out.println(multi.getParameter("review_title"));
+		System.out.println(multi.getParameter("review_content"));
+		System.out.println(multi.getParameter("review_photo1"));
+		System.out.println(multi.getParameter("review_score"));
+		System.out.println(product_num);
+		System.out.println(order_num);
 		ReviewVO review = new ReviewVO();
+		ProductDetailVO product = new ProductDetailVO();
+		System.out.println(product.getProduct_num());
 		review.setReview_title(multi.getParameter("review_title"));
 		review.setReview_content(multi.getParameter("review_content"));
 		review.setReview_photo1(multi.getFilesystemName("review_photo1"));

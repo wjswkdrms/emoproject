@@ -966,12 +966,14 @@ public class MemberDAO {
 					mem.setAddress2(rs.getString("mem_address2"));
 					mem.setBirth(rs.getString("mem_birth"));
 					mem.setGender(rs.getInt("mem_gender"));
-					mem.setPoint(rs.getInt("mem_point"));
 					mem.setId(rs.getString("mem_id"));
 					mem.setAuth(rs.getInt("mem_auth"));
 					mem.setReg_date_2(rs.getString("mem_reg_date"));
 
-					
+					//포인트 천단위 , 처리
+					String point = rs.getInt("mem_point") + ""; 
+					point = point.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+					mem.setPoint_str(point);
 					//개인정보 보호를 위해 비밀번호, 이메일, 이름, 전화번호의 일부는 * 처리하여 출력
 					//비밀번호
 					String mem_passwd_str = "";
@@ -1044,7 +1046,6 @@ public class MemberDAO {
 			try {
 				conn = DBUtil.getConnection();
 				conn.setAutoCommit(false);
-				System.out.println("1");
 				if(mem.getPasswd()!=null) {
 					sql = "UPDATE em_member_detail SET mem_passwd=? WHERE mem_num=?";
 						pstmt = conn.prepareStatement(sql);
@@ -1052,8 +1053,6 @@ public class MemberDAO {
 						pstmt.setInt(2, mem_num);
 						pstmt.executeUpdate();
 				}
-				System.out.println(mem.getCell()+"cell");
-				System.out.println(mem_num+"memnum");
 				if(mem.getCell()!=null) {
 					sql = "UPDATE em_member_detail SET mem_cell=? WHERE mem_num=?";
 						pstmt2 = conn.prepareStatement(sql);
@@ -1061,7 +1060,6 @@ public class MemberDAO {
 						pstmt2.setInt(2, mem_num);
 						pstmt2.executeUpdate();
 				}
-				System.out.println(mem.getEmail()+123);
 				if(mem.getEmail()!=null) {
 					sql = "UPDATE em_member_detail SET mem_email=? WHERE mem_num=?";
 						pstmt3 = conn.prepareStatement(sql);
@@ -1069,7 +1067,6 @@ public class MemberDAO {
 						pstmt3.setInt(2, mem_num);
 						pstmt3.executeUpdate();
 				}
-				System.out.println("4");
 				sql = "UPDATE em_member_detail SET mem_zipcode=?, mem_address1=?, mem_address2=? WHERE mem_num=?";
 					pstmt4 = conn.prepareStatement(sql);
 					pstmt4.setString(1, mem.getZipcode());
@@ -1077,8 +1074,6 @@ public class MemberDAO {
 					pstmt4.setString(3, mem.getAddress2());
 					pstmt4.setInt(4, mem_num);
 					pstmt4.executeUpdate();
-					
-				//
 				//SQL문 실행
 				conn.commit();
 			}catch(Exception e){
@@ -1093,5 +1088,3 @@ public class MemberDAO {
 			}
 		}
 }
-
-
