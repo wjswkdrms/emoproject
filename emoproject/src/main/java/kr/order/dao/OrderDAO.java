@@ -198,7 +198,7 @@ public class OrderDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM em_member_home WHERE mem_num=?";
+			sql = "select * FROM(select mem_num,mem_home_address1,mem_home_address2,mem_home_name,mem_home_num,mem_home_zipcode,mem_home_cell, RANK() OVER(PARTITION by mem_home_zipcode order by mem_home_num DESC) r FROM em_member_home WHERE mem_num=?) WHERE r = 1";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			rs = pstmt.executeQuery();
@@ -272,7 +272,31 @@ public class OrderDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
+	public void insertHome(MemberHomeVO home)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO em_member_home (mem_home_num,mem_num,mem_home_cell,mem_home_zipcode,"
+					+ "mem_home_address1,mem_home_address2,mem_home_name)"
+					+ "VALUES (em_member_home_seq.nextval,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, home.getMem_num());
+			pstmt.setString(2, home.getMem_home_cell());
+			pstmt.setInt(3, home.getMem_home_zipcode());
+			pstmt.setString(4, home.getMem_home_address1());
+			pstmt.setString(5, home.getMem_home_address2());
+			pstmt.setString(6, home.getMem_home_name());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
 		
 		
