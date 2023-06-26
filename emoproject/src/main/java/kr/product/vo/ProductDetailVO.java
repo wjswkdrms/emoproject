@@ -1,7 +1,7 @@
 package kr.product.vo;
 
 public class ProductDetailVO {
-	//커밋
+	//
 	private int product_num;
 	private String product_name;
 	private String product_title;

@@ -12,6 +12,7 @@ import kr.util.DBUtil;
 
 public class ProductDAO {
 	//싱글턴 패턴
+	//
 	private static ProductDAO instance = new ProductDAO();
 	
 	public static ProductDAO getInstance() {

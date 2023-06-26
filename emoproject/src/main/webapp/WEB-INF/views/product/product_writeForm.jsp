@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품등록</title>
+<title>상품등록</title><!--  -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">

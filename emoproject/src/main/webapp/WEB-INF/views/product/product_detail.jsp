@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 상세 보기</title>
+<title>상품 상세 보기</title><!--  -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productdetail_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
