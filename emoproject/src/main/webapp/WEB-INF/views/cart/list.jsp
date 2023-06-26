@@ -133,7 +133,8 @@ $(function(){
 						</div>
 					</td>
 					<td>
-						${cart.product.product_price*cart.cart_quantity}
+						<!-- ${cart.product.product_price*cart.cart_quantity} -->
+						${cart.product.product_price_sales*cart.cart_quantity}
 					</td>
 					<td>
 						<input type="button" value="삭제" class="cart-del button" data-cartnum="${cart.mem_cart_num}">
@@ -163,6 +164,5 @@ $(function(){
 		</c:if>
 	</div>
 <input type="button" value="구매목록" onclick="location.href='${pageContext.request.contextPath}/cart/memberEditClone.do'">
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
