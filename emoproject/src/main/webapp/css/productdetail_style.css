@@ -42,12 +42,12 @@
 	color: #fa402f;
 	font-style:italic;
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 27px;
 }
 .top-price{
 	color: #333333;
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 35px;
 }
 .top-won{
 	color: #333333;
@@ -269,3 +269,11 @@
 #detail-QA{
 	display: flex;
 } */
+
+/* .box-button button, .box-button input[type="submit"]{
+	cursor: pointer;
+} */
+s
+.pro-title h2{
+	margin: 10px 0px;
+}
