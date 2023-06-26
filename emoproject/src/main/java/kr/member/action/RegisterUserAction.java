@@ -12,16 +12,12 @@ public class RegisterUserAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {
-			return "redirect:/member/loginForm.do";
-		}
 		// 전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 
 		// 자바빈을 생성하고 전송된 데이터를 자바빈에
 		// 담음
+
 		MemberVO member = new MemberVO();
 		member.setId(request.getParameter("id"));
 		member.setName(request.getParameter("name"));
@@ -36,8 +32,8 @@ public class RegisterUserAction implements Action {
 		// MemberDAO 호출
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.insertMember(member);
+
 		// JSP 경로 반환
 		return "/WEB-INF/views/member/registerUser.jsp";
 	}
-
 }

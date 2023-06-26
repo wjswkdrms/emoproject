@@ -145,7 +145,7 @@ public class MemberDAO {
 				conn = DBUtil.getConnection();
 				sql = "SELECT * FROM em_member_manage m LEFT OUTER JOIN "
 					+ "em_member_detail d ON m.mem_num = d.mem_num "
-					+ "WHERE m.mem_email=?";
+					+ "WHERE mem_email=?";
 				//PreparedStatement 媛앹껜 �깮�꽦
 				pstmt = conn.prepareStatement(sql);
 				//?�뿉 �뜲�씠�꽣 諛붿씤�뵫
@@ -918,6 +918,7 @@ public class MemberDAO {
 			
 			try {
 				conn = DBUtil.getConnection();
+				
 				sql = "INSERT INTO em_review (review_num,product_num,mem_num,order_num,review_title,review_content,review_photo1,review_score) VALUES (em_review_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";
 				pstmt = conn.prepareStatement(sql);
 				
@@ -931,8 +932,8 @@ public class MemberDAO {
 				pstmt.setString(5,review.getReview_content()); //review_content - 입력
 				pstmt.setString(6,review.getReview_photo1()); //review_photo1 - 입력
 				pstmt.setInt(7,review.getReview_score()); //review_score - 입력
-				
 				pstmt.executeUpdate();
+				
 			}catch(Exception e){
 				throw new Exception(e);
 			}finally {
