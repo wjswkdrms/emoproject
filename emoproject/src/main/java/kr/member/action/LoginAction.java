@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.search.dao.SearchDAO;
+import kr.search.vo.SearchVO;
 
-public class LoginAction implements Action{
+public class LoginAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,6 +26,12 @@ public class LoginAction implements Action{
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.checkMember(id);
 		boolean check = false;
+		
+		//cart count 추가를 위한 영역
+		SearchDAO searchDao = SearchDAO.getInstance();
+		SearchVO searchVo = new SearchVO();
+		int cartCount = 0;
+		//by 박정호...
 		
 		if(member!=null) {
 			//비밀번호 일치 여부 체크
@@ -40,10 +48,17 @@ public class LoginAction implements Action{
 					                member.getId());
 			session.setAttribute("user_auth", 
 					              member.getAuth());
+			//cartCount 영역...
 			
+			cartCount = searchDao.getCartCount(member.getMem_num());
+			session.setAttribute("cartCount", cartCount);
+			//carCount 끝
 			//인증 성공시 호출
 			return "redirect:/main/main.do";
 		}
+		//cartCount
+		session.setAttribute("cartCount", cartCount);
+		//cartCount 끝
 		//인증 실패시 호출
 		return "/WEB-INF/views/member/login.jsp";
 	}

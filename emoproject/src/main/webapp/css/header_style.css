@@ -102,6 +102,43 @@ li {
 	
 }
 
+.icons-menu {
+	display:flex;
+	width:200px;
+	height:50px;
+}
+
+.icons-menu a {
+	display:flex;
+	width:50px;
+	height:50px;
+	display: flex;
+  	justify-content:center;
+  	align-items:center;
+  	margin-left:10px;
+  	margin-right:10px;
+  	position:relative;
+}
+
+#cart_count {
+	position:absolute;
+	background-color:#E19B50;
+	
+	right:-4px;
+	top:-4px;
+	color:white;
+	text-align: center;
+    white-space: nowrap;
+    min-width: 10px;
+    height: 20px;
+    padding: 0px 5px;
+    border: 2px solid white;;
+    border-radius: 30px;
+    font-size:12px;
+    display:flex;
+    justify-content:center;
+  	align-items:center;
+}
 .mid-box ul li img {
 	vertical-align:middle;
 	

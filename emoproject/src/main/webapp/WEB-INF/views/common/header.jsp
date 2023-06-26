@@ -107,7 +107,12 @@ $(function(){
 			</li>
 			<li class="icons-menu">
 				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_fav01.png"></a>
-				<a href="${pageContext.request.contextPath}/cart/list.do"><img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png"></a>
+				<a href="${pageContext.request.contextPath}/cart/list.do" id="cart-icon">
+					<img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png">
+					<c:if test="${cartCount >0}">
+						<span id="cart_count">${cartCount}</span>
+					</c:if>
+				</a>
 				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_home01.png"></a>
 			</li>
 		</ul>

@@ -330,4 +330,32 @@ public class SearchDAO {
 		}
 		return list;
 	}
+	
+	//cart count 구하기
+	public int getCartCount(int mem_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			
+			conn = DBUtil.getConnection();
+			sql = "SELECT NVL(cart_count,0) ,mem_num FROM em_member_detail LEFT OUTER JOIN (SELECT COUNT(MEM_CART_NUM) AS CART_COUNT, mem_num FROM EM_MEMBER_CART GROUP BY mem_num) USING (mem_num) WHERE mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 }
