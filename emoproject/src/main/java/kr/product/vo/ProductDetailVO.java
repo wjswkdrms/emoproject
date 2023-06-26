@@ -14,6 +14,7 @@ public class ProductDetailVO {
 	private int product_stock;
 	private int product_discount;
 	private int product_price_sales;
+	private int order_num;
 	
 	public int getProduct_price_sales() {
 		return product_price_sales;
@@ -87,4 +88,11 @@ public class ProductDetailVO {
 	public void setProduct_stock(int product_stock) {
 		this.product_stock = product_stock;
 	}
+	public int getOrder_num() {
+		return order_num;
+	}
+	public void setOrder_num(int order_num) {
+		this.order_num = order_num;
+	}
+	
 }

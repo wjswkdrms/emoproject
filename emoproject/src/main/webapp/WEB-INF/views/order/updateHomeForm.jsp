@@ -8,7 +8,7 @@
 <title>상품 구매</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -101,5 +101,6 @@
 	</div>
 	<!-- 내용 끝 -->
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

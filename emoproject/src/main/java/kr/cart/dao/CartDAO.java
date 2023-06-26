@@ -10,7 +10,7 @@ import kr.cart.vo.CartVO;
 import kr.product.vo.ProductDetailVO;
 import kr.product.vo.ProductManageVO;
 import kr.util.DBUtil;
-
+//커밋
 public class CartDAO {
 	//싱글턴 패턴
 	private static CartDAO instance = 
@@ -60,7 +60,8 @@ public class CartDAO {
 			pstmt.setInt(1, mem_num);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				sum += (rs.getInt("cart_quantity")*rs.getInt("product_price"));
+				//sum += (rs.getInt("cart_quantity")*rs.getInt("product_price"));
+				sum += (rs.getInt("cart_quantity")*((rs.getInt("product_price")*(100 - rs.getInt("product_discount")))/100));
 			}
 		}catch(Exception e) {
 			
@@ -118,6 +119,7 @@ public class CartDAO {
 				product.setProduct_name(rs.getString("product_name"));
 				product.setProduct_photo1(rs.getString("product_photo1"));
 				product.setProduct_price(rs.getInt("product_price"));
+				product.setProduct_price_sales((rs.getInt("product_price")*(100 - rs.getInt("product_discount")))/100);
 				product.setProduct_stock(rs.getInt("product_stock"));
 				product.setProduct_title(rs.getString("product_title"));
 				

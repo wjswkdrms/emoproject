@@ -24,12 +24,13 @@ public class MyEditFormAction implements Action{
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.myEditGet(mem_num);
 		
+		//기존 개인정보 출력
 		request.setAttribute("mem_zipcode",member.getZipcode());
 		request.setAttribute("mem_address1",member.getAddress1());
 		request.setAttribute("mem_address2",member.getAddress2());
 		request.setAttribute("mem_birth",member.getBirth());
 		request.setAttribute("mem_gender",member.getGender());
-		request.setAttribute("mem_point",member.getPoint());
+		request.setAttribute("mem_point",member.getPoint_str());
 		request.setAttribute("mem_id",member.getId());
 		request.setAttribute("mem_auth",member.getAuth());
 		request.setAttribute("mem_reg_date",member.getReg_date_2());

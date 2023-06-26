@@ -8,12 +8,13 @@
 <title>내 주소 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div>
 	<div>
-		
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<form action="${pageContext.request.contextPath}/order/userAddressUpdate.do">
 		<table>
 			<tr>
@@ -48,5 +49,6 @@
 		</form>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

@@ -67,15 +67,31 @@ a.detail-menu {
 	padding: 15px 13px 15px 20px;
 }
 
-ul.menu-box, .list {
+ul.menu-box {
 	padding: 0;
 	list-style: none;
 	display: block;
-	flex-direction: row;
 	margin-block-start: 1em;
 	margin-block-end: 1em;
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
+}
+ul.list li{
+	display:block;
+	padding:20px 0 20px;
+}
+ul.list{
+	width: 100%;	
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction:row;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;	
+	-webkit-box-pack: justify;	
+	justify-content: space-between;
 }
 
 div.list {
@@ -125,7 +141,7 @@ table.form-box {
 	font-size: 16px;
 	line-height: 22px;
 	letter-spacing: -0.01em;
-	text-align: left;
+	text-align: center;
 	vertical-align: top;
 	font-weight: 500;
 }
@@ -134,9 +150,10 @@ table.form-box {
 	padding: 14px 10px;
 	line-height: 22px;
 	letter-spacing: -0.01em;
-	text-align: left;
+	text-align: center;
 	vertical-align: top;
 	font-weight: 500;
+	
 }
 
 .row-content input[type="text"] {
@@ -450,9 +467,14 @@ div.reply_name {
 	width: 20%;
 }
 
-ul.list li {
+ul.list2 li {
 	display: flex;
 	flex-direction: row;
+}
+ul.list2{
+	cursor:pointer;
+	padding:0 5px;
+	text-align:left;
 }
 
 ul.main-content {

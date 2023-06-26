@@ -16,6 +16,7 @@ public class MemberVO {
 	private String birth;//생일
 	private int gender;//성별 (1:남자 2:여자)
 	private int point;//보유 포인트
+	private String point_str;
 	private Date stop_date;//가입일
 	private Date exp_date;//가입일
 	private Date reg_date;//가입일
@@ -170,6 +171,14 @@ public class MemberVO {
 
 	public void setReg_date_2(String reg_date_2) {
 		this.reg_date_2 = reg_date_2;
+	}
+
+	public String getPoint_str() {
+		return point_str;
+	}
+
+	public void setPoint_str(String point_str) {
+		this.point_str = point_str;
 	}
 	
 	

@@ -15,8 +15,7 @@
 			<!-- 내용 시작 -->
 				<div class="right-div">
 				<h2>상품 후기 작성</h2>
-				<form id="review_form" action="productAfterWrite.do" method="post" enctype="multipart/form-data">
-					
+				<form id="review_form" action="productAfterWrite.do?product_num=${product_num}&order_num=${order_num}" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
 							<th>제목</th>
@@ -32,12 +31,12 @@
 						</tr>
 						<tr>
 							<th>평점 (1~10)</th>
-							<td><textarea rows="5" cols="30" name="review_content" id="review_content" maxlength="2"></textarea></td>
+							<td><textarea rows="5" cols="30" name="review_score" id="review_score" maxlength="2"></textarea></td>
 						</tr>
 						<tr>
 							<th><label for="ask_photo1">사진첨부</label></th>
 							<td>
-								<input type="file" name="ask_photo1" id="ask_photo1" accept="image/gif,image/png,image/jpeg">
+								<input type="file" name="review_photo1" id="review_photo1" accept="image/gif,image/png,image/jpeg">
 							</td>
 						</tr>
 					</table>

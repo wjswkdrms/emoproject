@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>개인정보 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberPageAll_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
@@ -90,12 +90,12 @@
 				return false;
 			}
 			//잘못된 입력 방지
-			if(!/^[0-9]+$/.test($('#cell').val())){
+			if(!/^[0-9.*]+$/.test($('#cell').val())){
 				alert('전화번호는 숫자만 입력 가능합니다.');
 				$('#cell').val('').focus();
 				return false;
 			}
-			if(!/^[a-zA-Z0-9.@]+$/.test($('#email').val())){
+			if(!/^[a-zA-Z0-9.@*]+$/.test($('#email').val())){
 				alert('이메일은 영문자와 숫자만 입력 가능합니다.');
 				$('#email').val('').focus();
 				return false;
@@ -114,7 +114,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page_outer_register"> <!-- 전체 페이지 크기 지정 -->
   <div class="page_inner_register"> <!--메인 페이지 중앙 정렬, 크기 지정-->
-    <h2 id="title">회원가입</h2>
+    <h2 id="title">개인정보 수정</h2>
     <form id="register_form" action="myEdit.do" method="post">
       <div class="page_login">
         <div class="input_idpw_outer" id="input_id">
@@ -136,7 +136,7 @@
               <label for="name">이름</label>
             </div>
             <div class="input_box">
-              <input type="button" class="output_style_check" value="${mem_id}">
+              <input type="button" class="output_style_check" value="${mem_name}">
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@
               <label for="passwd">비밀번호</label>
             </div>
             <div class="input_box">
-              <input type="password" class="input_style" name="passwd" id="passwd" pattern=".{4,12}" required title="4~12자의 비밀번호를 입력하세요" placeholder="${mem_passwd}">
+              <input type="password" class="input_style" name="passwd" id="passwd" pattern=".{4,12}" required title="4~12자의 비밀번호를 입력하세요" value="${mem_passwd}"">
             </div>
           </div>
         </div>
@@ -159,7 +159,7 @@
               <label for="cell">전화번호</label>
             </div>
             <div class="input_box">
-              <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,11}" required title="일반적인 전화번호를 입력하세요" placeholder="${mem_cell}">
+              <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,11}" required title="일반적인 전화번호를 입력하세요" value="${mem_cell}">
             </div>
           </div>
         </div>
@@ -169,7 +169,7 @@
               <label for="email">이메일</label>
             </div>
             <div class="input_box">
-              <input type="email" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수" placeholder="${mem_email}">
+              <input type="text" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수" value="${mem_email}">
               <input type="button" class="input_style_check" value="eamil중복체크" id="email_check" >
               <span id="message_email"></span>
             </div>
@@ -228,6 +228,16 @@
 			<c:if test="${mem_gender==2}">
               <input type="button" class="output_style_check" value="여자">
 			</c:if>
+            </div>
+          </div>
+        </div>
+                <div class="input_idpw_outer" id="input_birth">
+          <div class="input_idpw_inner">
+            <div class="input_title">
+              <label for="birth">보유 포인트</label>
+            </div>
+            <div class="input_box">
+              <input type="button" class="output_style_check" value="${mem_point} pt">
             </div>
           </div>
         </div>

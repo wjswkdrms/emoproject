@@ -25,6 +25,7 @@ function fnCalCount(type, ths){
 }
 $(function(){
 	//장바구니 상품 삭제 이벤트 연결	
+	//ㅋㅁ
 	$('.cart-del').on('click',function(){
 		$.ajax({
 			url:'deleteCart.do',
@@ -133,7 +134,8 @@ $(function(){
 						</div>
 					</td>
 					<td>
-						${cart.product.product_price*cart.cart_quantity}
+						<!-- ${cart.product.product_price*cart.cart_quantity} -->
+						${cart.product.product_price_sales*cart.cart_quantity}
 					</td>
 					<td>
 						<input type="button" value="삭제" class="cart-del button" data-cartnum="${cart.mem_cart_num}">
