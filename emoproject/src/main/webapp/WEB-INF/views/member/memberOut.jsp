@@ -16,7 +16,6 @@
 <div class="page_outer"> <!-- 전체 페이지 크기 지정 -->
   <div class="page_inner"> <!--메인 페이지 중앙 정렬, 크기 지정-->
     <h2 id="title">탈퇴 완료</h2>
-    <h2 id="title_content"><a>아이디는 <strong>${mem_id}</strong> 입니다.</a></h2>
       <div class="page_login">
         <ul class="button_all" id="page_button_4">
           <li><input type="button" class="button" value="확인" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"></li>
@@ -35,10 +34,3 @@
   </script>
   </c:otherwise>
 </c:choose>  
-  
-  
-  
-  
-  
-  
-  

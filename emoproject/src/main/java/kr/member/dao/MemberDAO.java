@@ -940,6 +940,96 @@ public class MemberDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		
+		//개인정보 출력
+		public MemberVO myEditGet(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			MemberVO mem = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT de.mem_name, de.mem_passwd, de.mem_cell, de.mem_email, de.mem_zipcode, de.mem_address1, de.mem_address2, de.mem_birth, de.mem_gender, de.mem_point, ma.mem_id, ma.mem_auth, ma.mem_reg_date "
+						+ "FROM em_member_detail de INNER JOIN em_member_manage ma ON de.mem_num = ma.mem_num WHERE de.mem_num = ?";
+				pstmt = conn.prepareStatement(sql);
+				
+				//?에 데이터 바인딩
+				pstmt.setInt(1,mem_num);
+				
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					mem = new MemberVO();
+					mem.setZipcode(rs.getString("mem_zipcode"));
+					mem.setAddress1(rs.getString("mem_address1"));
+					mem.setAddress2(rs.getString("mem_address2"));
+					mem.setBirth(rs.getString("mem_birth"));
+					mem.setGender(rs.getInt("mem_gender"));
+					mem.setPoint(rs.getInt("mem_point"));
+					mem.setId(rs.getString("mem_id"));
+					mem.setAuth(rs.getInt("mem_auth"));
+					mem.setReg_date_2(rs.getString("mem_reg_date"));
+
+					
+					//개인정보 보호를 위해 비밀번호, 이메일, 이름, 전화번호의 일부는 * 처리하여 출력
+					//비밀번호
+					String mem_passwd_str = "";
+					for(int i=0; i<rs.getString("mem_passwd").length(); i++) {
+						mem_passwd_str += "*";
+					}
+					mem.setPasswd(mem_passwd_str);
+					
+					//이메일 @이전 절반 *처리, .이전 절반 *처리
+					String mem_email_str = "";
+					String[] email_arr = new String[rs.getString("mem_email").length()];
+					email_arr = (rs.getString("mem_email")).split("");
+					int first = rs.getString("mem_email").indexOf("@");
+					int second = rs.getString("mem_email").indexOf(".");
+					for(int i=0; i<first/2; i++) { //@ 이전 문자의 절반을 *처리
+						email_arr[i] = "*";
+					}
+					for(int i=first+1; i<(second-first)/2+first; i++) { //@과 . 사이 문자의 절반을 *처리
+						email_arr[i] = "*";
+					}
+					for(int i=0; i<email_arr.length; i++) {
+						mem_email_str += email_arr[i];
+					}
+					mem.setEmail(mem_email_str);
+					
+					//이름
+					String mem_name_str = "";
+					String[] name_arr = new String[rs.getString("mem_name").length()]; 
+					name_arr = (rs.getString("mem_name")).split("");
+					
+					for(int i=name_arr.length-1; i>(name_arr.length/2)-1; i--) {
+						name_arr[i] = "*";
+					}
+					for(int i=0; i<name_arr.length; i++) {
+						mem_name_str += name_arr[i];
+					}
+					mem.setName(mem_name_str);
+					
+					//전화번호 뒤 4자리 *처리
+					String mem_cell_str = "";
+					String[] cell_arr = new String[(rs.getString("mem_cell")).length()];
+					cell_arr = (rs.getString("mem_cell")).split("");
+					for(int i=cell_arr.length-4; i<cell_arr.length; i++) {
+						cell_arr[i] = "*";
+					}
+					for(int i=0; i<cell_arr.length; i++) {
+						mem_cell_str += cell_arr[i];
+					}
+					mem.setCell(mem_cell_str);
+				}
+			}catch(Exception e){
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return mem;
+		}
 }
 
 

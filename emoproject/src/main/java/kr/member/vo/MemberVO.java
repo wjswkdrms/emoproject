@@ -19,6 +19,7 @@ public class MemberVO {
 	private Date stop_date;//가입일
 	private Date exp_date;//가입일
 	private Date reg_date;//가입일
+	private String reg_date_2;//가입일
 	private Date mdate;//정보 수정일
 	
 	private int order_total_price;//누적 금액
@@ -162,5 +163,14 @@ public class MemberVO {
 	public void setMdate(Date mdate) {
 		this.mdate = mdate;
 	}
+
+	public String getReg_date_2() {
+		return reg_date_2;
+	}
+
+	public void setReg_date_2(String reg_date_2) {
+		this.reg_date_2 = reg_date_2;
+	}
+	
 	
 }

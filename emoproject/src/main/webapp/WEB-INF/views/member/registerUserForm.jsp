@@ -236,7 +236,7 @@
           </div>
         </div>
         <div class="text_announce">
-          <div class="input-notice"><strong>* 영문 또는 숫자(4자~12자)</strong></div>
+          <div class="input-notice"><strong>* 영문 대소문자 또는 숫자(4자~12자)</strong></div>
         </div>
         <div class="input_idpw_outer" id="input_cell">
           <div class="input_idpw_inner">
