@@ -54,7 +54,6 @@
 					<li><a href="announceDetail.do?ann_num=${announce.ann_num}">${announce.ann_title}</a></li>
 					<li>${announce.mem_id}</li>
 					<li>${announce.ann_date}</li>
-					
 				</ul>
 				</c:forEach>
 	 			</c:if> 

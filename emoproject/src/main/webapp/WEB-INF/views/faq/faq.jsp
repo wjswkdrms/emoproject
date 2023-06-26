@@ -64,7 +64,7 @@
 				</div>
 				
 				<c:forEach var="faq" items="${list}">
-				<ul class="list">
+				<ul class="list2">
 					<li class="collapsible" onclick="collapse(this);">
 							<div class="list-num">${faq.faq_num}</div>
 							<div  class="list-category">
@@ -88,14 +88,12 @@
 							<img src="${pageContext.request.contextPath}/images/arw_reply.png" width="10px;">
 							<pre>${faq.faq_content}</pre>
 							</div>
-					</li>					
-					<li>
 						<c:if test="${!empty user_num && user_auth==9}">
 						<div class="button-box">
 							<input type="button" class="small-button" value="수정" onclick="location.href='faqUpdateForm.do?faq_num=${faq.faq_num}'">
 						</div> 
 						</c:if>
-					</li>
+					</li>					
 				</ul>
 				</c:forEach>
 	 			</c:if> 
