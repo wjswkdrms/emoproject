@@ -23,12 +23,40 @@ $(function(){
             performSearch();
         }
     });
+    
+    /*
+    let user_id = $('#id_check_tag').val();
+	if(user_id.length>0) {
+    	$('#add_cart_count').append(cart_output);
+    	
+    	$.ajax({
+	        url: '${pageContext.request.contextPath}/cart/cartCount.do',
+	        type: 'post',
+	        dataType: 'json',
+	        success: function (param) {
+	        	alert('ajax 성공');
+	            let cart_output = '<span id="cart_count">'+param.cartCount_ajax+'</span>';
+	            $('#add_cart_count').append(cart_output);
+	        },
+	        error: function () {
+	            alert('실패');
+	        }
+	    });
+    };
+    */
+    
 });
+
+
+
+
+
 
 </script>
 
 <div class="main-head" id="header_docker">
 	<div class="top-box">
+	<input type="hidden" id="id_check_tag" value="${user_id}">
 		<ul>
 			<c:if test="${user_id != null }">
 				<li>
@@ -106,16 +134,12 @@ $(function(){
 				</div>
 			</li>
 			<li class="icons-menu">
-				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_fav01.png"></a>
+				<a href="${pageContext.request.contextPath}/cart/list.do"><img src="${pageContext.request.contextPath}/images/emo_icon_fav01.png"></a>
 
 				<a href="${pageContext.request.contextPath}/cart/list.do" id="cart-icon">
 					<img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png">
-					<c:if test="${cartCount >0}">
-						<span id="cart_count">${cartCount}</span>
-					</c:if>
+					<span id ="add_cart_count"></span>
 				</a>
-				<a href="#"><img src="${pageContext.request.contextPath}/images/emo_icon_home01.png"></a>
-				<a href="${pageContext.request.contextPath}/cart/list.do"><img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png"></a>
 				<a href="${pageContext.request.contextPath}/order/userHomeList.do"><img src="${pageContext.request.contextPath}/images/emo_icon_home01.png"></a>
 			</li>
 		</ul>

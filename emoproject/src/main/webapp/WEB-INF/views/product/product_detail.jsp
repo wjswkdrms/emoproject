@@ -59,14 +59,22 @@
 			$.ajax({
 				url:'../cart/write.do',
 				type:'post',
-				data:form_data,
+				data: 
+					form_data,
+				
 				dataType:'json',
 				success:function(param){
 					if(param.result == 'logout'){
 						alert('로그인 후 사용하세요');
 					}else if(param.result == 'success'){
 						alert('장바구니에 담았습니다.');
+						
 						location.href='../cart/list.do';
+						/* 헤더에 들어가는 영역 입니다. */
+						/*$('#cart_count').text();
+						$('#cart_count').text(param.cartCount_ajax);*/
+						
+						
 					}else if(param.result == 'over_quantity'){
 						alert('기존에 주문한 상품입니다. 개수를 추가하면 재고가 부족합니다.');
 					}else{

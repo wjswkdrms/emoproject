@@ -13,12 +13,16 @@ import kr.cart.dao.CartDAO;
 import kr.cart.vo.CartVO;
 import kr.controller.Action;
 import kr.product.vo.ProductManageVO;
+import kr.search.dao.SearchDAO;
+import kr.search.vo.SearchVO;
 
 public class WriteAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, String> mapAjax = new HashMap<String, String>();
+		
+		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		if(user_num==null) {//로그인이 되지 않은 경우
@@ -28,12 +32,20 @@ public class WriteAction implements Action{
 			request.setCharacterEncoding("utf-8");
 			
 			CartVO cart = new CartVO();
-			cart.setProduct_num(Integer.parseInt(request.getParameter("product_num")));
-			cart.setCart_quantity(Integer.parseInt(request.getParameter("order_quantity")));
-			cart.setMem_num(user_num);
+			
+			//Object로 바꿔서 null처리를 해 줘야함
+			
+				
+				cart.setProduct_num(Integer.parseInt(request.getParameter("product_num")));
+				cart.setCart_quantity(Integer.parseInt(request.getParameter("order_quantity")));
+				cart.setMem_num(user_num);
+				
 			
 			CartDAO dao = CartDAO.getInstance();
 			CartVO db_cart = dao.getcart(cart);
+			
+			
+			
 			if(db_cart==null) {//동일 상품이 없을 경우
 				dao.insertCart(cart);
 				mapAjax.put("result", "success");
@@ -49,6 +61,14 @@ public class WriteAction implements Action{
 					cart.setCart_quantity(order_quantity);
 					dao.updateCartByItem_num(cart);
 					mapAjax.put("result", "success");
+					
+					//추가 한 곳
+					/*
+					SearchDAO searchDao = SearchDAO.getInstance();
+					int cartCount = 0;
+					cartCount = searchDao.getCartCount(user_num);
+					mapAjax.put("cartCount_ajax", String.valueOf(cartCount));
+					*/
 				}
 			}
 		}
