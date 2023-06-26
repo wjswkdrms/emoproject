@@ -115,6 +115,81 @@
 			$('#message_email').text('');
 		});//end of keydown
 
+		//공백 입력 방지
+		$('#register_form').submit(function(){
+			if($('#id').val().trim()==''){
+				alert('아이디를 입력하세요');
+				$('#id').val('').focus();
+				return false;
+			}
+			if($('#passwd').val().trim()==''){
+				alert('비밀번호를 입력하세요');
+				$('#passwd').val('').focus();
+				return false;
+			}
+			if($('#name').val().trim()==''){
+				alert('이름을 입력하세요');
+				$('#passwd').val('').focus();
+				return false;
+			}
+			if($('#cell').val().trim()==''){
+				alert('전화번호를 입력하세요');
+				$('#passwd').val('').focus();
+				return false;
+			}
+			if($('#zipcode').val().trim()==''){
+				alert('우편번호를 입력하세요');
+				$('#passwd').val('').focus();
+				return false;
+			}
+			if($('#address1').val().trim()==''){
+				alert('주소를 입력하세요');
+				$('#passwd').val('').focus();
+				return false;
+			}
+			if($('#address2').val().trim()==''){
+				alert('상세주소를 입력하세요');
+				$('#passwd').val('').focus();
+				return false;
+			}
+			if($('#birth').val().trim()==''){
+				alert('생년월일을 입력하세요');
+				$('#passwd').val('').focus();
+				return false;
+			}
+			if($('#gender').val().trim()==''){
+				alert('성별을 입력하세요');
+				$('#passwd').val('').focus();
+				return false;
+			}
+			//잘못된 입력 방지
+			if(!/^[0-9]+$/.test($('#cell').val())){
+				alert('전화번호는 숫자만 입력 가능합니다.');
+				$('#cell').val('').focus();
+				return false;
+			}
+			if(!/^[a-zA-Z가-힣]+$/.test($('#name').val())){
+				alert('이름은 영문자와 한글만 입력 가능합니다.');
+				$('#name').val('').focus();
+				return false;
+			}
+			if(!/^[a-zA-Z0-9.@]+$/.test($('#email').val())){
+				alert('이메일은 영문자와 숫자만 입력 가능합니다.');
+				$('#email').val('').focus();
+				return false;
+			}
+			if(!/^[0-9]+$/.test($('#zipcode').val())){
+				alert('우편번호는 숫자만 입력 가능합니다.');
+				$('#zipcode').val('').focus();
+				return false;
+			}
+			if(!/^[0-9]+$/.test($('#birth').val())){
+				alert('생년월일은 숫자만 입력 가능합니다.');
+				$('#birth').val('').focus();
+				return false;
+			}
+		});
+		
 	});
 </script>
 </head>
@@ -131,14 +206,14 @@
               <label for="id">아이디</label>
             </div>
             <div class="input_box">
-              <input type="text" name="id" id="id" class="input_style" maxlength="12" autocomplete="off">
+              <input type="text" name="id" id="id" class="input_style" pattern=".{4,12}" required title="4~12자의 아이디를 입력하세요." autocomplete="off">
               <input type="button" class="input_style_check" value="id중복체크" id="id_check">
               <span id="message_id"></span>
             </div>
           </div>
         </div>
         <div class="text_announce">
-          <div class="input-notice"><strong>* 영문 또는 숫자(4자~12자)</strong></div>
+          <div class="input-notice"><strong>* 영문 대소문자 또는 숫자(4자~12자)</strong></div>
         </div>
         <div class="input_idpw_outer" id="input_name">
           <div class="input_idpw_inner">
@@ -146,7 +221,7 @@
               <label for="name">이름</label>
             </div>
             <div class="input_box">
-              <input type="text" class="input_style" name="name" id="name" maxlength="10">
+              <input type="text" class="input_style" name="name" id="name" pattern=".{1,10}" required title="이름을 입력하세요">
             </div>
           </div>
         </div>
@@ -156,7 +231,7 @@
               <label for="passwd">비밀번호</label>
             </div>
             <div class="input_box">
-              <input type="password" class="input_style" name="passwd" id="passwd" maxlength="12">
+              <input type="password" class="input_style" name="passwd" id="passwd" pattern=".{4,12}" required title="4~12자의 비밀번호를 입력하세요">
             </div>
           </div>
         </div>
@@ -169,7 +244,7 @@
               <label for="cell">전화번호</label>
             </div>
             <div class="input_box">
-              <input type="text" name="cell" class="input_style" id="cell" maxlength="15">
+              <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,11}" required title="일반적인 전화번호를 입력하세요">
             </div>
           </div>
         </div>
@@ -179,8 +254,8 @@
               <label for="email">이메일</label>
             </div>
             <div class="input_box">
-              <input type="email" name="email" class="input_style" id="email" maxlength="50">
-              <input type="button" class="input_style_check" value="eamil중복체크" id="email_check">
+              <input type="email" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수">
+              <input type="button" class="input_style_check" value="eamil중복체크" id="email_check" >
               <span id="message_email"></span>
             </div>
           </div>
@@ -191,7 +266,7 @@
               <label for="zipcode">우편번호</label>
             </div>
             <div class="input_box">
-              <input type="text" name="zipcode" class="input_style" id="zipcode" maxlength="5">
+              <input type="text" name="zipcode" class="input_style" id="zipcode" pattern=".{5,5}" required title="5자리 입력 필수">
               <input type="button" value="우편번호 찾기" class="input_style_check" onclick="execDaumPostcode()">
             </div>
           </div>
@@ -202,7 +277,7 @@
               <label for="address1">주소</label>
             </div>
             <div class="input_box">
-              <input type="text" name="address1" class="input_style" id="address1" maxlength="30">
+              <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,30}" required title="주소를 입력하세요">
             </div>
           </div>
         </div>
@@ -212,7 +287,7 @@
               <label for="address2">상세 주소</label>
             </div>
             <div class="input_box">
-              <input type="text" name="address2" class="input_style" id="address2" maxlength="30">
+              <input type="text" name="address2" class="input_style" id="address2" pattern=".{1,30}" required title="상세주소를 입력하세요">
             </div>
           </div>
         </div>
@@ -222,12 +297,12 @@
               <label for="birth">생년월일</label>
             </div>
             <div class="input_box">
-              <input type="text" name="birth" class="input_style" id="birth" maxlength="6">
+              <input type="text" name="birth" class="input_style" id="birth" pattern=".{6,6}" required title="6자리 입력 필수 (YYMMDD)">
             </div>
           </div>
         </div>
         <div class="text_announce">
-          <div class="input-notice"><strong>ex) 961221</strong></div>
+          <div class="input-notice"><strong>ex) YYMMDD</strong></div>
         </div>
         <div class="input_idpw_outer" id="input_gender">
           <div class="input_idpw_inner">

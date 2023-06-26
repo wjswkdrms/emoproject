@@ -17,7 +17,27 @@ public class RegisterUserAction implements Action {
 
 		// 자바빈을 생성하고 전송된 데이터를 자바빈에
 		// 담음
-
+		if(request.getParameter("id")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}else if(request.getParameter("name")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}else if(request.getParameter("passwd")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}else if(request.getParameter("cell")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}else if(request.getParameter("email")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}else if(request.getParameter("zipcode")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}else if(request.getParameter("address1")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}else if(request.getParameter("address2")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}else if(request.getParameter("birth")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}else if(request.getParameter("gender")==null) {
+			return "/WEB-INF/views/member/registerUserForm.jsp";
+		}
 		MemberVO member = new MemberVO();
 		member.setId(request.getParameter("id"));
 		member.setName(request.getParameter("name"));
@@ -32,7 +52,6 @@ public class RegisterUserAction implements Action {
 		// MemberDAO 호출
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.insertMember(member);
-
 		// JSP 경로 반환
 		return "/WEB-INF/views/member/registerUser.jsp";
 	}
