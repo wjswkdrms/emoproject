@@ -257,7 +257,7 @@ public class SearchDAO {
 			if (sorted_navigator_num == 1) {
 				sub_sql = " ORDER BY product_num DESC"; //최신순
 			} else if (sorted_navigator_num == 2) {
-				sub_sql = ""; //추천순
+				sub_sql = " ORDER BY ZZIM DESC "; //실시간 찜 순
 			} else if (sorted_navigator_num == 3) {
 				sub_sql = " ORDER BY order_cnt DESC"; //판매량 순
 			} else if (sorted_navigator_num == 4) {
@@ -279,7 +279,8 @@ public class SearchDAO {
 			
 			conn = DBUtil.getConnection();
 			//sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search + sub_sql+")a) WHERE rnum>=? AND rnum<=? ";
-			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_num, product_name, product_photo1, product_title, product_category, product_price FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search+" ) USING (PRODUCT_NUM) GROUP BY product_num, product_name, product_photo1, product_title, product_category, product_price )a) WHERE rnum>=? AND rnum<=? " + sub_sql;
+			//sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_num, product_name, product_photo1, product_title, product_category, product_price FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) "+sub_sql_search+" ) USING (PRODUCT_NUM) GROUP BY product_num, product_name, product_photo1, product_title, product_category, product_price "+sub_sql+" )a) WHERE rnum>=? AND rnum<=? ";
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt, COUNT(mem_num) AS ZZIM FROM em_member_zzim RIGHT OUTER JOIN (SELECT COUNT(PRODUCT_NUM) AS order_cnt , product_num, product_name, product_photo1, product_title, product_category, product_price, product_status FROM EM_ORDER_DETAIL o RIGHT JOIN (SELECT * FROM EM_PRODUCT_MANAGE m LEFT OUTER JOIN EM_PRODUCT_DETAIL d USING (PRODUCT_NUM) ) USING (PRODUCT_NUM) GROUP BY product_num, product_name, product_photo1, product_title, product_category, product_price, product_status  ) USING (product_num) "+sub_sql_search+" GROUP BY product_num, product_category, product_status, product_name, product_title, product_photo1, product_price, order_cnt "+sub_sql+")a) WHERE  rnum >=? AND rnum <=?";
 			pstmt = conn.prepareStatement(sql);
 			
 			if(product_category != 0) {

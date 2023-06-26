@@ -154,7 +154,7 @@ $(function(){
 		<div class="search-navigator">
 			<ul>
 				<li id="sorted_01">최신순</li>
-				<li id="sorted_02">추천순</li>
+				<li id="sorted_02">실시간 찜순</li>
 				<li id="sorted_03">판매량순</li>
 				<li id="sorted_04">높은가격순</li>
 				<li id="sorted_05">낮은가격순</li>

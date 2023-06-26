@@ -84,9 +84,11 @@ $(function(){
 			<li>
 				<a href="${pageContext.request.contextPath}/announce/announce.do">고객센터</a>
 			</li>
-			<li>
-				<a href="${pageContext.request.contextPath}/product/productlist.do">상품등록</a>
-			</li>
+			<c:if test="${user_auth == 9 && !empty user_num}">
+				<li>
+					<a href="${pageContext.request.contextPath}/product/productlist.do">상품등록</a>
+				</li>
+			</c:if>
 		</ul>
 	</div>
 	<div class="mid-box">
