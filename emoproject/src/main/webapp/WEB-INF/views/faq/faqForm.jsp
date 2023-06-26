@@ -7,6 +7,29 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#faq_form').submit(function(){
+		if($('#faq_title').val().trim() == ''){
+			alert('제목을 입력하세요');
+			$('#faq_title').val('').focus();
+			return false;
+		}
+		if($('#faq_content').val().trim() == ''){
+			alert('내용을 입력하세요');
+			$('#faq_content').val('').focus();
+			return false;
+		}
+		if(!$('#faq_category > option:selected').val()) {
+			alert('카테고리를 지정하세요');
+			return false;
+		}
+	});
+	
+});
+
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -24,14 +47,14 @@
 				<div class="right-div">
 				<h2>자주하는 질문 글쓰기</h2>
 				<form id="faq_form" action="faqWrite.do" method="post">
-					<table>
+					<table class="form-box">
 						<tr>
-							<td>제목</td>
-							<th><input type="text" name="faq_title" id="faq_title" ></th>
+							<td class="row-title">제목</td>
+							<th class="row-content"><input class="text-title" type="text" name="faq_title" id="faq_title" ></th>
 						</tr>
 						<tr>
-							<td>카테고리</td>
-							<th>
+							<td class="row-title">카테고리</td>
+							<th class="row-content">
 								<select id="faq_category" name="faq_category" required>
 									<option value="">카테고리</option>
 									<option value="1">회원</option>
@@ -42,12 +65,12 @@
 							</th>
 						</tr>
 						<tr>
-							<td>내용</td>
-							<th><textarea rows="5" cols="30" name="faq_content" id="faq_content"></textarea></th>
+							<td class="row-title">내용</td>
+							<th class="row-content"><textarea rows="5" cols="30" name="faq_content" id="faq_content"></textarea></th>
 						</tr>
 					</table>
-					<div>
-						<input type="submit" value="등록"> <input type="button" value="목록" onclick="location.href='faq.do'">
+					<div class="button-box">
+						<input class="button" type="submit" value="등록"> <input class="button" type="button" value="목록" onclick="location.href='faq.do'">
 					</div>
 				</form>
 				</div>

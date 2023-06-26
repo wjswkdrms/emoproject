@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 상세 보기</title>
+<title>상품 상세 보기</title><!--  -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productdetail_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -33,7 +33,11 @@
 			} 
  */
 			//총주문 금액 표시
-			let total = $('#product_price').val() * $('#order_quantity').val();
+			if($('product_discount').val() > 0){
+				let total = $('#product_price_sales').val() * $('#order_quantity').val();
+			}else{
+				let total = $('#product_price').val() * $('#order_quantity').val();
+			}
 			$('#product_total_txt').text('총 주문 금액 : ' + total.toLocaleString() + '원');//숫자 세자리 쉼표
 
 		});
@@ -116,14 +120,27 @@
 						<c:if test="${product.product_category == 6}">베이커리</c:if>
 					</a>
 				</div>
+				<!-- 할인률이 있을 떄 -->
+				<c:if test="${product.productdetailVO.product_discount > 0}">
+					<div>
+					<span class="top-per" id="product_discount">${product.productdetailVO.product_discount}%</span>
+					<span class="top-price" id="product_price_sales">${product.productdetailVO.product_price_sales}</span>
+					<span class="top-won">원</span>
+					</div>
+					<div class="b-hr">
+					<span class="top-price-no"><del><fmt:formatNumber value="${product.productdetailVO.product_price}"/>원</del></span>
+					</div>
+				</c:if>
+				<!-- 할인률 X -->
+				<c:if test="${product.productdetailVO.product_discount == 0}">
 				<div>
-					<span class="top-per">할인률%</span>
-					<span class="top-price">상품판매가격(할인)</span>
+					<span class="top-price" id="product_price">${product.productdetailVO.product_price_sales}</span>
 					<span class="top-won">원</span>
 				</div>
 				<div class="b-hr">
 					<span class="top-price-no"><fmt:formatNumber value="${product.productdetailVO.product_price}"/>원</span>
 				</div>
+				</c:if>
 				
 				<div class="box">
 					<div class="box-left">원산지</div>
@@ -140,16 +157,16 @@
 							<label for="order_quantity">상품 수량</label>
 						</div>
 						<div class="box-right">
-							<input type="number" name="order_quantity" min="1" max="20" autocomplete="off" id="order_quantity" class="quantity-width">
+							<input type="number" name="order_quantity" value="1" min="1" max="20" autocomplete="off" id="order_quantity" class="quantity-width">
 						</div>
 					</div>
 					
 					<div class="total-price">
-						<span id="product_total_txt">총 주문 금액 : 0원</span>
+						<span id="product_total_txt">총 주문 금액 : ${product.productdetailVO.product_price_sales}원</span>
 					</div>
 					<!-- 찜(좋아요) -->
 					<div class="box-button">
-						<button class="button-zzim" type="button">
+						<button class="button-zzim" type="button" style='cursor:pointer'>
 							<img id="output_zzim" data-num="${product.product_num}" src="${pageContext.request.contextPath}/images/zzim_01.png" width="50">
 						</button>
 						
@@ -158,7 +175,7 @@
 						</c:if>
 						
 						<c:if test="${product.productdetailVO.product_stock > 0}">
-						<input type="submit" value="장바구니에 담기">
+						<input type="submit" value="장바구니에 담기" style='cursor:pointer'>
 						</c:if>
 						
 					</div>
@@ -229,9 +246,9 @@
 			</div>
 		</div>
 			
-		<div id="detail-QA" class="div-h">
+		<!-- <div id="detail-QA" class="div-h">
 			상품 문의 리스트 자리
-		</div>
+		</div> -->
 	</c:if>
 	</div>
 	<!-- 내용 끝 -->

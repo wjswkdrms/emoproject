@@ -1,7 +1,7 @@
 package kr.product.vo;
 
 public class ProductDetailVO {
-	//커밋
+	//
 	private int product_num;
 	private String product_name;
 	private String product_title;
@@ -12,7 +12,21 @@ public class ProductDetailVO {
 	private int product_real_price;
 	private int product_price;
 	private int product_stock;
+	private int product_discount;
+	private int product_price_sales;
 	
+	public int getProduct_price_sales() {
+		return product_price_sales;
+	}
+	public void setProduct_price_sales(int product_price_sales) {
+		this.product_price_sales = product_price_sales;
+	}
+	public int getProduct_discount() {
+		return product_discount;
+	}
+	public void setProduct_discount(int product_discount) {
+		this.product_discount = product_discount;
+	}
 	public int getProduct_num() {
 		return product_num;
 	}

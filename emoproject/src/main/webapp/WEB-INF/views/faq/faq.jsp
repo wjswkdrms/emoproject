@@ -78,7 +78,7 @@
 					<li>
 						<c:if test="${!empty user_num && user_auth==9}">
 						<div class="button-box">
-							<input type="button" value="수정" onclick="location.href='faqUpdateForm.do?faq_num=${faq.faq_num}'">
+							<input type="button" class="small-button" value="수정" onclick="location.href='faqUpdateForm.do?faq_num=${faq.faq_num}'">
 						</div> 
 						</c:if>
 					</li>
@@ -87,7 +87,7 @@
 	 			</c:if> 
 				<c:if test="${!empty user_num && user_auth==9}">
 				<div class="button-box">
-					<input type="button" value="글쓰기" onclick="location.href='faqForm.do'">
+					<input type="button" class="small-button" value="글쓰기" onclick="location.href='faqForm.do'">
 				</div> 
 				</c:if>
 				<div class="align-center">${page}</div>  

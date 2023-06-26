@@ -12,6 +12,7 @@ import kr.util.DBUtil;
 
 public class ProductDAO {
 	//싱글턴 패턴
+	//
 	private static ProductDAO instance = new ProductDAO();
 	
 	public static ProductDAO getInstance() {
@@ -52,8 +53,8 @@ public class ProductDAO {
 			
 			pstmt2.executeUpdate();
 			
-			sql = "INSERT INTO em_product_detail (product_num, product_name, product_title, product_info, product_photo1, product_photo2, product_origin, product_real_price, product_price, product_stock) "
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO em_product_detail (product_num, product_name, product_title, product_info, product_photo1, product_photo2, product_origin, product_real_price, product_price, product_stock, product_discount) "
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt3 = conn.prepareStatement(sql);
 			
 			pstmt3.setInt(1, product_num);
@@ -66,6 +67,7 @@ public class ProductDAO {
 			pstmt3.setInt(8, product_detail.getProduct_real_price());
 			pstmt3.setInt(9, product_detail.getProduct_price());
 			pstmt3.setInt(10, product_detail.getProduct_stock());
+			pstmt3.setInt(11, product_detail.getProduct_discount());
 			
 			pstmt3.executeUpdate();
 			
@@ -139,10 +141,20 @@ public class ProductDAO {
 				if (keyfield.equals("1")) sub_sql += "AND d.product_name LIKE ? ";
 				if (keyfield.equals("2")) sub_sql += "AND d.product_info LIKE ? ";
 			}
-			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
-					+ "FROM (SELECT * FROM em_product_manage m INNER JOIN em_product_detail d "
-					+ "ON m.product_num=d.product_num WHERE m.product_status > ? "+sub_sql
-					+"ORDER BY m.product_num DESC) a) WHERE rnum>=? AND rnum<=?";
+			
+			 sql = "SELECT * FROM (SELECT a.*, rownum rnum " +
+			 "FROM (SELECT * FROM em_product_manage m INNER JOIN em_product_detail d " +
+			 "ON m.product_num=d.product_num WHERE m.product_status > ? "+sub_sql
+			 +"ORDER BY m.product_num DESC) a) WHERE rnum>=? AND rnum<=?";
+			 
+			
+			/*
+			 * sql = "SELECT * FROM (SELECT a.*, rownum rnum " +
+			 * "FROM (SELECT product_num, product_name, product_title, product_price, product_discount, FLOOR(((PRODUCT_PRICE)*(100-PRODUCT_DISCOUNT))/100) AS PRODUCT_PRICE_SALES FROM em_product_manage m INNER JOIN em_product_detail d "
+			 * + "ON m.product_num=d.product_num WHERE m.product_status > ? "+sub_sql
+			 * +"ORDER BY m.product_num DESC) a) WHERE rnum>=? AND rnum<=?";
+			 */
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			//?에 데이터 바인딩
@@ -174,6 +186,7 @@ public class ProductDAO {
 				product_detail.setProduct_real_price(rs.getInt("product_real_price"));
 				product_detail.setProduct_price(rs.getInt("product_price"));
 				product_detail.setProduct_stock(rs.getInt("product_stock"));
+				product_detail.setProduct_discount(rs.getInt("product_discount"));
 				
 				//ProductDetailVO를 ProductManageVO에 저장
 				product.setProductdetailVO(product_detail);
@@ -199,7 +212,10 @@ public class ProductDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM em_product_manage m INNER JOIN em_product_detail d ON m.product_num=d.product_num WHERE m.product_num=?";
+			
+			/*sql = "SELECT * FROM em_product_manage m INNER JOIN em_product_detail d ON m.product_num=d.product_num WHERE m.product_num=?";*/
+			sql = "SELECT product_category, product_status, d.*, FLOOR(((PRODUCT_PRICE)*(100-PRODUCT_DISCOUNT))/100) AS PRODUCT_PRICE_SALES "
+					+ "FROM em_product_manage m LEFT JOIN em_product_detail d ON m.product_num=d.product_num WHERE m.product_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, product_num);
 			rs = pstmt.executeQuery();
@@ -221,6 +237,8 @@ public class ProductDAO {
 				product_detail.setProduct_real_price(rs.getInt("product_real_price"));
 				product_detail.setProduct_price(rs.getInt("product_price"));
 				product_detail.setProduct_stock(rs.getInt("product_stock"));
+				product_detail.setProduct_discount(rs.getInt("product_discount"));
+				product_detail.setProduct_price_sales(rs.getInt("PRODUCT_PRICE_SALES"));
 				
 				//ProductDetailVO를 ProductManageVO에 저장
 				product.setProductdetailVO(product_detail);
@@ -270,7 +288,7 @@ public class ProductDAO {
 					+ "product_title=?, product_info=?"
 					+ sub_sql
 					+ ", product_origin=?, product_real_price=?, "
-					+ "product_price=?, product_stock=? WHERE product_num=?";
+					+ "product_price=?, product_stock=?, product_discount=? WHERE product_num=?";
 			pstmt2 = conn.prepareStatement(sql);
 			
 			pstmt2.setString(++cnt, product_detail.getProduct_name());
@@ -288,6 +306,7 @@ public class ProductDAO {
 			pstmt2.setInt(++cnt, product_detail.getProduct_real_price());
 			pstmt2.setInt(++cnt, product_detail.getProduct_price());
 			pstmt2.setInt(++cnt, product_detail.getProduct_stock());
+			pstmt2.setInt(++cnt, product_detail.getProduct_discount());
 			pstmt2.setInt(++cnt, product.getProduct_num());
 			
 			pstmt2.executeUpdate();

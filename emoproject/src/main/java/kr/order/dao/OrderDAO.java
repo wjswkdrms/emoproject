@@ -3,8 +3,10 @@ package kr.order.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
+import kr.member.vo.MemberVO;
 import kr.order.vo.MemberHomeVO;
 import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
@@ -186,9 +188,42 @@ public class OrderDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
-	
-	
 	}
+	public List<MemberHomeVO> getHomeList(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<MemberHomeVO> list = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM em_member_home WHERE mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<MemberHomeVO>();
+			while(rs.next()) {
+				MemberHomeVO home = new MemberHomeVO();
+				home.setMem_home_address1(rs.getString("mem_home_address1"));
+				home.setMem_home_address2(rs.getString("mem_home_address2"));
+				home.setMem_home_cell(rs.getString("mem_home_cell"));
+				home.setMem_home_name(rs.getString("mem_home_name"));
+				home.setMem_home_num(rs.getInt("mem_home_num"));
+				home.setMem_home_zipcode(rs.getInt("mem_home_zipcode"));
+				home.setMem_num(mem_num);
+				list.add(home);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+
+	
 }
 		
 		

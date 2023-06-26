@@ -1,7 +1,7 @@
 package kr.product.vo;
 
 public class ProductManageVO {
-	//커밋
+	//
 	private int product_num;
 	private int product_category;
 	private int product_status;

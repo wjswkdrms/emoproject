@@ -118,10 +118,10 @@ table td, table th{
 	display: flex;
 	flex-direction: column;
 }
-.top-box{
+/* .top-box{
 	display: flex;
 	flex-direction: row;
-}
+} */
 
 #detail-info{
 	height: 600px;
@@ -132,3 +132,4 @@ table td, table th{
 #detail-QA{
 	height: 400px;
 }
+/**/

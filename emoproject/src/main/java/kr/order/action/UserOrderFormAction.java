@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import kr.cart.dao.CartDAO;
 import kr.cart.vo.CartVO;
 import kr.controller.Action;
+import kr.member.dao.AdminMemberDAO;
+import kr.member.vo.MemberVO;
 import kr.product.vo.ProductManageVO;
 
 public class UserOrderFormAction implements Action{
@@ -64,7 +66,10 @@ public class UserOrderFormAction implements Action{
 		}
 		//회원 보유 보인트
 		int point = dao.getMemPoint(user_num);
+		AdminMemberDAO memDao = AdminMemberDAO.getInstance();
+		MemberVO member = memDao.getMemberDetail(user_num);
 		
+		request.setAttribute("user", member);
 		request.setAttribute("item_name", item_name);
 		request.setAttribute("point", point);
 		request.setAttribute("list", cartList);

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 수정</title>
+<title>상품 수정</title><!--  -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
  -->
@@ -14,6 +14,32 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		//입력한 글자수 셋팅
+		let inputLength = $('#info').val().length;
+        let remain = 300 - inputLength;
+		remain += '/300';
+		
+		//문서 객체에 반영
+		$('#re_first .letter-count').text(remain);
+		
+		//textarea에 내용 입력시 글자수 체크
+		$(document).on('keyup','textarea',function(){
+			//입력한 글자수 구함
+			let inputLength = $(this).val().length;
+			
+			if(inputLength>300){//300자를 넘어선 경우
+				$(this).val($(this).val().substring(0,300));
+			}else{//300자 이하인 경우
+				let remain = 300 - inputLength;
+				remain += '/300';
+				if($(this).attr('id')=='info'){
+					//등록폼 글자수
+					$('#re_first .letter-count').text(remain);
+				}
+			}
+		});
+		
+		
 		$('#write_form').submit(function(){
 			//카테고리 선택 여부
 			if(!$('#category > option:selected').val()) {
@@ -105,6 +131,9 @@
 				<label class="box-left" for="price">판매가</label>
 				<input type="number" name="price" id="price" maxlength="5" value="${product.productdetailVO.product_price}">
 			</li>
+			<li><label class="box-left" for="discount">할인률</label> 
+						<input type="number" name="discount" id="dsicount" value="0" min="0" max="99">
+					</li>
 			<li>
 				<label class="box-left" for="stock">재고</label>
 				<input type="number" name="stock" id="stock" min="0" max="99999" value="${product.productdetailVO.product_stock}">
@@ -126,6 +155,10 @@
 			<li>
 				<label class="box-left" for="info">상품 설명</label>
 				<textarea rows="5" cols="30" name="info" id="info">${product.productdetailVO.product_info}</textarea>
+			</li>
+			<li id="re_first">
+						<label class="box-left"></label>
+						<span class="letter-count">300/300</span>					
 			</li>
 			
 		</ul>
