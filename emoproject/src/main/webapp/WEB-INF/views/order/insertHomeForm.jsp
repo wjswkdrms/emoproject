@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 구매</title>
+<title>주소생성</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
@@ -29,7 +28,6 @@
 					return false;
 			    }
 			}//end of for
-			//포인트 충분한지 확인
 		});
 	});
 </script>
@@ -39,44 +37,9 @@
 <div class="page_outer">	
 	<!-- 내용 시작 -->
 	<div class="page_inner">
-		<h2>상품구매</h2>
-		<div>
-			상품명 : <a href="#">${item_name}</a> 총 ${all_total}원
-		</div>
-		<hr size="1" noshade="noshade" width="100%">
+		
 		<form id="order_form" 
-		  action="${pageContext.request.contextPath}/order/order.do" method="post">
-			<ul>
-				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="receive_name">이름</label></div>
-					<div class="input_box">
-					<input type="text" name="receive_name" class="input_style" value="${user.getName()}"
-					  id="receive_name" maxlength="10"></div></div></div>
-				</li>
-				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="receive_phone">전화번호</label></div>
-					<div class="input_box">
-					<input type="text" name="receive_phone" class="input_style" value="${user.getCell()}"
-					  id="receive_phone" maxlength="15"></div></div></div>
-				</li>
-				<li>
-				<div class="input_idpw_outer" id="input_name">
-            <div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="receive_email">이메일</label></div>
-					<div class="input_box">
-					<input type="text" name="receive_email" class="input_style" value="${user.getEmail()}"
-					  id="receive_email" maxlength="30"></div></div></div>
-				</li>
-			</ul>
-			<hr size="1" noshade="noshade" width="100%">
-			<input type="button" value="이전에 사용한 주소 불러오기">
+		  action="${pageContext.request.contextPath}/order/userUpdateHome.do" method="post">
 			<ul>
 				<li>
 				<div class="input_idpw_outer" id="input_name">
@@ -85,10 +48,11 @@
 					<label for="zipcode">우편번호</label>
 					          </div>
 					          <div class="input_box">
-					<input type="text" name="receive_post" class="input_style" value="${user.getZipcode()}"
+					<input type="number" name="receive_post" class="input_style" 
 					  id="zipcode" maxlength="5" readonly>
-					<input type="button" value="우편번호 찾기"  class="input_style" 
-					 onclick="execDaumPostcode()">  </div></div></div>
+					  <input type="button" value="우편번호 찾기"  class="input_style"
+					 onclick="execDaumPostcode()">
+					</div></div></div>
 				</li>
 				<li>
 				<div class="input_idpw_outer" id="input_name">
@@ -96,7 +60,7 @@
            	<div class="input_title">
 					<label for="address1">주소</label></div>
 					<div class="input_box">
-					<input type="text" name="receive_address1" class="input_style" value="${user.getAddress1()}"
+					<input type="text" name="receive_address1" class="input_style"
 					  id="address1" maxlength="30" readonly></div></div></div>
 				</li>
 				<li>
@@ -106,41 +70,35 @@
 					<label for="address2">상세 주소</label>
 					</div>
 					<div class="input_box">
-					<input type="text" name="receive_address2" class="input_style" value="${user.getAddress2()}"
+					<input type="text" name="receive_address2" class="input_style"
 					  id="address2" maxlength="30"></div></div></div>
+				</li> 
+				
+				<li>
+				<div class="input_idpw_outer" id="input_name">
+				<div class="input_idpw_inner">
+           	<div class="input_title">
+					<label for="receive_name">배송지 이름</label></div>
+					<div class="input_box">
+					<input type="text" name="receive_name" class="input_style" 
+					  id="receive_name" maxlength="10"></div></div></div>
 				</li>
 				<li>
 				<div class="input_idpw_outer" id="input_name">
 				<div class="input_idpw_inner">
            	<div class="input_title">
-					<label for="notice">배송 메모</label></div>
+					<label for="receive_phone">전화번호</label></div>
 					<div class="input_box">
-					<textarea rows="5" cols="30" name="notice" class="input_style" id="notice" maxlength="1300"></textarea>
-					</div></div></div>
+					<input type="text" name="receive_phone" class="input_style"
+					  id="receive_phone" maxlength="15"></div></div></div>
 				</li>
-			</ul>
-			<hr size="1" noshade="noshade" width="100%">
-			<div class="result-display">
-			<div class="result-text">
-				<div>
-					<span>보유 포인트</span>
-					<span><fmt:formatNumber value="${point}"/>원</span>
-				</div>
-				<div>
-					<span>최종금액</span>
-					<span><fmt:formatNumber value="${all_total}"/>원</span>
-				</div>
-				<hr size="1" noshade="noshade" width="100%">
-				<div>
-					<span>결제시 포인트 잔액</span>
-					<span><fmt:formatNumber value="${point-all_total}"/>원</span>
-				</div>
-				<input type="submit" value="주문" class="button">
+			
+				<li>
+				<input type="submit" value="추가" class="button">
 				<input type="button" value="홈으로" class="button"
 				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
-			</div>
-			 
+				 </li>
+			</ul> 
 		</form>
 	</div>
 	<!-- 내용 끝 -->
@@ -246,7 +204,3 @@
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
-
-
-
-

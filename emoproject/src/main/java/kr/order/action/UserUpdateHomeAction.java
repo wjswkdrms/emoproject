@@ -30,7 +30,7 @@ public class UserUpdateHomeAction implements Action{
 		OrderDAO dao = OrderDAO.getInstance();
 		dao.insertHome(home);
 		
-		request.setAttribute("accessMsg", "수정이 완료되었습니다.");
+		request.setAttribute("accessMsg", "정상적으로 완료되었습니다.");
 		request.setAttribute("accessUrl", request.getContextPath()+"/order/userHomeList.do");
 		
 		return "/WEB-INF/views/common/notice.jsp";
