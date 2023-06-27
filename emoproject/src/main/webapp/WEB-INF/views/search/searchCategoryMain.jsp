@@ -120,8 +120,14 @@ $(function(){
 	                output += '<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=' + item.product_num + '">';
 	                output += '<img src="${pageContext.request.contextPath}/upload/' + item.product_photo1 + '">';
 	                output += '</a>';
+	                output += '<div class="product_result">';
 	                output += '<span>' + item.product_title + '</span>';
-	                output += '<p>가격 : ' + item.product_price.toLocaleString() + ' 원</p>';
+	                if(item.product_discount > 0) {
+	                output += '<p class="product_discount">할인률 : ' + item.product_discount + '% <strike class="product_price">가격 : ' + item.product_price.toLocaleString() + '원</strike></p>';
+	                
+	                }
+	                output += '<p class="product_price_sales">가격 : ' + item.product_price_sales.toLocaleString() + ' 원</p>';
+	                output += '</div>';
 	                output += '</div>';
 	                $('#output').append(output);
 	            });

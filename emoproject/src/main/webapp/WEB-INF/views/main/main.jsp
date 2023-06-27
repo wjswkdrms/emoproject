@@ -66,13 +66,21 @@
 		<div class="contents-head">전체 상품 보기</div>
 		<span id="total_count">총 상품 : ${count}건</span>
 		<c:forEach var="product" items="${productList}">
-		<div class="product-nums"> <!-- 수정 필요 -->
-		<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${product.product_num}">
-		<img src="${pageContext.request.contextPath}/upload/${product.product_photo1}" width="350px" height="350px">
-		<span>${product.product_title}</span>
-		<p>가격 : ${product.product_price} 원</p>
-		</a>
-		</div>
+			<div class="product-nums"> <!-- 수정 필요 -->
+				<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${product.product_num}">
+					<img src="${pageContext.request.contextPath}/upload/${product.product_photo1}" width="350px" height="350px">
+				</a>
+				<div class="product_result">
+					<span>${product.product_title}</span>
+					 
+					<c:if test="${product.product_discount>0}">
+						<p class="product_discount">할인률 : ${product.product_discount}%
+							<strike class="product_price">가격 : <fmt:formatNumber value="${product.product_price}"/> 원</strike>
+						</p>
+					</c:if>	 
+					<p class="product_price_sales">가격 : <fmt:formatNumber value="${product.product_price_sales}"/> 원</p>
+				</div>
+			</div>
 		</c:forEach>
 	</div>
 	<div id = "paging-box-main">${page}</div>
