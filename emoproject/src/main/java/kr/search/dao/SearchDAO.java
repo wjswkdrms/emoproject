@@ -264,11 +264,11 @@ public class SearchDAO {
 			} else if (sorted_navigator_num == 3) {
 				sub_sql = " ORDER BY order_cnt DESC"; //판매량 순
 			} else if (sorted_navigator_num == 4) {
-				sub_sql = " ORDER BY product_price DESC";
+				sub_sql = " ORDER BY product_price_sales DESC";
 				//높은 가격 순
 			} else if (sorted_navigator_num == 5) {
 				//낮은 가격 순
-				sub_sql = " ORDER BY product_price";
+				sub_sql = " ORDER BY product_price_sales";
 			}
 			
 			if (product_category != 0 ) {
