@@ -326,6 +326,31 @@ public class ProductDAO {
 	
 	
 	//---------------------
+	//상세페이지 리뷰 개수(해당 상품에 관한 리뷰 개수)
+		public String getReviewProductTitle(int product_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			String title = "";
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				sql = "SELECT product_title FROM em_product_detail WHERE product_num = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, product_num);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					title = rs.getString(1);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}		
+			return title;
+		}
+	
 	
 	
 	
@@ -360,6 +385,7 @@ public class ProductDAO {
 	public List<ReviewVO> getProductDetailReviewList(int start,int end, int product_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		List<ReviewVO> list = null;
 		String sql = null;
@@ -368,6 +394,7 @@ public class ProductDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
 					+ "FROM (SELECT * FROM em_review r INNER JOIN em_member_manage m ON r.mem_num=m.mem_num "
 					+ "WHERE r.product_num=? ORDER BY r.review_num DESC) a) "
@@ -393,6 +420,8 @@ public class ProductDAO {
 				
 				list.add(review);
 			}
+			
+			
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {

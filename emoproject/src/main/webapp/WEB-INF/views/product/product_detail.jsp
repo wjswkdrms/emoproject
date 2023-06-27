@@ -94,6 +94,8 @@
 		$('#btn_soldout').on('click', function(){
 			alert('해당 상품은 품절 입니다.');
 		});
+		
+		$('.re-product-ti').append('${product.productdetailVO.product_title}');
 	});
 </script>
 </head>
@@ -163,6 +165,7 @@
 					<input type="hidden" name="product_num" value="${product.product_num}" id="product_num">
 					<input type="hidden" name="product_price" value="${product.productdetailVO.product_price}" id="product_price">
 					<input type="hidden" name="item_stock" value="${product.productdetailVO.product_stock}" id="product_stock">
+					<input type="hidden" name="product_title" value="${product.productdetailVO.product_title}" id="product_title">
 				
 					<div class="box">
 						<div class="box-left">
@@ -202,9 +205,9 @@
 		
 		<div class="nav sticky">
 			<ul>
-				<li><a href="#detail-info"><span class="nav-li">상품 상세정보</span></a></li>
-				<li><a href="#detail-review"><span class="nav-li">상품 리뷰</span></a></li>
-				<li><a href="#detail-QA"><span class="nav-li">상품 문의</span></a></li>
+				<li class="li-1"><a href="#detail-info"><span class="nav-li">상품설명</span></a></li>
+				<li class="li-2"><a href="#context-de"><span class="nav-li">상세설명</span></a></li>
+				<li class="li-3"><a href="#detail-review"><span class="nav-li">상품후기</span></a></li>
 			</ul>
 		</div>
 		
@@ -221,7 +224,7 @@
 				<h3 class="context-ti">[ ${product.productdetailVO.product_title} ] </h3>
 				<p class="de-word">${product.productdetailVO.product_info}</p>
 			</div>
-			<div class="context-de">
+			<div id="context-de" class="context-de">
 				<h3>상품고시정보</h3>
 				<ul class="ul-box">
 					<li class="ul-b-left">품목 또는 명칭</li>
@@ -259,18 +262,21 @@
 				<span></span>
 			</div>
 			<div class="review-list">
-				<h3 class="review-ti">상품 리뷰 리스트 자리</h3>
+				<h3 class="review-ti">상품 후기</h3>
 				<c:if test="${count == 0}">
-					<div class="align-centers">아직 등록된 리뷰가 없습니다.</div>
+					<div class="align-center">아직 등록된 리뷰가 없습니다.</div>
 				</c:if>
 				<c:if test="${count > 0}">
-				<div class="review-box">
-					<div class="rbox-right" >
-						<div>${product.productdetailVO.product_title}</div>
+					<div id="output">
+				
 					</div>
-				</div>
+				<%-- <div class="review-box">
+					<div class="rbox-right" >
+						<div class="re-product-ti">${product.productdetailVO.product_title}</div>
+					</div>
+				</div> --%>
 					<div class="paging-button" style="display:none;">
-						<input type="button" value="다음글 보기">                   
+						<input type="button" value="더 많은 후기 보기">                   
 					</div>
 				</c:if>
 				

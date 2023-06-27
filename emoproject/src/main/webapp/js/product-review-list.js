@@ -2,6 +2,7 @@ $(function(){
 	let currentPage;
 	let count;
 	let rowCount;
+	let i = 0;
 	//후기 리스트 출력
 	function reviewList(pageNum){
 		currentPage = pageNum;
@@ -22,21 +23,23 @@ $(function(){
 				
 				$(param.list).each(function(index, item) {
 					
-					output1 = '<div class="rbox-left"><span>' + item.mem_id + '</span></div>';
-					$('.review-box').prepend(output1);
-					
-					let output2 = '<h4>' + item.review_title + '</h4>';
-					$('.rbox-right').prepend(output2);
-					
-					//output += '<div>'+'${product.productdetailVO.product_title}'+'</div>';
-					let output3 = '<div>' + item.review_score + '</div>'
-					output3 += '<span>' + item.review_content + '</span>';
+					output1 = '<div class="review-box">';
+					output1 += '<div class="rbox-left"><div class="re-memid">' + item.mem_id + '</div></div>';
+					output1 += '<div class="rbox-right">';
+					output1 += '<h4 class="re-ti">' + item.review_title + '</h4>';
+					output1 += '<div class="re-score">' + item.review_score + '</div>'
+					output1 += '<div class="re-content">' + item.review_content + '</div>';
 					if (item.review_photo != null) {
-						output3 += '<div class="rbpx-img">'
-						output3 += '<img src="' + item.review_photo1 + '">';
-						output3 += '</div>'
+						output1 += '<div class="rbpx-img">'
+						output1 += '<img src="' + item.review_photo1 + '">';
+						output1 += '</div>'
 					}
-					$('.rbox-right').append(output3);
+					//output1 += '<div class="re-product-ti"> </div>';
+					output1 += '</div>';
+					output1 += '</div>';
+					$('#output').append(output1);
+					
+					
 				});
 				
 				//page button 처리				

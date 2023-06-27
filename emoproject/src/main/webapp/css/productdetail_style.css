@@ -8,9 +8,7 @@
     src: url('../fonts/maple_bold.woff') format('woff');
     font-weight:bold;
 }
-body{
-	font-family : 'maple';
-}
+
 /* 공통 메시지
 ------------------*/
 .result-display{
@@ -194,7 +192,7 @@ body{
 /*-------*/
 .sticky{
   position: sticky;
-  top: 0;
+  top: 200px;
 }
 
 .nav ul{
@@ -220,6 +218,12 @@ body{
 	justify-content: center;
 	align-items: center;
 	height: 100%
+}
+.li-1{
+	border-left-color: white;
+}
+.li-3{
+	border-right: 0;
 }
 
 /*--------*/
@@ -314,15 +318,58 @@ body{
 .review-box{
 	display: flex;
 	padding: 30px, 0px, 19px, 20px;
-	border-bottom: 1px solid  rgb(193, 193, 193);
+	border-bottom: 1px solid #cba680;
 }
 .rbox-left{
 	flex: 0 0 225px;	
 }
+
 .rbox-right{
 	flex: 1 1 0%;	
 }
 .rbox-img img{
 	width: 93px;
 	height: 93px;
+}
+/**/
+.review-list h3{
+	text-align: center;
+	font-size: 30px;
+	margin: 20px 0 40px 0;
+}
+.re-memid{
+	font-style: italic;
+	font-weight: bold;
+	padding: 15px 10px;
+}
+
+.re-product-ti{
+	color: rgb(193, 193, 193);
+	font-size: 17px;
+}
+.review-box h4{
+	margin: 10px 3px;;
+	font-size: 22px;
+}
+.re-score{
+	margin: 2pxs 5px;
+}
+.re-content{
+	margin: 20px 7px;
+}
+
+.review-list{
+	margin: 10px 20px 50px 20px;
+}
+.paging-button{
+	text-align: center;
+	
+}
+.paging-button input{
+	margin: 20px auto;
+	width: 75%;
+	height: 60px;
+	background-color: #cba680;
+	color: white;
+	border: 0 none;
 }

@@ -24,11 +24,13 @@ public class ProductDetailAction implements Action {
 		 * if(review_pageNum == null) review_pageNum="1";
 		 */
 		int count = dao.getReviewCount(product_num);	//게시물 수
+		String title = dao.getReviewProductTitle(product_num);
 		// 내용 줄바꿈 처리
 		product.getProductdetailVO()
 				.setProduct_info(StringUtil.useBrHtml(product.getProductdetailVO().getProduct_info()));
 
 		request.setAttribute("count", count);
+		
 		request.setAttribute("product", product);
 		
 		return "/WEB-INF/views/product/product_detail.jsp";
