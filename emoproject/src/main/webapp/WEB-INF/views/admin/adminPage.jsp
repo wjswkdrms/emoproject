@@ -11,6 +11,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<hr class="horizon-bar-01">
 	<div class="whole">
 		<div class="container">
 			<div class="box">
@@ -26,7 +27,7 @@
 							<a href="${pageContext.request.contextPath}/member/adminMemberList.do"><span class="icon2"></span>회원 관리</a>
 						</li>
 						<li class="icon-detail">
-							<a><span class="icon3"></span>매출 확인</a>
+							<a href="${pageContext.request.contextPath}/admin/adminSalesMain.do"><span class="icon3"></span>매출 확인</a>
 						</li>
 						<li class="icon-detail">
 							<a href="${pageContext.request.contextPath}/announce/announce.do"><span class="icon4"></span>고객 센터</a>

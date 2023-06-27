@@ -249,3 +249,47 @@
 	width:1600px;
 	border: solid 1.5px black;
 }
+
+/*admin 스타일*/
+.admin-main-title {
+	width:1600px;
+	margin:0 auto;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size:40px;
+	text-align:center;
+}
+.admin-sales-head-box {
+	width:1600px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-size:25px;
+}
+.admin-sales-head-box span {
+	width:300px;
+	display : flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding:50px;
+	
+}
+.admin-product-box {
+	width:1600px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: no-wrap;
+	font-size:25px;
+}
+.admin-product-box span {
+	width:300px;
+	display:flex;
+	flex-direction:row;
+	justify-content: center;
+	align-items: center;
+	font-size:16px;
+	padding:10px;
+}
