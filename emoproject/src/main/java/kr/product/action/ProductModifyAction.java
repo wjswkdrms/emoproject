@@ -64,6 +64,7 @@ public class ProductModifyAction implements Action {
 		product_detail.setProduct_real_price(Integer.parseInt(multi.getParameter("real_price")));
 		product_detail.setProduct_price(Integer.parseInt(multi.getParameter("price")));
 		product_detail.setProduct_stock(Integer.parseInt(multi.getParameter("stock")));
+		product_detail.setProduct_stock(Integer.parseInt(multi.getParameter("stock")));
 
 		dao.updateProduct(product, product_detail);
 

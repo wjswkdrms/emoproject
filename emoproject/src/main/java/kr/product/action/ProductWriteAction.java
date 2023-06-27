@@ -49,6 +49,7 @@ public class ProductWriteAction implements Action{
 		product_detail.setProduct_real_price(Integer.parseInt(multi.getParameter("real_price")));
 		product_detail.setProduct_price(Integer.parseInt(multi.getParameter("price")));
 		product_detail.setProduct_stock(Integer.parseInt(multi.getParameter("stock")));
+		product_detail.setProduct_discount(Integer.parseInt(multi.getParameter("discount")));
 		
 		ProductDAO dao = ProductDAO.getInstance();
 		dao.insertItem(product, product_detail);
