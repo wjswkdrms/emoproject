@@ -321,11 +321,13 @@
 	border-bottom: 1px solid #cba680;
 }
 .rbox-left{
-	flex: 0 0 225px;	
+	flex: 0 0 225px;
+	background-color: #f7f7f7;
 }
 
 .rbox-right{
 	flex: 1 1 0%;	
+	padding-left: 20px;
 }
 .rbox-img img{
 	width: 93px;
@@ -360,6 +362,8 @@
 
 .review-list{
 	margin: 10px 20px 50px 20px;
+	padding: 10px 10px 50px 10px;
+	border-bottom: solid 1px rgb(193, 193, 193);
 }
 .paging-button{
 	text-align: center;
@@ -372,4 +376,10 @@
 	background-color: #cba680;
 	color: white;
 	border: 0 none;
+}
+.star-img img{
+	width: 65px;
+}
+.review-star{
+	text-align: center;
 }

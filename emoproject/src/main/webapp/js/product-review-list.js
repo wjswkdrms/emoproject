@@ -22,12 +22,16 @@ $(function(){
 				}
 				
 				$(param.list).each(function(index, item) {
+					let score_star = ((item.review_score/100)*5).toFixed(2);
+					let score_avg = (item.review_score / count).toFixed(2);
 					
 					output1 = '<div class="review-box">';
 					output1 += '<div class="rbox-left"><div class="re-memid">' + item.mem_id + '</div></div>';
 					output1 += '<div class="rbox-right">';
 					output1 += '<h4 class="re-ti">' + item.review_title + '</h4>';
-					output1 += '<div class="re-score">' + item.review_score + '</div>'
+					output1 += '<div class="re-score">' 
+					
+					output1 += score_star+'('+item.review_score + ')</div>'
 					output1 += '<div class="re-content">' + item.review_content + '</div>';
 					if (item.review_photo != null) {
 						output1 += '<div class="rbpx-img">'
