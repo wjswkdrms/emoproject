@@ -2,7 +2,15 @@
 
 @font-face{
 	font-family: 'maple';
-    src: url('../fonts/Malestory_Light.ttf') format('maple');
+    src: url('../fonts/maple_light.woff') format('woff');
+}
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_bold.woff') format('woff');
+    font-weight:bold;
+}
+body{
+	font-family : 'maple';
 }
     .page_outer{ /* 전체 박스 */
       width:1920px;

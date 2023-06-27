@@ -1,11 +1,16 @@
 @charset "UTF-8";
 @font-face{
 	font-family: 'maple';
-    src: url('../fonts/Malestory_Light_ttf') format('maple');
+    src: url('../fonts/maple_light.woff') format('woff');
 }
-	body {
-		font-family: 'maple';
-	}
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_bold.woff') format('woff');
+    font-weight:bold;
+}
+body{
+	font-family : 'maple';
+}
 
         .page_outer{ /* 전체 박스 */
             width:1920px;

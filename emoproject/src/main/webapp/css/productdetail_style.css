@@ -1,4 +1,16 @@
 @charset "UTF-8";
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_light.woff') format('woff');
+}
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_bold.woff') format('woff');
+    font-weight:bold;
+}
+body{
+	font-family : 'maple';
+}
 /* 공통 메시지
 ------------------*/
 .result-display{
