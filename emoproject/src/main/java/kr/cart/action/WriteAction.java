@@ -13,8 +13,6 @@ import kr.cart.dao.CartDAO;
 import kr.cart.vo.CartVO;
 import kr.controller.Action;
 import kr.product.vo.ProductManageVO;
-import kr.search.dao.SearchDAO;
-import kr.search.vo.SearchVO;
 
 public class WriteAction implements Action{
 

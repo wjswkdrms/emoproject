@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.member.dao.AdminMemberDAO;
-import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 import kr.order.dao.OrderDAO;
 import kr.order.vo.MemberHomeVO;

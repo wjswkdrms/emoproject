@@ -6,13 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.member.vo.MemberVO;
 import kr.order.vo.MemberHomeVO;
 import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
-import kr.product.dao.ProductDAO;
-import kr.product.vo.ProductDetailVO;
-import kr.product.vo.ProductManageVO;
 import kr.util.DBUtil;
 
 public class OrderDAO {
