@@ -164,6 +164,6 @@ $(function(){
 		</form>
 		</c:if>
 	</div>
-<input type="button" value="구매목록" onclick="location.href='${pageContext.request.contextPath}/cart/memberEditClone.do'">
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
