@@ -46,6 +46,7 @@
 			</c:forEach>
 		</table>
 		<input type="submit" value="내 주소를 해당 주소로 변경">
+		<input type="button" value="추가" onclick="location.href='${pageContext.request.contextPath}/order/userInsertHomeForm.do'">
 		</form>
 	</div>
 </div>

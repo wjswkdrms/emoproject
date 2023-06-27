@@ -117,11 +117,24 @@ $(function(){
 	        	$('#search_count').text('검색에 대한 결과 '+param.count+' 건');
 	            $(param.list).each(function (index, item) {
 	                let output = '<div class="product-nums">';
-	                output += '<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=' + item.product_num + '">';
-	                output += '<img src="${pageContext.request.contextPath}/upload/' + item.product_photo1 + '">';
-	                output += '</a>';
+	                if(item.product_status == 2) {
+	                	output += '<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=' + item.product_num + '">';
+	                	output += '<img src="${pageContext.request.contextPath}/upload/' + item.product_photo1 + '">';
+	                	output += '</a>';
+	                } else if(item.product_status <2) {
+	                	output += '<a style="pointer-events: none;">';
+	                	output += '<img src="${pageContext.request.contextPath}/upload/' + item.product_photo1 + '">';
+	                	output += '<img src="${pageContext.request.contextPath}/images/sold_out.jpg" class="sold-out-image">';
+	                	output += '</a>';
+	                }
+	                output += '<div class="product_result">';
 	                output += '<span>' + item.product_title + '</span>';
-	                output += '<p>가격 : ' + item.product_price.toLocaleString() + ' 원</p>';
+	                if(item.product_discount > 0) {
+	                output += '<p class="product_discount">할인률 : ' + item.product_discount + '% <strike class="product_price">가격 : ' + item.product_price.toLocaleString() + '원</strike></p>';
+	                
+	                }
+	                output += '<p class="product_price_sales">가격 : ' + item.product_price_sales.toLocaleString() + ' 원</p>';
+	                output += '</div>';
 	                output += '</div>';
 	                $('#output').append(output);
 	            });

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 구매</title>
+<title>주소생성</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">

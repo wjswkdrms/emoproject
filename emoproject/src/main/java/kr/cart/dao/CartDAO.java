@@ -70,6 +70,33 @@ public class CartDAO {
 		}
 		return sum;
 	}
+	//회원별 장바구니 총 구매 금액 구하기(할인 전)
+		public int getBeforeTotalByMem_num(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int sum = 0;
+			try {
+				conn = DBUtil.getConnection();
+				sql = "select * FROM em_member_cart c join em_product_detail d on c.product_num = d.product_num join em_product_manage m on d.product_num = m.product_num WHERE c.mem_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					sum += (rs.getInt("cart_quantity")*rs.getInt("product_price"));
+					/*
+					 * sum += (rs.getInt("cart_quantity")*((rs.getInt("product_price")*(100 -
+					 * rs.getInt("product_discount")))/100));
+					 */
+				}
+			}catch(Exception e) {
+				
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+			return sum;
+		}
 	//카트에 상품 등록하기
 	public void insertCart(CartVO cart) throws Exception{
 		Connection conn = null;

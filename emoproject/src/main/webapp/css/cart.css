@@ -118,3 +118,11 @@ input.quntity{
 ul{
 	list-style:none;
 }
+.money{
+	float:right;
+}
+.before-price{
+	font-size:14pt;
+	color:gray;
+	text-decoration: line-through;
+}
