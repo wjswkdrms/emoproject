@@ -93,6 +93,7 @@ ul.list {
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
 	justify-content: space-between;
 }
 
@@ -134,7 +135,7 @@ ul.menu-box li {
 	-webkit-justify-content: space-between;
 	justify-content: space-between;	
 }
-div.list-content{
+.list-content{
 	padding: 5px 0px 1px;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
@@ -435,7 +436,7 @@ div.main-content {
 }
 
 div.main-content img {
-	width: 500px;
+	max-width: 500px;
 }
 
 div.button-box {

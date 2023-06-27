@@ -86,7 +86,9 @@
 								<c:if test="${member.auth==0}">
 								<div class="expire"><b>탈퇴</b></div>
 								</c:if>
-								<c:if test="${member.auth==1}"><b>정지</b></c:if>
+								<c:if test="${member.auth==1}">
+								<div class="stop"><b>정지</b></div>
+								</c:if>
 								<c:if test="${member.auth==2}"><b>일반</b></c:if>
 								<c:if test="${member.auth==9}">
 								<div class="answer"><b>관리</b></div>

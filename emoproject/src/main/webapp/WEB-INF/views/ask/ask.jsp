@@ -31,10 +31,11 @@
 				
  	 			<c:if test="${count==0}"> 
 	 			<div class="list">
-					<div>번호</div>
-					<div>제목</div>
-					<div>작성자</div>
-					<div>작성일</div>
+					<div class="list-num">번호</div>
+					<div class="list-name2" style="text-align:center;">제목</div>
+					<div class="list-category">작성자</div>
+					<div class="list-category">작성일</div>
+					<div class="list-category">답변상태</div>
 				</div>
 	 			<div class="align-center">
 					표시할 게시물이 없습니다.
@@ -42,20 +43,20 @@
 	 			</c:if> 
  	 			<c:if test="${count>0}"> 
 				<div class="list">
-					<div>번호</div>
-					<div>제목</div>
-					<div>작성자</div>
-					<div>작성일</div>
-					<div>답변상태</div>
+					<div class="list-num">번호</div>
+					<div class="list-name2" style="text-align:center;">제목</div>
+					<div class="list-category">작성자</div>
+					<div class="list-category">작성일</div>
+					<div class="list-category">답변상태</div>
 				</div>
 				
 				<c:forEach var="ask" items="${list}">
 				<ul class="list">
-					<li>${ask.ask_num}</li>
-					<li><a href="askDetail.do?ask_num=${ask.ask_num}">${ask.ask_title}</a></li>
-					<li>${ask.mem_id}</li>
-					<li>${ask.ask_date}</li>
-					<li>
+					<li class="list-num">${ask.ask_num}</li>
+					<li class="list-content"><a href="askDetail.do?ask_num=${ask.ask_num}">${ask.ask_title}</a></li>
+					<li class="list-category">${ask.mem_id}</li>
+					<li class="list-category">${ask.ask_date}</li>
+					<li class="list-category">
 						<c:if test="${ask.ask_status<1}">
 						<div class="no-answer">
 							<b>답변 대기</b>
