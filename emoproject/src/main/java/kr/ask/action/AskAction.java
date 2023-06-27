@@ -9,11 +9,15 @@ import javax.servlet.http.HttpSession;
 import kr.ask.dao.askDAO;
 import kr.ask.vo.AskVO;
 import kr.controller.Action;
+import kr.util.PageUtil;
 
 public class AskAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null) pageNum="1";
+		
 		HttpSession session=request.getSession();
 		Integer user_num=(Integer)session.getAttribute("user_num");
 		
@@ -22,20 +26,26 @@ public class AskAction implements Action{
 		}
 		
 		askDAO dao=askDAO.getInstance();
+		int count=dao.getAskCount();
+
+		PageUtil page=new PageUtil(null, null, 
+				Integer.parseInt(pageNum),count,10,10,"ask.do");
 		
 		List<AskVO> list=null;
 		
 		Integer user_auth=(Integer)session.getAttribute("user_auth");
-		if(user_auth==9) {
-			list=dao.getAskTotalBoard();
-		}else {
-			list=dao.getAskBoard(user_num);
+		if(count>0) {
+			if(user_auth==9) {
+				list=dao.getAskTotalBoard(page.getStartRow(),page.getEndRow());
+			}else {
+				list=dao.getAskBoard(page.getStartRow(),page.getEndRow(),user_num);
+			}
 		}
-		//if(count>0) {
-		//}
 
 		
-		request.setAttribute("list", list);	
+		request.setAttribute("count", count);
+		request.setAttribute("list", list);
+		request.setAttribute("page", page.getPage());
 			
 		return "/WEB-INF/views/ask/ask.jsp";
 	}

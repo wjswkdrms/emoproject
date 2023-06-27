@@ -17,18 +17,17 @@ public class FaqAction implements Action{
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null) pageNum="1";
 		
-		String keyfield=request.getParameter("pageNum");
-		String keyword=request.getParameter("keyword");
+		String keyfield=request.getParameter("keyfield");
 		
 		FaqDAO dao=FaqDAO.getInstance();
-		int count=dao.getFaqCount(keyfield, keyword);
+		int count=dao.getFaqCount(keyfield);
 		
-		PageUtil page=new PageUtil(keyfield, keyword, 
-				Integer.parseInt(pageNum),count,20,10,"faq.do");
+		PageUtil page=new PageUtil(keyfield,null, 
+				Integer.parseInt(pageNum),count,10,10,"faq.do");
 		
 		List<FaqVO> list=null;
 		if(count>0) {
-			list=dao.getFaqBoard();
+			list=dao.getFaqBoard(page.getStartRow(),page.getEndRow(),keyfield);
 		}
 		
 		request.setAttribute("count", count);

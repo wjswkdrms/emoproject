@@ -17,18 +17,15 @@ public class AnnounceAction implements Action{
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null) pageNum="1";
 		
-		String keyfield=request.getParameter("pageNum");
-		String keyword=request.getParameter("keyword");
-		
 		AnnounceDAO dao=AnnounceDAO.getInstance();
-		int count=dao.getAnnounceCount(keyfield, keyword);
+		int count=dao.getAnnounceCount();
 		
-		PageUtil page=new PageUtil(keyfield, keyword, 
-				Integer.parseInt(pageNum),count,20,10,"announce.do");
+		PageUtil page=new PageUtil(null, null, 
+				Integer.parseInt(pageNum),count,10,10,"announce.do");
 		
 		List<AnnounceVO> list=null;
 		if(count>0) {
-			list=dao.getAnnounceBoard();
+			list=dao.getAnnounceBoard(page.getStartRow(),page.getEndRow());
 		}
 		
 		request.setAttribute("count", count);

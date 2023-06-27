@@ -29,7 +29,7 @@
 					<h2>1:1 문의</h2>
 				</div>
 				
-<%-- 	 			<c:if test="${count==0}"> 
+ 	 			<c:if test="${count==0}"> 
 	 			<div class="list">
 					<div>번호</div>
 					<div>제목</div>
@@ -39,8 +39,8 @@
 	 			<div>
 					표시할 게시물이 없습니다.
 				</div> 
-	 			</c:if> --%>
-<%-- 	 			<c:if test="${count>0}"> --%>
+	 			</c:if> 
+ 	 			<c:if test="${count>0}"> 
 				<div class="list">
 					<div>번호</div>
 					<div>제목</div>
@@ -70,13 +70,13 @@
 					
 				</ul>
 				</c:forEach>
-<%-- 	 			</c:if>  --%>
+ 	 			</c:if>  
 				<c:if test="${!empty user_num && user_auth==2}">
 				<div class="button-box">
 					<input class="button" type="button" value="글쓰기" onclick="location.href='askForm.do'">
 				</div> 
 				</c:if>
-				<div>${page}</div>  
+				<div class="align-center">${page}</div>  
 			</div>
 		</div>
 		<!-- 내용 끝 -->
