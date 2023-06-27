@@ -44,12 +44,6 @@
             <th id="th5">후기 작성</th>
           </tr>
           <c:forEach var="zzim" items="${list}">
-            <c:if test="${list == 0}">
-              <div class="page_none">
-                작성 가능한 상품 후기가 없습니다.
-              </div>
-            </c:if>
-
             <tr class="content_main">
               <td id="photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></td>
               <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
