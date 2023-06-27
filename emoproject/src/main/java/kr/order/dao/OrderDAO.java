@@ -63,7 +63,7 @@ public class OrderDAO {
 			pstmt7.setInt(4, home.getMem_home_zipcode());
 			pstmt7.setString(5, home.getMem_home_address1());
 			pstmt7.setString(6, home.getMem_home_address2());
-			pstmt7.setString(7, "default");
+			pstmt7.setString(7, ".");
 			
 			pstmt7.executeUpdate();
 			//order_num값 구하기
