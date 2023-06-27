@@ -1,4 +1,24 @@
 @charset "UTF-8";
+/* 공통 메시지
+------------------*/
+.result-display{
+	width:400px;
+	height:200px;
+	margin:50px auto;
+	border:1px solid #000;
+	display:flex;
+	align-items:center;/*세로 정렬*/
+	justify-content:center;/*가로 정렬*/
+}
+/* 공통 정렬
+------------------*/
+.align-center{
+	text-align:center;
+}
+.align-right{
+	text-align:right;
+}
+
 /* *{
 	margin: 0px;
 	padding: 0px;
@@ -276,4 +296,21 @@
 
 .pro-title h2{
 	margin: 10px 0px;
+}
+
+/**/
+.review-box{
+	display: flex;
+	padding: 30px, 0px, 19px, 20px;
+	border-bottom: 1px solid  rgb(193, 193, 193);
+}
+.rbox-left{
+	flex: 0 0 225px;	
+}
+.rbox-right{
+	flex: 1 1 0%;	
+}
+.rbox-img img{
+	width: 93px;
+	height: 93px;
 }

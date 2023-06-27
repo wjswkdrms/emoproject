@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.product.vo.ProductDetailVO;
 import kr.product.vo.ProductManageVO;
+import kr.review.vo.ReviewVO;
 import kr.util.DBUtil;
 
 public class ProductDAO {
@@ -321,5 +322,83 @@ public class ProductDAO {
 		}
 	}
 	// 관리자 - 상품 삭제
-
+	
+	
+	
+	//---------------------
+	
+	
+	
+	//상세페이지 리뷰 개수(해당 상품에 관한 리뷰 개수)
+	public int getReviewCount(int product_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(*) FROM em_review WHERE product_num = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return count;
+	}
+	
+	
+	
+	//상세페이지 리뷰 리스트(해당 상품에 관한 리뷰 상세 내용 리스트)
+	public List<ReviewVO> getProductDetailReviewList(int start,int end, int product_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ReviewVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+					+ "FROM (SELECT * FROM em_review r INNER JOIN em_member_manage m ON r.mem_num=m.mem_num "
+					+ "WHERE r.product_num=? ORDER BY r.review_num DESC) a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//?에 데이터 바인딩
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ReviewVO>();
+			while(rs.next()) {
+				ReviewVO review = new ReviewVO();
+				review.setReview_num(rs.getInt("review_num"));
+				review.setProduct_num(product_num);
+				review.setMem_num(rs.getInt("mem_num"));
+				review.setReview_title(rs.getString("review_title"));
+				review.setReview_content(rs.getString("review_content"));
+				review.setReview_photo1(rs.getString("review_photo1"));
+				review.setReview_score(rs.getInt("review_score"));
+				review.setOrder_num(rs.getInt("order_num"));
+				review.setMem_id(rs.getString("mem_id"));
+				
+				list.add(review);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
 }

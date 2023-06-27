@@ -132,7 +132,7 @@
 				<input type="number" name="price" id="price" maxlength="5" value="${product.productdetailVO.product_price}">
 			</li>
 			<li><label class="box-left" for="discount">할인률</label> 
-						<input type="number" name="discount" id="dsicount" value="0" min="0" max="99">
+						<input type="number" name="discount" id="dsicount" value="${product.productdetailVO.product_discount}" min="0" max="99">
 					</li>
 			<li>
 				<label class="box-left" for="stock">재고</label>
