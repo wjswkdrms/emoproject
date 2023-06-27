@@ -18,12 +18,12 @@
 		<form action="${pageContext.request.contextPath}/order/userAddressUpdate.do">
 		<table class="address-table">
 			<tr>
-				<th>선택</th>
-				<th>이름</th>
-				<th>우편번호</th>
-				<th>주소</th>
-				<th>상세주소</th>
-				<th>전화번호</th>
+				<th class="checkbox">선택</th>
+				<th class="name">이름</th>
+				<th class="zipcode">우편번호</th>
+				<th class="address1">주소</th>
+				<th class="address2">상세주소</th>
+				<th class="cell">전화번호</th>
 			</tr>
 			<tr class="now-address">
 				<td>현재 주소</td>
@@ -41,12 +41,12 @@
 				<td>${home.getMem_home_address1()}</td>
 				<td>${home.getMem_home_address2()}</td>
 				<td>${home.getMem_home_cell()}</td>
-				<td><input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath}/order/userUpdateHomeForm.do?home_num=${home.getMem_home_num()}'"></td>
+				<td><input type="button" class="button" style="width:100px;" value="수정" onclick="location.href='${pageContext.request.contextPath}/order/userUpdateHomeForm.do?home_num=${home.getMem_home_num()}'"></td>
 			</tr>
 			</c:forEach>
 		</table>
-		<input type="submit" value="내 주소를 해당 주소로 변경">
-		<input type="button" value="추가" onclick="location.href='${pageContext.request.contextPath}/order/userInsertHomeForm.do'">
+		<input type="submit" class="button" value="내 주소를 해당 주소로 변경">
+		<input type="button" class="button" value="주소 추가" onclick="location.href='${pageContext.request.contextPath}/order/userInsertHomeForm.do'">
 		</form>
 	</div>
 </div>

@@ -166,7 +166,7 @@ $(function(){
 				<hr size="1" noshade="noshade" width="100%">
 				<div>
 					<span>결제시 포인트 잔액</span>
-					<span class="money"><fmt:formatNumber value="${point-all_total}"/>원</span>
+					<span class="money"><b><fmt:formatNumber value="${point-all_total}"/>원</b></span>
 				</div>
 				<input type="submit" value="결제 정보 입력" class="button">
 			</div>

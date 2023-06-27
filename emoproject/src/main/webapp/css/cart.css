@@ -49,10 +49,7 @@
 	width:1000px;
 	margin:50px auto;
 }
-table td, table th{
-	font-size:15pt;
-	padding:5px;
-}
+
 input[id="result"]{
 	font-size:20pt;
 	width:40px;
@@ -139,24 +136,24 @@ table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
+  text-align:center;
 }
 
-thead th:nth-child(1) {
+th.checkbox {
+  width: 10%;
+}
+
+th.name {
+  width: 10%;
+}
+th.zipcode {
+  width: 7%;
+}
+th.address1 {
   width: 30%;
 }
 
-thead th:nth-child(2) {
-  width: 20%;
-}
-
-thead th:nth-child(3) {
-  width: 15%;
-}
-
-thead th:nth-child(4) {
-  width: 35%;
-}
-
-th, td {
-  padding: 20px;
+table td, table th{
+	font-size:15pt;
+	padding:20px 5px;
 }
