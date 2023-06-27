@@ -90,8 +90,8 @@
 				return false;
 			}
 			//잘못된 입력 방지
-			if(!/^[0-9.*]+$/.test($('#cell').val())){
-				alert('전화번호는 숫자만 입력 가능합니다.');
+			if(!/^[0-9\-]+$/.test($('#cell').val())){
+				alert('전화번호는 숫자와 -만 입력 가능합니다.');
 				$('#cell').val('').focus();
 				return false;
 			}
@@ -159,7 +159,7 @@
               <label for="cell">전화번호</label>
             </div>
             <div class="input_box">
-              <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,11}" required title="일반적인 전화번호를 입력하세요" value="${mem_cell}">
+              <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,13}" required title="올바른 전화번호를 입력하세요" value="${mem_cell}">
             </div>
           </div>
         </div>
@@ -192,7 +192,7 @@
               <label for="address1">주소</label>
             </div>
             <div class="input_box">
-              <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,30}" required title="주소를 입력하세요" value="${mem_address1}">
+              <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,150}" required title="주소를 입력하세요" value="${mem_address1}">
             </div>
           </div>
         </div>
@@ -202,7 +202,7 @@
               <label for="address2">상세 주소</label>
             </div>
             <div class="input_box">
-              <input type="text" name="address2" class="input_style" id="address2" pattern=".{1,30}" required title="상세주소를 입력하세요" value="${mem_address2}">
+              <input type="text" name="address2" class="input_style" id="address2" pattern=".{1,150}" required title="상세주소를 입력하세요" value="${mem_address2}">
             </div>
           </div>
         </div>

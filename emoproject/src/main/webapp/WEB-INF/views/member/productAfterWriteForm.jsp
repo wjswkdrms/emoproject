@@ -15,7 +15,9 @@
 			<!-- 내용 시작 -->
 				<div class="right-div">
 				<h2>상품 후기 작성</h2>
-				<form id="review_form" action="productAfterWrite.do?product_num=${product_num}&order_num=${order_num}" method="post" enctype="multipart/form-data">
+				<form id="review_form" action="productAfterWrite.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="product_num" id="product_num" value="${product_num}">
+				<input type="hidden" name="order_num" id="order_num" value="${order_num}">
 					<table>
 						<tr>
 							<th>제목</th>

@@ -39,7 +39,7 @@
             <th id="th5">후기 작성</th>
           </tr>
           <c:forEach var="zzim" items="${list}">
-            <c:if test="${count == 0}">
+            <c:if test="${list == 0}">
               <div class="page_none">
                 작성 가능한 상품 후기가 없습니다.
               </div>

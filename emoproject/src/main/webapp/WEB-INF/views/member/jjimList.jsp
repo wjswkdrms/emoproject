@@ -47,7 +47,7 @@
                     <tr class="content_main">
                         <td id="photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></td>
                         <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
-                        <td id="price">${zzim.product_price}</td>
+                        <td id="price">${zzim.product_price_sales}</td>
                         <td id="status">
 						<c:if test="${zzim.product_status==2}">
 						   판매중

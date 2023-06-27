@@ -26,17 +26,11 @@ public class ProductAfterWriteAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
-		String product_num = request.getParameter("product_num"); //쿼리스트링으로 입력
-		String order_num = request.getParameter("order_num"); //쿼리스트링으로 입력
+		//String product_num = request.getParameter("product_num"); //쿼리스트링으로 입력
+		//String order_num = request.getParameter("order_num"); //쿼리스트링으로 입력
 		
 		MultipartRequest multi=FileUtil.createFile(request);
-		
-		System.out.println(multi.getParameter("review_title"));
-		System.out.println(multi.getParameter("review_content"));
-		System.out.println(multi.getParameter("review_photo1"));
-		System.out.println(multi.getParameter("review_score"));
-		System.out.println(product_num);
-		System.out.println(order_num);
+
 		ReviewVO review = new ReviewVO();
 		ProductDetailVO product = new ProductDetailVO();
 		System.out.println(product.getProduct_num());
@@ -44,12 +38,13 @@ public class ProductAfterWriteAction implements Action{
 		review.setReview_content(multi.getParameter("review_content"));
 		review.setReview_photo1(multi.getFilesystemName("review_photo1"));
 		review.setReview_score(Integer.parseInt(multi.getParameter("review_score")));
-		review.setProduct_num(Integer.parseInt(product_num));
-		review.setOrder_num(Integer.parseInt(order_num));
+		review.setProduct_num(Integer.parseInt(multi.getParameter("product_num")));
+		review.setOrder_num(Integer.parseInt(multi.getParameter("order_num")));
 		review.setMem_num(user_num);
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.getProductAfterWrite(review);
+		request.setAttribute("product_num",multi.getParameter("product_num"));
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/productAfterWrite.jsp";
 	}	

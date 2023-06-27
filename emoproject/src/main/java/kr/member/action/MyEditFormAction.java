@@ -1,7 +1,5 @@
 package kr.member.action;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +13,7 @@ public class MyEditFormAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//로그인 여부 체크
+		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		Integer mem_num = (Integer)session.getAttribute("user_num");
 		if(mem_num==null) {
