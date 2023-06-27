@@ -23,7 +23,7 @@ public class UserAddressUpdateAction implements Action{
 		
 		dao.updateMemberAddress(home, user_num);
 		request.setAttribute("notice_msg", "주소가 변경되었습니다.");
-		request.setAttribute("notice_url", request.getContextPath()+"/main/main.do");
+		request.setAttribute("notice_url", request.getContextPath()+"/order/userHomeList.do");
 		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}
 	

@@ -50,7 +50,7 @@
 	margin:50px auto;
 }
 table td, table th{
-	font-size:20pt;
+	font-size:15pt;
 	padding:5px;
 }
 input[id="result"]{
@@ -109,6 +109,10 @@ input.quntity{
 	width:70px;
 	margin:0 5px;
 }
+.now-address{
+	color:blue;
+	font-weight: 700;
+}
 .cart-modify:hover{
 	width:70px;
 }
@@ -125,4 +129,34 @@ ul{
 	font-size:14pt;
 	color:gray;
 	text-decoration: line-through;
+}
+.page_outer{
+	justify-content: center;
+}
+/* 간격 */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+}
+
+th, td {
+  padding: 20px;
 }
