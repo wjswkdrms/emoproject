@@ -11,18 +11,23 @@
 body{
 	font-family : 'maple';
 }
+    .page{
+      display:flex;
+      width:1920px;
+      margin:0 auto;
+    }
     .page_outer{ /* 전체 페이지 설정 */
       width:1600px;
-      height:1000px;
+      height:auto;
       display: flex;
       padding-top: 100px;
       margin: 0 auto;
-      padding-left: 300px; /*임시 추가*/
     }
     .page_inner{ /* 전체 데이터 박스 설정 */
       display:flex;
       width:1200px;
       height: 600px;
+      margin: 0 auto;
       flex-direction: column;
     }
     .page_inner #title{ /* 제목 중앙 정렬 */
@@ -30,6 +35,10 @@ body{
       text-align: center;
       padding-top: 15px;
       width:100%;
+      margin-bottom: 30px;
+    }
+    .page_inner h2{
+      font-size:30px;
     }
     .page_input{
       display:flex;
@@ -82,7 +91,7 @@ body{
     .page_button .page_button_box .button2{
       display: inline-block;
       width:85px;
-      height: 20px;
+      height: 25px;
       font-size: 12px;
       background-color: white;
       border-top: white;
