@@ -36,7 +36,7 @@ public class AdminOrderListAction implements Action{
 		String keyword=request.getParameter("keyword");
 		
 		AdminMemberDAO dao=AdminMemberDAO.getInstance();
-		int count = dao.getMemberCountByAdmin(keyfield, keyword);
+		int count = dao.getOrderCountByAdmin(keyfield, keyword);
 		
 		//페이지 처리
 		PageUtil page=new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,10,10,"adminOrderList.do");

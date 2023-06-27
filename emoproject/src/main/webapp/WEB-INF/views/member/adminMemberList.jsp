@@ -70,28 +70,27 @@
 						<tr>
 							<th class="row-title"><b>회원번호</b></th>
 							<th class="row-title"><b>아이디</b></th>
-							<th class="row-title"><b>누적금액</b></th>
-							<th class="row-title"><b>등급</b></th>
+							<th class="row-title"><b>사용누적금액</b></th>
+							<th class="row-title"><b>회원상태</b></th>
 						</tr>
 						<c:forEach var="member" items="${member}">
 						<tr>
 							<td class="row-title">${member.mem_num}</td>
 							<td class="row-title">
-								<c:if test="${member.auth>0}">
 								<a href="adminMemberDetail.do?mem_num=${member.mem_num}">${member.id}</a>
-								</c:if>
-								<c:if test="${member.auth==0}">
-								${member.id}
-								</c:if>
 							</td>
 							<td class="row-title">
 								<fmt:formatNumber value="${member.order_total_price}"/> 포인트
 							</td>
 							<td class="row-title">
-								<c:if test="${member.auth==0}">탈퇴</c:if>
-								<c:if test="${member.auth==1}">정지</c:if>
-								<c:if test="${member.auth==2}">일반</c:if>
-								<c:if test="${member.auth==9}">관리</c:if>
+								<c:if test="${member.auth==0}">
+								<div class="expire"><b>탈퇴</b></div>
+								</c:if>
+								<c:if test="${member.auth==1}"><b>정지</b></c:if>
+								<c:if test="${member.auth==2}"><b>일반</b></c:if>
+								<c:if test="${member.auth==9}">
+								<div class="answer"><b>관리</b></div>
+								</c:if>
 							</td>
 						</tr>
 						</c:forEach>

@@ -26,9 +26,7 @@
 				$('#ann_content').val('').focus();
 				return false;
 			}
-
 		});
-
 	});
 </script>
 </head>
@@ -55,12 +53,12 @@
 						<tr>
 							<td class="row-title">제목</td>
 							<td class="row-content"><input class="text-title"
-								type="text" name="ann_title" id="ann_title"></td>
+								type="text" name="ann_title" id="ann_title" maxlength="33"></td>
 						</tr>
 						<tr>
 							<td class="row-title">내용</td>
 							<td class="row-content"><textarea rows="5" cols="30"
-									name="ann_content" id="ann_content"></textarea></td>
+									name="ann_content" id="ann_content" maxlength="333"></textarea></td>
 						</tr>
 						<tr>
 							<td class="row-title">사진첨부</td>
@@ -80,9 +78,13 @@
 													.createElement("img");
 											img.setAttribute("src",
 													event.target.result);
-											document.querySelector(
-													"div#image_container")
-													.appendChild(img);
+											var div=document.querySelector(
+													"div#image_container");
+													
+											if(div.children.length>0){
+												div.firstElementChild.remove();	
+											}
+											div.appendChild(img);
 										};
 
 										reader.readAsDataURL(event.target.files[0]);

@@ -35,6 +35,7 @@
 					<div class="main-content">
 						<c:if test="${!empty announce.ann_photo1}">
 							<div><img src="${pageContext.request.contextPath}/upload/${announce.ann_photo1}"></div>
+							<p><br>
 						</c:if>
 						<div>${announce.ann_content}</div>
 					</div>	

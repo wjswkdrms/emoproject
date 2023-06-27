@@ -55,7 +55,7 @@ public class FaqDAO {
 			try {
 				conn=DBUtil.getConnection();
 				
-				if(keyfield!=null) {
+				if(keyfield!=null&& !"".equals(keyfield)) {
 					sub_sql += "WHERE a.faq_category LIKE ?";
 				}
 				
@@ -63,7 +63,7 @@ public class FaqDAO {
 						+ "em_member_manage m USING(mem_num)" + sub_sql;
 				pstmt=conn.prepareStatement(sql);
 				
-				if(keyfield!=null) {
+				if(keyfield!=null&& !"".equals(keyfield)) {
 					pstmt.setInt(1, Integer.parseInt(keyfield));
 				}				
 				
@@ -93,7 +93,7 @@ public class FaqDAO {
 			try {
 				conn=DBUtil.getConnection();
 				
-				if(keyfield!=null) {
+				if(keyfield!=null && !"".equals(keyfield)) {
 					sub_sql += "WHERE a.faq_category LIKE ?";
 				}
 				
@@ -105,7 +105,7 @@ public class FaqDAO {
 						+ "WHERE rnum>=? AND rnum<=?";
 
 				pstmt=conn.prepareStatement(sql);
-				if(keyfield!=null) {
+				if(keyfield!=null && !"".equals(keyfield)) {
 					pstmt.setString(++cnt, keyfield);;
 				}				
 				pstmt.setInt(++cnt, start);

@@ -58,7 +58,7 @@ $(function(){
 								<select id="faq_category" name="faq_category" required>
 									<option value="">카테고리</option>
 									<option value="1">회원</option>
-									<option value="2">이벤트/쿠폰</option>
+									<option value="2">이벤트</option>
 									<option value="3">서비스 이용</option>
 									<option value="4">시스템 오류</option>
 								</select> 
@@ -66,7 +66,7 @@ $(function(){
 						</tr>
 						<tr>
 							<td class="row-title">내용</td>
-							<th class="row-content"><textarea rows="5" cols="30" name="faq_content" id="faq_content"></textarea></th>
+							<th class="row-content"><textarea rows="5" cols="30" name="faq_content" id="faq_content" maxlength="1000"></textarea></th>
 						</tr>
 					</table>
 					<div class="button-box">

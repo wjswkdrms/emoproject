@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.announce.vo.AnnounceVO;
 import kr.ask.vo.AskVO;
+import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 
 public class askDAO {
@@ -245,18 +246,25 @@ public class askDAO {
 	}
 
 	//총 레코드 수(검색 레코드 수)
-	public int getAskCount() throws Exception{
+	public int getAskCount(int mem_auth,int mem_num) throws Exception{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql=null;
+		String sub_sql="";
 		int count=0;
 		
 		try {
 			conn=DBUtil.getConnection();
+			if(mem_auth==2) {
+				sub_sql+="WHERE mem_num=?";
+			}
 			sql="SELECT COUNT(*) FROM em_board_ask a JOIN "
-					+ "em_member_manage m USING(mem_num)";
+					+ "em_member_manage m USING(mem_num)"+sub_sql;
 			pstmt=conn.prepareStatement(sql);
+			if(mem_auth==2) {
+				pstmt.setInt(1, mem_num);
+			}			
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				count=rs.getInt(1);

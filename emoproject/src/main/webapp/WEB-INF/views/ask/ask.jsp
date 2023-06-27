@@ -36,7 +36,7 @@
 					<div>작성자</div>
 					<div>작성일</div>
 				</div>
-	 			<div>
+	 			<div class="align-center">
 					표시할 게시물이 없습니다.
 				</div> 
 	 			</c:if> 
