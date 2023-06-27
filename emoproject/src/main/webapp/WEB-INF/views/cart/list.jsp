@@ -134,8 +134,8 @@ $(function(){
 						</div>
 					</td>
 					<td>
-						<!-- ${cart.product.product_price*cart.cart_quantity} -->
-						${cart.product.product_price_sales*cart.cart_quantity}
+						<label class="before-price">${cart.product.product_price*cart.cart_quantity}</label><br>
+						<b>${cart.product.product_price_sales*cart.cart_quantity}</b>
 					</td>
 					<td>
 						<input type="button" value="삭제" class="cart-del button" data-cartnum="${cart.mem_cart_num}">
@@ -147,16 +147,24 @@ $(function(){
 			<div class="result-text">
 				<div>
 					<span>보유 포인트</span>
-					<span><fmt:formatNumber value="${point}"/>원ㄴ</span>
+					<span class="money"><fmt:formatNumber value="${point}"/>원</span>
+				</div>
+				<div>
+					<span>정상가</span>
+					<span class="money"><fmt:formatNumber value="${before_total}"/>원</span>
+				</div>
+				<div>
+					<span>할인혜택</span>
+					<span class="money">-<fmt:formatNumber value="${discount_total}"/>원</span>
 				</div>
 				<div>
 					<span>최종금액</span>
-					<span><fmt:formatNumber value="${all_total}"/>원</span>
+					<span class="money"><fmt:formatNumber value="${all_total}"/>원</span>
 				</div>
 				<hr size="1" noshade="noshade" width="100%">
 				<div>
 					<span>결제시 포인트 잔액</span>
-					<span><fmt:formatNumber value="${point-all_total}"/>원</span>
+					<span class="money"><fmt:formatNumber value="${point-all_total}"/>원</span>
 				</div>
 				<input type="submit" value="결제 정보 입력" class="button">
 			</div>

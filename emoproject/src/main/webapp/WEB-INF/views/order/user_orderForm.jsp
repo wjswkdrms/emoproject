@@ -124,16 +124,24 @@
 			<div class="result-text">
 				<div>
 					<span>보유 포인트</span>
-					<span><fmt:formatNumber value="${point}"/>원</span>
+					<span class="money"><fmt:formatNumber value="${point}"/>원</span>
+				</div>
+				<div>
+					<span>정상가</span>
+					<span class="money"><fmt:formatNumber value="${before_total}"/>원</span>
+				</div>
+				<div>
+					<span>할인혜택</span>
+					<span class="money">-<fmt:formatNumber value="${discount_total}"/>원</span>
 				</div>
 				<div>
 					<span>최종금액</span>
-					<span><fmt:formatNumber value="${all_total}"/>원</span>
+					<span class="money"><fmt:formatNumber value="${all_total}"/>원</span>
 				</div>
 				<hr size="1" noshade="noshade" width="100%">
 				<div>
 					<span>결제시 포인트 잔액</span>
-					<span><fmt:formatNumber value="${point-all_total}"/>원</span>
+					<span class="money"><fmt:formatNumber value="${point-all_total}"/>원</span>
 				</div>
 				<input type="submit" value="주문" class="button">
 				<input type="button" value="홈으로" class="button"
