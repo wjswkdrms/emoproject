@@ -1,12 +1,16 @@
 @charset "UTF-8";
-
 @font-face{
 	font-family: 'maple';
-    src: url('../fonts/Malestory_Light.ttf') format('maple');
+    src: url('../fonts/maple_light.woff') format('woff');
 }
-	div {
-		font-family: 'maple';
-	}
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_bold.woff') format('woff');
+    font-weight:bold;
+}
+body{
+	font-family : 'maple';
+}
 /* 페이지 레이아웃
 ------------------*/
 .page-main{
@@ -49,10 +53,7 @@
 	width:1000px;
 	margin:50px auto;
 }
-table td, table th{
-	font-size:20pt;
-	padding:5px;
-}
+
 input[id="result"]{
 	font-size:20pt;
 	width:40px;
@@ -109,6 +110,10 @@ input.quntity{
 	width:70px;
 	margin:0 5px;
 }
+.now-address{
+	color:blue;
+	font-weight: 700;
+}
 .cart-modify:hover{
 	width:70px;
 }
@@ -122,7 +127,37 @@ ul{
 	float:right;
 }
 .before-price{
-	font-size:14pt;
+	font-size:12pt;
 	color:gray;
 	text-decoration: line-through;
+}
+.page_outer{
+	justify-content: center;
+}
+/* 간격 */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  text-align:center;
+}
+
+th.checkbox {
+  width: 10%;
+}
+
+th.name {
+  width: 10%;
+}
+th.zipcode {
+  width: 7%;
+}
+th.address1 {
+  width: 30%;
+}
+
+table td, table th{
+	font-size:15pt;
+	padding:20px 5px;
 }

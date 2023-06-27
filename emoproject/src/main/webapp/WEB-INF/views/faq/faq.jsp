@@ -25,6 +25,8 @@
 	        content.style.maxHeight = content.scrollHeight + "px";  // 접혀있는 경우 펼치기
 	    }
 	}
+	
+
 </script>
 </head>
 <body>
@@ -46,6 +48,21 @@
 					<h2>자주하는 질문</h2>
 				</div>
 				
+					<form id="search_form" action="faq.do"
+					                          method="get">
+						<div class="button-box">					                          
+								<ul class="main-content">
+										<li>
+											<select class="select" name="keyfield" onchange="this.form.submit();">
+												<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>회원</option>
+												<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>이벤트</option>
+												<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>서비스 이용</option>
+												<option value="4" <c:if test="${param.keyfield==4}">selected</c:if>>시스템 오류</option>
+											</select>
+										</li>
+								</ul>
+						</div>                          
+					</form>                          
 	 			<c:if test="${count==0}"> 
 	 			<div class="list">
 					<div class="list-num">번호</div>
@@ -72,7 +89,7 @@
 								회원
 							</c:if>
 							<c:if test="${faq.faq_category==2}">
-								이벤트/쿠폰
+								이벤트
 							</c:if>
 							<c:if test="${faq.faq_category==3}">
 								서비스 이용

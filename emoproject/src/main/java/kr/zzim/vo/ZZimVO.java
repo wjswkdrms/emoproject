@@ -14,6 +14,7 @@ public class ZZimVO {
 	private int Order_num;
 	private String Product_name;
 	private int Order_status;
+	private String product_price_sales;
 
 
 
@@ -128,4 +129,14 @@ public class ZZimVO {
 	public void setProduct_num(int product_num) {
 		this.product_num = product_num;
 	}
+
+	public String getProduct_price_sales() {
+		return product_price_sales;
+	}
+
+	public void setProduct_price_sales(String product_price_sales) {
+		this.product_price_sales = product_price_sales;
+	}
+	
+	
 }

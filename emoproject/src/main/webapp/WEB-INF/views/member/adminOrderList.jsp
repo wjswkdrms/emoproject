@@ -76,12 +76,12 @@
 					</tr>
 					<c:forEach var="order" items="${order}">
 					<tr>
-						<td class="row-content">${order.order_num}</td>
-						<td class="row-content">${order.mem_num}</td>
-						<td class="row-content">
+						<td class="row-title">${order.order_num}</td>
+						<td class="row-title">${order.mem_num}</td>
+						<td class="row-title">
 							<a href="adminOrderDetail.do?order_num=${order.order_num}" data-hidden="${order.mem_num}">${order.id}</a>
 						</td>
-						<td class="row-content">
+						<td class="row-title">
 							<c:if test="${order.order_status==0}">
 								주문완료
 							</c:if>

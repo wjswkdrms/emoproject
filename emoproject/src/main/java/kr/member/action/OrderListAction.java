@@ -40,8 +40,6 @@ public class OrderListAction implements Action{
 			//${zzim.변수명}으로 jsp에서 출력해야 됨
 			list = dao.getOrderListBoardAll(page.getStartRow(),page.getEndRow(),user_num);
 		}
-		
-		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());		

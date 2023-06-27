@@ -159,7 +159,7 @@ $(function(){
 				</div>
 			</li>
 			<li class="icons-menu">
-				<a href="${pageContext.request.contextPath}/cart/list.do"><img src="${pageContext.request.contextPath}/images/emo_icon_fav01.png"></a>
+				<a href="${pageContext.request.contextPath}/member/jjimList.do"><img src="${pageContext.request.contextPath}/images/emo_icon_fav01.png"></a>
 
 				<a href="${pageContext.request.contextPath}/cart/list.do" id="cart-icon">
 					<img src="${pageContext.request.contextPath}/images/emo_icon_cart01.png">

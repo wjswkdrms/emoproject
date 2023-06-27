@@ -44,7 +44,7 @@ public class FaqDAO {
 	}
 	
 	//총 레코드 수(검색 레코드 수)
-		public int getFaqCount(String keyfield,String keyword) throws Exception{
+		public int getFaqCount(String keyfield) throws Exception{
 			Connection conn=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
@@ -54,9 +54,19 @@ public class FaqDAO {
 			
 			try {
 				conn=DBUtil.getConnection();
+				
+				if(keyfield!=null) {
+					sub_sql += "WHERE a.faq_category LIKE ?";
+				}
+				
 				sql="SELECT COUNT(*) FROM em_board_faq a JOIN "
 						+ "em_member_manage m USING(mem_num)" + sub_sql;
 				pstmt=conn.prepareStatement(sql);
+				
+				if(keyfield!=null) {
+					pstmt.setInt(1, Integer.parseInt(keyfield));
+				}				
+				
 				rs=pstmt.executeQuery();
 				if(rs.next()) {
 					count=rs.getInt(1);
@@ -70,7 +80,8 @@ public class FaqDAO {
 		}
 		
 		//글 목록
-		public List<FaqVO> getFaqBoard() throws Exception{
+		public List<FaqVO> getFaqBoard(int start, int end,
+				 String keyfield) throws Exception{
 			Connection conn=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
@@ -81,9 +92,24 @@ public class FaqDAO {
 			
 			try {
 				conn=DBUtil.getConnection();
-				sql="SELECT * FROM em_board_faq a JOIN em_member_manage m "
-						+ "USING (mem_num) ORDER BY a.faq_num DESC";
+				
+				if(keyfield!=null) {
+					sub_sql += "WHERE a.faq_category LIKE ?";
+				}
+				
+				sql="SELECT * FROM (SELECT b.*,"
+						+ "rownum rnum FROM (SELECT * "
+						+ "FROM em_board_faq a JOIN em_member_manage m "
+						+ "USING(mem_num) " + sub_sql + " ORDER BY "
+						+ "a.faq_num DESC)b) "
+						+ "WHERE rnum>=? AND rnum<=?";
+
 				pstmt=conn.prepareStatement(sql);
+				if(keyfield!=null) {
+					pstmt.setString(++cnt, keyfield);;
+				}				
+				pstmt.setInt(++cnt, start);
+				pstmt.setInt(++cnt, end);
 				
 				rs=pstmt.executeQuery();
 				list=new ArrayList<FaqVO>();

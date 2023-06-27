@@ -116,7 +116,7 @@ $(function(){
 						<img src="${pageContext.request.contextPath}/upload/${cart.product.product_photo1}" width="80">
 					</td>
 					<td>
-						${cart.product.product_title}
+						<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${cart.product_num}">${cart.product.product_title}</a>
 					</td>
 					<td>
 						<div class="quantity">
@@ -133,9 +133,11 @@ $(function(){
 							 >
 						</div>
 					</td>
-					<td>
-						<label class="before-price">${cart.product.product_price*cart.cart_quantity}</label><br>
-						<b>${cart.product.product_price_sales*cart.cart_quantity}</b>
+					<td class="align-right">
+						<c:if test="${cart.product.product_price!=cart.product.product_price_sales}">
+						<label class="before-price"><fmt:formatNumber value="${cart.product.product_price*cart.cart_quantity}"/>원</label><br>
+						</c:if>
+						<b><fmt:formatNumber value="${cart.product.product_price_sales*cart.cart_quantity}"/>원</b>
 					</td>
 					<td>
 						<input type="button" value="삭제" class="cart-del button" data-cartnum="${cart.mem_cart_num}">
@@ -164,7 +166,7 @@ $(function(){
 				<hr size="1" noshade="noshade" width="100%">
 				<div>
 					<span>결제시 포인트 잔액</span>
-					<span class="money"><fmt:formatNumber value="${point-all_total}"/>원</span>
+					<span class="money"><b><fmt:formatNumber value="${point-all_total}"/>원</b></span>
 				</div>
 				<input type="submit" value="결제 정보 입력" class="button">
 			</div>

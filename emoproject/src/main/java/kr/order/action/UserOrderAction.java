@@ -14,7 +14,6 @@ import kr.order.dao.OrderDAO;
 import kr.order.vo.MemberHomeVO;
 import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
-import kr.product.dao.ProductDAO;
 import kr.product.vo.ProductManageVO;
 
 public class UserOrderAction implements Action{
@@ -44,13 +43,7 @@ public class UserOrderAction implements Action{
 		//장바구니에 담겨 있는 상품 정보 반환
 		List<CartVO> cartList = dao.getListCart(user_num);
 		//주문 상품이 대표 상품명  생성
-		String item_name;
-		if(cartList.size()==1) {//상품이 하나인 경우
-			item_name = cartList.get(0).getProduct().getProduct_name();
-		}else {
-			item_name = cartList.get(0).getProduct().getProduct_name() + "외 " + (cartList.size() - 1) + "건";
-			
-		}
+		
 		//개별 상품 정보 담기
 		List<OrderDetailVO> orderDetailList = new ArrayList<OrderDetailVO>();
 		CartDAO itemdao = CartDAO.getInstance();

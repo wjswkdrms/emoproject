@@ -69,22 +69,22 @@ public class askDAO {
 	}
 	
 	//1:1 문의 목록(사용자)
-	public List<AskVO> getAskBoard(int mem_num) throws Exception{
+	public List<AskVO> getAskBoard(int start,int end,int mem_num) throws Exception{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<AskVO> list=null;
 		String sql=null;
-		String sub_sql="";
-		int cnt=0;
 		
 		try {
 			conn=DBUtil.getConnection();
-			sql="SELECT * FROM em_board_ask a JOIN em_member_manage m "
-					+ "USING (mem_num) WHERE mem_num=? ORDER BY a.ask_num DESC";
+			sql="SELECT * FROM (SELECT b.*,rownum rnum FROM (SELECT * FROM em_board_ask a "
+					+ "JOIN em_member_manage m USING(mem_num) WHERE mem_num=? ORDER BY "
+					+ "a.ask_num DESC)b) WHERE rnum>=? AND rnum<=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
-			
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			rs=pstmt.executeQuery();
 			list=new ArrayList<AskVO>();
 			while(rs.next()) {
@@ -111,20 +111,21 @@ public class askDAO {
 	}
 	
 	//1:1 문의 목록(관리자)
-	public List<AskVO> getAskTotalBoard() throws Exception{
+	public List<AskVO> getAskTotalBoard(int start,int end) throws Exception{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<AskVO> list=null;
 		String sql=null;
-		String sub_sql="";
-		int cnt=0;
 		
 		try {
 			conn=DBUtil.getConnection();
-			sql="SELECT * FROM em_board_ask a JOIN em_member_manage m "
-					+ "USING (mem_num) ORDER BY a.ask_num DESC";
+			sql="SELECT * FROM (SELECT b.*,rownum rnum FROM (SELECT * FROM em_board_ask a "
+					+ "JOIN em_member_manage m USING(mem_num) ORDER BY "
+					+ "a.ask_num DESC)b) WHERE rnum>=? AND rnum<=?";
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			rs=pstmt.executeQuery();
 			list=new ArrayList<AskVO>();
@@ -242,4 +243,29 @@ public class askDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+
+	//총 레코드 수(검색 레코드 수)
+	public int getAskCount() throws Exception{
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=null;
+		int count=0;
+		
+		try {
+			conn=DBUtil.getConnection();
+			sql="SELECT COUNT(*) FROM em_board_ask a JOIN "
+					+ "em_member_manage m USING(mem_num)";
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}	
 }

@@ -1,13 +1,16 @@
 @charset "UTF-8";
-
-/* 아이디# 클래스. */
 @font-face{
 	font-family: 'maple';
-    src: url('../fonts/Malestory_Light.ttf') format('maple');
+    src: url('../fonts/maple_light.woff') format('woff');
 }
-	div {
-		font-family: 'maple';
-	}
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_bold.woff') format('woff');
+    font-weight:bold;
+}
+body{
+	font-family : 'maple';
+}
     body{
       margin:0;
     }

@@ -6,13 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.member.vo.MemberVO;
 import kr.order.vo.MemberHomeVO;
 import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
-import kr.product.dao.ProductDAO;
-import kr.product.vo.ProductDetailVO;
-import kr.product.vo.ProductManageVO;
 import kr.util.DBUtil;
 
 public class OrderDAO {
@@ -67,7 +63,7 @@ public class OrderDAO {
 			pstmt7.setInt(4, home.getMem_home_zipcode());
 			pstmt7.setString(5, home.getMem_home_address1());
 			pstmt7.setString(6, home.getMem_home_address2());
-			pstmt7.setString(7, "default");
+			pstmt7.setString(7, ".");
 			
 			pstmt7.executeUpdate();
 			//order_num값 구하기

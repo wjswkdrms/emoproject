@@ -29,6 +29,11 @@
   </div>
 <div class="page_inner">
     <div class="page_inner_main">
+    		<c:if test="${empty list}">
+			<div class="result-display">
+				주문내역이 없습니다.
+			</div>	
+		</c:if>
         <c:if test="${count > 0}">
             <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
                 <tr class="content_title">
@@ -47,7 +52,7 @@
                     <tr class="content_main">
                         <td id="photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></td>
                         <td id="title"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></td>
-                        <td id="price">${zzim.product_price}</td>
+                        <td id="price">${zzim.product_price_sales}</td>
                         <td id="status">
 						<c:if test="${zzim.product_status==2}">
 						   판매중

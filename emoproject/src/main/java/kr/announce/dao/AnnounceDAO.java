@@ -44,18 +44,17 @@ public class AnnounceDAO {
 	}
 	
 	//총 레코드 수(검색 레코드 수)
-	public int getAnnounceCount(String keyfield,String keyword) throws Exception{
+	public int getAnnounceCount() throws Exception{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql=null;
-		String sub_sql="";
 		int count=0;
 		
 		try {
 			conn=DBUtil.getConnection();
 			sql="SELECT COUNT(*) FROM em_board_announce a JOIN "
-					+ "em_member_manage m USING(mem_num)" + sub_sql;
+					+ "em_member_manage m USING(mem_num)";
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
@@ -70,21 +69,21 @@ public class AnnounceDAO {
 	}
 	
 	//글 목록
-	public List<AnnounceVO> getAnnounceBoard() throws Exception{
+	public List<AnnounceVO> getAnnounceBoard(int start,int end) throws Exception{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<AnnounceVO> list=null;
 		String sql=null;
-		String sub_sql="";
-		int cnt=0;
 		
 		try {
 			conn=DBUtil.getConnection();
-			sql="SELECT * FROM em_board_announce a JOIN em_member_manage m "
-					+ "USING (mem_num) ORDER BY a.ann_num DESC";
+			sql="SELECT * FROM (SELECT b.*,rownum rnum FROM (SELECT * FROM em_board_announce a "
+					+ "JOIN em_member_manage m USING(mem_num) ORDER BY "
+					+ "a.ann_num DESC)b) WHERE rnum>=? AND rnum<=?";
 			pstmt=conn.prepareStatement(sql);
-			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			rs=pstmt.executeQuery();
 			list=new ArrayList<AnnounceVO>();
 			while(rs.next()) {

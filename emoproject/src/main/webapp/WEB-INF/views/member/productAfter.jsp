@@ -29,6 +29,11 @@
   </div>
    <div class="page_inner">
     <div class="page_inner_main">
+    		<c:if test="${empty list}">
+			<div class="result-display">
+				작성 가능한 후기가 없습니다.
+			</div>	
+		</c:if>
       <c:if test="${count > 0}">
         <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
           <tr class="content_title">
@@ -39,7 +44,7 @@
             <th id="th5">후기 작성</th>
           </tr>
           <c:forEach var="zzim" items="${list}">
-            <c:if test="${count == 0}">
+            <c:if test="${list == 0}">
               <div class="page_none">
                 작성 가능한 상품 후기가 없습니다.
               </div>

@@ -29,6 +29,11 @@
   </div>
 <div class="page_inner">
     <div class="page_inner_main">
+		<c:if test="${empty list}">
+			<div class="result-display">
+				주문내역이 없습니다.
+			</div>	
+		</c:if>
         <c:if test="${count > 0}">
             <table class="page_inner_post"> <!-- 실제 데이터 시작 -->
                 <tr class="content_title">
@@ -38,13 +43,8 @@
                     <th id="th4">주문 날짜</th>
                     <th id="th5">배송 상태</th>
                 </tr>
+                
                 <c:forEach var="zzim" items="${list}">
-                    <c:if test="${count == 0}">
-                        <div class="page_none">
-                            주문한 상품이 없습니다.
-                        </div>
-                    </c:if>
-
                     <tr class="content_main">
                         <td id="num"><a href="${pageContext.request.contextPath}/member/memberEdit.do?orderNum=${zzim.order_num}">${zzim.order_num}</a></td>
                         <td id="title"><a href="${pageContext.request.contextPath}/member/memberEdit.do?orderNum=${zzim.order_num}">${zzim.product_name}</a></td>

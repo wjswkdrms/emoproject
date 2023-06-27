@@ -1,5 +1,16 @@
 @charset "UTF-8";
-
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_light.woff') format('woff');
+}
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_bold.woff') format('woff');
+    font-weight:bold;
+}
+body{
+	font-family : 'maple';
+}
 .whole {
 	line-height: 1.15;
 	box-sizing: border-box;
@@ -76,21 +87,23 @@ ul.menu-box {
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 }
-ul.list li{
-	display:block;
-	padding:20px 0 20px;
+
+ul.list li {
+	display: block;
+	padding: 20px 0 20px;
 }
-ul.list{
-	width: 100%;	
+
+ul.list {
+	width: 100%;
 	padding: 0;
 	list-style: none;
 	display: flex;
-	flex-direction:row;
+	flex-direction: row;
 	margin-block-start: 1em;
 	margin-block-end: 1em;
 	margin-inline-start: 0px;
-	margin-inline-end: 0px;	
-	-webkit-box-pack: justify;	
+	margin-inline-end: 0px;
+	-webkit-box-pack: justify;
 	justify-content: space-between;
 }
 
@@ -150,10 +163,9 @@ table.form-box {
 	padding: 14px 10px;
 	line-height: 22px;
 	letter-spacing: -0.01em;
-	text-align: center;
+	text-align: left;
 	vertical-align: top;
 	font-weight: 500;
-	
 }
 
 .row-content input[type="text"] {
@@ -471,10 +483,11 @@ ul.list2 li {
 	display: flex;
 	flex-direction: row;
 }
-ul.list2{
-	cursor:pointer;
-	padding:0 5px;
-	text-align:left;
+
+ul.list2 {
+	cursor: pointer;
+	padding: 0 5px;
+	text-align: left;
 }
 
 ul.main-content {
@@ -504,4 +517,21 @@ div#image_container img {
 	overflow: hidden;
 	transition: max-height 0.2s ease-out;
 	background-color: #f1f1f1;
+}
+
+select.select {
+	width: 200px;
+	padding: .8em .5em;
+	border: 1px solid #999;
+	font-family: inherit;
+	background: url('../images/arrow.jpg') no-repeat 95% 50%;
+	background-size:12%;
+	border-radius: 5px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+select.select::-ms-expand {
+	display: none;
 }

@@ -44,7 +44,8 @@ public class ProductAfterAction implements Action{
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
-		request.setAttribute("page", page.getPage());		
+		request.setAttribute("page", page.getPage());	
+		
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/productAfter.jsp";

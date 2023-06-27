@@ -63,7 +63,14 @@ public class MemberDAO {
 				pstmt3.setInt(1, num);
 				pstmt3.setString(2, member.getName());
 				pstmt3.setString(3, member.getPasswd());
-				pstmt3.setString(4, member.getCell());
+				
+				String cell_string = member.getCell();
+				//-1이 아니면 010-0000-0000 형식, -1이면 0100000000 형식
+				if((cell_string).indexOf("-")!=-1) {
+					(cell_string).replace("-","");
+				}
+				pstmt3.setString(4, cell_string);
+				
 				pstmt3.setString(5, member.getEmail());
 				pstmt3.setString(6, member.getZipcode());
 				pstmt3.setString(7, member.getAddress1());
@@ -377,13 +384,13 @@ public class MemberDAO {
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "SELECT rnum, product_num, product_title, product_photo1, product_price, product_status "
-					+ "FROM (SELECT a.*, rownum rnum FROM (SELECT zzim.product_num, zzim.zzim_num, data.product_title, "
-					+ "data.product_photo1, data.product_price, data.product_status  FROM (SELECT detail.product_num, "
-					+ "detail.product_title, detail.product_photo1, detail.product_price, manage.product_status "
-					+ "FROM em_product_detail detail INNER JOIN em_product_manage manage ON detail.product_num = manage.product_num) data "
-					+ "INNER JOIN em_member_zzim zzim ON data.product_num = zzim.product_num  WHERE zzim.mem_num = ? "
-					+ "ORDER BY zzim.zzim_num DESC) a) WHERE rnum>=? AND rnum<=?";
+				sql = "SELECT rnum, product_num, product_title, product_photo1, product_price_sales, product_status "
+						+ "FROM (SELECT a.*, rownum rnum FROM (SELECT zzim.product_num, zzim.zzim_num, data.product_title, "
+						+ "data.product_photo1, data.product_price_sales, data.product_status  FROM (SELECT detail.product_num, "
+						+ "detail.product_title, detail.product_photo1, FLOOR(((detail.product_price)*(100-detail.product_discount))/100) AS product_price_sales, manage.product_status "
+						+ "FROM em_product_detail detail INNER JOIN em_product_manage manage ON detail.product_num = manage.product_num) data "
+						+ "INNER JOIN em_member_zzim zzim ON data.product_num = zzim.product_num  WHERE zzim.mem_num = ? "
+						+ "ORDER BY zzim.zzim_num DESC) a) WHERE rnum>=? AND rnum<=?" ;
 				pstmt = conn.prepareStatement(sql);
 				
 				//?에 데이터 바인딩
@@ -402,9 +409,9 @@ public class MemberDAO {
 					zzim.setProduct_status(rs.getInt("product_status"));
 					
 					//금액 천단위 , 처리
-					price = rs.getInt("product_price") + ""; 
+					price = rs.getInt("product_price_sales") + ""; 
 					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
-					zzim.setProduct_price(price);
+					zzim.setProduct_price_sales(price);
 					//문자열의 길이가 90 이상이면 잘라내고 ...처리
 					if((rs.getString("product_title")).length() > 90) {
 						String[] arr2 =  new String[(rs.getString("product_title")).length()];
@@ -1054,9 +1061,15 @@ public class MemberDAO {
 						pstmt.executeUpdate();
 				}
 				if(mem.getCell()!=null) {
+					String cell_string = mem.getCell();
+					//-1이 아니면 010-0000-0000 형식, -1이면 0100000000 형식
+					if((cell_string).indexOf("-")!=-1) {
+						cell_string = (cell_string).replace("-","");
+					}
+					System.out.println(cell_string);
 					sql = "UPDATE em_member_detail SET mem_cell=? WHERE mem_num=?";
 						pstmt2 = conn.prepareStatement(sql);
-						pstmt2.setString(1,mem.getCell());
+						pstmt2.setString(1,cell_string);
 						pstmt2.setInt(2, mem_num);
 						pstmt2.executeUpdate();
 				}

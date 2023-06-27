@@ -11,9 +11,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/product-zzim.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/product-review-list.js"></script>
 <script type="text/javascript">
 	$(function(){
-		
 		
 		$('#order_quantity').on('keyup mouseup', function() {
 			if ($('#order_quantity').val() == '') {
@@ -87,9 +87,15 @@
 			});
 		});
 		
+		$('#btn_noSale').on('click', function(){
+			alert('해당 상품은 판매 중지 상태입니다.');
+		});
+		
 		$('#btn_soldout').on('click', function(){
 			alert('해당 상품은 품절 입니다.');
 		});
+		
+		$('.re-product-ti').append('${product.productdetailVO.product_title}');
 	});
 </script>
 </head>
@@ -99,7 +105,7 @@
 	<!-- 내용 시작 -->
 	<div class="page-detail">
 	<!-- status==1(미표시) 상품의 상세페이지에 들어갔을 때 -->
-	<c:if test="${product.product_status == 1}">
+	<%-- <c:if test="${product.product_status == 1}">
 	<div class="result-display">
 		<div class="align-center">
 			본 상품은 판매 중지되었습니다.
@@ -107,16 +113,16 @@
 			<input type="button" value="판매상품 보기" onclick="location.href='itemList.do'">
 		</div>
 	</div>
-	</c:if>
+	</c:if> --%>
 	<!-- status==2(표시) 상품의 상세페이지에 들어갔을 때 -->
-	<c:if test="${product.product_status == 2}">
+	<!--<c:if test="${product.product_status == 2}">-->
 		<div class="detail-top">
 		
 			<div class="top-img">
 				<img src="${pageContext.request.contextPath}/upload/${product.productdetailVO.product_photo1}">
 			</div>
 			<div class="top-info">
-				<div class="pro-title"><h2>${product.productdetailVO.product_title}</h2></div>
+				<div class="pro-title"><h2 id="pro-title">${product.productdetailVO.product_title}</h2></div>
 				<div class="top-cate pro-cate">
 					<span>카테고리 > </span>
 					<a href="${pageContext.request.contextPath}/search/searchCategoryMain.do?product_category=${product.product_category}">
@@ -142,7 +148,7 @@
 				<!-- 할인률 X -->
 				<c:if test="${product.productdetailVO.product_discount == 0}">
 				<div>
-					<span class="top-price" id="product_price">${product.productdetailVO.product_price_sales}</span>
+					<span class="top-price" id="product_price"><fmt:formatNumber value="${product.productdetailVO.product_price_sales}"/></span>
 					<span class="top-won">원</span>
 				</div>
 				<div class="b-hr">
@@ -159,6 +165,7 @@
 					<input type="hidden" name="product_num" value="${product.product_num}" id="product_num">
 					<input type="hidden" name="product_price" value="${product.productdetailVO.product_price}" id="product_price">
 					<input type="hidden" name="item_stock" value="${product.productdetailVO.product_stock}" id="product_stock">
+					<input type="hidden" name="product_title" value="${product.productdetailVO.product_title}" id="product_title">
 				
 					<div class="box">
 						<div class="box-left">
@@ -178,6 +185,11 @@
 							<img id="output_zzim" data-num="${product.product_num}" src="${pageContext.request.contextPath}/images/zzim_01.png" width="50">
 						</button>
 						
+						
+						<c:if test="${product.product_status == 1}">
+						<input type="button" id="btn_noSale" value="판매 중지">
+						</c:if>
+						
 						<c:if test="${product.productdetailVO.product_stock <= 0}">
 						<input type="button" id="btn_soldout" value="Sold Out">
 						</c:if>
@@ -193,9 +205,9 @@
 		
 		<div class="nav sticky">
 			<ul>
-				<li><a href="#detail-info"><span class="nav-li">상품 상세정보</span></a></li>
-				<li><a href="#detail-review"><span class="nav-li">상품 리뷰</span></a></li>
-				<li><a href="#detail-QA"><span class="nav-li">상품 문의</span></a></li>
+				<li class="li-1"><a href="#detail-info"><span class="nav-li">상품설명</span></a></li>
+				<li class="li-2"><a href="#context-de"><span class="nav-li">상세설명</span></a></li>
+				<li class="li-3"><a href="#detail-review"><span class="nav-li">상품후기</span></a></li>
 			</ul>
 		</div>
 		
@@ -212,7 +224,7 @@
 				<h3 class="context-ti">[ ${product.productdetailVO.product_title} ] </h3>
 				<p class="de-word">${product.productdetailVO.product_info}</p>
 			</div>
-			<div class="context-de">
+			<div id="context-de" class="context-de">
 				<h3>상품고시정보</h3>
 				<ul class="ul-box">
 					<li class="ul-b-left">품목 또는 명칭</li>
@@ -250,14 +262,32 @@
 				<span></span>
 			</div>
 			<div class="review-list">
-				상품 리뷰 리스트 자리
+				<h3 class="review-ti">상품 후기</h3>
+				<c:if test="${count == 0}">
+					<div class="align-center">아직 등록된 리뷰가 없습니다.</div>
+				</c:if>
+				<c:if test="${count > 0}">
+					<div id="output">
+				
+					</div>
+				<%-- <div class="review-box">
+					<div class="rbox-right" >
+						<div class="re-product-ti">${product.productdetailVO.product_title}</div>
+					</div>
+				</div> --%>
+					<div class="paging-button" style="display:none;">
+						<input type="button" value="더 많은 후기 보기">                   
+					</div>
+				</c:if>
+				
+				
 			</div>
 		</div>
 			
 		<!-- <div id="detail-QA" class="div-h">
 			상품 문의 리스트 자리
 		</div> -->
-	</c:if>
+	<!--</c:if>-->
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

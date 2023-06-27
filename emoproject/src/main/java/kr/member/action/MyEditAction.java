@@ -20,6 +20,7 @@ public class MyEditAction implements Action{
 		if(mem_num==null) {
 			return "redirect:/member/loginForm.do";
 		}
+		request.setCharacterEncoding("utf-8");
 		//로그인 된 경우
 		MemberDAO dao = MemberDAO.getInstance();
 		
