@@ -36,7 +36,7 @@ public class OrderDAO {
 		PreparedStatement pstmt7 = null;
 		PreparedStatement pstmt8 = null;
 		PreparedStatement pstmt9 = null;
-		PreparedStatement pstmt10 = null;
+		
 		ResultSet rs = null;
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;

@@ -22,16 +22,20 @@ public class ListAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		CartDAO dao = CartDAO.getInstance();
+		//정상가
+		int before_total = dao.getBeforeTotalByMem_num(user_num);
 		//회원별 총구매 금액
 		int all_total = dao.getTotalByMem_num(user_num);
 		//회원 보유 보인트
 		int point = dao.getMemPoint(user_num);
-		
+		int discount_total = before_total-all_total;
 		List<CartVO> list = null;
 		if(all_total>0) {
 			list = dao.getListCart(user_num);
 			} 
 		
+		request.setAttribute("discount_total", discount_total);
+		request.setAttribute("before_total",before_total);
 		request.setAttribute("all_total", all_total);
 		request.setAttribute("point", point);
 		request.setAttribute("list", list);

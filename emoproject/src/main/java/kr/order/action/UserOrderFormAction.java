@@ -68,7 +68,12 @@ public class UserOrderFormAction implements Action{
 		int point = dao.getMemPoint(user_num);
 		AdminMemberDAO memDao = AdminMemberDAO.getInstance();
 		MemberVO member = memDao.getMemberDetail(user_num);
+		//정상가
+		int before_total = dao.getBeforeTotalByMem_num(user_num);
+		int discount_total = before_total-all_total;
 		
+		request.setAttribute("discount_total", discount_total);
+		request.setAttribute("before_total",before_total);
 		request.setAttribute("user", member);
 		request.setAttribute("item_name", item_name);
 		request.setAttribute("point", point);
