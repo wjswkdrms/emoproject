@@ -2,12 +2,17 @@
 
 /* 아이디# 클래스. */
 @font-face{
-	font-family: 'maple';
-    src: url('../fonts/Malestory_Light.ttf') format('maple');
+	font-family: maple;
+    src: url("../fonts/maple_light.ttf") format("ttf");
 }
-	div {
-		font-family: 'maple';
-	}
+@font-face{
+	font-family: maple;
+    src: url("../fonts/maple_bold.ttf") format("ttf");
+    font-weight:bold;
+}
+body{
+	font-family : maple;
+}
     body{
       margin:0;
     }

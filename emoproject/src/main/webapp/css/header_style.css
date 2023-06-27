@@ -1,15 +1,16 @@
 @charset "UTF-8";
 
-/* 글꼴 */
-/*
 @font-face{
-	font-family: 'IBMPlexSansKR-Light';
-    src: url('../fonts/IBMPlexSansKR-Light.woff') format('woff');
+	font-family: maple;
+    src: url("../fonts/maple_light.ttf") format("ttf");
 }
-*/
 @font-face{
-	font-family: 'maple';
-    src: url('../fonts/Malestory_Light.ttf') format('maple');
+	font-family: maple;
+    src: url("../fonts/maple_bold.ttf") format("ttf");
+    font-weight:bold;
+}
+body{
+	font-family : maple;
 }
 /* 전체 적용 */
 body{
