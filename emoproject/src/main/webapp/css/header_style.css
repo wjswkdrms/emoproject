@@ -43,7 +43,7 @@ li {
 #unknown_box{
 	display:flex;
 	width:1600px;
-	height:200px;
+	height:130px;
 	margin : 0 auto;
 }
 
@@ -51,19 +51,22 @@ li {
 	background:white;
 	font-family: 'maple';
 	width:	1600px;
-	height : 200px;
+	height : 130px;
 	margin : 0 auto;
-	position:fixed;
-	top: 0;
-  	left: 0;
-  	right: 0;
-  	z-index:3;
+	
 }
 
 .top-box {
 	width:1600px;
 	height : 40px;
 	font-size:15px;
+	background-color:white;
+	
+	position:fixed;
+	top: 0;
+  	left: 50%;
+  	transform: translate(-50%, 0%);
+  	z-index:3;
 }
 
 .top-box ul {
@@ -84,6 +87,13 @@ li {
 	height:90px;
 	margin-top:0;
 	display: flex;
+	background-color:white;
+	
+	position:fixed;
+	top: 40px;
+  	left: 50%;
+  	transform: translate(-50%, 0%);
+  	z-index:3;
 	
 }
 .mid-box ul {
@@ -100,13 +110,15 @@ li {
 	list-style-type:none;
 	margin-left:50px;
 	margin-right:50px;
-	
+	position:relative;
 }
 
 .icons-menu {
 	display:flex;
 	width:200px;
 	height:50px;
+	margin-top:0;
+	
 }
 
 .icons-menu a {
@@ -118,7 +130,9 @@ li {
   	align-items:center;
   	margin-left:10px;
   	margin-right:10px;
-  	position:relative;
+  	
+  	
+  	
 }
 
 #cart_count {

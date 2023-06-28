@@ -78,7 +78,7 @@ $(function(){
 
 
 </script>
-
+<div id="unknown_box"></div>
 <div class="main-head" id="header_docker">
 	<div class="top-box">
 	<input type="hidden" id="id_check_tag" value="${user_id}">
@@ -195,5 +195,5 @@ $(function(){
 	</div>
 	
 </div>
-<div id="unknown_box"></div>
+
 <!-- header 끝 -->
