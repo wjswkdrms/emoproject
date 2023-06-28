@@ -327,7 +327,7 @@
 
 .rbox-right{
 	flex: 1 1 0%;	
-	padding-left: 20px;
+	padding: 20px;
 }
 .rbox-img img{
 	width: 93px;
@@ -350,7 +350,7 @@
 	font-size: 17px;
 }
 .review-box h4{
-	margin: 10px 3px;;
+	margin: 10px 3px 5px 3px;
 	font-size: 22px;
 }
 .re-score{
@@ -378,8 +378,34 @@
 	border: 0 none;
 }
 .star-img img{
-	width: 65px;
+	width: 325px;
 }
 .review-star{
 	text-align: center;
+}
+
+.review-star{
+	margin: 30px 20px;
+	padding: 10px 10px 70px 10px;
+	border-bottom: solid 1px rgb(193, 193, 193);
+}
+.no-re{
+	padding: 30px;
+}
+.re-avg-text{
+	margin: 10px auto;
+}
+.sco-img{
+	line-height: 30px;
+	vertical-align: middle;
+	width: 100px;
+	margin-right: 10px;
+}
+.re-score{
+	height: 30px;
+}
+.sco-te{
+	line-height: 30px;
+	vertical-align: middle;
+	
 }

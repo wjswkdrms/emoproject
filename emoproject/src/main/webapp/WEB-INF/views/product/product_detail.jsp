@@ -260,18 +260,15 @@
 			<div class="review-star">
 				<div><h3>평균 별점</h3></div>
 				<div class="star-img">
-					<img class="star1" src="${pageContext.request.contextPath}/images/star_empty.png">
-					<img class="star2" src="${pageContext.request.contextPath}/images/star_empty.png">
-					<img class="star3" src="${pageContext.request.contextPath}/images/star_empty.png">
-					<img class="star4" src="${pageContext.request.contextPath}/images/star_empty.png">
-					<img class="star5" src="${pageContext.request.contextPath}/images/star_empty.png">
+					<img id="star-output" class="star1" src="../images/star_0.png">
+					<div class="star-img-y"></div>
 				</div>
 				<span></span>
 			</div>
 			<div class="review-list">
 				<h3 class="review-ti">상품 후기</h3>
 				<c:if test="${count == 0}">
-					<div class="align-center">아직 등록된 후기가 없습니다.</div>
+					<div class="no-re align-center">아직 등록된 후기가 없습니다.</div>
 				</c:if>
 				<c:if test="${count > 0}">
 					<div id="output">

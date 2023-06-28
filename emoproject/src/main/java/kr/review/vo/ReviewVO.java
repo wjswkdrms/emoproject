@@ -14,7 +14,15 @@ public class ReviewVO {
 	
 	private String mem_id;
 	private ProductManageVO ProductManageVO;
+	private String product_title;
 	
+	
+	public String getProduct_title() {
+		return product_title;
+	}
+	public void setProduct_title(String product_title) {
+		this.product_title = product_title;
+	}
 	public int getReview_num() {
 		return review_num;
 	}

@@ -395,10 +395,15 @@ public class ProductDAO {
 		try {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
+//			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+//					+ "FROM (SELECT * FROM em_review r INNER JOIN em_member_manage m ON r.mem_num=m.mem_num "
+//					+ "WHERE r.product_num=? ORDER BY r.review_num DESC) a) "
+//					+ "WHERE rnum >= ? AND rnum <= ?";
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
-					+ "FROM (SELECT * FROM em_review r INNER JOIN em_member_manage m ON r.mem_num=m.mem_num "
-					+ "WHERE r.product_num=? ORDER BY r.review_num DESC) a) "
-					+ "WHERE rnum >= ? AND rnum <= ?";
+					+ "FROM(SELECT * FROM em_review r INNER JOIN em_member_manage m ON r.mem_num = m.mem_num "
+					+ "INNER JOIN em_product_detail pd ON r.product_num = pd.product_num "
+					+ "WHERE r.product_num=? ORDER BY r.review_num DESC) a) WHERE rnum >= ? AND rnum <= ?";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, product_num);
 			pstmt.setInt(2, start);
@@ -417,6 +422,7 @@ public class ProductDAO {
 				review.setReview_score(rs.getInt("review_score"));
 				review.setOrder_num(rs.getInt("order_num"));
 				review.setMem_id(rs.getString("mem_id"));
+				review.setProduct_title(rs.getString("product_title"));
 				
 				list.add(review);
 			}
@@ -429,5 +435,48 @@ public class ProductDAO {
 		}
 		return list;
 	}
+	
+	//상세페이지 별점 가져오기
+		public List<ReviewVO> getProductReviewScoreList(int product_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ReviewVO> list = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
+				sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+						+ "FROM (SELECT * FROM em_review r INNER JOIN em_member_manage m ON r.mem_num=m.mem_num "
+						+ "WHERE r.product_num=? ORDER BY r.review_num DESC) a) ";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, product_num);
+				//?에 데이터 바인딩
+				rs = pstmt.executeQuery();
+				list = new ArrayList<ReviewVO>();
+				while(rs.next()) {
+					ReviewVO review = new ReviewVO();
+					review.setReview_num(rs.getInt("review_num"));
+					review.setProduct_num(product_num);
+					review.setMem_num(rs.getInt("mem_num"));
+					review.setReview_title(rs.getString("review_title"));
+					review.setReview_content(rs.getString("review_content"));
+					review.setReview_photo1(rs.getString("review_photo1"));
+					review.setReview_score(rs.getInt("review_score"));
+					review.setOrder_num(rs.getInt("order_num"));
+					review.setMem_id(rs.getString("mem_id"));
+					
+					list.add(review);
+				}
+				
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
 	
 }
