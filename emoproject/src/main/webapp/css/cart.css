@@ -194,3 +194,12 @@ table td, table th{
 .p:hover{
 	border-radius: 0 7px 7px 0;
 }
+h2{
+	padding: 50px 180px;
+}
+h3{
+	padding: 20px;
+}
+.product-info{
+	padding: 30px;
+}

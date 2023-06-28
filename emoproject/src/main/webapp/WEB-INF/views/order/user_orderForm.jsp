@@ -31,92 +31,95 @@
 			}//end of for
 			//포인트 충분한지 확인
 		});
+		$('#order-form').hide();
+		$("input[name='addr']").change(function(){
+			if($("input[name='addr']:checked").val()=="1"){
+				$('#order-form').hide();
+				$('#order-view').show();
+			}
+			if($("input[name='addr']:checked").val()=="2"){
+				$('#order-form').show();
+				$('#order-view').hide();
+			}
+		});
 	});
 </script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 <div class="page_outer">	
 	<!-- 내용 시작 -->
+	
 	<div class="page_inner">
-		<h2>상품구매</h2>
-		<div>
+		<h3>상품구매</h3>
+		<br>
+		<div class="product-info">
 			상품명 : <a href="#">${item_name}</a> 총 ${all_total}원
 		</div>
 		<hr size="1" noshade="noshade" width="100%">
+		<input type="radio" value="1" name="addr" checked>기존 주소 사용하기
+		<input type="radio" value="2" name="addr">새 주소 입력하기
+		
 		<form id="order_form" 
 		  action="${pageContext.request.contextPath}/order/order.do" method="post">
+		  <div class="">
+		  <div class="order-form " id="order-form">
 			<ul>
 				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="receive_name">이름</label></div>
-					<div class="input_box">
+				
+					<label for="receive_name">이름   </label>
+					
 					<input type="text" name="receive_name" class="input_style" value="${user.getName()}"
-					  id="receive_name" maxlength="10"></div></div></div>
+					  id="receive_name" maxlength="10">
 				</li>
 				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="receive_phone">전화번호</label></div>
-					<div class="input_box">
+				
+					<label for="receive_phone">전화번호</label>
+					
 					<input type="text" name="receive_phone" class="input_style" value="${user.getCell()}"
-					  id="receive_phone" maxlength="15"></div></div></div>
-				</li>
-				<li>
-				<div class="input_idpw_outer" id="input_name">
-            <div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="receive_email">이메일</label></div>
-					<div class="input_box">
-					<input type="text" name="receive_email" class="input_style" value="${user.getEmail()}"
-					  id="receive_email" maxlength="30"></div></div></div>
+					  id="receive_phone" maxlength="15">
 				</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
-			<input type="button" value="이전에 사용한 주소 불러오기">
 			<ul>
 				<li>
-				<div class="input_idpw_outer" id="input_name">
-            <div class="input_idpw_inner">
-            <div class="input_title">
 					<label for="zipcode">우편번호</label>
-					          </div>
-					          <div class="input_box">
 					<input type="text" name="receive_post" class="input_style" value="${user.getZipcode()}"
-					  id="zipcode" maxlength="5" readonly>
+					  id="zipcode" maxlength="5" readonly onclick="execDaumPostcode()">
 					<input type="button" value="우편번호 찾기"  class="input_style" 
-					 onclick="execDaumPostcode()">  </div></div></div>
+					 onclick="execDaumPostcode()">
 				</li>
 				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="address1">주소</label></div>
-					<div class="input_box">
+					<label for="address1">주소   </label>
 					<input type="text" name="receive_address1" class="input_style" value="${user.getAddress1()}"
-					  id="address1" maxlength="30" readonly></div></div></div>
+					  id="address1" maxlength="30" readonly>
 				</li>
 				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
 					<label for="address2">상세 주소</label>
-					</div>
-					<div class="input_box">
 					<input type="text" name="receive_address2" class="input_style" value="${user.getAddress2()}"
-					  id="address2" maxlength="30"></div></div></div>
+					  id="address2" maxlength="30">
 				</li>
+			</ul>
+			</div>
+			<div class="order-view" id="order-view">
+			<ul>
+				<li>이름 : ${user.getName()}</li>
+				<li>전화번호 : ${user.getCell()}</li>
+				<li>우편번호 : ${user.getZipcode()}</li>
+				<li>주소 : ${user.getAddress1()}</li>
+				<li>상세주소 : ${user.getAddress2()}</li>
+				
+			</ul>
+			</div>
+		</div>
+			<ul>
 				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="notice">배송 메모</label></div>
-					<div class="input_box">
+			
+				<label for="notice">배송 메모</label>
+					
 					<textarea rows="5" cols="30" name="notice" class="input_style" id="notice" maxlength="1300"></textarea>
-					</div></div></div>
+					
 				</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
@@ -148,8 +151,8 @@
 				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 			</div>
-			 
 		</form>
+		
 	</div>
 	<!-- 내용 끝 -->
 	<!-- 우편번호 검색 시작 -->
