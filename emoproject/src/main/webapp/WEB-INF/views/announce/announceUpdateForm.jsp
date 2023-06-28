@@ -24,6 +24,11 @@ $(function(){
 		}
 
 	});
+	 $("input[type='file']").change(function(e){
+
+	      //div 내용 비워주기
+	      $('#image_container').empty();
+	 });  	
 	
 });
 

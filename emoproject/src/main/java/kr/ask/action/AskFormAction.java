@@ -16,7 +16,11 @@ public class AskFormAction implements Action{
 		if(user_num==null) {
 			return "redirect:/member/loginForm.do";
 		}
-		
+
+		Integer user_auth=(Integer)session.getAttribute("user_auth");
+		if(user_auth==2) {
+			return "/WEB-INF/views/commone/notice.jsp";
+		}
 		return "/WEB-INF/views/ask/askForm.jsp";
 	}
 
