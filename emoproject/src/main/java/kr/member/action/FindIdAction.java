@@ -14,10 +14,6 @@ public class FindIdAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {
-			return "redirect:/member/loginForm.do";
-		}
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
@@ -42,9 +38,6 @@ public class FindIdAction implements Action{
 			//濡쒓렇�씤 泥섎━
 			session.setAttribute("mem_num", 
 					           member.getMem_num());
-			
-			//�씤利� �꽦怨듭떆 �샇異�
-			return "/WEB-INF/views/member/findId.jsp";
 		}
 		//�씤利� �떎�뙣�떆 �샇異�
 		return "/WEB-INF/views/member/findId.jsp";

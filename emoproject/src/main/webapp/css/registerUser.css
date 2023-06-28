@@ -1,0 +1,220 @@
+@charset "UTF-8";
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_light.woff') format('woff');
+}
+@font-face{
+	font-family: 'maple';
+    src: url('../fonts/maple_bold.woff') format('woff');
+    font-weight:bold;
+}
+body{
+	font-family : 'maple';
+}
+    body{
+      font-family : 'maple';
+    }
+    .page{ /* 1차 1920px */
+      display:flex;
+      width:1920px;
+      height: 1300px;
+      margin:0 auto;
+    }
+    .page_outer{ /* 2차 1600px */
+      width:1600px;
+      height:1300px;
+      display: flex;
+      padding-top: 100px;
+      margin: 0 auto;
+    }
+    .page_inner{ /* 3처 1200px */
+      display:flex;
+      width:1200px;
+      height: 600px;
+      margin: 0 auto;
+      flex-direction: column;
+    }
+    .page_inner #title{ /* 제목 중앙 정렬 */
+      display:inline-block;
+      text-align: center;
+      padding-top: 15px;
+      width:100%;
+      margin-bottom: 30px;
+    }
+    .page_inner h2{ /* 제목 글씨 크기 */
+      font-size:30px;
+    }
+    .page_input{ /* 입력칸 외부 박스 크기 조절 */
+      display:flex;
+      width: 100%;
+      height: 800px; /* 입력창 조절 */
+      font-size: 13px;
+      flex-direction:column;
+      margin-left:61px;
+    }
+    .page_input .page_input_box{ /* 입력창 내부 박스 크기 조절 */
+      display: inline-block;
+      width: 41%;
+      height: 54px;
+      margin: auto;
+      text-align: left;
+    }
+    .page_input .page_input_box input{ /* 입력창 설정 */
+      width: 340px;
+      height: 54px;
+      font-size: 14px;
+      border: 1px solid rgb(0, 0, 0);
+      padding: 0px 11px 1px 15px;
+      border-radius: 4px;
+    }
+    .page_input .page_input_box .input_style_check{ /* 중복 체크 박스 설정 */
+      width: 115px;
+      height: 54px;
+      font-size: 15px;
+      border: 1px solid black;
+      padding: 0px 11px 1px 15px;
+      border-radius: 4px;
+      background-color: #E19B50;
+      color:black;
+    }
+    .page_input .page_input_box .input_style_check:hover{ /* 중복 체크 박스 호버 설정 */
+      width: 115px;
+      height: 54px;
+      font-size: 15px;
+      border: 1px solid black;
+      padding: 0px 11px 1px 15px;
+      border-radius: 4px;
+      background-color: #E19B50;
+      color:white;
+    }
+    .page_input .text_announce{ /* 주의 사항 설정 */
+      width: 100%;
+      margin-left: 360px;
+      font-size: 17px;
+      color: dimgray;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      display:inline-block;
+    }
+    .page_button{ /* 버튼 외부 박스 크기 조절 */
+      display:flex;
+      width: 200px;
+      height: 30px;
+      flex-direction:row;
+      margin-left: 630px;
+
+    }
+    .page_button .page_button_box{ /* 버튼 내부 박스 크기 조절 */
+      display: inline;
+      width:76px;
+      height: 18px;
+      border-color: white;
+    }
+    .page_button .page_button_box .button1{ /* 버튼 설정 */
+      display: inline-block;
+      width:75px;
+      height: 25px;
+      font-size: 12px;
+      background-color: white;
+      border-top: white;
+      border-left: white;
+      border-bottom: white;
+      border-right: white;
+      cursor: pointer;
+    }
+    .page_button .page_button_box .button2{ /* 버튼 설정 */
+      display: inline-block;
+      width:85px;
+      height: 25px;
+      font-size: 12px;
+      background-color: white;
+      border-top: white;
+      border-right: white;
+      border-bottom: white;
+      border-left:1px solid black;
+      cursor: pointer;
+    }
+    .page_button2{ /* 버튼 외부 박스 크기 조절 */
+      display: flex;
+      width:368px;
+      height:120px;
+      flex-direction: column;
+      margin: 30px auto; /*임시*/
+    }
+    .page_button2 .page_button_box{ /* 버튼 내부 박스 크기 조절 */
+      display: inline-block;
+      width:100%;
+      height: 120px;
+      padding-top: 10px;
+    }
+    .page_button2 .page_button_box .button3{ /* 버튼 설정 */
+      display: inline-block;
+      width:368px;
+      height:54px;
+      margin-bottom: 5px;
+      font-size: 16px;
+      border-radius: 4px;
+      background-color: #E19B50;
+      color:white;
+      cursor: pointer;
+      border:none;
+    }
+    .page_button2 .page_button_box .button3:hover{ /* 버튼 호버 설정 */
+      display: inline-block;
+      width:368px;
+      height:54px;
+      margin-bottom: 5px;
+      font-size: 16px;
+      border-radius: 4px;
+      color: black;
+      cursor: pointer;
+      border : 2px solid #E19B50;
+    }
+    .page_button2 .page_button_box .button4{ /* 버튼 설정 */
+      display: inline-block;
+      width:368px;
+      height:54px;
+      font-size: 16px;
+      border-radius: 4px;
+      background-color: white;
+      cursor: pointer;
+      border: 2px solid #E19B50;
+    }
+    .page_input_radio{ /* radio 외부 설정 */
+      width: 60%;
+      height: 50px;
+      font-size: 20px;
+      margin: 0 auto;
+    }
+    .input_title_radio label{ /* "성별" 전용 */
+      display: inline-block;
+      width:50px;
+      height: 30px;
+      margin-left: 20px;
+    }
+    .input_title_radio .gender_span{ /* "성별" 전용 */
+      margin-left: 60px;
+      height: 30px;
+    }
+    [type="radio"] { /* 라디오 버튼 꾸미기 */
+      vertical-align: middle;
+      appearance: none;
+      border: max(2px, 0.1em) solid gray;
+      border-radius: 50%;
+      width: 1.5em;
+      height: 1.5em;
+      transition: border 0.5s ease-in-out;
+    }
+    [type="radio"]:checked { /* 라디오 버튼 체크됐을 때 꾸미기 */
+      border: 0.8em solid #7878E1;
+    }
+    [type="radio"]:hover { /* 라디오 버튼 호버링 꾸미기 */
+      box-shadow: 0 0 0 max(4px, 0.2em) #AAB9FF;
+      cursor: pointer;
+    }
+    /* 버튼1 -> 소형
+       버튼2 -> 소형
+       버튼3 -> 대형 + 호버링
+       버튼4 -> 대형 + 호버링X
+       버튼 개수에 따라 .page_input 높이 조절
+     */

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberPageAll_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/registerUser.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -195,138 +195,77 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page_outer_register"> <!-- 전체 페이지 크기 지정 -->
-  <div class="page_inner_register"> <!--메인 페이지 중앙 정렬, 크기 지정-->
+<div class="page">
+  <div class="page_outer"> <!-- 전체 페이지 크기 지정 -->
+    <div class="page_inner">
     <h2 id="title">회원가입</h2>
+
     <form id="register_form" action="registerUser.do" method="post">
-      <div class="page_login">
-        <div class="input_idpw_outer" id="input_id">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="id">아이디</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="id" id="id" class="input_style" pattern=".{4,12}" required title="4~12자의 아이디를 입력하세요." autocomplete="off">
-              <input type="button" class="input_style_check" value="id중복체크" id="id_check">
-              <span id="message_id"></span>
-            </div>
-          </div>
+      <div class="page_input">
+        <div class="page_input_box"> <!-- 아이디 입력 및 중복체크 -->
+          <input type="text" name="id" id="id" class="input_style" pattern=".{4,12}" required title="4~12자의 아이디를 입력하세요." autocomplete="off" placeholder="아이디를 입력해주세요">
+          <input type="button" class="input_style_check" value="id중복체크" id="id_check">
+          <span id="message_id"></span>
         </div>
-        <div class="text_announce">
+        <div class="text_announce"> <!-- 아이디 주의사항 -->
           <div class="input-notice"><strong>* 영문 대소문자 또는 숫자(4자~12자)</strong></div>
         </div>
-        <div class="input_idpw_outer" id="input_name">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="name">이름</label>
-            </div>
-            <div class="input_box">
-              <input type="text" class="input_style" name="name" id="name" pattern=".{1,10}" required title="이름을 입력하세요">
-            </div>
-          </div>
+        <div class="page_input_box"> <!-- 이름 입력 -->
+          <input type="text" class="input_style" name="name" id="name" pattern=".{1,10}" required title="이름을 입력하세요" placeholder="이름을 입력해주세요">
         </div>
-        <div class="input_idpw_outer" id="input_passwd">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="passwd">비밀번호</label>
-            </div>
-            <div class="input_box">
-              <input type="password" class="input_style" name="passwd" id="passwd" pattern=".{4,12}" required title="4~12자의 비밀번호를 입력하세요">
-            </div>
-          </div>
+        <div class="page_input_box"> <!-- 비밀번호 입력 -->
+          <input type="password" class="input_style" name="passwd" id="passwd" pattern=".{4,12}" required title="4~12자의 비밀번호를 입력하세요" placeholder="비밀번호를 입력해주세요">
         </div>
-        <div class="text_announce">
+        <div class="text_announce"> <!-- 비밀번호 주의사항 -->
           <div class="input-notice"><strong>* 영문 대소문자 또는 숫자(4자~12자)</strong></div>
         </div>
-        <div class="input_idpw_outer" id="input_cell">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="cell">전화번호</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,13}" required title="올바른 전화번호를 입력하세요">
-            </div>
-          </div>
+        <div class="page_input_box"> <!-- 전화번호 입력 -->
+          <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,13}" required title="올바른 전화번호를 입력하세요" placeholder="전화번호를 입력해주세요">
         </div>
-        <div class="input_idpw_outer" id="input_email">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="email">이메일</label>
-            </div>
-            <div class="input_box">
-              <input type="email" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수">
-              <input type="button" class="input_style_check" value="eamil중복체크" id="email_check" >
-              <span id="message_email"></span>
-            </div>
-          </div>
+        <div class="page_input_box"> <!-- 이메일 입력 및 중복체크 -->
+          <input type="email" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수" placeholder="이메일을 입력해주세요">
+          <input type="button" class="input_style_check" value="email중복체크" id="email_check" >
+          <span id="message_email"></span>
         </div>
-        <div class="input_idpw_outer" id="input_zipcode">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="zipcode">우편번호</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="zipcode" class="input_style" id="zipcode" pattern=".{5,5}" required title="5자리 입력 필수">
-              <input type="button" value="우편번호 찾기" class="input_style_check" onclick="execDaumPostcode()">
-            </div>
-          </div>
+        <div class="page_input_box"> <!-- 우편번호 입력 -->
+          <input type="text" name="zipcode" class="input_style" id="zipcode" pattern=".{5,5}" required title="5자리 입력 필수" placeholder="우편번호를 입력해주세요">
+          <input type="button" value="우편번호 찾기" class="input_style_check" onclick="execDaumPostcode()">
         </div>
-        <div class="input_idpw_outer" id="input_address1">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="address1">주소</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,150}" required title="주소를 입력하세요">
-            </div>
-          </div>
+        <div class="page_input_box"> <!-- 주소 입력 -->
+          <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,150}" required title="주소를 입력하세요" placeholder="주소를 입력해주세요">
         </div>
-        <div class="input_idpw_outer" id="input_address2">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="address2">상세 주소</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="address2" class="input_style" id="address2" pattern=".{1,150}" required title="상세주소를 입력하세요">
-            </div>
-          </div>
+        <div class="page_input_box"> <!-- 상세주소 입력 -->
+          <input type="text" name="address2" class="input_style" id="address2" pattern=".{1,150}" required title="상세주소를 입력하세요" placeholder="상세주소를 입력해주세요">
         </div>
-        <div class="input_idpw_outer" id="input_birth">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="birth">생년월일</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="birth" class="input_style" id="birth" pattern=".{6,6}" required title="6자리 입력 필수 (YYMMDD)">
-            </div>
-          </div>
+        <div class="page_input_box"> <!-- 생년월일 입력 -->
+          <input type="text" name="birth" class="input_style" id="birth" pattern=".{6,6}" required title="6자리 입력 필수 (YYMMDD)" placeholder="생년월일을 입력해주세요">
         </div>
-        <div class="text_announce">
+        <div class="text_announce"> <!-- 생년월일 주의사항 -->
           <div class="input-notice"><strong>ex) YYMMDD</strong></div>
         </div>
-        <div class="input_idpw_outer" id="input_gender">
-          <div class="input_idpw_inner">
-            <div class="input_title_radio">
-              <label for="gender">성별</label>
-              <span class="gender_span">남자</span>
-              <input type="radio" name="gender"
-                     id="gender" class="gender" value="1">
-              <span class="gender_span">여자</span>
-              <input type="radio" name="gender"
-                     id="gender" class="gender" value="2">
-            </div>
+        <div class="page_input_radio"> <!-- 성별 입력 -->
+          <div class="input_title_radio">
+            <label for="gender"></label>
+            <span class="gender_span">남자</span>
+            <input type="radio" name="gender"
+                   id="gender" class="gender" value="1">
+            <span class="gender_span">여자</span>
+            <input type="radio" name="gender"
+                   id="gender" class="gender" value="2">
           </div>
         </div>
 
       </div>
-      <div class="page_login">
-        <ul class="button_all" id="page_button_4">
-          <li><input type="submit" class="button" value="확인"></li>
-          <li><input type="button" class="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"></li>
-        </ul>
+      <div class="page_button2">
+        <div class="page_button_box">
+          <input type="submit" class="button3" value="확인">
+          <input type="button" class="button3" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+        </div>
       </div>
     </form>
   </div>
+  </div>
+</div>
   	<!-- 내용 끝 -->
 	<!-- 우편번호 검색 시작 -->
 	<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->

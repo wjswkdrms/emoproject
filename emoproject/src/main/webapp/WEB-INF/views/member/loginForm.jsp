@@ -32,6 +32,7 @@
   <div class="page_outer"> <!-- 전체 페이지 크기 지정 -->
     <div class="page_inner">
       <h2 id="title">로그인</h2>
+      
       <form class="login_form" action="login.do" method="post">
         <div class="page_input">
           <div class="page_input_box">
@@ -41,6 +42,7 @@
             <input type="password" name="passwd" class="input_style" id="passwd" maxlength="12" placeholder="비밀번호를 입력해주세요">
           </div>
         </div>
+        
         <div class="page_button">
           <div class="page_button_box">
           <input type="button" class="button1" value="아이디 찾기" onclick="location.href='${pageContext.request.contextPath}/member/findIdForm.do'">

@@ -14,10 +14,6 @@ public class FindPwAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {
-			return "redirect:/member/loginForm.do";
-		}
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
