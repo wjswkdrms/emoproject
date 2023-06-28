@@ -82,9 +82,6 @@ $(function(){
 									<div id="image_container">
 									
 									</div>
-										<c:if test="${!empty ('#image-container')}">
-											<img src="../images/btn_remove.png">
-										</c:if>
 									<script type="text/javascript">
 
 											function setThumbnail(event) {
