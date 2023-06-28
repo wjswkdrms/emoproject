@@ -49,28 +49,50 @@ $(function(){
 					<table class="form-box">
 						<tr>
 							<th class="row-title">제목</th>
-							<td class="row-content"><input type="text" class="text-title" name="ask_title" value="${ask.ask_title}" id="ask_title" maxlength="100"></td>
+							<td class="row-content"><input type="text" class="text-title" name="ask_title" value="${ask.ask_title}" id="ask_title" maxlength="33"></td>
 						</tr>
 						<tr>
 							<th class="row-title">내용</th>
-							<td class="row-content"><textarea rows="5" cols="30" name="ask_content" id="ask_content" maxlength="100">${ask.ask_content}</textarea></td>
+							<td class="row-content"><textarea rows="5" cols="30" name="ask_content" id="ask_content" maxlength="333">${ask.ask_content}</textarea></td>
 						</tr>
 						<tr>
 							<th class="row-title"><label for="ask_photo1">사진첨부</label></th>
 							<td class="row-content">
-								<c:if test="${!empty ask.ask_photo1}">
 								<label  for="ask_photo1">
 									<div class="file-button">
 									</div>
 								</label>
-								<input type="file" name="ask_photo1" id="ask_photo1" accept="image/gif,image/png,image/jpeg">
+									<div id="image_container"></div>									
+									<script type="text/javascript">
+										function setThumbnail(event) {
+											var reader = new FileReader();
+	
+											reader.onload = function(event) {
+												var img = document
+														.createElement("img");
+												img.setAttribute("src",
+														event.target.result);
+												var div=document.querySelector(
+														"div#image_container");
+														
+												if(div.children.length>0){
+													div.firstElementChild.remove();	
+												}
+												div.appendChild(img);
+											};
+	
+											reader.readAsDataURL(event.target.files[0]);
+										}
+									</script>									
+								<input type="file" name="ask_photo1" id="ask_photo1" accept="image/gif,image/png,image/jpeg" onchange="setThumbnail(event);">
+								<c:if test="${!empty ask.ask_photo1}">
 								<div>
 									<div id="file_detail">
 									<img src="${pageContext.request.contextPath}/upload/${ask.ask_photo1}" width="50" height="50" 
 					class="photo" data-img="${ask.ask_photo1}">
 									(${ask.ask_photo1})이 등록되어 있습니다.
 									</div>
-									<input type="button" value="삭제" id="photo_del"><br>
+									<input class="small-button" type="button" value="삭제" id="photo_del"><br>
 								</div>
 									<script type="text/javascript">
 										$(function(){

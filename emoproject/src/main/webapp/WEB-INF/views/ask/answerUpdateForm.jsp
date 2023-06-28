@@ -65,7 +65,7 @@ $(function(){
 						<table class="form-box">
 							<tr>
 								<th class="row-title">내용</th>
-								<td class="row-content"><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="100">${answer.answer_content}</textarea></td>
+								<td class="row-content"><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="333">${answer.answer_content}</textarea></td>
 							</tr>
 							<tr>
 								<th class="row-title"><label for="answer_photo">사진첨부</label></th>
@@ -73,8 +73,30 @@ $(function(){
 									<label for="answer_photo">
 										<div class="file-button">
 										</div>
-									</label>									
-									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg">
+									</label>
+									<div id="image_container"></div>									
+									<script type="text/javascript">
+										function setThumbnail(event) {
+											var reader = new FileReader();
+	
+											reader.onload = function(event) {
+												var img = document
+														.createElement("img");
+												img.setAttribute("src",
+														event.target.result);
+												var div=document.querySelector(
+														"div#image_container");
+														
+												if(div.children.length>0){
+													div.firstElementChild.remove();	
+												}
+												div.appendChild(img);
+											};
+	
+											reader.readAsDataURL(event.target.files[0]);
+										}
+									</script>																		
+									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg" onchange="setThumbnail(event);">
 									<c:if test="${!empty answer.answer_photo}">
 									<div id="file_detail">
 										<div>

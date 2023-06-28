@@ -41,10 +41,6 @@ public class AdminMemberDAO {
 					sub_sql += "WHERE mem_num LIKE ?";
 				else if (keyfield.equals("2"))
 					sub_sql += "WHERE mem_id LIKE ?";
-				else if (keyfield.equals("3"))
-					sub_sql += "WHERE mem_name LIKE ?";
-				else if (keyfield.equals("4"))
-					sub_sql += "WHERE mem_email LIKE ?";
 			}
 			// 삭제한 아이디도 보이게끔 left outer join
 			sql = "SELECT COUNT(*) FROM em_member_manage m LEFT OUTER JOIN em_member_detail d USING(mem_num) " + sub_sql;
@@ -192,14 +188,13 @@ public class AdminMemberDAO {
 					if (keyfield.equals("1"))
 						sub_sql += "WHERE order_num LIKE ?";
 					else if (keyfield.equals("2"))
-						sub_sql += "WHERE mem_id LIKE ?";
+						sub_sql += "WHERE mem_num LIKE ?";
 					else if (keyfield.equals("3"))
-						sub_sql += "WHERE mem_name LIKE ?";
-					else if (keyfield.equals("4"))
-						sub_sql += "WHERE order_status LIKE ?";
+						sub_sql += "WHERE mem_id LIKE ?";
 				}
 				// 삭제한 아이디도 보이게끔 left outer join
-				sql = "SELECT COUNT(*) FROM em_order_manage o LEFT OUTER JOIN FROM em_member_manage m USING(mem_num) " + sub_sql;
+				sql = "SELECT COUNT(*) FROM em_member_manage RIGHT OUTER JOIN (SELECT * FROM em_order_manage m LEFT OUTER "
+						+ "JOIN em_member_detail d USING(mem_num)) USING (mem_num) " + sub_sql;
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// ?에 데이터를 바인딩
@@ -241,8 +236,6 @@ public class AdminMemberDAO {
 						sub_sql += "WHERE mem_num LIKE ?";
 					else if (keyfield.equals("3"))
 						sub_sql += "WHERE mem_id LIKE ?";
-					else if (keyfield.equals("4"))
-						sub_sql += "WHERE order_status LIKE ?";
 				}
 				
 				
@@ -353,7 +346,31 @@ public class AdminMemberDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
-		
+
+		//회원 정지 풀기
+		public void normalMember(int mem_num)
+                throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "UPDATE em_member_manage SET mem_auth=2 WHERE mem_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, mem_num);
+				//SQL문 실행
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				//자원정리
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}		
 		//회원 탈퇴
 		public void expMember(int mem_num)
                 throws Exception{

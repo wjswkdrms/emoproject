@@ -45,29 +45,28 @@
 			<div class="right-div">
 				
 				<div class="list-name">
-					<h2>자주하는 질문</h2>
+					<div>
+						<h2>자주하는 질문</h2>
+						<form id="search_form" action="faq.do"
+						                          method="get">
+							<div class="button-box">					                          
+									<select class="select" name="keyfield" onchange="this.form.submit();">
+											<option value="" <c:if test="${param.keyfield==1}">selected</c:if>>카테고리</option>
+											<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>회원</option>
+											<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>이벤트</option>
+											<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>서비스 이용</option>
+											<option value="4" <c:if test="${param.keyfield==4}">selected</c:if>>시스템 오류</option>
+									</select>
+							</div>                          
+						</form>
+					</div>                          
 				</div>
 				
-					<form id="search_form" action="faq.do"
-					                          method="get">
-						<div class="button-box">					                          
-								<ul class="main-content">
-										<li>
-											<select class="select" name="keyfield" onchange="this.form.submit();">
-												<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>회원</option>
-												<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>이벤트</option>
-												<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>서비스 이용</option>
-												<option value="4" <c:if test="${param.keyfield==4}">selected</c:if>>시스템 오류</option>
-											</select>
-										</li>
-								</ul>
-						</div>                          
-					</form>                          
 	 			<c:if test="${count==0}"> 
 	 			<div class="list">
 					<div class="list-num">번호</div>
 					<div class="list-category">카테고리</div>
-					<div class="list-title">제목</div>
+					<div class="list-name2">제목</div>
 				</div>
 	 			<div>
 					표시할 게시물이 없습니다.
@@ -77,7 +76,7 @@
 				<div class="list">
 					<div class="list-num">번호</div>
 					<div class="list-category">카테고리</div>
-					<div class="list-name">제목</div>
+					<div class="list-name2">제목</div>
 				</div>
 				
 				<c:forEach var="faq" items="${list}">
@@ -98,7 +97,7 @@
 								시스템 오류
 							</c:if>
 							</div>
-							<div class="list-name">${faq.faq_title}</div>
+							<div class="list-content">${faq.faq_title}</div>
 					</li>
 					<li class="content">
 							<div>

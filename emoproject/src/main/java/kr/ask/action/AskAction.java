@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import kr.ask.dao.askDAO;
 import kr.ask.vo.AskVO;
 import kr.controller.Action;
+import kr.member.vo.MemberVO;
 import kr.util.PageUtil;
 
 public class AskAction implements Action{
@@ -26,14 +27,14 @@ public class AskAction implements Action{
 		}
 		
 		askDAO dao=askDAO.getInstance();
-		int count=dao.getAskCount();
+		Integer user_auth=(Integer)session.getAttribute("user_auth");
 
+		int count=dao.getAskCount(user_auth,user_num);
 		PageUtil page=new PageUtil(null, null, 
 				Integer.parseInt(pageNum),count,10,10,"ask.do");
 		
 		List<AskVO> list=null;
 		
-		Integer user_auth=(Integer)session.getAttribute("user_auth");
 		if(count>0) {
 			if(user_auth==9) {
 				list=dao.getAskTotalBoard(page.getStartRow(),page.getEndRow());

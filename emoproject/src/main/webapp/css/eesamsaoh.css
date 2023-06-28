@@ -1,16 +1,5 @@
 @charset "UTF-8";
-@font-face{
-	font-family: 'maple';
-    src: url('../fonts/maple_light.woff') format('woff');
-}
-@font-face{
-	font-family: 'maple';
-    src: url('../fonts/maple_bold.woff') format('woff');
-    font-weight:bold;
-}
-body{
-	font-family : 'maple';
-}
+
 .whole {
 	line-height: 1.15;
 	box-sizing: border-box;
@@ -104,6 +93,7 @@ ul.list {
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
 	justify-content: space-between;
 }
 
@@ -115,6 +105,7 @@ div.list {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
+	border-bottom:1px solid rgb(242, 242, 242);
 }
 
 ul.menu-box li {
@@ -122,14 +113,36 @@ ul.menu-box li {
 }
 
 .list-name {
-	padding: 5px 0px 35px 1px;
+	padding: 5px 0px 40px;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	width: 100%;
+}
+.list-name2{
+	width:100%;
+	text-align:center;
+}
+.stop{
+	color:#f08902;
+}
+.expire{
+	color:#cc0619;
+}
+.list-name div{
+	display:flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;	
+}
+.list-content{
+	padding: 5px 0px 1px;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
 	justify-content: space-between;
 	padding-bottom: 27px;
-	width: 100%;
+	width: 100%;	
 }
-
 .list-name h2 {
 	margin: 0;
 	padding: 0.83em 0;
@@ -423,7 +436,7 @@ div.main-content {
 }
 
 div.main-content img {
-	width: 500px;
+	max-width: 500px;
 }
 
 div.button-box {
@@ -468,6 +481,7 @@ div.reply_name {
 }
 
 .list-num {
+	text-align:center;	
 	width: 10%;
 }
 
@@ -476,6 +490,7 @@ div.reply_name {
 }
 
 .list-category {
+	text-align:center;
 	width: 20%;
 }
 

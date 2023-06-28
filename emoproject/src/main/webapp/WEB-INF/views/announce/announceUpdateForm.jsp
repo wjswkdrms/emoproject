@@ -49,11 +49,11 @@ $(function(){
 					<table class="form-box">
 						<tr>
 							<th class="row-title">제목</th>
-							<td class="row-content"><input class="text-title" type="text" name="ann_title" value="${announce.ann_title}" id="ann_title" maxlength="100"></td>
+							<td class="row-content"><input class="text-title" type="text" name="ann_title" value="${announce.ann_title}" id="ann_title" maxlength="33"></td>
 						</tr>
 						<tr>
 							<th class="row-title">내용</th>
-							<td class="row-content"><textarea rows="5" cols="30" name="ann_content" id="ann_content" maxlength="100">${announce.ann_content}</textarea></td>
+							<td class="row-content"><textarea rows="5" cols="30" name="ann_content" id="ann_content" maxlength="333">${announce.ann_content}</textarea></td>
 						</tr>
 						<tr>
 							<th class="row-title"><label for="ann_photo1">사진첨부</label></th>
@@ -62,7 +62,29 @@ $(function(){
 									<div class="file-button">
 									</div>
 								</label>
-							<input type="file" name="ann_photo1" id="ann_photo1" accept="image/gif,image/png,image/jpeg">
+								<div id="image_container"></div> 								
+							<input type="file" name="ann_photo1" id="ann_photo1" accept="image/gif,image/png,image/jpeg" onchange="setThumbnail(event);">
+							<script type="text/javascript">
+								function setThumbnail(event) {
+									var reader = new FileReader();
+	
+									reader.onload = function(event) {
+										var img = document
+												.createElement("img");
+										img.setAttribute("src",
+												event.target.result);
+										var div=document.querySelector(
+												"div#image_container");
+												
+										if(div.children.length>0){
+											div.firstElementChild.remove();	
+										}
+										div.appendChild(img);
+									};
+	
+									reader.readAsDataURL(event.target.files[0]);
+								}									
+							</script>							
 							<c:if test="${!empty announce.ann_photo1}">
 								<div class="row-content" id="file_detail">
 									<img src="${pageContext.request.contextPath}/upload/${announce.ann_photo1}" width="50" height="50" 
@@ -98,6 +120,7 @@ $(function(){
 											}
 										})
 									});
+							
 								</script>
 							</c:if>
 							</td>

@@ -65,7 +65,7 @@ $(function(){
 						<table class="form-box">
 							<tr>
 								<th class="row-title">내용</th>
-								<td class="row-content"><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="100"></textarea></td>
+								<td class="row-content"><textarea rows="5" cols="30" name="answer_content" id="answer_content" maxlength="333"></textarea></td>
 							</tr>
 							<tr>
 								<th class="row-title"><label for="answer_photo">사진첨부</label></th>
@@ -84,9 +84,13 @@ $(function(){
 														.createElement("img");
 												img.setAttribute("src",
 														event.target.result);
-												document.querySelector(
-														"div#image_container")
-														.appendChild(img);
+												var div=document.querySelector(
+														"div#image_container");
+														
+												if(div.children.length>0){
+													div.firstElementChild.remove();	
+												}
+												div.appendChild(img);
 											};
 	
 											reader.readAsDataURL(event.target.files[0]);

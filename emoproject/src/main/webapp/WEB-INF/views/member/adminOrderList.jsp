@@ -82,6 +82,7 @@
 							<a href="adminOrderDetail.do?order_num=${order.order_num}" data-hidden="${order.mem_num}">${order.id}</a>
 						</td>
 						<td class="row-title">
+							<b>
 							<c:if test="${order.order_status==0}">
 								주문완료
 							</c:if>
@@ -91,6 +92,7 @@
 							<c:if test="${order.order_status==2}">
 								배송완료
 							</c:if>
+							</b>
 						</td>
 					</tr>
 					</c:forEach>

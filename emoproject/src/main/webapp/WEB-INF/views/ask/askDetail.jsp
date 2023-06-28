@@ -35,6 +35,7 @@
 					<div class="main-content">
 						<c:if test="${!empty ask.ask_photo1}">
 						<div><img src=${pageContext.request.contextPath}/upload/${ask.ask_photo1}></div>
+						<p><br>
 						</c:if>
 						<div>${ask.ask_content}</div>
 					</div>	
@@ -47,8 +48,9 @@
 					<div class="main-content">						
 							<c:if test="${!empty answer.answer_photo}">
 							<div><img src=${pageContext.request.contextPath}/upload/${answer.answer_photo}></div>
+							<p><br>
 							</c:if>
-							${answer.answer_content}
+							<div>${answer.answer_content}</div>
 					</div>
 					</c:if>	
 					<div class="button-box">

@@ -28,14 +28,19 @@
 					<div class="content-detail">
 						<div class="detail-title">회원상태</div>
 						<div class="specific">
-							<c:if test="${detail.auth==0}">탈퇴</c:if>
-							<c:if test="${detail.auth==1}">정지</c:if>
-							<c:if test="${detail.auth==2}">일반</c:if>
-							<c:if test="${detail.auth==9}">관리</c:if>
+							<c:if test="${detail.auth==0}"><div class="expire"><b>탈퇴</b></div></c:if>
+							<c:if test="${detail.auth==1}"><div class="stop"><b>정지</b></div></c:if>
+							<c:if test="${detail.auth==2}"><b>일반</b></c:if>
+							<c:if test="${detail.auth==9}"><div class="answer">관리</div></c:if>
 						</div>
 						<div class="specific">
-						<input class="small-button" type="button" value="정지" onclick="location.href='adminMemberStop.do?mem_num=${detail.mem_num}'">
-						<input class="small-button" type="button" value="탈퇴" onclick="location.href='adminMemberExpire.do?mem_num=${detail.mem_num}'">
+							<c:if test="${detail.auth==1}">
+								<input class="small-button" type="button" value="일반" onclick="location.href='adminMemberNor.do?mem_num=${detail.mem_num}'">
+							</c:if>
+							<c:if test="${detail.auth==2}">
+								<input class="small-button" type="button" value="정지" onclick="location.href='adminMemberStop.do?mem_num=${detail.mem_num}'">
+								<input class="small-button" type="button" value="탈퇴" onclick="location.href='adminMemberExpire.do?mem_num=${detail.mem_num}'">
+							</c:if>
 						</div>
 					</div>	
 					<div class="content-detail">
@@ -76,7 +81,9 @@
 							<fmt:formatNumber value="${detail.point}"/> 포인트
 						</div>
 						<div class="specific">
-							<input class="small-button" type="button" value="포인트 입금" onclick="location.href='adminGivePointForm.do?mem_num=${detail.mem_num}'">
+							<c:if test="${detail.auth==2}">
+								<input class="small-button" type="button" value="포인트 입금" onclick="location.href='adminGivePointForm.do?mem_num=${detail.mem_num}'">
+							</c:if>
 						</div>
 					</div>	
 					<div class="content-detail">

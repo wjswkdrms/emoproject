@@ -31,10 +31,10 @@
 				
 	 			<c:if test="${count==0}"> 
 	 			<div class="list">
-					<div>번호</div>
-					<div>제목</div>
-					<div>작성자</div>
-					<div>작성일</div>
+					<div class="list-num">번호</div>
+					<div class="list-name2" style="text-align:center;">제목</div>
+					<div class="list-num">작성자</div>
+					<div class="list-category">작성일</div>
 				</div>
 	 			<div>
 					표시할 게시물이 없습니다.
@@ -42,18 +42,22 @@
 	 			</c:if>
 	 			<c:if test="${count>0}">
 				<div class="list">
-					<div>번호</div>
-					<div>제목</div>
-					<div>작성자</div>
-					<div>작성일</div>
+					<div class="list-num">번호</div>
+					<div class="list-name2" style="text-align:center;">제목</div>
+					<div class="list-num">작성자</div>
+					<div class="list-category">작성일</div>
 				</div>
 				
 				<c:forEach var="announce" items="${list}">
 				<ul class="list">
-					<li>${announce.ann_num}</li>
-					<li><a href="announceDetail.do?ann_num=${announce.ann_num}">${announce.ann_title}</a></li>
-					<li>${announce.mem_id}</li>
-					<li>${announce.ann_date}</li>
+					<li class="list-num">
+						${announce.ann_num}
+					</li>
+					<li class="list-content">
+						<a href="announceDetail.do?ann_num=${announce.ann_num}">${announce.ann_title}</a>
+					</li>
+					<li class="list-num">${announce.mem_id}</li>
+					<li class="list-category">${announce.ann_date}</li>
 				</ul>
 				</c:forEach>
 	 			</c:if> 
