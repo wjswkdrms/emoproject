@@ -15,6 +15,22 @@
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
   <!-- 서블릿 주소 매핑 끝 -->
+  <!-- 응답 상태 코드별 에러 페이지 지정 시작 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/WEB-INF/views/common/error404.jsp</location>
+  </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/WEB-INF/views/common/error500.jsp</location>
+  </error-page>
+  <!-- 응답 상태 코드별 에러 페이지 지정 끝 -->
+  <!-- 에러 타입별 에러 페이지 지정 시작 -->
+  <error-page>
+  	<exception-type>java.lang.NullPointerException</exception-type>
+  	<location>/WEB-INF/views/common/errorNullPointer.jsp</location>
+  </error-page>
+  <!-- 에러 타입별 에러 페이지 지정 끝 -->
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
