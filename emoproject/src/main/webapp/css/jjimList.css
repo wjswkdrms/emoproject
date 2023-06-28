@@ -77,7 +77,7 @@ ul.menu-box {
 }
 
 ul.list li {
-    display: flex;
+	    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -480,22 +480,16 @@ div.reply_name {
 .button-box span {
 	padding: 0 10px;
 }
-.list-photo1{
-	width:100px;
-	height:100px;
-	border-bottom:1px solid lightgray;
-}
-.list-photo1 img{
-	width:100px;
-	height:100px;
-	border-bottom:1px solid lightgray;
-}
+
 .list-num {
-  text-align:left;
-  width: 13%;
+  text-align:center;
+  width: 10%;
   border-bottom:1px solid lightgray;
 }
-
+.list-null{
+  width:10%;
+  border-bottom:1px solid lightgray;
+}
 .list-list {
   width: 80%;
   text-align:center;
@@ -505,6 +499,16 @@ div.reply_name {
   width: 80%;
   text-align:left;
   border-bottom:1px solid lightgray;
+}
+.list-photo1{
+	width:100px;
+	height:100px;
+	border-bottom:1px solid lightgray;
+}
+.list-photo1 img{
+	width:100px;
+	height:100px;
+	border-bottom:1px solid lightgray;
 }
 .list-price {
   text-align:center;

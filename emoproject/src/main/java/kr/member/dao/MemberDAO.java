@@ -487,16 +487,16 @@ public class MemberDAO {
 				conn = DBUtil.getConnection();
 				
 				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT de2.product_photo1, data.order_num, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
-						+ "FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
-						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
-						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=? AND rnum<=? AND order_num=?";
+						+ "						FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+						+ "						INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ? AND order_num=?) ORDER BY ma.order_num DESC) data "
+						+ "						INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=? AND rnum<=?";
 				pstmt = conn.prepareStatement(sql);
 				
 				//?에 데이터 바인딩
 				pstmt.setInt(++cnt,mem_num);
+				pstmt.setString(++cnt,order_num);
 				pstmt.setInt(++cnt, start);
 				pstmt.setInt(++cnt, end);
-				pstmt.setString(++cnt,order_num);
 				
 				//SQL문 실행
 				rs = pstmt.executeQuery();
@@ -508,7 +508,6 @@ public class MemberDAO {
 					zzim.setProduct_num(rs.getInt("product_num"));
 					zzim.setProduct_photo1(rs.getString("product_photo1"));
 					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
-					zzim.setOrder_num(rs.getInt("order_num"));
 					zzim.setProduct_status(rs.getInt("order_status"));
 					//금액 천단위 , 처리
 					price = rs.getInt("order_product_total") + ""; 

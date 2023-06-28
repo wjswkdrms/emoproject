@@ -480,6 +480,26 @@ div.reply_name {
 .button-box span {
 	padding: 0 10px;
 }
+
+.list-num {
+  text-align:center;
+  width: 10%;
+  border-bottom:1px solid lightgray;
+}
+.list-null{
+  width:12%;
+  border-bottom:1px solid lightgray;
+}
+.list-list {
+  width: 55%;
+  text-align:center;
+  border-bottom:1px solid lightgray;
+}
+.list-list-data {
+  width: 55%;
+  text-align:center;
+  border-bottom:1px solid lightgray;
+}
 .list-photo1{
 	width:100px;
 	height:100px;
@@ -489,22 +509,6 @@ div.reply_name {
 	width:100px;
 	height:100px;
 	border-bottom:1px solid lightgray;
-}
-.list-num {
-  text-align:left;
-  width: 13%;
-  border-bottom:1px solid lightgray;
-}
-
-.list-list {
-  width: 80%;
-  text-align:center;
-  border-bottom:1px solid lightgray;
-}
-.list-list-data {
-  width: 80%;
-  text-align:left;
-  border-bottom:1px solid lightgray;
 }
 .list-price {
   text-align:center;
@@ -520,6 +524,23 @@ div.reply_name {
   text-align:center;
   width: 15%;
   border-bottom:1px solid lightgray;
+}
+.list-write{
+  width: 20%;
+  text-align:center;
+  border-bottom:1px solid lightgray;
+  cursor: pointer;
+  height:100px;
+
+}
+.write_c{
+	display:inline-block;
+	width:100px;
+}
+.write{
+	display:inline-block;
+	width:100px;
+	cursor: pointer;
 }
 
 ul.list2 li {
