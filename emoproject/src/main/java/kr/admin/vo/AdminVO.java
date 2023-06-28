@@ -49,8 +49,15 @@ public class AdminVO {
 	private int order_product_total;
 	private int order_product_quantity;
 	private Date order_date;
+	private String order_date_str;
 	
 	
+	public String getOrder_date_str() {
+		return order_date_str;
+	}
+	public void setOrder_date_str(String order_date_str) {
+		this.order_date_str = order_date_str;
+	}
 	public Date getOrder_date() {
 		return order_date;
 	}

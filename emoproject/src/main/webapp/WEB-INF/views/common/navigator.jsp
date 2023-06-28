@@ -26,15 +26,29 @@
 	
 	#nav_top_bottom a {
 		border-radius : 10px;
-		width:100px;
+		width:40px;
 		height:40px;
 		margin-top:10px;
-		border : 1.5px solid black;
+		
 		display:flex;
 		justify-content: center;
 		align-items:center;
 	}
 	
+	#nav_top_bottom a img {
+		display:block;
+		width:40px;
+		height:40px;
+	}
+	
+	#up_arrow {
+		transform: rotate(270deg);
+		
+	}
+	
+	#down_arrow {
+		transform: rotate(90deg);
+	}
 </style>
 <script>
 function scrollTo(element, to, 300) {
@@ -60,6 +74,6 @@ function scrollTo(element, to, 300) {
 	}
 </script>
 <div id="nav_top_bottom">
-	<a href="#" class="smooth-scroll">맨위로</a>
-	<a href="#footer_anker" class="smooth-scroll">맨아래로</a>
+	<a href="#" class="smooth-scroll"><img src="${pageContext.request.contextPath}/images/emo_icon_right01.svg" id="up_arrow"></a>
+	<a href="#footer_anker" class="smooth-scroll"><img src="${pageContext.request.contextPath}/images/emo_icon_right01.svg" id="down_arrow"></a>
 </div>
