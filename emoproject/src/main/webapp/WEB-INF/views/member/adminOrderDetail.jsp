@@ -30,6 +30,25 @@
 						<div class="specific">${detail.order_date}</div>
 					</div>	
 					<div class="content-detail">
+						<div class="detail-title">배송상태</div>
+						<div class="specific">
+							<b>
+							<c:if test="${detail.order_status==0}">
+								주문완료
+							<input class="small-button" type="button" value="배송중" onclick="location.href='adminOrderModify.do?order_num=${detail.order_num}&order_status=1'">
+							<input class="small-button" type="button" value="배송완료" onclick="location.href='adminOrderModify.do?order_num=${detail.order_num}&order_status=2'">
+							</c:if>
+							<c:if test="${detail.order_status==1}">
+								배송중
+							<input class="small-button" type="button" value="배송완료" onclick="location.href='adminOrderModify.do?order_num=${detail.order_num}&order_status=2'">
+							</c:if>
+							<c:if test="${detail.order_status==2}">
+								배송완료
+							</c:if>
+							</b>
+						</div>
+					</div>	
+					<div class="content-detail">
 						<div class="detail-title">아이디</div>
 						<div class="specific">${detail.mem_id}</div>
 					</div>	

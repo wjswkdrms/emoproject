@@ -302,6 +302,7 @@ public class AdminMemberDAO {
 					detail.setMem_id(rs.getString("mem_id"));
 					detail.setOrder_product_total(rs.getInt("order_total_price"));
 					detail.setOrder_date(rs.getDate("order_date"));
+					detail.setOrder_status(rs.getInt("order_status"));
 					
 					MemberHomeVO home=new MemberHomeVO();
 					home.setMem_num(rs.getInt("mem_num"));
@@ -414,6 +415,36 @@ public class AdminMemberDAO {
 				//?에 데이터 바인딩
 				pstmt.setInt(1, mem_point);
 				pstmt.setInt(2, mem_num);
+				//SQL문 실행
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				//자원정리
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
+		//배송상태 변경
+		public void adminOrderModify(int order_num,int order_status)
+                throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				
+				if(order_status==1) {
+					sql="UPDATE em_order_manage SET order_status=1 WHERE order_num=?";
+				}else if(order_status==2) {
+					sql="UPDATE em_order_manage SET order_status=2 WHERE order_num=?";
+				}
+				
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, order_num);
 				//SQL문 실행
 				pstmt.executeUpdate();
 			}catch(Exception e) {

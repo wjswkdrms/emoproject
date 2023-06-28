@@ -10,11 +10,19 @@ public class OrderDetailVO {
 	private int order_product_price;//ORDER_PRODUCT_PRICE	NUMBER(7,0)
 	private int order_product_quantity;//ORDER_PRODUCT_QUANTITY	NUMBER(5,0)
 	private int order_product_total; //ORDER_PRODUCT_TOTAL	NUMBER(7,0)
+	private int order_status;
 	
 	private String mem_id;
 	private MemberHomeVO memberhome;
 	private Date order_date;
 	
+	
+	public int getOrder_status() {
+		return order_status;
+	}
+	public void setOrder_status(int order_status) {
+		this.order_status = order_status;
+	}
 	public Date getOrder_date() {
 		return order_date;
 	}
