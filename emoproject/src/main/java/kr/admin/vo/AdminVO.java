@@ -45,7 +45,36 @@ public class AdminVO {
 	private int product_total_price;
 	private int product_sales_quantity;
 	private int product_total_profit;
+	private int order_product_price;
+	private int order_product_total;
+	private int order_product_quantity;
+	private Date order_date;
 	
+	
+	public Date getOrder_date() {
+		return order_date;
+	}
+	public void setOrder_date(Date order_date) {
+		this.order_date = order_date;
+	}
+	public int getOrder_product_quantity() {
+		return order_product_quantity;
+	}
+	public void setOrder_product_quantity(int order_product_quantity) {
+		this.order_product_quantity = order_product_quantity;
+	}
+	public int getOrder_product_total() {
+		return order_product_total;
+	}
+	public void setOrder_product_total(int order_product_total) {
+		this.order_product_total = order_product_total;
+	}
+	public int getOrder_product_price() {
+		return order_product_price;
+	}
+	public void setOrder_product_price(int order_product_price) {
+		this.order_product_price = order_product_price;
+	}
 	public int getProduct_total_profit() {
 		return product_total_profit;
 	}

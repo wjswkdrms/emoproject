@@ -45,7 +45,6 @@ public class AdminDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		String result = null;
 		List<AdminVO> list = null;
 		try {
 			// 커넥션풀로부터 커넥션 할당
@@ -104,5 +103,43 @@ public class AdminDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return adminvo;
+	}
+	
+	public List<AdminVO> getMemberOrdersByAdmin(int product_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<AdminVO> list = null;
+		try {
+			// 커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			// SQL문 작성
+			
+			sql = "select product_num, order_product_name, mem_num ,mem_name, order_product_price ,order_product_quantity ,order_product_total, order_date  FROM em_member_detail LEFT INNER JOIN (select * FROM em_order_manage LEFT INNER JOIN em_order_detail USING (order_num)) USING (mem_num) WHERE product_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product_num);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<AdminVO>();
+			while(rs.next()) {
+				AdminVO adminvo = new AdminVO();
+				adminvo.setProduct_num(rs.getInt("product_num"));
+				adminvo.setOrder_product_name(rs.getString("order_product_name"));
+				adminvo.setMem_num(rs.getInt("mem_num"));
+				adminvo.setMem_name(rs.getString("mem_name"));
+				adminvo.setOrder_product_price(rs.getInt("order_product_price"));
+				adminvo.setOrder_product_quantity(rs.getInt("order_product_quantity"));
+				adminvo.setOrder_product_total(rs.getInt("order_product_total"));
+				adminvo.setOrder_date(rs.getDate("order_date"));
+				list.add(adminvo);
+			}
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
 	}
 }

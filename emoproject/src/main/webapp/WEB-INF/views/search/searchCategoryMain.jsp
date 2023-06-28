@@ -44,6 +44,11 @@ $(function(){
         sortProducts();
     });
     
+    $('#sorted_06').click(function(){
+    	sorted_num = 6;
+        sortProducts();
+    });
+    
   //페이지 설정
 	function setPage(totalCount){
 	  	console.log('페이지 처리 시작');
@@ -171,6 +176,7 @@ $(function(){
 				<li id="sorted_03">판매량순</li>
 				<li id="sorted_04">높은가격순</li>
 				<li id="sorted_05">낮은가격순</li>
+				<li id="sorted_06">높은할인순</li>
 			</ul>
 		</div>
 		

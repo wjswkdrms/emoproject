@@ -269,6 +269,9 @@ public class SearchDAO {
 			} else if (sorted_navigator_num == 5) {
 				//낮은 가격 순
 				sub_sql = " ORDER BY product_price_sales";
+			} else if (sorted_navigator_num == 6) {
+				//낮은 가격 순
+				sub_sql = " ORDER BY product_discount DESC";
 			}
 			
 			if (product_category != 0 ) {
