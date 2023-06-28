@@ -34,13 +34,15 @@
 						<div class="specific">
 							<b>
 							<c:if test="${detail.order_status==0}">
-								주문완료
+								<div class="expire">주문완료
 							<input class="small-button" type="button" value="배송중" onclick="location.href='adminOrderModify.do?order_num=${detail.order_num}&order_status=1'">
 							<input class="small-button" type="button" value="배송완료" onclick="location.href='adminOrderModify.do?order_num=${detail.order_num}&order_status=2'">
+							</div>
 							</c:if>
 							<c:if test="${detail.order_status==1}">
-								배송중
+								<div class="stop">배송중
 							<input class="small-button" type="button" value="배송완료" onclick="location.href='adminOrderModify.do?order_num=${detail.order_num}&order_status=2'">
+							</div>
 							</c:if>
 							<c:if test="${detail.order_status==2}">
 								배송완료

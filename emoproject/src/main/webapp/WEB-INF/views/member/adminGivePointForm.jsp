@@ -19,9 +19,9 @@ $(function(){
 			$('#point_value').val('').focus();
 			return false;
 		}
-		if(!/^[0-9]{1,7}$/.test(
+		if(!/^[0-9]{1,8}$/.test(
 	        $('#point_value').val())){
-			alert('숫자 사용, 최소 1자 ~ 최대 7자를 사용하세요');
+			alert('숫자 사용, 최소 1자 ~ 최대 8자를 사용하세요');
 			$('#point_value').val('');
 			$('#point_value').focus();
 			return false;

@@ -84,10 +84,10 @@
 						<td class="row-title">
 							<b>
 							<c:if test="${order.order_status==0}">
-								주문완료
+								<div class="expire">주문완료</div>
 							</c:if>
 							<c:if test="${order.order_status==1}">
-								배송중
+								<div class="stop">배송중</div>
 							</c:if>
 							<c:if test="${order.order_status==2}">
 								배송완료
