@@ -53,11 +53,9 @@
               <li class="list-list-data"><a href="${pageContext.request.contextPath}/member/memberEdit.do?orderNum=${zzim.order_num}">${zzim.product_name}</a></li>
               <li class="list-price">${zzim.product_price}원</li>
               <li class="list-date">${zzim.order_date}</li>
-			  <li class="list-status">
-			  <c:if test="${zzim.order_status==0}">주문 완료</c:if>
-              <c:if test="${zzim.order_status==1}">배송중</c:if>
-              <c:if test="${zzim.order_status==2}">배송 완료</c:if>
-              </li>
+			  <c:if test="${zzim.order_status==0}"><li class="list-status-1">주문 완료</li></c:if>
+              <c:if test="${zzim.order_status==1}"><li class="list-status-2">배송중</li></c:if>
+              <c:if test="${zzim.order_status==2}"><li class="list-status-3">배송 완료</li></c:if>
             </ul>
           </c:forEach>
           

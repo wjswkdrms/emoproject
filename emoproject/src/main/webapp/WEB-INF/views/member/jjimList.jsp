@@ -53,10 +53,8 @@
           <li class="list-photo1"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}"><img src="${pageContext.request.contextPath}/upload/${zzim.product_photo1}"></a></li>
           <li class="list-list"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></li>
           <li class="list-price">${zzim.product_price_sales}</li>
-          <li class="list-status">
-            <c:if test="${zzim.product_status==2}">판매중</c:if>
-            <c:if test="${zzim.product_status!=2}">판매 중지</c:if>
-          </li>
+            <c:if test="${zzim.product_status==2}"><li class="list-status-o">판매중</li></c:if>
+            <c:if test="${zzim.product_status!=2}"><li class="list-status-x">판매 중지</li></c:if>
         </ul>
       </c:forEach>
       <div class="align-center">${page}</div>

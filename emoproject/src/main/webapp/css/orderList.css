@@ -511,6 +511,24 @@ div.reply_name {
   width: 15%;
   border-bottom:1px solid lightgray;
 }
+.list-status-1 {
+  text-align:center;
+  width: 15%;
+  border-bottom:1px solid lightgray;
+  color:red;
+}
+.list-status-2 {
+  text-align:center;
+  width: 15%;
+  border-bottom:1px solid lightgray;
+  color:green;
+}
+.list-status-3 {
+  text-align:center;
+  width: 15%;
+  border-bottom:1px solid lightgray;
+  color:blue;
+}
 
 ul.list2 li {
 	display: flex;

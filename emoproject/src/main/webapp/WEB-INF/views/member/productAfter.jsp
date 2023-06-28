@@ -19,7 +19,7 @@
   <div class="container">
     <div class="left-div">
 
-      <div class="page-name">후기 작성</div>
+      <div class="page-name">내 정보</div>
       <ul class="menu-box">
         <li><a class="detail-menu" href="${pageContext.request.contextPath}/member/orderList.do">주문내역</a></li>
         <li><a class="detail-menu" href="${pageContext.request.contextPath}/member/questList.do">문의내역</a></li>
@@ -33,7 +33,7 @@
 
     <div class="right-div">
       <div class="list-name">
-        <h2> 후기 작성</h2>
+        <h2> 상품 후기</h2>
       </div>
       <c:if test="${empty list}">
         <div class="result-display">
@@ -56,15 +56,12 @@
           <li class="list-list"><a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${zzim.product_num}">${zzim.product_title}</a></li>
           <li class="list-price">${zzim.product_price}원 (${zzim.product_quantity}개)</li>
           <li class="list-date">${zzim.order_date}</li>
-          <li class="list-status">
-            <c:if test="${zzim.order_status==0}"><b>주문 완료</b></c:if>
-            <c:if test="${zzim.order_status==1}"><b>배송중</b></c:if>
-            <c:if test="${zzim.order_status==2}"><b>배송 완료</b></c:if>
-          </li>
-          <li class="list-write">
-            <c:if test="${zzim.order_status==0}"><a class="write_c" >작성 불가</a></c:if>
-            <c:if test="${zzim.order_status==1}"><a class="write_c" >작성 불가</a></c:if>
-            <c:if test="${zzim.order_status==2}"><a class="write" onclick="location.href='productAfterWriteForm.do?product_num=${zzim.product_num}&order_num=${zzim.order_num}'">후기 작성</a></c:if>
+            <c:if test="${zzim.order_status==0}"><li class="list-status-1">주문 완료</li></c:if>
+            <c:if test="${zzim.order_status==1}"><li class="list-status-2">배송중</li></c:if>
+            <c:if test="${zzim.order_status==2}"><li class="list-status-3">배송 완료</li></c:if>
+            <c:if test="${zzim.order_status==0}"><li class="list-write"><a class="write_c" >작성 불가</a></li></c:if>
+            <c:if test="${zzim.order_status==1}"><li class="list-write"><a class="write_c" >작성 불가</a></li></c:if>
+            <c:if test="${zzim.order_status==2}"><li class="list-write"><a class="write" onclick="location.href='productAfterWriteForm.do?product_num=${zzim.product_num}&order_num=${zzim.order_num}'">후기 작성</a></li></c:if>
           </li>
         </ul>
       </c:forEach>

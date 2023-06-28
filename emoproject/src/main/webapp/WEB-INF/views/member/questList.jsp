@@ -54,14 +54,12 @@
           <li class="list-title"><a href="${pageContext.request.contextPath}/ask/askDetail.do?ask_num=${zzim.ask_num}">${zzim.ask_title}</a></li>
           <li class="list-list-data"><a href="${pageContext.request.contextPath}/ask/askDetail.do?ask_num=${zzim.ask_num}">${zzim.ask_content}</a></li>
           <li class="list-date">${zzim.ask_date_2}</li>
-          <li class="list-status">
             <c:if test="${zzim.ask_status==0}">
-              답변 대기
+              <li class="list-status-x">답변 대기</li>
             </c:if>
             <c:if test="${zzim.ask_status==1}">
-              답변 완료
+              <li class="list-status-o">답변 완료</li>
             </c:if>
-          </li>
         </ul>
       </c:forEach>
       <div class="align-center">${page}</div>
