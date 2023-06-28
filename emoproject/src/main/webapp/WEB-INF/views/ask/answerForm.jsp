@@ -19,7 +19,12 @@ $(function(){
 			return false;
 		}
 	});
-	
+
+	 $("input[type='file']").change(function(e){
+
+	      //div 내용 비워주기
+	      $('#image_container').empty();
+	 });      
 });
 
 </script>
@@ -71,33 +76,38 @@ $(function(){
 								<th class="row-title"><label for="answer_photo">사진첨부</label></th>
 								<td class="row-content">
 									<label  for="answer_photo">
-										<div class="file-button">
+										<div class="file-button"">
 										</div>
 									</label>
-									<div id="image_container"></div>
+									<div id="image_container">
+									
+									</div>
+										<c:if test="${!empty ('#image-container')}">
+											<img src="../images/btn_remove.png">
+										</c:if>
 									<script type="text/javascript">
-										function setThumbnail(event) {
-											var reader = new FileReader();
+
+											function setThumbnail(event) {
+												var reader = new FileReader();
+		
+												reader.onload = function(event) {
+													var img = document
+															.createElement("img");
+													img.setAttribute("src",
+															event.target.result);
+													var div=document.querySelector(
+															"div#image_container");
+													if(div.children.length>0){
+														div.firstElementChild.remove();
+													}
+													div.appendChild(img);
 	
-											reader.onload = function(event) {
-												var img = document
-														.createElement("img");
-												img.setAttribute("src",
-														event.target.result);
-												var div=document.querySelector(
-														"div#image_container");
-														
-												if(div.children.length>0){
-													div.firstElementChild.remove();	
-												}
-												div.appendChild(img);
-											};
-	
-											reader.readAsDataURL(event.target.files[0]);
-										}
+												};
+												reader.readAsDataURL(event.target.files[0]);
+											}
 									</script>																	
 									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg"
-									  onchange="setThumbnail(event);">
+									  onchange="setThumbnail(event); ">
 								</td>
 							</tr>
 						</table>

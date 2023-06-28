@@ -28,9 +28,6 @@ public class AnnounceUpdateFormAction implements Action{
 		
 		AnnounceDAO dao=AnnounceDAO.getInstance();
 		AnnounceVO announce=dao.getAnnounce(ann_num);
-		if(user_num!=announce.getMem_num()) {
-			return "/WEB-INF/views/common/notice.jsp";
-		}
 		
 		request.setAttribute("announce", announce);
 		

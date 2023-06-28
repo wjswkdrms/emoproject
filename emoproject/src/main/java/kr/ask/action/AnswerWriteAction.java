@@ -30,8 +30,6 @@ public class AnswerWriteAction implements Action{
 		if(user_auth<9) {
 			return "/WEB-INF/views/commone/notice.jsp";
 		}
-		//if(count>0) {
-		//}
 		//관리자일 경우
 		MultipartRequest multi=FileUtil.createFile(request);
 		

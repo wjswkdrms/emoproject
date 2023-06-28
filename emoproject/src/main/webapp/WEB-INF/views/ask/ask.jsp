@@ -33,7 +33,7 @@
 	 			<div class="list">
 					<div class="list-num">번호</div>
 					<div class="list-name2" style="text-align:center;">제목</div>
-					<div class="list-category">작성자</div>
+					<div class="list-num">작성자</div>
 					<div class="list-category">작성일</div>
 					<div class="list-category">답변상태</div>
 				</div>
@@ -45,7 +45,7 @@
 				<div class="list">
 					<div class="list-num">번호</div>
 					<div class="list-name2" style="text-align:center;">제목</div>
-					<div class="list-category">작성자</div>
+					<div class="list-num">작성자</div>
 					<div class="list-category">작성일</div>
 					<div class="list-category">답변상태</div>
 				</div>
@@ -54,7 +54,7 @@
 				<ul class="list">
 					<li class="list-num">${ask.ask_num}</li>
 					<li class="list-content"><a href="askDetail.do?ask_num=${ask.ask_num}">${ask.ask_title}</a></li>
-					<li class="list-category">${ask.mem_id}</li>
+					<li class="list-num">${ask.mem_id}</li>
 					<li class="list-category">${ask.ask_date}</li>
 					<li class="list-category">
 						<c:if test="${ask.ask_status<1}">
