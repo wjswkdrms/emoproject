@@ -91,10 +91,13 @@ input.quntity{
     border-radius: 7px;
 }
 .cart-del{
-	width:70px;
+	width:60px;
+	background-color:field;
 }
 .cart-del:hover{
-	width:70px;
+	width:60px;
+	color:red;
+	font-weight:700;
 }
 .qpm{
 	width:40px;
@@ -119,6 +122,7 @@ input.quntity{
 }
 .quantity{
 	display:flex;
+	justify-content:center;
 }
 ul{
 	list-style:none;
@@ -156,7 +160,12 @@ th.zipcode {
 th.address1 {
   width: 30%;
 }
-
+td.buttontd{
+	width: 10%;
+}
+td.imagetd{
+	width:90px;
+}
 table td, table th{
 	font-size:15pt;
 	padding:20px 5px;

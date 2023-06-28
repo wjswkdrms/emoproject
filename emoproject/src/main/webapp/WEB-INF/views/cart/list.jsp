@@ -112,7 +112,7 @@ $(function(){
 			<table class="cart-content">
 				<c:forEach var="cart" items="${list}">
 				<tr>
-					<td>
+					<td class="imagetd">
 						<img src="${pageContext.request.contextPath}/upload/${cart.product.product_photo1}" width="80">
 					</td>
 					<td>
@@ -126,20 +126,20 @@ $(function(){
 							  autocomplete="off" readonly="readonly"
 							  value="${cart.cart_quantity}">
 							<button type="button" onclick="fnCalCount('p', this);" class="button qpm">+</button>
-							<input type="button" value="변경" 
+						</div>
+						<input type="button" value="변경" 
 							 class="cart-modify " 
 							 data-cartnum="${cart.mem_cart_num}"
 							 data-itemnum="${cart.product_num}"
 							 >
-						</div>
 					</td>
-					<td class="align-right">
+					<td>
 						<c:if test="${cart.product.product_price!=cart.product.product_price_sales}">
 						<label class="before-price"><fmt:formatNumber value="${cart.product.product_price*cart.cart_quantity}"/>원</label><br>
 						</c:if>
 						<b><fmt:formatNumber value="${cart.product.product_price_sales*cart.cart_quantity}"/>원</b>
 					</td>
-					<td>
+					<td class="buttontd">
 						<input type="button" value="삭제" class="cart-del button" data-cartnum="${cart.mem_cart_num}">
 					</td>
 				</tr>
