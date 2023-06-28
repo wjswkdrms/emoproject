@@ -95,10 +95,6 @@
 			});
 		});
 		
-		if(product.product_status == 1){
-			$('')
-		};
-		
 
 		$('#btn_noSale').on('click', function() {
 			alert('해당 상품은 판매 중지 상태입니다.');
