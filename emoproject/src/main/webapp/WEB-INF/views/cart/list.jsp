@@ -20,7 +20,7 @@ function fnCalCount(type, ths){
         if(tCount < 99)$input.val(Number(tCount)+1);
         
     }else{
-        if(tCount > 0)$input.val(Number(tCount)-1);    
+        if(tCount > 1)$input.val(Number(tCount)-1);    
     }
 }
 $(function(){
@@ -120,15 +120,15 @@ $(function(){
 					</td>
 					<td>
 						<div class="quantity">
-							<button type="button" onclick="fnCalCount('m', this);" class="button qpm">-</button>						
+							<button type="button" onclick="fnCalCount('m', this);" class="button qpm m">-</button>						
 							<input type="text" name="order_quantity" id="result"
 							  min="1" max="${cart.product.product_stock}"
 							  autocomplete="off" readonly="readonly"
 							  value="${cart.cart_quantity}">
-							<button type="button" onclick="fnCalCount('p', this);" class="button qpm">+</button>
+							<button type="button" onclick="fnCalCount('p', this);" class="button qpm p">+</button>
 						</div>
-						<input type="button" value="변경" 
-							 class="cart-modify " 
+						<input type="button" value="변경"  
+							 class="cart-modify button" 
 							 data-cartnum="${cart.mem_cart_num}"
 							 data-itemnum="${cart.product_num}"
 							 >
