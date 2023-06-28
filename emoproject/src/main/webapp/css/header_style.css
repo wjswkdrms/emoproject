@@ -51,7 +51,7 @@ li {
 	background:white;
 	font-family: 'maple';
 	width:	1600px;
-	height : 130px;
+	height : 90px;
 	margin : 0 auto;
 	
 }
@@ -131,10 +131,10 @@ li {
   	margin-left:10px;
   	margin-right:10px;
   	
-  	
-  	
 }
-
+#cart-icon {
+	position:relative;
+}
 #cart_count {
 	position:absolute;
 	background-color:#E19B50;
