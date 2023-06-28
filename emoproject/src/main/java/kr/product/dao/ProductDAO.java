@@ -385,12 +385,9 @@ public class ProductDAO {
 	public List<ReviewVO> getProductDetailReviewList(int start,int end, int product_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		List<ReviewVO> list = null;
 		String sql = null;
-		String sub_sql = "";
-		int cnt = 0;
 		
 		try {
 			conn = DBUtil.getConnection();

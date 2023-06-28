@@ -40,7 +40,7 @@ $(function(){
 	//찜 표시
 	function displayZzim(param){
 		let output;
-		if(param.status == 'noZzim'){
+		if(param.z_status == 'noZzim'){
 			output = '../images/zzim_01.png';
 		}else{
 			output = '../images/zzim_02.png';

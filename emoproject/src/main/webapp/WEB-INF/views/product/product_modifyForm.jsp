@@ -96,7 +96,7 @@
 		<form action="modify.do" method="post" enctype="multipart/form-data" id="modify_form">
 		<input type="hidden" name="product_num" value="${product.product_num}">
 		<h2>상품 수정</h2>
-		<ul>
+		<ul class="li-sty">
 			<li class="dis-in box-half">
 				<span class="box-left">카테고리</span>
 				<select id="category" name="category" required>
@@ -142,15 +142,15 @@
 				<label class="box-left" for="origin">원산지</label>
 				<input type="text" name="origin" id="origin" value="${product.productdetailVO.product_origin}">
 			</li>
-			<li>
+			<li class="po-ab">
 				<label class="box-left" for="photo1">상품 이미지</label>
 				<input type="file" name="photo1" id="photo1" accept="image/gif, image/png, image/jpeg">
-				<div>(${product.productdetailVO.product_photo1})파일이 등록되어 있습니다.</div>
+				<div class="right-po">(${product.productdetailVO.product_photo1})파일이 등록되어 있습니다.</div>
 			</li>
-			<li>
+			<li class="po-ab">
 				<label class="box-left" for="photo2">상세페이지 이미지</label>
 				<input type="file" name="photo2" id="photo2" accept="image/gif, image/png, image/jpeg">
-				<div>(${product.productdetailVO.product_photo2})파일이 등록되어 있습니다.</div>
+				<div class="right-po">(${product.productdetailVO.product_photo2})파일이 등록되어 있습니다.</div>
 			</li>
 			<li>
 				<label class="box-left" for="info">상품 설명</label>

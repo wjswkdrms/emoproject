@@ -23,7 +23,7 @@ $(function() {
 				}
 
 				$(param.list).each(function(index, item) {
-					let score_star = ((item.review_score / 100) * 5).toFixed(2);
+					let score_star = ((item.review_score / 10) * 5).toFixed(2);
 
 
 					output1 = '<div class="review-box">';
@@ -33,11 +33,11 @@ $(function() {
 					output1 += '<h4 class="re-ti">' + item.review_title + '</h4>';
 					output1 += '<div class="re-score">'
 					output1 += '<img id="sco-'+i+'-img" class="sco-img" src="../images/star0">'
-					output1 += '<span class="sco-te">'+score_star + '(' + item.review_score + ')</span></div>'
+					output1 += '<span class="sco-te">'+score_star + '(' + item.review_score + '/10)</span></div>'
 					output1 += '<div class="re-content">' + item.review_content + '</div>';
 					if (item.review_photo != null) {
 						output1 += '<div class="rbpx-img">'
-						output1 += '<img src="' + item.review_photo1 + '">';
+						output1 += '<img src="../upload/' + item.review_photo1 + '">';
 						output1 += '</div>'
 					}
 					output1 += '</div>';
@@ -87,8 +87,8 @@ $(function() {
 			success: function(param) {
 				count = param.count;
 				$(param.list).each(function(index, item) {
-					score_sum_re = item.review_score
-					score_sum += ((item.review_score / 100) * 5);
+					score_sum += ((item.review_score / 10) * 5);
+					score_sum_re += item.review_score
 				});
 				score_avg = (score_sum / count).toFixed(2);
 				score_avg_re = (score_sum_re / count).toFixed(2);
@@ -96,9 +96,9 @@ $(function() {
 				let out
 
 				if (count > 0) {
-					out = '<div class="re-avg-text">평균 별점: ' + score_avg + '(' + score_avg_re + ')' + '</div>';
+					out = '<div class="re-avg-text">평균 별점: ' + score_avg + '(' + score_avg_re + '/10)' + '</div>';
 				} else {
-					out = '<div class="re-avg-text">평균별점: 0.0(0)</dvi>';
+					out = '<div class="re-avg-text">평균별점: 0.0(0/10)</dvi>';
 				}
 				$('.star-img').append(out);
 

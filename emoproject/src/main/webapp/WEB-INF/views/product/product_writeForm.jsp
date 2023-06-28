@@ -101,7 +101,7 @@
 			<form action="write.do" method="post" enctype="multipart/form-data"
 				id="write_form">
 				<h2>상품 등록</h2>
-				<ul>
+				<ul class="li-sty">
 					<li class="dis-in box-half"><span class="box-left">카테고리</span>
 						<select id="category" name="category" required>
 							<option value="">카테고리</option>

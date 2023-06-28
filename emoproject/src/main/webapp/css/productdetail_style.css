@@ -108,6 +108,7 @@
 	width: 380px;
 	margin: 10px 5px;
 }
+
 .total-price{
 	color: #333333;
 	font-style:italic;
@@ -139,7 +140,7 @@
 	top: 10px;
 	left: 5px;
 }
-.box-button input[type="submit"], #btn_soldout{
+.box-button input[type="submit"], #btn_soldout, #btn_noSale{
 	position:absolute;
 	top: 10px;
 	left: 75px;
@@ -148,7 +149,7 @@
 	font-size: 20px;
 }
 
-.box-button input[type="submit"], #btn_soldout{
+.box-button input[type="submit"], #btn_soldout, #btn_noSale{
 	width: 450px;
 	height: 60px;
 	background-color: #cba680;
@@ -162,6 +163,13 @@
 	border: 1px solid rgb(201,201,201);
 	border-radius: 4px;
 	
+}
+.no-Sale{
+	font-weight: bold;
+	font-size: 30px;
+	color: red;
+	
+	margin: 20px 0;
 }
 
 /*---------------*/
@@ -192,7 +200,7 @@
 /*-------*/
 .sticky{
   position: sticky;
-  top: 200px;
+  top: 130px;
 }
 
 .nav ul{
@@ -313,7 +321,9 @@
 .pro-title h2{
 	margin: 10px 0px;
 }
-
+.flex-sty{
+	display: flex;
+}
 /**/
 .review-box{
 	display: flex;
@@ -342,7 +352,8 @@
 .re-memid{
 	font-style: italic;
 	font-weight: bold;
-	padding: 15px 10px;
+	padding-top: 27px;
+	padding-left: 20px;
 }
 
 .re-product-ti{

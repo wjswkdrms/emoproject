@@ -28,7 +28,7 @@ ul{
 	padding: 0;
 }
 
-ul li{
+.li-sty li{
 	margin: 5px 0px;
 }
 
@@ -50,7 +50,12 @@ form label{
 .box-right{
 	width: 540px;
 }
-
+.right-po{
+	position: relative;
+	left: 160px; 
+	width: 530px;
+	margin: 5px 1px;
+}
 .box-half{
 	width: 365px;
 }

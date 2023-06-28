@@ -30,7 +30,6 @@ public class ProductDetailAction implements Action {
 				.setProduct_info(StringUtil.useBrHtml(product.getProductdetailVO().getProduct_info()));
 
 		request.setAttribute("count", count);
-		
 		request.setAttribute("product", product);
 		
 		return "/WEB-INF/views/product/product_detail.jsp";
