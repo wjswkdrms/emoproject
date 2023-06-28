@@ -94,7 +94,17 @@
 				}
 			});
 		});
+		$('#btn_Sale').hover(function(){
+			$(this).css('background-color','#cba680')
+		}, function(){
+			$(this).css('background-color','#dbb38a')
+		});
 		
+		$('.button-zzim').hover(function(){
+			$(this).css('background-color','#ebebeb')
+		}, function(){
+			$(this).css('background-color','#f5f5f5')
+		});
 
 		$('#btn_noSale').on('click', function() {
 			alert('해당 상품은 판매 중지 상태입니다.');
