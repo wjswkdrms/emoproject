@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eesamsaoh.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -39,8 +40,37 @@
 							</c:if>
 							<c:if test="${detail.auth==2}">
 								<input class="small-button" type="button" value="정지" onclick="location.href='adminMemberStop.do?mem_num=${detail.mem_num}'">
-								<input class="small-button" type="button" value="탈퇴" onclick="location.href='adminMemberExpire.do?mem_num=${detail.mem_num}'">
+								<input id="expire_btn" class="small-button" type="button" value="탈퇴">
 							</c:if>
+										 	<script type="text/javascript">
+												$(function(){
+													$('#expire_btn').click(function(){
+														let choice=confirm('탈퇴처리 하시겠습니까?');
+														if(choice){
+															$.ajax({
+																url:'adminMemberExpire.do',
+																type:'post',
+																data:{mem_num:${detail.mem_num}},
+																dataType:'json',
+																success:function(param){
+																	if(param.result == 'logout'){
+																		alert('로그인 후 사용하세요');
+																	}else if(param.result == 'success'){
+																		location.reload();
+																	}else if(param.result == 'wrongAccess'){
+																		alert('잘못된 접속입니다.');
+																	}else{
+																		alert('파일 삭제 오류 발생');
+																	}														
+																},
+																error:function(){
+																	alert('네트워크 오류 발생');														
+																}
+															});
+														}
+													})
+												});
+											</script>							
 						</div>
 					</div>	
 					<div class="content-detail">

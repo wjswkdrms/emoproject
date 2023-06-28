@@ -102,7 +102,7 @@
 					<li class="content">
 							<div>
 							<img src="${pageContext.request.contextPath}/images/arw_reply.png" width="10px;">
-							<pre>${faq.faq_content}</pre>
+							<pre style="font-family:maple;">${faq.faq_content}</pre>
 							</div>
 						<c:if test="${!empty user_num && user_auth==9}">
 						<div class="button-box">
