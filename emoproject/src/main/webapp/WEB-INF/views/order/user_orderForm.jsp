@@ -33,7 +33,7 @@
 		});
 		$('#order-form').hide();
 		$("input[name='addr']").change(function(){
-			if($("input[name='addr']:checked").value=="1"){
+			if($("input[name='addr']:checked").val()=="1"){
 				$('#order-form').hide();
 				$('#order-view').show();
 				
@@ -117,10 +117,9 @@
 			</div>
 		</div>
 			<ul>
-				<li>
-			
+				<li class="line">
 				<label for="notice">배송 메모</label>
-					<textarea rows="5" cols="30" name="notice"  id="notice" maxlength="1300" style="resize:none;"></textarea>
+					<textarea rows="5" cols="30" name="notice" class="input_style" id="notice" maxlength="1300" style="resize:none;"></textarea>
 				</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">

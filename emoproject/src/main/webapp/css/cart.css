@@ -211,7 +211,8 @@ h3{
 	padding:5px;
 }
 .line label{
-	width:200px;
+	display:inline-block;
+	width:100px;
 }
 .product-info{
 	padding: 30px;
