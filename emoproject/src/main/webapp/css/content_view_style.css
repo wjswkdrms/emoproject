@@ -104,7 +104,7 @@ body{
 }
 .sold-out-image {
 	position:absolute;
-	top: 48%;
+	top: 47.5%;
  	left: 175px;
  	transform: translate(-50%, -50%);
     /*border-radius: 10px;*/

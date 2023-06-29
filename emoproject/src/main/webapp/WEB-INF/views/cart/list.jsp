@@ -9,7 +9,7 @@
 <title>장바구니</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart2.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 function fnCalCount(type, ths){
@@ -122,9 +122,9 @@ $(function(){
 						<div class="quantity">
 							<button type="button" onclick="fnCalCount('m', this);" class="button qpm m">-</button>						
 							<input type="text" name="order_quantity" id="result"
-							  min="1" max="${cart.product.product_stock}"
+							  min="1" max="${cart.product.product_stock} 
 							  autocomplete="off" readonly="readonly"
-							  value="${cart.cart_quantity}">
+							  value="${cart.cart_quantity}" style="text-align:center">
 							<button type="button" onclick="fnCalCount('p', this);" class="button qpm p">+</button>
 						</div>
 						<input type="button" value="변경"  
