@@ -15,13 +15,27 @@ public class ZZimVO {
 	private String Product_name;
 	private int Order_status;
 	private String product_price_sales;
+	private int review_num;
 
-
-
+	
 
 
 	public ZZimVO() {}
 	
+	
+	
+	public int getReview_num() {
+		return review_num;
+	}
+
+
+
+	public void setReview_num(int review_num) {
+		this.review_num = review_num;
+	}
+
+
+
 	//생성자 정의
 	public int getOrder_status() {
 		return Order_status;

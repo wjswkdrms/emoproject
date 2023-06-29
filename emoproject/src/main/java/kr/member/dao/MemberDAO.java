@@ -709,6 +709,43 @@ public class MemberDAO {
 			return count;
 		}
 		
+		//상품 후기가 작성 된 것은 못넘기게 막는 카운트
+				public int getOrderListBoardCount5(int mem_num, int product_num) throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					String sql = null;
+					int cnt = 0;
+					int count = 0;
+					try {
+						conn = DBUtil.getConnection();
+			
+			
+						sql = "SELECT COUNT(*) FROM em_review RIGHT INNER JOIN (SELECT de2.product_photo1, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
+								+ " FROM (SELECT ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+								+ " INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ? AND product_num = ?) ORDER BY ma.order_num DESC) data INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num  ORDER BY order_num DESC) USING (product_num)";
+								
+						pstmt = conn.prepareStatement(sql);
+						
+						//?에 데이터 바인딩
+						pstmt.setInt(++cnt,mem_num);
+						pstmt.setInt(++cnt,product_num);
+						
+						//SQL문 실행
+						rs = pstmt.executeQuery();
+						
+						if(rs.next()) {
+							count = rs.getInt(1);
+						}
+					}catch(Exception e){
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(rs, pstmt, conn);
+					}
+					return count;
+				}
+		
+		
 		//주문상세 목록 -- 상품후기
 		public List<ZZimVO> getOrderListBoard3(int start, int end, int mem_num) throws Exception{
 			Connection conn = null;
@@ -720,11 +757,18 @@ public class MemberDAO {
 			
 			try {
 				conn = DBUtil.getConnection();
-				
+				/*
 				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT de2.product_photo1, data.order_num, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
 						+ "FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
 						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
 						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=? AND rnum<=?";
+				*/
+				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT NVL(ev.review_num,0) AS review_num ,list3.* FROM em_review ev RIGHT JOIN (SELECT de2.product_photo1, data.order_num, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
+						+ "FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
+						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) list3 ON ev.order_num = list3.order_num)a) b WHERE rnum>=? AND rnum<=?";
+				
+				
 				pstmt = conn.prepareStatement(sql);
 				
 				//?에 데이터 바인딩
@@ -744,9 +788,12 @@ public class MemberDAO {
 					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
 					zzim.setOrder_num(rs.getInt("order_num"));
 					zzim.setOrder_status(rs.getInt("order_status"));
+					zzim.setReview_num(rs.getInt("review_num"));
+					
 					//금액 천단위 , 처리
 					price = rs.getInt("order_product_total") + ""; 
 					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+					/////////////찜 vo 처리
 					zzim.setProduct_price(price);
 					//문자열의 길이가 90 이상이면 잘라내고 ...처리
 					if((rs.getString("order_product_name")).length() > 90) {
