@@ -70,14 +70,14 @@
 			<input type="radio" value="2" name="addr">새 주소 입력하기
 		  <div class="order-form " id="order-form">
 			<ul>
-				<li>
+				<li class="line">
 				
 					<label for="receive_name">이름   </label>
 					
 					<input type="text" name="receive_name" class="input_style" value="${user.getName()}"
 					  id="receive_name" maxlength="10">
 				</li>
-				<li>
+				<li class="line">
 				
 					<label for="receive_phone">전화번호</label>
 					
@@ -87,19 +87,19 @@
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
 			<ul>
-				<li>
+				<li class="line">
 					<label for="zipcode">우편번호</label>
 					<input type="text" name="receive_post" class="input_style" value="${user.getZipcode()}"
 					  id="zipcode" maxlength="5" readonly onclick="execDaumPostcode()">
 					<input type="button" value="우편번호 찾기"  class="input_style" 
 					 onclick="execDaumPostcode()">
-				</li>
-				<li>
+				</li >
+				<li class="line">
 					<label for="address1">주소   </label>
 					<input type="text" name="receive_address1" class="input_style" value="${user.getAddress1()}"
 					  id="address1" maxlength="30" readonly>
 				</li>
-				<li>
+				<li class="line">
 					<label for="address2">상세 주소</label>
 					<input type="text" name="receive_address2" class="input_style" value="${user.getAddress2()}"
 					  id="address2" maxlength="30">
@@ -108,11 +108,11 @@
 			</div>
 			<div class="order-view" id="order-view">
 			<ul>
-				<li>이름 : ${user.getName()}</li>
-				<li>전화번호 : ${user.getCell()}</li>
-				<li>우편번호 : ${user.getZipcode()}</li>
-				<li>주소 : ${user.getAddress1()}</li>
-				<li>상세주소 : ${user.getAddress2()}</li>
+				<li class="line">이름 : ${user.getName()}</li>
+				<li class="line">전화번호 : ${user.getCell()}</li>
+				<li class="line">우편번호 : ${user.getZipcode()}</li>
+				<li class="line">주소 : ${user.getAddress1()}</li>
+				<li class="line">상세주소 : ${user.getAddress2()}</li>
 			</ul>
 			</div>
 		</div>

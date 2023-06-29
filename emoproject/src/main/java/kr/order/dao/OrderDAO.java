@@ -187,7 +187,7 @@ public class OrderDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "select * FROM(select mem_num,mem_home_address1,mem_home_address2,mem_home_name,mem_home_num,mem_home_zipcode,mem_home_cell, RANK() OVER(PARTITION by mem_home_zipcode order by mem_home_num DESC) r FROM em_member_home WHERE mem_num=?) WHERE r = 1";
+			sql = "select * FROM(select mem_num,mem_home_address1,mem_home_address2,mem_home_name,mem_home_num,mem_home_zipcode,mem_home_cell, RANK() OVER(PARTITION by mem_home_zipcode order by mem_home_num DESC) r FROM em_member_home WHERE mem_num=?) WHERE r = 1 ORDER BY mem_home_num DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			rs = pstmt.executeQuery();

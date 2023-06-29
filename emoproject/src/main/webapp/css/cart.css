@@ -207,8 +207,11 @@ h2{
 h3{
 	padding: 20px;
 }
-li{
+.line{
 	padding:5px;
+}
+.line label{
+	width:200px;
 }
 .product-info{
 	padding: 30px;
