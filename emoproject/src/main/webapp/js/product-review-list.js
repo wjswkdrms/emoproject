@@ -38,7 +38,7 @@ $(function() {
 					console.log('img.review_photo1');
 					if (item.review_photo1 != null) {
 						output1 += '<div class="rbox-img">';
-						output1 += '<img class="imgmodal" src="../upload/' + item.review_photo1 + '" width="100" style="cursor: pointer">';
+						output1 += '<img class="imgmodal" src="../upload/' + item.review_photo1 + '" style="cursor: pointer">';
 						output1 += '</div>';
 					}
 					output1 += '</div>';
