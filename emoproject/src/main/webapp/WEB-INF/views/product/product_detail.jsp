@@ -132,8 +132,15 @@
 			<div class="detail-top">
 
 				<div class="top-img">
-					<img
-						src="${pageContext.request.contextPath}/upload/${product.productdetailVO.product_photo1}">
+					<img src="${pageContext.request.contextPath}/upload/${product.productdetailVO.product_photo1}">
+					<div class="top-img-sub">
+						<c:if test="${product.product_status == 1}">
+							<img src="${pageContext.request.contextPath}/images/coming_soon.png" class="sold-out-image">
+						</c:if>
+						<c:if test="${product.product_status==2 && product.productdetailVO.product_stock==0}">
+							<img src="${pageContext.request.contextPath}/images/sold_out.png" class="sold-out-image">
+						</c:if>
+					</div>
 				</div>
 				<div class="top-info">
 					<div class="pro-title">

@@ -58,10 +58,19 @@
 	width: 520px;
 	margin: 0px;
 	padding: 0px;
+	position: relative;
 }
 .top-img img{
 	width: 430px;
+	
 }
+.top-img-sub {
+	position:absolute;
+	top: 0;
+    /*border-radius: 10px;*/
+    z-index:1;
+}
+
 .top-info{
 	width: 530px;
 	margin: 0px;
@@ -448,3 +457,4 @@ p img:hover{
     cursor: -webkit-zoom-in;
 }
 /* image modal end */
+
