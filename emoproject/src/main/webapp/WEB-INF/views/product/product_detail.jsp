@@ -20,6 +20,7 @@
 	src="${pageContext.request.contextPath}/js/product-review-list.js"></script>
 <script type="text/javascript">
 	$(function() {
+		
 		$('#order_quantity').on(
 				'keyup mouseup',
 				function() {
@@ -76,7 +77,6 @@
 						alert('로그인 후 사용하세요');
 					} else if (param.result == 'success') {
 						alert('장바구니에 담았습니다.');
-						location.reload();
 
 						//location.href='../cart/list.do';
 
@@ -95,16 +95,16 @@
 				}
 			});
 		});
-		$('#btn_Sale').hover(function(){
-			$(this).css('background-color','#cba680')
-		}, function(){
-			$(this).css('background-color','#dbb38a')
+		$('#btn_Sale').hover(function() {
+			$(this).css('background-color', '#cba680')
+		}, function() {
+			$(this).css('background-color', '#dbb38a')
 		});
-		
-		$('.button-zzim').hover(function(){
-			$(this).css('background-color','#ebebeb')
-		}, function(){
-			$(this).css('background-color','#f5f5f5')
+
+		$('.button-zzim').hover(function() {
+			$(this).css('background-color', '#ebebeb')
+		}, function() {
+			$(this).css('background-color', '#f5f5f5')
 		});
 
 		$('#btn_noSale').on('click', function() {
@@ -120,16 +120,17 @@
 </head>
 <body>
 	<div>
+		<div class="modal">
+			<div class="modalBox"></div>
+		</div>
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<!-- 내용 시작 -->
 		<div class="page-detail">
 			<c:if test="${product.product_status == 1}">
-				<div class="align-center no-Sale">
-					판매 중지 상품 입니다.
-				</div>
+				<div class="align-center no-Sale">판매 중지 상품 입니다.</div>
 			</c:if>
 			<div class="detail-top">
-				
+
 				<div class="top-img">
 					<img
 						src="${pageContext.request.contextPath}/upload/${product.productdetailVO.product_photo1}">
@@ -225,12 +226,15 @@
 								<input type="button" id="btn_noSale" value="판매 중지">
 							</c:if>
 
-							<c:if test="${product.productdetailVO.product_stock <= 0 && product.product_status == 2}">
+							<c:if
+								test="${product.productdetailVO.product_stock <= 0 && product.product_status == 2}">
 								<input type="button" id="btn_soldout" value="Sold Out">
 							</c:if>
 
-							<c:if test="${product.productdetailVO.product_stock > 0 && product.product_status == 2}">
-								<input type="submit" id="btn_Sale" value="장바구니에 담기" style='cursor: pointer'>
+							<c:if
+								test="${product.productdetailVO.product_stock > 0 && product.product_status == 2}">
+								<input type="submit" id="btn_Sale" value="장바구니에 담기"
+									style='cursor: pointer'>
 							</c:if>
 
 						</div>
