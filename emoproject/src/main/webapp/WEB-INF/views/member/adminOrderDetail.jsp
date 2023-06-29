@@ -36,8 +36,7 @@
 							<b>
 							<c:if test="${detail.order_status==0}">
 								<div class="expire">주문완료
-							<input class="small-button orderModify_btn" type="button" value="배송중" >
-							<input class="small-button orderModify_btn" type="button" value="배송완료" >
+							<input class="small-button orderModify_btn" type="button" value="배송중">
 							</div>
 							</c:if>
 							<c:if test="${detail.order_status==1}">
@@ -74,7 +73,7 @@
 																}
 															});
 														}
-													})
+													});
 												});
 											</script>								
 							</b>
