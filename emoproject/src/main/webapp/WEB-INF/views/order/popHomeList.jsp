@@ -13,7 +13,14 @@
 <script type="text/javascript">
 	$(function(){
 		$('#modify_address').submit(function(){
-			opener.document.getElementById("pInput").value = document.getElementById("cInput").value
+			let home = $("#home_num").val();
+			
+			opener.document.getElementById("receive_phone").value = home.getMem_home_cell();
+			opener.document.getElementById("address1").value = home.getMem_home_address1();
+			opener.document.getElementById("address2").value = home.getMem_home_address2();
+			opener.document.getElementById("zipcode").value = home.getMem_home_zipcode();
+			
+			window.close();
 		});
 	});
 </script>

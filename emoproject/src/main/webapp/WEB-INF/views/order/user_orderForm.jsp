@@ -45,7 +45,7 @@
 			}
 		});
 		$('#select_address').on('click',function(){
-			window.open("userHomeList.do","주소 선택",'target="_blank"');
+			window.open("popHomeList.do","주소 선택",'target="_blank"');
 		});
 	});
 </script>
