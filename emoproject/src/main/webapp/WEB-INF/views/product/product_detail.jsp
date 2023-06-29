@@ -76,6 +76,7 @@
 						alert('로그인 후 사용하세요');
 					} else if (param.result == 'success') {
 						alert('장바구니에 담았습니다.');
+						location.reload();
 
 						//location.href='../cart/list.do';
 

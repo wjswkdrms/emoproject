@@ -10,6 +10,7 @@ import kr.product.vo.ProductDetailVO;
 import kr.product.vo.ProductManageVO;
 import kr.review.vo.ReviewVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class ProductDAO {
 	//싱글턴 패턴
@@ -414,7 +415,7 @@ public class ProductDAO {
 				review.setProduct_num(product_num);
 				review.setMem_num(rs.getInt("mem_num"));
 				review.setReview_title(rs.getString("review_title"));
-				review.setReview_content(rs.getString("review_content"));
+				review.setReview_content(StringUtil.useBrNoHtml(rs.getString("review_content")));
 				review.setReview_photo1(rs.getString("review_photo1"));
 				review.setReview_score(rs.getInt("review_score"));
 				review.setOrder_num(rs.getInt("order_num"));

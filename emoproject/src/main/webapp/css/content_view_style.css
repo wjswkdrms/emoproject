@@ -98,10 +98,10 @@ body{
 }
 .sold-out-image {
 	position:absolute;
-	top: 50%;
+	top: 46%;
  	left: 175px;
  	transform: translate(-50%, -50%);
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     z-index:1;
 }
 
