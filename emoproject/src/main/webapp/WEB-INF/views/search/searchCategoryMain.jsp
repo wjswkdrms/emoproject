@@ -125,11 +125,14 @@ $(function(){
 	                if(item.product_status == 2) {
 	                	output += '<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=' + item.product_num + '">';
 	                	output += '<img src="${pageContext.request.contextPath}/upload/' + item.product_photo1 + '">';
+	                	if(item.product_stock <= 0){
+	                		output += '<img src="${pageContext.request.contextPath}/images/sold_out.png" class="sold-out-image">';
+	                	}
 	                	output += '</a>';
 	                } else if(item.product_status <2) {
 	                	output += '<a style="pointer-events: none;">';
 	                	output += '<img src="${pageContext.request.contextPath}/upload/' + item.product_photo1 + '">';
-	                	output += '<img src="${pageContext.request.contextPath}/images/sold_out.jpg" class="sold-out-image">';
+	                	output += '<img src="${pageContext.request.contextPath}/images/coming_soon.png" class="sold-out-image">';
 	                	output += '</a>';
 	                }
 	                output += '<div class="product_result">';

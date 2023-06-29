@@ -67,15 +67,23 @@
 		<span id="total_count">총 상품 : ${count}건</span>
 		<c:forEach var="product" items="${productList}">
 			<div class="product-nums">
-				<c:if test="${product.product_status == 2}">
+				<c:if test="${product.product_status == 2 && product.product_stock == 0}">
+					<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${product.product_num}">
+						<img src="${pageContext.request.contextPath}/upload/${product.product_photo1}" width="350px" height="350px">
+						<img src="${pageContext.request.contextPath}/images/sold_out.png" class="sold-out-image">
+					</a>
+				</c:if>
+			
+				<c:if test="${product.product_status == 2 && product.product_stock > 0}">
 					<a href="${pageContext.request.contextPath}/product/productDetail.do?product_num=${product.product_num}">
 						<img src="${pageContext.request.contextPath}/upload/${product.product_photo1}" width="350px" height="350px">
 					</a>
 				</c:if>
-				<c:if test="${product.product_status <2 }">
+				
+				<c:if test="${product.product_status == 1 }">
 					<a style="pointer-events: none;">
 						<img src="${pageContext.request.contextPath}/upload/${product.product_photo1}" width="350px" height="350px">
-						<img src="${pageContext.request.contextPath}/images/sold_out.jpg" class="sold-out-image">
+						<img src="${pageContext.request.contextPath}/images/coming_soon.png" class="sold-out-image">
 					</a>
 				</c:if>
 				<div class="product_result">
