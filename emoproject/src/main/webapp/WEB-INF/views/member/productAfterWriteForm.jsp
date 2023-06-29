@@ -10,11 +10,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
+	/*
 	let afterCount = $('#after_count').val(); // #afterCount의 값을 정수로 변환
 	if (afterCount > 0) {
 	    alert('이미 후기가 작성되었습니다.');
 	    window.history.back(); // 뒤로가기 수행
-	}
+	}*/
+	
 	
 	$('#review_form').submit(function() {
 		if ($('#review_title').val().trim() == '') {
