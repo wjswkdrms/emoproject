@@ -18,9 +18,6 @@ public class MainAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		SearchDAO dao = SearchDAO.getInstance();
-		
-		
-		
 		//cart count 추가를 위한 영역 ///////////////////////////////////
 		
 		//페이징 처리를 위한 초기 세팅

@@ -47,6 +47,8 @@
 		
 	</div>
 		<div class="admin-product-box"></div>
+		<div id="unknown_box"></div>
+		<div id = "paging-box-main">${page}</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

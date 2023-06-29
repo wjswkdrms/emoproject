@@ -9,7 +9,9 @@ import javax.servlet.http.HttpSession;
 import kr.admin.dao.AdminDAO;
 import kr.admin.vo.AdminVO;
 import kr.controller.Action;
+import kr.search.dao.SearchDAO;
 import kr.search.vo.SearchVO;
+import kr.util.PageUtil;
 
 public class AdminSalesMainAction implements Action {
 
@@ -28,11 +30,26 @@ public class AdminSalesMainAction implements Action {
 			return "/WEB-INF/views/commone/notice.jsp";
 		}
 		
-		//추가
-		AdminDAO admindao = AdminDAO.getInstance();
-		AdminVO adminvo = new AdminVO();
+				
+		//페이징 처리를 위한 초기 세팅
+		AdminDAO daoCount = AdminDAO.getInstance();
+		String pageNum = request.getParameter("pageNum");
+		if (pageNum == null) pageNum = "1";
+		int count = daoCount.getProductsOrdersByAdminCount();
+		
+		//페이지 유틸에다가 넣기
+		//10개씩 10페이지 임
+		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,40,10,"adminSalesMain.do");
 		List<AdminVO> list = null;
-		list = admindao.getProductsOrdersByAdmin();
+		if(count >0) {
+		list = daoCount.getProductsOrdersByAdmin(page.getStartRow(), page.getEndRow());
+			}
+		request.setAttribute("page", page.getPage());
+		//페이징 처리 끝
+		AdminDAO admindao = AdminDAO.getInstance();
+		
+		
+		
 		String today = null;
 		today = admindao.getToday();
 		request.setAttribute("today",today);
