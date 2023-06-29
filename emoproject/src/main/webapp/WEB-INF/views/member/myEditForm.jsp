@@ -17,8 +17,9 @@
 		let emailChecked = 0;
 		
 		//이메일 중복 체크
-		$('#email_check').click(function(){
-			if(!/^[a-zA-Z0-9._-]{1,46}@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,3}$/.test(
+		$('#email_check').click(function(){ 
+			//정규표현식 : 1~46자의 영어 대소문자와 숫자와 *문자 이후 @ 이후 영어 대소문자와 숫자와 *문자 이후 . 이후 영어 대소문자만 입력받는 조건
+			if(!/^[a-zA-Z0-9*]{1,46}@[a-zA-Z0-9*]+(\.[a-zA-Z]+)+$/.test(
 					            $('#email').val())){
 				alert('영문 또는 숫자와 일부 특수문자만 사용, 최대50자를 사용하세요');
 				$('#email').val('');
@@ -29,7 +30,7 @@
 			$.ajax({
 				url:'checkDuplicatedEmail.do',
 				type:'post',
-				data:{email:$('#email').val()},
+				data:{text:$('#email').val()},
 				dataType:'json',
 				success:function(param){
 					if(param.result == 'emailNotFound'){
@@ -65,7 +66,7 @@
 		
 		//전화번호 중복 체크
 		$('#cell_check').click(function(){
-			if(!/^[0-9\-]{10,13}$/.test(
+			if(!/^[\d\-*]{10,13}$/.test(
 					            $('#cell').val())){
 				alert('올바른 전화번호를 입력하세요');
 				$('#cell').val('');
@@ -138,7 +139,7 @@
 				return false;
 			}
 			//잘못된 입력 방지
-			if(!/^[0-9\-]+$/.test($('#cell').val())){
+			if(!/^[\d\-*]/.test($('#cell').val())){
 				alert('전화번호는 숫자와 -만 입력 가능합니다.');
 				$('#cell').val('').focus();
 				return false;
@@ -154,6 +155,8 @@
 				return false;
 			}
 		});
+		
+		
 		
 	});
 </script>
@@ -206,7 +209,7 @@
               </div>
               <div class="page_input_box">
               <div class="page_input_title_can">이메일</div>
-                <input type="email" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수" value="${mem_email}">
+                <input type="text" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수" value="${mem_email}">
                 <input type="button" class="input_style_check" value="이메일 중복체크" id="email_check" >
                 <span id="message_email"></span>
           </div>

@@ -162,43 +162,6 @@
 			$('#message_cell').text('');
 		});//end of keydown
 		
-		//회원 정보 등록 유효성 체크
-		$('#register_form').submit(function(){
-			let items = document.querySelectorAll(
-					   'input[type="text"],input[type="password"],input[type="email"]');
-			 for(let i=0;i<items.length;i++){
-				 
-			    if(items[i].value.trim()==''){
-					let label = 
-						document.querySelector(
-					 'label[for="'+items[i].id+'"]');
-					alert(label.textContent + ' 항목 필수 입력');
-					items[i].value = '';
-					items[i].focus();
-					return false;
-			    }
-			    
-			    if(items[i].id == 'id' && 
-			    	 !/^[A-Za-z0-9]{4,12}$/.test(
-			    	             $('#id').val())){
-					alert('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자를 사용하세요');
-					$('#id').val('');
-					$('#id').focus();
-					return false;
-				}
-			    
-			    if(items[i].id == 'id' && 
-			    		            idChecked == 0){
-					alert('아이디 중복 체크 필수');
-					return false;
-			    }
-			}
-			
-			
-		});
-		
-		
-		
 		
 		//공백 입력 방지
 		$('#register_form').submit(function(){

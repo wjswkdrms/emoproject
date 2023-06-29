@@ -31,11 +31,25 @@ public class MyEditAction implements Action{
 		//같지 않을 때 수정하여 *로 UPDATE 방지
 		if(!(member2.getPasswd()).equals(request.getParameter("passwd"))) {
 			member.setPasswd(request.getParameter("passwd"));
+			//*이 포함되어도 수정된 정보면 if문을 통과하기때문에 if문을 추가해 오류처리.
+			//조건에 맞으면 error가 1이 되어 오류 페이지로 간다.
+			if((request.getParameter("passwd")).indexOf("*")!=-1) {
+				request.setAttribute("error",1);
+				return "/WEB-INF/views/member/myEdit.jsp";
+			}
 		}
 		if(!(member2.getCell()).equals(request.getParameter("cell"))) {
 			member.setCell(request.getParameter("cell"));
+			if((request.getParameter("cell")).indexOf("*")!=-1) {
+				request.setAttribute("error",1);
+				return "/WEB-INF/views/member/myEdit.jsp";
+			}
 		}
 		if(!(member2.getEmail()).equals(request.getParameter("email"))) {
+			if((request.getParameter("email")).indexOf("*")!=-1) {
+				request.setAttribute("error",1);
+				return "/WEB-INF/views/member/myEdit.jsp";
+			}
 			member.setEmail(request.getParameter("email"));
 		}
 		//전송된 데이터 dao로 이동
