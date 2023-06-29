@@ -36,6 +36,8 @@ public class AdminOrderDetailAction implements Action{
 		request.setAttribute("home", home);
 		
 		return "/WEB-INF/views/member/adminOrderDetail.jsp";
+		
+
 	}
 
 }
