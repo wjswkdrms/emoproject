@@ -50,7 +50,7 @@
 							<div><img src=${pageContext.request.contextPath}/upload/${answer.answer_photo}></div>
 							<p><br>
 							</c:if>
-							<div>${answer.answer_content}</div>
+							<div><pre style="font-family:maple;">${answer.answer_content}</pre></div>
 					</div>
 					</c:if>	
 					<div class="button-box">
