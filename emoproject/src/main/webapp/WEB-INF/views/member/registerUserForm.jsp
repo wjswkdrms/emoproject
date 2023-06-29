@@ -48,7 +48,7 @@
 						idChecked = 0;
 						alert('아이디 중복 체크 오류 발생');
 					}
-				},
+				}
 				error:function(){
 					idChecked = 0;
 					alert('네트워크 오류 발생');
@@ -99,7 +99,7 @@
 						emailChecked = 0;
 						alert('이메일 중복 체크 오류 발생');
 					}
-				},
+				}
 				error:function(){
 					emailChecked = 0;
 					alert('네트워크 오류 발생');
@@ -114,7 +114,54 @@
 			emailChecked = 0;
 			$('#message_email').text('');
 		});//end of keydown
-
+		
+		//전화번호 중복 체크
+		$('#cell_check').click(function(){
+			if(![0-9\-]{10,13}$/.test(
+					            $('#cell').val())){
+				alert('올바른 전화번호를 입력하세요');
+				$('#cell').val('');
+				$('#cell').focus();
+				return false;
+			}
+			//서버와의 통신
+			$.ajax({
+				url:'checkDuplicatedCell.do',
+				type:'post',
+				data:{cell:$('#cell').val()},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'cellNotFound'){
+						//email 미중복
+						cellChecked = 1;
+						$('#message_cell').css('color','#000000')
+						                .text('등록 가능 전화번호');
+					}else if(param.result == 'emailDuplicated'){
+						//email 중복
+						cellChecked = 0;
+						$('#message_cell').css('color','red')
+						                .text('중복된 전화번호');
+						$('#cell').val('').focus();
+					}else{
+						cellChecked = 0;
+						alert('전화번호 중복 체크 오류 발생');
+					}
+				}
+				error:function(){
+					cellChecked = 0;
+					alert('네트워크 오류 발생');
+				}
+			});
+			
+		});//end of click
+		
+		//전화번호 중복 안내 메시지 초기화 및 전화번호
+		//중복 값 초기화
+		$('#register_Form #cell').keydown(function(){
+			cellChecked = 0;
+			$('#message_cell').text('');
+		});//end of keydown
+		
 		//공백 입력 방지
 		$('#register_form').submit(function(){
 			if($('#id').val().trim()==''){
@@ -221,18 +268,20 @@
         </div>
         <div class="page_input_box"> <!-- 전화번호 입력 -->
           <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,13}" required title="올바른 전화번호를 입력하세요" placeholder="전화번호를 입력해주세요">
+          <input type="button" class="input_style_check" value="전화번호 중복체크" id="cell_check" >
+          <span id="message_cell"></span>
         </div>
         <div class="page_input_box"> <!-- 이메일 입력 및 중복체크 -->
           <input type="email" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수" placeholder="이메일을 입력해주세요">
-          <input type="button" class="input_style_check" value="email중복체크" id="email_check" >
+          <input type="button" class="input_style_check" value="이메일 중복체크" id="email_check" >
           <span id="message_email"></span>
         </div>
         <div class="page_input_box"> <!-- 우편번호 입력 -->
-          <input type="text" name="zipcode" class="input_style" id="zipcode" pattern=".{5,5}" required title="5자리 입력 필수" placeholder="우편번호를 입력해주세요">
+          <input type="text" name="zipcode" class="input_style" id="zipcode" pattern=".{5,5}" required title="5자리 입력 필수" placeholder="우편번호를 입력해주세요" readonly>
           <input type="button" value="우편번호 찾기" class="input_style_check" onclick="execDaumPostcode()">
         </div>
         <div class="page_input_box"> <!-- 주소 입력 -->
-          <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,150}" required title="주소를 입력하세요" placeholder="주소를 입력해주세요">
+          <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,150}" required title="주소를 입력하세요" placeholder="주소를 입력해주세요" readonly>
         </div>
         <div class="page_input_box"> <!-- 상세주소 입력 -->
           <input type="text" name="address2" class="input_style" id="address2" pattern=".{1,150}" required title="상세주소를 입력하세요" placeholder="상세주소를 입력해주세요">

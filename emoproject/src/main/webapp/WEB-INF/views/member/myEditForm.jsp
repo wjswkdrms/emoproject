@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>개인정보 수정</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberPageAll_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/myEdit.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/myEditForm.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -46,7 +47,7 @@
 						emailChecked = 0;
 						alert('이메일 중복 체크 오류 발생');
 					}
-				},
+				}
 				error:function(){
 					emailChecked = 0;
 					alert('네트워크 오류 발생');
@@ -57,13 +58,60 @@
 		
 		//이메일 중복 안내 메시지 초기화 및 이메일
 		//중복 값 초기화
-		$('#register_form #email').keydown(function(){
+		$('#myEdit_form #email').keydown(function(){
 			emailChecked = 0;
 			$('#message_email').text('');
 		});//end of keydown
+		
+		//전화번호 중복 체크
+		$('#cell_check').click(function(){
+			if(![0-9\-]{10,13}$/.test(
+					            $('#cell').val())){
+				alert('올바른 전화번호를 입력하세요');
+				$('#cell').val('');
+				$('#cell').focus();
+				return false;
+			}
+			//서버와의 통신
+			$.ajax({
+				url:'checkDuplicatedCell.do',
+				type:'post',
+				data:{cell:$('#cell').val()},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'cellNotFound'){
+						//email 미중복
+						cellChecked = 1;
+						$('#message_cell').css('color','#000000')
+						                .text('등록 가능 전화번호');
+					}else if(param.result == 'cellDuplicated'){
+						//email 중복
+						cellChecked = 0;
+						$('#message_cell').css('color','red')
+						                .text('중복된 전화번호');
+						$('#cell').val('').focus();
+					}else{
+						cellChecked = 0;
+						alert('전화번호 중복 체크 오류 발생');
+					}
+				}
+				error:function(){
+					cellChecked = 0;
+					alert('네트워크 오류 발생');
+				}
+			});
+			
+		});//end of click
+		
+		//전화번호 중복 안내 메시지 초기화 및 전화번호
+		//중복 값 초기화
+		$('#myEdit_form #cell').keydown(function(){
+			cellChecked = 0;
+			$('#message_cell').text('');
+		});//end of keydown
 
 		//공백 입력 방지
-		$('#register_form').submit(function(){
+		$('#myEdit_form').submit(function(){
 			if($('#passwd').val().trim()==''){
 				alert('비밀번호를 입력하세요');
 				$('#passwd').val('').focus();
@@ -112,145 +160,84 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page_outer_register"> <!-- 전체 페이지 크기 지정 -->
-  <div class="page_inner_register"> <!--메인 페이지 중앙 정렬, 크기 지정-->
-    <h2 id="title">개인정보 수정</h2>
-    <form id="register_form" action="myEdit.do" method="post">
-      <div class="page_login">
-        <div class="input_idpw_outer" id="input_id">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="id">아이디</label>
-            </div>
-            <div class="input_box">
-              <input type="button" class="output_style_check" value="${mem_id}">
-            </div>
-          </div>
-        </div>
-        <div class="text_announce">
-          <div class="input-notice"><strong>* 영문 대소문자 또는 숫자(4자~12자)</strong></div>
-        </div>
-        <div class="input_idpw_outer" id="input_name">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="name">이름</label>
-            </div>
-            <div class="input_box">
-              <input type="button" class="output_style_check" value="${mem_name}">
-            </div>
-          </div>
-        </div>
-        <div class="input_idpw_outer" id="input_passwd">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="passwd">비밀번호</label>
-            </div>
-            <div class="input_box">
-              <input type="password" class="input_style" name="passwd" id="passwd" pattern=".{4,12}" required title="4~12자의 비밀번호를 입력하세요" value="${mem_passwd}"">
-            </div>
-          </div>
-        </div>
-        <div class="text_announce">
-          <div class="input-notice"><strong>* 영문 대소문자 또는 숫자(4자~12자)</strong></div>
-        </div>
-        <div class="input_idpw_outer" id="input_cell">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="cell">전화번호</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,13}" required title="올바른 전화번호를 입력하세요" value="${mem_cell}">
-            </div>
-          </div>
-        </div>
-        <div class="input_idpw_outer" id="input_email">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="email">이메일</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수" value="${mem_email}">
-              <input type="button" class="input_style_check" value="eamil중복체크" id="email_check" >
-              <span id="message_email"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input_idpw_outer" id="input_zipcode">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="zipcode">우편번호</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="zipcode" class="input_style" id="zipcode" pattern=".{5,5}" required title="5자리 입력 필수" value="${mem_zipcode}">
-              <input type="button" value="우편번호 찾기" class="input_style_check" onclick="execDaumPostcode()">
-            </div>
-          </div>
-        </div>
-        <div class="input_idpw_outer" id="input_address1">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="address1">주소</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,150}" required title="주소를 입력하세요" value="${mem_address1}">
-            </div>
-          </div>
-        </div>
-        <div class="input_idpw_outer" id="input_address2">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="address2">상세 주소</label>
-            </div>
-            <div class="input_box">
-              <input type="text" name="address2" class="input_style" id="address2" pattern=".{1,150}" required title="상세주소를 입력하세요" value="${mem_address2}">
-            </div>
-          </div>
-        </div>
-        <div class="input_idpw_outer" id="input_birth">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="birth">생년월일</label>
-            </div>
-            <div class="input_box">
-              <input type="button" class="output_style_check" value="${mem_birth}">
-            </div>
-          </div>
-        </div>
-        <div class="input_idpw_outer" id="input_gender">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="gender">성별</label>
-            </div>
-            <div class="input box">
-            <c:if test="${mem_gender==1}">
-              <input type="button" class="output_style_check" value="남자">
-			</c:if>
-			<c:if test="${mem_gender==2}">
-              <input type="button" class="output_style_check" value="여자">
-			</c:if>
-            </div>
-          </div>
-        </div>
-                <div class="input_idpw_outer" id="input_birth">
-          <div class="input_idpw_inner">
-            <div class="input_title">
-              <label for="birth">보유 포인트</label>
-            </div>
-            <div class="input_box">
-              <input type="button" class="output_style_check" value="${mem_point} pt">
-            </div>
-          </div>
-        </div>
+<div class="whole">
+  <div class="container">
+    <div class="left-div">
 
+      <div class="page-name">내 정보</div>
+      <ul class="menu-box">
+        <li><a class="detail-menu" href="${pageContext.request.contextPath}/member/orderList.do">주문내역</a></li>
+        <li><a class="detail-menu" href="${pageContext.request.contextPath}/member/questList.do">문의내역</a></li>
+        <li><a class="detail-menu" href="${pageContext.request.contextPath}/cart/list.do">장바구니</a></li>
+        <li><a class="detail-menu" href="${pageContext.request.contextPath}/member/jjimList.do">찜한상품</a></li>
+        <li><a class="detail-menu" href="${pageContext.request.contextPath}/member/productAfter.do">상품후기</a></li>
+        <li><a class="detail-menu" href="${pageContext.request.contextPath}/member/myEditForm.do">개인정보 수정</a></li>
+        <li><a class="detail-menu" href="${pageContext.request.contextPath}/member/memberOutForm.do">회원 탈퇴</a></li>
+      </ul>
+    </div>
+
+    <div class="right-div">
+      <div class="title">
+        <h2>개인정보 수정</h2>
       </div>
-      <div class="page_login">
-        <ul class="button_all" id="page_button_4">
-          <li><input type="submit" class="button" value="수정 완료"></li>
-          <li><input type="button" class="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/member/orderList.do'"></li>
-        </ul>
-      </div>
-    </form>
+      <form id="myEdit_form" action="myEdit.do" method="post">
+        <div class="page_input">
+        
+              <div class="page_input_box">
+              <div class="page_input_title">아이디</div>
+                <input type="text" class="output_style_check" value="${mem_id}" readonly> 	
+          </div>
+              <div class="page_input_box">
+              <div class="page_input_title">이름</div>
+                <input type="text" class="output_style_check" value="${mem_name}" readonly>
+          </div>
+              <div class="page_input_box">
+              <div class="page_input_title">비밀번호</div>
+                 <input type="password" class="input_style" name="passwd" id="passwd" pattern=".{4,12}" required title="4~12자의 비밀번호를 입력하세요" value="${mem_passwd}">
+          </div>
+          <div class="text_announce">
+            <div class="input-notice"><strong>* 영문 대소문자 또는 숫자(4자~12자)</strong></div>
+          </div>
+              <div class="page_input_box">
+              <div class="page_input_title">전화번호</div>
+                <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,13}" required title="올바른 전화번호를 입력하세요" value="${mem_cell}">
+                <input type="button" class="input_style_check" value="전화번호 중복체크" id="cell_check" >
+                <span id="message_cell"></span>
+              </div>
+              <div class="page_input_box">
+              <div class="page_input_title">이메일</div>
+                <input type="email" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수" value="${mem_email}">
+                <input type="button" class="input_style_check" value="이메일 중복체크" id="email_check" >
+                <span id="message_email"></span>
+          </div>
+              <div class="page_input_box">
+              <div class="page_input_title">우편번호</div>
+                <input type="text" name="zipcode" class="input_style" id="zipcode" pattern=".{5,5}" required title="5자리 입력 필수" value="${mem_zipcode}">
+                <input type="button" value="우편번호 찾기" class="input_style_check" onclick="execDaumPostcode()">
+          </div>
+              <div class="page_input_box">
+              <div class="page_input_title">주소</div>
+                <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,150}" required title="주소를 입력하세요" value="${mem_address1}">
+          </div>
+              <div class="page_input_box">
+              <div class="page_input_title">상세주소</div>
+                <input type="text" name="address2" class="input_style" id="address2" pattern=".{1,150}" required title="상세주소를 입력하세요" value="${mem_address2}">
+          </div>
+              <div class="page_input_box">
+              <div class="page_input_title">생년월일</div>
+                <input type="text" class="output_style_check" value="${mem_birth}" readonly>
+          </div>
+        <div class="page_button2">
+          <div class="page_button_box">
+            <input type="submit" class="button3" value="수정 완료">
+            <input type="button" class="button4" value="취소" onclick="location.href='${pageContext.request.contextPath}/member/orderList.do'">
+          </div>
+        </div>
+        </div>
+      </form>
+    </div>
   </div>
+</div>
   	<!-- 내용 끝 -->
 	<!-- 우편번호 검색 시작 -->
 	<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->

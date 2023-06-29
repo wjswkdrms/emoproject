@@ -45,10 +45,10 @@
 
         <div class="page_button2">
           <div class="page_button_box">
-            <input type="submit" class="button4" id="login" value="탈퇴하기">
+            <input type="submit" class="button3" id="login" value="탈퇴하기">
           </div>
           <div class="page_button_box">
-            <input type="button" class="button3" value="취소" onclick="location.href='${pageContext.request.contextPath}/member/orderList.do'">
+            <input type="button" class="button4" value="취소" onclick="location.href='${pageContext.request.contextPath}/member/orderList.do'">
           </div>
         </div>
       </form>

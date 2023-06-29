@@ -33,8 +33,8 @@ body{
 .right-div {
 	width: 1240px;
 	padding: 0px 30px 0px;
+    margin-left:-150px;
 }
-
 .page-name {
 	display: flex;
 	flex-direction: row;
@@ -68,7 +68,28 @@ ul.menu-box li:hover {
 	font-size: 16px;
 	border-bottom: 1px solid rgb(242, 242, 242);
 }
-
+    .page_input .page_input_box .input_style_check{ /* 중복 체크 박스 설정 */
+      width: 150px;
+      height: 54px;
+      font-size: 15px;
+      border: 1px solid black;
+      padding: 0px 11px 1px 15px;
+      border-radius: 4px;
+      background-color: #E19B50;
+      color:black;
+      cursor: pointer;
+    }
+    .page_input .page_input_box .input_style_check:hover{ /* 중복 체크 박스 호버 설정 */
+      width: 150px;
+      height: 54px;
+      font-size: 15px;
+      border: 1px solid black;
+      padding: 0px 11px 1px 15px;
+      border-radius: 4px;
+      background-color: #E19B50;
+      color:white;
+      cursor: pointer;
+    }
 a.detail-menu {
 	display: flex;
 	align-items: center;

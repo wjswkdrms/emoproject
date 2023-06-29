@@ -11,9 +11,6 @@
 body{
 	font-family : 'maple';
 }
-    body{
-      font-family : 'maple';
-    }
     .page{ /* 1차 1920px */
       display:flex;
       width:1920px;
@@ -50,14 +47,22 @@ body{
       height: 800px; /* 입력창 조절 */
       font-size: 13px;
       flex-direction:column;
-      margin-left:61px;
     }
+    
     .page_input .page_input_box{ /* 입력창 내부 박스 크기 조절 */
       display: inline-block;
-      width: 41%;
+      width: 100%;
       height: 54px;
       margin: auto;
       text-align: left;
+      margin-left:310px;
+    }
+    .page_input .page_input_title{ /* 입력창 내부 박스 크기 조절 */
+      display: inline-block;
+      width: 100px;
+      height: 54px;
+      text-align: left;
+      font-size:22px;
     }
     .page_input .page_input_box input{ /* 입력창 설정 */
       width: 340px;
@@ -68,7 +73,7 @@ body{
       border-radius: 4px;
     }
     .page_input .page_input_box .input_style_check{ /* 중복 체크 박스 설정 */
-      width: 115px;
+      width: 150px;
       height: 54px;
       font-size: 15px;
       border: 1px solid black;
@@ -76,10 +81,9 @@ body{
       border-radius: 4px;
       background-color: #E19B50;
       color:black;
-      cursor: pointer;
     }
     .page_input .page_input_box .input_style_check:hover{ /* 중복 체크 박스 호버 설정 */
-      width: 115px;
+      width: 150px;
       height: 54px;
       font-size: 15px;
       border: 1px solid black;
@@ -87,7 +91,6 @@ body{
       border-radius: 4px;
       background-color: #E19B50;
       color:white;
-      cursor: pointer;
     }
     .page_input .text_announce{ /* 주의 사항 설정 */
       width: 100%;
@@ -111,6 +114,7 @@ body{
       width:76px;
       height: 18px;
       border-color: white;
+      margin-left:-50px;
     }
     .page_button .page_button_box .button1{ /* 버튼 설정 */
       display: inline-block;
@@ -148,6 +152,7 @@ body{
       width:100%;
       height: 120px;
       padding-top: 10px;
+      margin-left:-23px;
     }
     .page_button2 .page_button_box .button3{ /* 버튼 설정 */
       display: inline-block;
