@@ -18,7 +18,7 @@ public class AnnounceDetailAction implements Action{
 		AnnounceVO announce=dao.getAnnounce(ann_num);
 		
 		announce.setAnn_title(StringUtil.useNoHtml(announce.getAnn_title()));
-		announce.setAnn_content(StringUtil.useBrNoHtml(announce.getAnn_content()));
+		announce.setAnn_content(StringUtil.useBrHtml(announce.getAnn_content()));
 		
 		request.setAttribute("announce", announce);
 		

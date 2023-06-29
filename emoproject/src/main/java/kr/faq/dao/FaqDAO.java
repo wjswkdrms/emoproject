@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.faq.vo.FaqVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class FaqDAO {
 	//싱글턴 패턴
@@ -118,7 +119,7 @@ public class FaqDAO {
 					faq.setFaq_num(rs.getInt("faq_num"));
 					faq.setMem_num(rs.getInt("mem_num"));
 					faq.setFaq_category(rs.getInt("faq_category"));
-					faq.setFaq_content(rs.getString("faq_content"));
+					faq.setFaq_content(StringUtil.useBrHtml(rs.getString("faq_content")));
 					faq.setFaq_date(rs.getDate("faq_date"));
 					faq.setFaq_title(rs.getString("faq_title"));
 					

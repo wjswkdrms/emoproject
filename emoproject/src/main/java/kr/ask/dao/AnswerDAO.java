@@ -10,6 +10,7 @@ import kr.ask.vo.AnswerVO;
 import kr.ask.vo.AskVO;
 import kr.cart.vo.CartVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class AnswerDAO {
 	// 싱글턴 패턴
@@ -88,7 +89,7 @@ public class AnswerDAO {
 				answer = new AnswerVO();
 				answer.setAnswer_num(rs.getInt("answer_num"));
 				answer.setMem_num(rs.getInt("mem_num"));
-				answer.setAnswer_content(rs.getString("answer_content"));
+				answer.setAnswer_content(StringUtil.useBrHtml(rs.getString("answer_content")));
 				answer.setAnswer_photo(rs.getString("answer_photo"));
 				answer.setAnswer_date(rs.getDate("answer_date"));
 

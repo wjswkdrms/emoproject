@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.announce.vo.AnnounceVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class AnnounceDAO {
 	//싱글턴 패턴
