@@ -817,7 +817,7 @@ public class MemberDAO {
 			try {
 				conn = DBUtil.getConnection();
 				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT * FROM (SELECT order_num, substr(XMLAGG(XMLELEMENT(nm, ', ',ORDER_PRODUCT_NAME)).EXTRACT('//text()').GETSTRINGVAL(),2) AS product_names "
-						+ "FROM (SELECT * FROM EM_ORDER_MANAGE LEFT INNER JOIN em_order_detail USING (order_num) WHERE mem_num=?) GROUP BY ORDER_NUM ORDER BY order_num DESC) a INNER JOIN em_order_manage b ON a.order_num=b.order_num)a) b WHERE rnum>=? AND rnum<=?";
+						+ "FROM (SELECT * FROM EM_ORDER_MANAGE LEFT INNER JOIN em_order_detail USING (order_num) WHERE mem_num=?) GROUP BY ORDER_NUM) a INNER JOIN em_order_manage b ON a.order_num=b.order_num  ORDER BY a.order_num DESC)a) b WHERE rnum>=? AND rnum<=?";
 				pstmt = conn.prepareStatement(sql);
 				
 				//?에 데이터 바인딩
@@ -834,16 +834,18 @@ public class MemberDAO {
 					zzim.setOrder_num(rs.getInt("order_num"));
 					zzim.setOrder_date(rs.getString("order_date"));
 					zzim.setOrder_status(rs.getInt("order_status"));
+					
 					//금액 천단위 , 처리
 					price = rs.getInt("order_total_price") + ""; 
 					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 					zzim.setProduct_price(price);
-					//문자열의 길이가 90 이상이면 잘라내고 ...처리
-					if((rs.getString("product_names")).length() > 90) {
+					
+					//문자열의 길이가 65 이상이면 잘라내고 ...처리
+					if((rs.getString("product_names")).length() > 65) {
 						String[] arr =  new String[(rs.getString("product_names")).length()];
 						String str = "";
 						arr = rs.getString("product_names").split("");
-						for(int i=0; i<90; i++) {
+						for(int i=0; i<65; i++) {
 							str += arr[i];
 						}
 						str += "...";

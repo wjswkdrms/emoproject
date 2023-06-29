@@ -17,9 +17,6 @@ public class ZZimVO {
 	private String product_price_sales;
 
 
-
-
-
 	public ZZimVO() {}
 	
 	//생성자 정의
@@ -137,6 +134,14 @@ public class ZZimVO {
 	public void setProduct_price_sales(String product_price_sales) {
 		this.product_price_sales = product_price_sales;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "ZZimVO [zzim_num=" + zzim_num + ", mem_num=" + mem_num + ", product_num=" + product_num
+				+ ", Product_title=" + Product_title + ", Product_info=" + Product_info + ", Product_photo1="
+				+ Product_photo1 + ", Product_price=" + Product_price + ", Product_status=" + Product_status
+				+ ", Product_quantity=" + Product_quantity + ", Order_date=" + Order_date + ", Order_num=" + Order_num
+				+ ", Product_name=" + Product_name + ", Order_status=" + Order_status + ", product_price_sales="
+				+ product_price_sales + "]";
+	}
 }

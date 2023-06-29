@@ -40,6 +40,7 @@ body{
       padding-top: 15px;
       width:100%;
       margin-bottom: 30px;
+      margin-left:-50px;
     }
     .page_inner h2{ /* 제목 글씨 크기 */
       font-size:30px;
@@ -50,14 +51,14 @@ body{
       height: 800px; /* 입력창 조절 */
       font-size: 13px;
       flex-direction:column;
-      margin-left:61px;
     }
     .page_input .page_input_box{ /* 입력창 내부 박스 크기 조절 */
       display: inline-block;
-      width: 41%;
+      width: 50%;
       height: 54px;
       margin: auto;
       text-align: left;
+      margin-left:350px;
     }
     .page_input .page_input_box input{ /* 입력창 설정 */
       width: 340px;
@@ -68,7 +69,7 @@ body{
       border-radius: 4px;
     }
     .page_input .page_input_box .input_style_check{ /* 중복 체크 박스 설정 */
-      width: 115px;
+      width: 150px;
       height: 54px;
       font-size: 15px;
       border: 1px solid black;
@@ -79,7 +80,7 @@ body{
       cursor: pointer;
     }
     .page_input .page_input_box .input_style_check:hover{ /* 중복 체크 박스 호버 설정 */
-      width: 115px;
+      width: 150px;
       height: 54px;
       font-size: 15px;
       border: 1px solid black;
@@ -213,6 +214,13 @@ body{
     [type="radio"]:hover { /* 라디오 버튼 호버링 꾸미기 */
       box-shadow: 0 0 0 max(4px, 0.2em) #AAB9FF;
       cursor: pointer;
+    }
+    .page_input_box span{
+      background-color:red;
+      display:inline-block;
+      font-size:30px;
+      width:400px;
+      height:40px;
     }
     /* 버튼1 -> 소형
        버튼2 -> 소형
