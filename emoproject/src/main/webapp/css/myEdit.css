@@ -70,6 +70,7 @@ body{
       text-align: left;
       font-size:22px;
     }
+    
     .page_input .page_input_box input{ /* 입력창 설정 */
       width: 340px;
       height: 54px;
@@ -224,6 +225,14 @@ body{
     [type="radio"]:hover { /* 라디오 버튼 호버링 꾸미기 */
       box-shadow: 0 0 0 max(4px, 0.2em) #AAB9FF;
       cursor: pointer;
+    }
+    .page_input .page_input_title_can{ /* 입력창 내부 박스 크기 조절 */
+      display: inline-block;
+      width: 100px;
+      height: 54px;
+      text-align: left;
+      font-size:22px;
+      color:red;
     }
     /* 버튼1 -> 소형
        버튼2 -> 소형

@@ -31,7 +31,6 @@ public class CheckDuplicatedIdAction implements Action{
 		}else {//아이디 중복
 			mapAjax.put("result", "idDuplicated");
 		}
-		
 		ObjectMapper mapper = new ObjectMapper();
 		//key와 value의 쌍으로 되어 있는 Map 데이터를
 		//JSON형식의 문자열 데이터로 변환 후 반환

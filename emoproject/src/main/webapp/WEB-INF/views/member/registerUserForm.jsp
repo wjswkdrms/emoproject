@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +11,10 @@
 <script type="text/javascript">
 	$(function(){
 		//0:중복 체크 미실시, id 중복
-		//1:id 미중복/*
+		//1:id 미중복
 		let idChecked = 0;
-		
 		//아이디 중복 체크
 		$('#id_check').click(function(){
-			
 			if(!/^[A-Za-z0-9]{4,12}$/.test(
 					            $('#id').val())){
 				alert('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자를 사용하세요');
@@ -48,7 +45,7 @@
 						idChecked = 0;
 						alert('아이디 중복 체크 오류 발생');
 					}
-				}
+				},
 				error:function(){
 					idChecked = 0;
 					alert('네트워크 오류 발생');
@@ -63,6 +60,8 @@
 			idChecked = 0;
 			$('#message_id').text('');
 		});//end of keydown
+		
+
 		
 		//0:중복 체크 미실시, email 중복
 		//1:email 미중복
@@ -99,7 +98,7 @@
 						emailChecked = 0;
 						alert('이메일 중복 체크 오류 발생');
 					}
-				}
+				},
 				error:function(){
 					emailChecked = 0;
 					alert('네트워크 오류 발생');
@@ -115,9 +114,10 @@
 			$('#message_email').text('');
 		});//end of keydown
 		
+		let cellChecked = 0;
 		//전화번호 중복 체크
 		$('#cell_check').click(function(){
-			if(![0-9\-]{10,13}$/.test(
+			if(!/^[0-9\-]{10,13}$/.test(
 					            $('#cell').val())){
 				alert('올바른 전화번호를 입력하세요');
 				$('#cell').val('');
@@ -136,7 +136,7 @@
 						cellChecked = 1;
 						$('#message_cell').css('color','#000000')
 						                .text('등록 가능 전화번호');
-					}else if(param.result == 'emailDuplicated'){
+					}else if(param.result == 'cellDuplicated'){
 						//email 중복
 						cellChecked = 0;
 						$('#message_cell').css('color','red')
@@ -146,7 +146,7 @@
 						cellChecked = 0;
 						alert('전화번호 중복 체크 오류 발생');
 					}
-				}
+				},
 				error:function(){
 					cellChecked = 0;
 					alert('네트워크 오류 발생');
@@ -157,10 +157,48 @@
 		
 		//전화번호 중복 안내 메시지 초기화 및 전화번호
 		//중복 값 초기화
-		$('#register_Form #cell').keydown(function(){
+		$('#register_form #cell').keydown(function(){
 			cellChecked = 0;
 			$('#message_cell').text('');
 		});//end of keydown
+		
+		//회원 정보 등록 유효성 체크
+		$('#register_form').submit(function(){
+			let items = document.querySelectorAll(
+					   'input[type="text"],input[type="password"],input[type="email"]');
+			 for(let i=0;i<items.length;i++){
+				 
+			    if(items[i].value.trim()==''){
+					let label = 
+						document.querySelector(
+					 'label[for="'+items[i].id+'"]');
+					alert(label.textContent + ' 항목 필수 입력');
+					items[i].value = '';
+					items[i].focus();
+					return false;
+			    }
+			    
+			    if(items[i].id == 'id' && 
+			    	 !/^[A-Za-z0-9]{4,12}$/.test(
+			    	             $('#id').val())){
+					alert('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자를 사용하세요');
+					$('#id').val('');
+					$('#id').focus();
+					return false;
+				}
+			    
+			    if(items[i].id == 'id' && 
+			    		            idChecked == 0){
+					alert('아이디 중복 체크 필수');
+					return false;
+			    }
+			}
+			
+			
+		});
+		
+		
+		
 		
 		//공백 입력 방지
 		$('#register_form').submit(function(){
@@ -235,6 +273,51 @@
 				$('#birth').val('').focus();
 				return false;
 			}
+		});
+		
+		//회원 정보 등록 유효성 체크
+		$('#register_form').submit(function(){
+			let items = document.querySelectorAll(
+					   'input[type="text"],input[type="password"],input[type="email"]');
+			 for(let i=0;i<items.length;i++){
+				 
+			    if(items[i].value.trim()==''){
+					let label = 
+						document.querySelector(
+					 'label[for="'+items[i].id+'"]');
+					alert(label.textContent + ' 항목 필수 입력');
+					items[i].value = '';
+					items[i].focus();
+					return false;
+			    }
+			    
+			    if(items[i].id == 'id' && 
+			    	 !/^[A-Za-z0-9]{4,12}$/.test(
+			    	             $('#id').val())){
+					alert('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자를 사용하세요');
+					$('#id').val('');
+					$('#id').focus();
+					return false;
+				}
+			    
+			    if(items[i].id == 'id' && 
+			    		            idChecked == 0){
+					alert('아이디 중복 체크 필수');
+					return false;
+			    }
+			    if(items[i].email == 'email' && 
+    		            emailChecked == 0){
+		alert('이메일 중복 체크 필수');
+		return false;
+    }
+			    if(items[i].cell == 'cell' && 
+    		            cellChecked == 0){
+		alert('전화번호 중복 체크 필수');
+		return false;
+    }
+			}
+			
+			
 		});
 		
 	});
@@ -414,7 +497,7 @@
     }
 </script>
 	<!-- 우편번호 검색 끝 -->
-</div>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

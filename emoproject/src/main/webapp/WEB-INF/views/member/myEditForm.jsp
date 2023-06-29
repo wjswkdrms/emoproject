@@ -47,7 +47,7 @@
 						emailChecked = 0;
 						alert('이메일 중복 체크 오류 발생');
 					}
-				}
+				},
 				error:function(){
 					emailChecked = 0;
 					alert('네트워크 오류 발생');
@@ -65,7 +65,7 @@
 		
 		//전화번호 중복 체크
 		$('#cell_check').click(function(){
-			if(![0-9\-]{10,13}$/.test(
+			if(!/^[0-9\-]{10,13}$/.test(
 					            $('#cell').val())){
 				alert('올바른 전화번호를 입력하세요');
 				$('#cell').val('');
@@ -94,7 +94,7 @@
 						cellChecked = 0;
 						alert('전화번호 중복 체크 오류 발생');
 					}
-				}
+				},
 				error:function(){
 					cellChecked = 0;
 					alert('네트워크 오류 발생');
@@ -192,35 +192,35 @@
                 <input type="text" class="output_style_check" value="${mem_name}" readonly>
           </div>
               <div class="page_input_box">
-              <div class="page_input_title">비밀번호</div>
+              <div class="page_input_title_can">비밀번호</div>
                  <input type="password" class="input_style" name="passwd" id="passwd" pattern=".{4,12}" required title="4~12자의 비밀번호를 입력하세요" value="${mem_passwd}">
           </div>
           <div class="text_announce">
             <div class="input-notice"><strong>* 영문 대소문자 또는 숫자(4자~12자)</strong></div>
           </div>
               <div class="page_input_box">
-              <div class="page_input_title">전화번호</div>
+              <div class="page_input_title_can">전화번호</div>
                 <input type="text" name="cell" class="input_style" id="cell" pattern=".{10,13}" required title="올바른 전화번호를 입력하세요" value="${mem_cell}">
                 <input type="button" class="input_style_check" value="전화번호 중복체크" id="cell_check" >
                 <span id="message_cell"></span>
               </div>
               <div class="page_input_box">
-              <div class="page_input_title">이메일</div>
+              <div class="page_input_title_can">이메일</div>
                 <input type="email" name="email" class="input_style" id="email" pattern=".{1,50}" required title="이메일 입력 필수" value="${mem_email}">
                 <input type="button" class="input_style_check" value="이메일 중복체크" id="email_check" >
                 <span id="message_email"></span>
           </div>
               <div class="page_input_box">
-              <div class="page_input_title">우편번호</div>
-                <input type="text" name="zipcode" class="input_style" id="zipcode" pattern=".{5,5}" required title="5자리 입력 필수" value="${mem_zipcode}">
+              <div class="page_input_title_can">우편번호</div>
+                <input type="text" name="zipcode" class="input_style" id="zipcode" pattern=".{5,5}" required title="5자리 입력 필수" value="${mem_zipcode}" readonly>
                 <input type="button" value="우편번호 찾기" class="input_style_check" onclick="execDaumPostcode()">
           </div>
               <div class="page_input_box">
-              <div class="page_input_title">주소</div>
-                <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,150}" required title="주소를 입력하세요" value="${mem_address1}">
+              <div class="page_input_title_can">주소</div>
+                <input type="text" name="address1" class="input_style" id="address1" pattern=".{1,150}" required title="주소를 입력하세요" value="${mem_address1}" readonly>
           </div>
               <div class="page_input_box">
-              <div class="page_input_title">상세주소</div>
+              <div class="page_input_title_can">상세주소</div>
                 <input type="text" name="address2" class="input_style" id="address2" pattern=".{1,150}" required title="상세주소를 입력하세요" value="${mem_address2}">
           </div>
               <div class="page_input_box">
@@ -337,7 +337,6 @@
     }
 </script>
 	<!-- 우편번호 검색 끝 -->
-</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

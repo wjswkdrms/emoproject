@@ -137,8 +137,45 @@ public class MemberDAO {
 			}	
 			return member;
 		}
+		//cell 중복체크
+		public MemberVO checkMemberCell(String cell)
+		                      throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			MemberVO member = null;
+			String sql = null;
+			
+			try {
+				//而ㅻ꽖�뀡��濡쒕��꽣 而ㅻ꽖�뀡�쓣 �븷�떦
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM em_member_manage m LEFT OUTER JOIN "
+					+ "em_member_detail d ON m.mem_num = d.mem_num "
+					+ "WHERE d.mem_cell=?";
+				//PreparedStatement 媛앹껜 �깮�꽦
+				pstmt = conn.prepareStatement(sql);
+				//?�뿉 �뜲�씠�꽣 諛붿씤�뵫
+				pstmt.setString(1, cell);
+				//SQL臾� �떎�뻾
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					member = new MemberVO();
+					member.setCell(
+							  rs.getString("mem_cell"));
+System.out.println(rs.getString("mem_cell"));
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				//�옄�썝�젙由�
+				DBUtil.executeClose(rs, pstmt, conn);
+			}	
+			return member;
+		}
 		
-		//email 중복체크 수정필요
+		//email 중복체크
 		public MemberVO checkMemberEmail(String email)
 		                      throws Exception{
 			Connection conn = null;
@@ -152,7 +189,7 @@ public class MemberDAO {
 				conn = DBUtil.getConnection();
 				sql = "SELECT * FROM em_member_manage m LEFT OUTER JOIN "
 					+ "em_member_detail d ON m.mem_num = d.mem_num "
-					+ "WHERE mem_email=?";
+					+ "WHERE d.mem_email=?";
 				//PreparedStatement 媛앹껜 �깮�꽦
 				pstmt = conn.prepareStatement(sql);
 				//?�뿉 �뜲�씠�꽣 諛붿씤�뵫

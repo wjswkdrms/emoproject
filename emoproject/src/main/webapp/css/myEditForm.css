@@ -632,3 +632,12 @@ select.select {
 select.select::-ms-expand {
 	display: none;
 }
+
+    .page_input .page_input_title_can{ /* 입력창 내부 박스 크기 조절 */
+      display: inline-block;
+      width: 100px;
+      height: 54px;
+      text-align: left;
+      font-size:22px;
+      color:red;
+    }

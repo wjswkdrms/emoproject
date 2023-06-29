@@ -60,7 +60,7 @@ body{
     }
     .page_input .page_input_box{ /* 입력창 내부 박스 크기 조절 */
       display: inline-block;
-      width: 50%;
+      width: 80%;
       height: 54px;
       margin: auto;
       text-align: left;
@@ -155,6 +155,7 @@ body{
       width:100%;
       height: 120px;
       padding-top: 10px;
+      margin-left:-70px;
     }
     .page_button2 .page_button_box .button3{ /* 버튼 설정 */
       display: inline-block;
@@ -222,11 +223,10 @@ body{
       cursor: pointer;
     }
     .page_input_box span{
-      background-color:red;
-      display:inline-block;
-      font-size:30px;
-      width:400px;
-      height:40px;
+      color:blue;
+      font-size:22px;
+      width:300px;
+      height:54px;
     }
     /* 버튼1 -> 소형
        버튼2 -> 소형
