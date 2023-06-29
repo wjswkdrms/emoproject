@@ -7,8 +7,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productAfterWrite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
+	let afterCount = $('#after_count').val(); // #afterCount의 값을 정수로 변환
+	if (afterCount > 0) {
+	    alert('이미 후기가 작성되었습니다.');
+	    window.history.back(); // 뒤로가기 수행
+	}
+	
 	$('#review_form').submit(function() {
 		if ($('#review_title').val().trim() == '') {
 			alert('제목을 입력하세요');
@@ -36,11 +43,13 @@ $(function() {
 	      //div 내용 비워주기
 	      $('#image_container').empty();
 	 });  		
+	 
 });
 </script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<input type="hidden" id ="after_count" value="${afterCount}">
 	<div class="whole">
 		<div class="container">
 			<!-- 내용 시작 -->

@@ -30,6 +30,7 @@ public class ProductAfterAction implements Action{
 		if(pageNum==null) pageNum = "1";
 		MemberDAO dao = MemberDAO.getInstance();
 		int count = dao.getOrderListBoardCount3(user_num);
+		
 		//keyfield,keyword,currentPage,count,
 		//rowCount,pageCount,요청URL
 		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,10,10,"productAfter.do");

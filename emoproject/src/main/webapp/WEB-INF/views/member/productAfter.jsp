@@ -59,10 +59,10 @@
             <c:if test="${zzim.order_status==0}"><li class="list-status-1">주문 완료</li></c:if>
             <c:if test="${zzim.order_status==1}"><li class="list-status-2">배송중</li></c:if>
             <c:if test="${zzim.order_status==2}"><li class="list-status-3">배송 완료</li></c:if>
-            <c:if test="${zzim.order_status==0}"><li class="list-write"><a class="write_c" >작성 불가</a></li></c:if>
-            <c:if test="${zzim.order_status==1}"><li class="list-write"><a class="write_c" >작성 불가</a></li></c:if>
+            <c:if test="${zzim.order_status==0}"><li class="list-write">배송중</li></c:if>
+            <c:if test="${zzim.order_status==1}"><li class="list-write">배송중</li></c:if>
             <c:if test="${zzim.order_status==2}"><li class="list-write"><a class="write" onclick="location.href='productAfterWriteForm.do?product_num=${zzim.product_num}&order_num=${zzim.order_num}'">후기 작성</a></li></c:if>
-          </li>
+         
         </ul>
       </c:forEach>
       <div class="align-center">${page}</div>

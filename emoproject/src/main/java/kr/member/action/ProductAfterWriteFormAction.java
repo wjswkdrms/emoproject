@@ -24,6 +24,12 @@ public class ProductAfterWriteFormAction implements Action{
 		//쿼리스트링
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		int order_num = Integer.parseInt(request.getParameter("order_num"));
+		
+		MemberDAO dao = MemberDAO.getInstance();
+		int afterCount = 1;
+		afterCount = dao.getOrderListBoardCount4(user_num,product_num);
+		
+		request.setAttribute("afterCount", afterCount);
 		request.setAttribute("product_num",product_num);
 		request.setAttribute("order_num",order_num);
 		
