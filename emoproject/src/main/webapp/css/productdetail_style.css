@@ -1,12 +1,18 @@
 @charset "UTF-8";
 @font-face{
-	font-family: 'maple';
-    src: url('../fonts/maple_light.woff') format('woff');
+	font-family: maple;
+    src: url("../fonts/maple_light.ttf") format("ttf");
 }
 @font-face{
-	font-family: 'maple';
-    src: url('../fonts/maple_bold.woff') format('woff');
+	font-family: maple;
+    src: url("../fonts/maple_bold.ttf") format("ttf");
     font-weight:bold;
+}
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* 공통 메시지
@@ -340,8 +346,7 @@
 	padding: 20px;
 }
 .rbox-img img{
-	width: 93px;
-	height: 93px;
+	width: 100px;
 }
 /**/
 .review-list h3{
@@ -420,3 +425,26 @@
 	vertical-align: middle;
 	
 }
+
+/* image modal */
+.modal {
+    display: none;
+    z-index: 500;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.modalBox {
+    position: relative;
+    text-align: center;
+    top : 20%;
+    left : 50%;
+    position : sticky;
+}
+p img:hover{
+    cursor: -webkit-zoom-in;
+}
+/* image modal end */

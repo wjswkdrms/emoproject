@@ -15,10 +15,24 @@ public class ZZimVO {
 	private String Product_name;
 	private int Order_status;
 	private String product_price_sales;
-
+	private int review_num;
 
 	public ZZimVO() {}
 	
+	
+	
+	public int getReview_num() {
+		return review_num;
+	}
+
+
+
+	public void setReview_num(int review_num) {
+		this.review_num = review_num;
+	}
+
+
+
 	//생성자 정의
 	public int getOrder_status() {
 		return Order_status;
@@ -135,13 +149,4 @@ public class ZZimVO {
 		this.product_price_sales = product_price_sales;
 	}
 
-	@Override
-	public String toString() {
-		return "ZZimVO [zzim_num=" + zzim_num + ", mem_num=" + mem_num + ", product_num=" + product_num
-				+ ", Product_title=" + Product_title + ", Product_info=" + Product_info + ", Product_photo1="
-				+ Product_photo1 + ", Product_price=" + Product_price + ", Product_status=" + Product_status
-				+ ", Product_quantity=" + Product_quantity + ", Order_date=" + Order_date + ", Order_num=" + Order_num
-				+ ", Product_name=" + Product_name + ", Order_status=" + Order_status + ", product_price_sales="
-				+ product_price_sales + "]";
-	}
 }
