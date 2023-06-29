@@ -56,7 +56,37 @@
 					<div class="button-box">
 						<c:if test="${!empty user_num&&user_num==ask.mem_num}">
 						<input class="small-button" type="button" value="수정" onclick="location.href='askUpdateForm.do?ask_num=${ask.ask_num}'">
-						<input class="small-button" type="button" value="삭제" onclick="location.href='askDelete.do?ask_num=${ask.ask_num}'">
+						<input class="small-button" type="button" value="삭제" id="del_ask">
+										 	<script type="text/javascript">
+												$(function(){
+													$('#del_ask').click(function(){
+														let choice=confirm('이 문의글을 삭제 하시겠습니까?');
+														if(choice){
+															$.ajax({
+																url:'askDelete.do',
+																type:'post',
+																data:{ask_num:${ask.ask_num}},
+																dataType:'json',
+																success:function(param){
+																	if(param.result == 'logout'){
+																		alert('로그인 후 사용하세요');
+																	}else if(param.result == 'success'){
+																		alert('글 삭제 완료');
+																		location.replace('ask.do');																		
+																	}else if(param.result == 'wrongAccess'){
+																		alert('잘못된 접속입니다.');
+																	}else{
+																		alert('파일 삭제 오류 발생');
+																	}														
+																},
+																error:function(){
+																	alert('네트워크 오류 발생');														
+																}
+															});
+														}
+													});
+												});
+											</script>							
 						</c:if>
 					</div>
 					<div class="button-box">
