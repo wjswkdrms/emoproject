@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>상품 구매</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -44,6 +44,9 @@
 				
 			}
 		});
+		$('#select_address').on('click',function(){
+			window.open("userHomeList.do","주소 선택",'target="_blank"');
+		});
 	});
 </script>
 </head>
@@ -64,7 +67,7 @@
 		
 		<form id="order_form" 
 		  action="${pageContext.request.contextPath}/order/order.do" method="post">
-		  <div class="">
+		  <div class="input-content">
 		  
 			<input type="radio" value="1" name="addr" checked>기존 주소 사용하기
 			<input type="radio" value="2" name="addr">새 주소 입력하기
@@ -107,7 +110,9 @@
 			</ul>
 			</div>
 			<div class="order-view" id="order-view">
+			
 			<ul>
+				<li class="line"><input type="button" id="select_address" value="주소목록"></li>
 				<li class="line">이름 : ${user.getName()}</li>
 				<li class="line">전화번호 : ${user.getCell()}</li>
 				<li class="line">우편번호 : ${user.getZipcode()}</li>

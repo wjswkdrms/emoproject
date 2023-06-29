@@ -63,7 +63,32 @@ body{
 	width:1000px;
 	margin:50px auto;
 }
+.page_inner {
+    display: block;
+    border: 2px solid #E19B50;
+    border-radius: 10px;
+    padding:5px 60px;
+}
+.page_outer {
+    display: flex;
+    padding-top: 100px;
+    margin: 0 auto;
+    justify-content: center;
+    width:80%;
+}
+[type="radio"]:checked {
+    border: 0.8em solid #E19B50;
+}
 
+[type="radio"] {
+    vertical-align: middle;
+    appearance: none;
+    border: max(2px, 0.1em) solid gray;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    transition: border 0.5s ease-in-out;
+}
 input[id="result"]{
 	font-size:20pt;
 	width:40px;
@@ -154,9 +179,7 @@ ul{
 	color:gray;
 	text-decoration: line-through;
 }
-.page_outer{
-	justify-content: center;
-}
+
 /* 간격 */
 
 table {
@@ -214,6 +237,7 @@ h3{
 	display:inline-block;
 	width:100px;
 }
+
 .product-info{
 	padding: 30px;
 }

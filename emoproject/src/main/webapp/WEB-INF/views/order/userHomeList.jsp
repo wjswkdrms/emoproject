@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>내 주소 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -16,6 +16,10 @@
 <div class="page_outer">
 	<div class="page_inner">
 		<form action="${pageContext.request.contextPath}/order/userAddressUpdate.do">
+		<div class="align-right">
+		<input type="submit" class="button" value="내 주소를 해당 주소로 변경">
+		<input type="button" class="button" value="주소 추가" onclick="location.href='${pageContext.request.contextPath}/order/userInsertHomeForm.do'">
+		</div>
 		<table class="address-table">
 			<tr>
 				<th class="checkbox">선택</th>
@@ -45,8 +49,7 @@
 			</tr>
 			</c:forEach>
 		</table>
-		<input type="submit" class="button" value="내 주소를 해당 주소로 변경">
-		<input type="button" class="button" value="주소 추가" onclick="location.href='${pageContext.request.contextPath}/order/userInsertHomeForm.do'">
+		
 		</form>
 	</div>
 </div>
