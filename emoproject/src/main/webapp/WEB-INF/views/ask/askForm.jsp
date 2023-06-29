@@ -66,8 +66,9 @@ $(function(){
 									</div>
 								</label>
 									<div id="image_container"></div>
-									<script type="text/javascript">
+								<script type="text/javascript">
 									function setThumbnail(event) {
+										
 										var reader = new FileReader();
 
 										reader.onload = function(event) {
@@ -77,16 +78,22 @@ $(function(){
 													event.target.result);
 											var div=document.querySelector(
 													"div#image_container");
-													
+											var span=document.createElement("span");
+											span.classList.add("del");
 											if(div.children.length>0){
-												div.firstElementChild.remove();	
+												div.replaceChildren();	
 											}
 											div.appendChild(img);
+											div.appendChild(span);
 										};
 
 										reader.readAsDataURL(event.target.files[0]);
 									}
-									</script>										
+									$('#image_container').on('click', '.del', function () {
+									    $("#image_container").empty()
+									    $("#ask_photo1").val("");
+									});
+								</script>										
 								<input type="file" name="ask_photo1" id="ask_photo1" accept="image/gif,image/png,image/jpeg"
 								  onchange="setThumbnail(event);">
 							</td>

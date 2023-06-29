@@ -71,11 +71,12 @@
 								<label for="ann_photo1">
 									<div class="file-button"></div>
 								</label>
-								<div id="image_container"></div> 
+								<div id="image_container"></div>
 								<input type="file" name="ann_photo1" id="ann_photo1" 
 								accept="image/gif,image/png,image/jpeg" onchange="setThumbnail(event);"> 
 								<script type="text/javascript">
 									function setThumbnail(event) {
+										
 										var reader = new FileReader();
 
 										reader.onload = function(event) {
@@ -85,15 +86,21 @@
 													event.target.result);
 											var div=document.querySelector(
 													"div#image_container");
-													
+											var span=document.createElement("span");
+											span.classList.add("del");
 											if(div.children.length>0){
-												div.firstElementChild.remove();	
+												div.replaceChildren();	
 											}
 											div.appendChild(img);
+											div.appendChild(span);
 										};
 
 										reader.readAsDataURL(event.target.files[0]);
 									}
+									$('#image_container').on('click', '.del', function () {
+									    $("#image_container").empty()
+									    $("#ann_photo1").val("");
+									});
 								</script>
 								</td>
 						</tr>

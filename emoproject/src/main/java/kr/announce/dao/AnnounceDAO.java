@@ -144,15 +144,24 @@ public class AnnounceDAO {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		String sql=null;
+		String sub_sql="";
+		int cnt=0;
 		
 		try {
 			conn=DBUtil.getConnection();
-			sql="UPDATE em_board_announce SET ann_title=?,ann_content=?,ann_photo1=? WHERE ann_num=?";
+			if(announce.getAnn_photo1()!=null) {
+				//파일을 업로드한 경우
+				sub_sql += ",ann_photo1=?";
+			}
+			sql="UPDATE em_board_announce SET ann_title=?,ann_content=?"+sub_sql+" WHERE ann_num=?";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, announce.getAnn_title());
-			pstmt.setString(2, announce.getAnn_content());
-			pstmt.setString(3, announce.getAnn_photo1());
-			pstmt.setInt(4, announce.getAnn_num());
+			pstmt.setString(++cnt, announce.getAnn_title());
+			pstmt.setString(++cnt, announce.getAnn_content());
+			if(announce.getAnn_photo1()!=null) {
+				pstmt.setString(++cnt, announce.getAnn_photo1());
+
+			}			
+			pstmt.setInt(++cnt, announce.getAnn_num());
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {

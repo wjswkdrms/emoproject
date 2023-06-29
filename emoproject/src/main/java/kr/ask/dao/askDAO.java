@@ -51,15 +51,25 @@ public class askDAO {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		String sql=null;
+		String sub_sql = "";
+		int cnt = 0;
 		
 		try {
 			conn=DBUtil.getConnection();
-			sql="UPDATE em_board_ask SET ask_title=?,ask_content=?,ask_photo1=? WHERE ask_num=?";
+			
+			if(ask.getAsk_photo1()!=null) {
+				//파일을 업로드한 경우
+				sub_sql += ",ask_photo1=?";
+			}
+			
+			sql="UPDATE em_board_ask SET ask_title=?,ask_content=?"+sub_sql+" WHERE ask_num=?";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, ask.getAsk_title());
-			pstmt.setString(2, ask.getAsk_content());
-			pstmt.setString(3, ask.getAsk_photo1());
-			pstmt.setInt(4, ask.getAsk_num());
+			pstmt.setString(++cnt, ask.getAsk_title());
+			pstmt.setString(++cnt, ask.getAsk_content());
+			if(ask.getAsk_photo1()!=null) {
+				pstmt.setString(++cnt, ask.getAsk_photo1());
+			}
+			pstmt.setInt(++cnt, ask.getAsk_num());
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {

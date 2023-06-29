@@ -80,27 +80,34 @@ $(function(){
 										</div>
 									</label>
 									<div id="image_container"></div>									
-									<script type="text/javascript">
-										function setThumbnail(event) {
-											var reader = new FileReader();
-	
-											reader.onload = function(event) {
-												var img = document
-														.createElement("img");
-												img.setAttribute("src",
-														event.target.result);
-												var div=document.querySelector(
-														"div#image_container");
-														
-												if(div.children.length>0){
-													div.firstElementChild.remove();	
-												}
-												div.appendChild(img);
-											};
-	
-											reader.readAsDataURL(event.target.files[0]);
-										}
-									</script>																		
+								<script type="text/javascript">
+									function setThumbnail(event) {
+										
+										var reader = new FileReader();
+
+										reader.onload = function(event) {
+											var img = document
+													.createElement("img");
+											img.setAttribute("src",
+													event.target.result);
+											var div=document.querySelector(
+													"div#image_container");
+											var span=document.createElement("span");
+											span.classList.add("del");
+											if(div.children.length>0){
+												div.replaceChildren();	
+											}
+											div.appendChild(img);
+											div.appendChild(span);
+										};
+
+										reader.readAsDataURL(event.target.files[0]);
+									}
+									$('#image_container').on('click', '.del', function () {
+									    $("#image_container").empty()
+									    $("#answer_photo").val("");
+									});
+								</script>																		
 									<input type="file" name="answer_photo" id="answer_photo" accept="image/gif,image/png,image/jpeg" onchange="setThumbnail(event);">
 									<c:if test="${!empty answer.answer_photo}">
 									<div id="file_detail">

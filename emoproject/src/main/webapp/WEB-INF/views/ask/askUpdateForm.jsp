@@ -67,33 +67,41 @@ $(function(){
 									</div>
 								</label>
 									<div id="image_container"></div>									
-									<script type="text/javascript">
-										function setThumbnail(event) {
-											var reader = new FileReader();
-	
-											reader.onload = function(event) {
-												var img = document
-														.createElement("img");
-												img.setAttribute("src",
-														event.target.result);
-												var div=document.querySelector(
-														"div#image_container");
-														
-												if(div.children.length>0){
-													div.firstElementChild.remove();	
-												}
-												div.appendChild(img);
-											};
-	
-											reader.readAsDataURL(event.target.files[0]);
-										}
-									</script>									
+								<script type="text/javascript">
+									function setThumbnail(event) {
+										
+										var reader = new FileReader();
+
+										reader.onload = function(event) {
+											var img = document
+													.createElement("img");
+											img.setAttribute("src",
+													event.target.result);
+											var div=document.querySelector(
+													"div#image_container");
+											var span=document.createElement("span");
+											span.classList.add("del");
+											if(div.children.length>0){
+												div.replaceChildren();	
+											}
+											div.appendChild(img);
+											div.appendChild(span);
+										};
+
+										reader.readAsDataURL(event.target.files[0]);
+									}
+									$('#image_container').on('click', '.del', function () {
+										$("#image_container").empty();
+										
+										    $("#ask_photo1").val('');
+									});
+								</script>										
 								<input type="file" name="ask_photo1" id="ask_photo1" accept="image/gif,image/png,image/jpeg" onchange="setThumbnail(event);">
 								<c:if test="${!empty ask.ask_photo1}">
 								<div>
 									<div id="file_detail">
 									<img src="${pageContext.request.contextPath}/upload/${ask.ask_photo1}" width="50" height="50" 
-					class="photo" data-img="${ask.ask_photo1}">
+					class="photo" data-img="${ask.ask_photo1}" id="iii">
 									(${ask.ask_photo1})이 등록되어 있습니다.
 									</div>
 									<input class="small-button" type="button" value="삭제" id="photo_del"><br>

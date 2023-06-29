@@ -153,14 +153,23 @@ public class AnswerDAO {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		String sql=null;
+		String sub_sql="";
+		int cnt=0;
 		
 		try {
 			conn=DBUtil.getConnection();
-			sql="UPDATE em_board_answer SET answer_content=?,answer_photo=? WHERE answer_num=?";
+			if(answer.getAnswer_photo()!=null) {
+				//파일을 업로드한 경우
+				sub_sql += ",answer_photo=?";
+			}			
+			sql="UPDATE em_board_answer SET answer_content=?"+sub_sql+" WHERE answer_num=?";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, answer.getAnswer_content());
-			pstmt.setString(2, answer.getAnswer_photo());
-			pstmt.setInt(3, answer.getAnswer_num());
+			pstmt.setString(++cnt, answer.getAnswer_content());
+			if(answer.getAnswer_photo()!=null) {
+				pstmt.setString(++cnt, answer.getAnswer_photo());				
+			}					
+
+			pstmt.setInt(++cnt, answer.getAnswer_num());
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {

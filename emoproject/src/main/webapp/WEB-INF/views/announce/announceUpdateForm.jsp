@@ -69,27 +69,34 @@ $(function(){
 								</label>
 								<div id="image_container"></div> 								
 							<input type="file" name="ann_photo1" id="ann_photo1" accept="image/gif,image/png,image/jpeg" onchange="setThumbnail(event);">
-							<script type="text/javascript">
-								function setThumbnail(event) {
-									var reader = new FileReader();
-	
-									reader.onload = function(event) {
-										var img = document
-												.createElement("img");
-										img.setAttribute("src",
-												event.target.result);
-										var div=document.querySelector(
-												"div#image_container");
-												
-										if(div.children.length>0){
-											div.firstElementChild.remove();	
-										}
-										div.appendChild(img);
-									};
-	
-									reader.readAsDataURL(event.target.files[0]);
-								}									
-							</script>							
+								<script type="text/javascript">
+									function setThumbnail(event) {
+										
+										var reader = new FileReader();
+
+										reader.onload = function(event) {
+											var img = document
+													.createElement("img");
+											img.setAttribute("src",
+													event.target.result);
+											var div=document.querySelector(
+													"div#image_container");
+											var span=document.createElement("span");
+											span.classList.add("del");
+											if(div.children.length>0){
+												div.replaceChildren();	
+											}
+											div.appendChild(img);
+											div.appendChild(span);
+										};
+
+										reader.readAsDataURL(event.target.files[0]);
+									}
+									$('#image_container').on('click', '.del', function () {
+									    $("#image_container").empty()
+									    $("#ann_photo1").val("");
+									});
+								</script>							
 							<c:if test="${!empty announce.ann_photo1}">
 								<div class="row-content" id="file_detail">
 									<img src="${pageContext.request.contextPath}/upload/${announce.ann_photo1}" width="50" height="50" 
