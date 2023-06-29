@@ -17,6 +17,7 @@
 body{
 	font-family : 'NEXON Lv1 Gothic OTF';
 }
+
 /* 페이지 레이아웃
 ------------------*/
 .page-main{
@@ -129,7 +130,7 @@ input.quntity{
 	background-color:field;
 }
 .now-address{
-	color:blue;
+	color:orange;
 	font-weight: 700;
 }
 .cart-modify:hover{
@@ -205,6 +206,9 @@ h2{
 }
 h3{
 	padding: 20px;
+}
+li{
+	padding:5px;
 }
 .product-info{
 	padding: 30px;

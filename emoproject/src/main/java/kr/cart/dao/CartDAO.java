@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.cart.vo.CartVO;
+import kr.order.vo.MemberHomeVO;
 import kr.product.vo.ProductDetailVO;
 import kr.product.vo.ProductManageVO;
 import kr.util.DBUtil;
@@ -289,4 +290,5 @@ public class CartDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
 }

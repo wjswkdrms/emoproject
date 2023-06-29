@@ -60,7 +60,6 @@ public class UserOrderAction implements Action{
 				//재고 수량이 부족한 경우
 				request.setAttribute("notice_msg", "["+item.getProductdetailVO().getProduct_name()+"]재고수량 부족으로 주문 불가");
 				request.setAttribute("notice_url", request.getContextPath() + "/cart/list.do");
-				
 			}
 			orderDetail = new OrderDetailVO();
 			orderDetail.setProduct_num(cart.getProduct_num());
@@ -82,11 +81,22 @@ public class UserOrderAction implements Action{
 		home.setMem_home_address1(request.getParameter("receive_address1"));
 		home.setMem_home_address2(request.getParameter("receive_address2"));
 		home.setMem_home_cell(request.getParameter("receive_phone"));
-		
 		home.setMem_num(user_num);
 		
 		OrderDAO orderDao = OrderDAO.getInstance();
-		orderDao.insertOrder(order, home, orderDetailList);
+		
+		int home_num = 0;
+		int checkmod = 0;
+		checkmod = Integer.parseInt(request.getParameter("addr"));
+		System.out.println(checkmod);
+		if(checkmod == 1) {
+			home_num = orderDao.findHome(home);
+		}else if(checkmod == 2) {
+			home_num = orderDao.insertHome(home);
+		}
+		order.setMem_home_num(home_num);
+		
+		orderDao.insertOrder(order, orderDetailList);
 		
 		orderDao.updateStatus(orderDetailList);
 		

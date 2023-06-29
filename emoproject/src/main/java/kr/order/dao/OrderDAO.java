@@ -21,7 +21,7 @@ public class OrderDAO {
 	private OrderDAO() {}
 	
 	//주문 등록
-	public void insertOrder(OrderVO order, MemberHomeVO home, List<OrderDetailVO> orderDetailList) throws Exception{
+	public void insertOrder(OrderVO order, List<OrderDetailVO> orderDetailList) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
@@ -38,34 +38,27 @@ public class OrderDAO {
 		ResultSet rs3 = null;
 		String sql = null;
 		int order_num = 0;
-		int home_num = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
 			
 			
-			//home_num값 구하기
-			sql = "SELECT em_member_home_seq.nextval FROM dual";
-			pstmt6 = conn.prepareStatement(sql);
-			rs = pstmt6.executeQuery();
-			if(rs.next()) {
-				home_num = rs.getInt(1);
-			}
-			//home정보 저장
-			sql= "INSERT INTO em_member_home (mem_home_num,mem_num,mem_home_cell,mem_home_zipcode,"
-					+ "mem_home_address1,mem_home_address2,mem_home_name)"
-					+ "VALUES (?,?,?,?,?,?,?)";
-			pstmt7 = conn.prepareStatement(sql);
-			pstmt7.setInt(1, home_num);
-			pstmt7.setInt(2, home.getMem_num());
-			pstmt7.setString(3, home.getMem_home_cell());
-			pstmt7.setInt(4, home.getMem_home_zipcode());
-			pstmt7.setString(5, home.getMem_home_address1());
-			pstmt7.setString(6, home.getMem_home_address2());
-			pstmt7.setString(7, ".");
-			
-			pstmt7.executeUpdate();
+			/*
+			 * //home_num값 구하기 sql = "SELECT em_member_home_seq.nextval FROM dual"; pstmt6 =
+			 * conn.prepareStatement(sql); rs = pstmt6.executeQuery(); if(rs.next()) {
+			 * home_num = rs.getInt(1); } //home정보 저장 sql=
+			 * "INSERT INTO em_member_home (mem_home_num,mem_num,mem_home_cell,mem_home_zipcode,"
+			 * + "mem_home_address1,mem_home_address2,mem_home_name)" +
+			 * "VALUES (?,?,?,?,?,?,?)"; pstmt7 = conn.prepareStatement(sql);
+			 * pstmt7.setInt(1, home_num); pstmt7.setInt(2, home.getMem_num());
+			 * pstmt7.setString(3, home.getMem_home_cell()); pstmt7.setInt(4,
+			 * home.getMem_home_zipcode()); pstmt7.setString(5,
+			 * home.getMem_home_address1()); pstmt7.setString(6,
+			 * home.getMem_home_address2()); pstmt7.setString(7, ".");
+			 * 
+			 * pstmt7.executeUpdate();
+			 */
 			//order_num값 구하기
 			sql = "SELECT em_order_manage_seq.nextval FROM dual";
 			pstmt = conn.prepareStatement(sql);
@@ -81,7 +74,7 @@ public class OrderDAO {
 			pstmt2.setInt(1, order_num);
 			pstmt2.setInt(2, order.getOrder_total_price());
 			pstmt2.setInt(3, order.getMem_num());
-			pstmt2.setInt(4, home_num);
+			pstmt2.setInt(4, order.getMem_home_num());
 			pstmt2.setString(5, order.getOrder_notice());
 			
 			pstmt2.executeUpdate();
@@ -268,30 +261,68 @@ public class OrderDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	public void insertHome(MemberHomeVO home)throws Exception{
+	public int insertHome(MemberHomeVO home)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
 		String sql = null;
-		
+		int home_num = 0;
 		try {
 			conn = DBUtil.getConnection();
+			//home_num값 구하기
+			sql = "SELECT em_member_home_seq.nextval FROM dual";
+			pstmt2 = conn.prepareStatement(sql);
+			rs = pstmt2.executeQuery();
+			if(rs.next()) {
+				home_num = rs.getInt(1);
+			}
 			sql = "INSERT INTO em_member_home (mem_home_num,mem_num,mem_home_cell,mem_home_zipcode,"
 					+ "mem_home_address1,mem_home_address2,mem_home_name)"
-					+ "VALUES (em_member_home_seq.nextval,?,?,?,?,?,?)";
+					+ "VALUES (?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, home.getMem_num());
-			pstmt.setString(2, home.getMem_home_cell());
-			pstmt.setInt(3, home.getMem_home_zipcode());
-			pstmt.setString(4, home.getMem_home_address1());
-			pstmt.setString(5, home.getMem_home_address2());
-			pstmt.setString(6, home.getMem_home_name());
+			pstmt.setInt(1, home_num);
+			pstmt.setInt(2, home.getMem_num());
+			pstmt.setString(3, home.getMem_home_cell());
+			pstmt.setInt(4, home.getMem_home_zipcode());
+			pstmt.setString(5, home.getMem_home_address1());
+			pstmt.setString(6, home.getMem_home_address2());
+			pstmt.setString(7, home.getMem_home_name());
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return home_num;
+	}
+	public int findHome(MemberHomeVO home) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		int home_num = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT max(mem_home_num) FROM em_member_home WHERE mem_home_address1=? AND mem_home_address2=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, home.getMem_home_address1());
+			pstmt.setString(2, home.getMem_home_address2());
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				home_num = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
+		
+		return home_num;
 	}
 }
 		

@@ -33,13 +33,15 @@
 		});
 		$('#order-form').hide();
 		$("input[name='addr']").change(function(){
-			if($("input[name='addr']:checked").val()=="1"){
+			if($("input[name='addr']:checked").value=="1"){
 				$('#order-form').hide();
 				$('#order-view').show();
+				
 			}
 			if($("input[name='addr']:checked").val()=="2"){
 				$('#order-form').show();
 				$('#order-view').hide();
+				
 			}
 		});
 	});
@@ -58,12 +60,14 @@
 			상품명 : <a href="#">${item_name}</a> 총 ${all_total}원
 		</div>
 		<hr size="1" noshade="noshade" width="100%">
-		<input type="radio" value="1" name="addr" checked>기존 주소 사용하기
-		<input type="radio" value="2" name="addr">새 주소 입력하기
+		
 		
 		<form id="order_form" 
 		  action="${pageContext.request.contextPath}/order/order.do" method="post">
 		  <div class="">
+		  
+			<input type="radio" value="1" name="addr" checked>기존 주소 사용하기
+			<input type="radio" value="2" name="addr">새 주소 입력하기
 		  <div class="order-form " id="order-form">
 			<ul>
 				<li>
@@ -109,7 +113,6 @@
 				<li>우편번호 : ${user.getZipcode()}</li>
 				<li>주소 : ${user.getAddress1()}</li>
 				<li>상세주소 : ${user.getAddress2()}</li>
-				
 			</ul>
 			</div>
 		</div>
@@ -117,9 +120,7 @@
 				<li>
 			
 				<label for="notice">배송 메모</label>
-					
-					<textarea rows="5" cols="30" name="notice" class="input_style" id="notice" maxlength="1300"></textarea>
-					
+					<textarea rows="5" cols="30" name="notice"  id="notice" maxlength="1300" style="resize:none;"></textarea>
 				</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
