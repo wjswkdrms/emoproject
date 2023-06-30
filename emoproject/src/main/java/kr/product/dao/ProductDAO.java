@@ -418,7 +418,7 @@ public class ProductDAO {
 				review.setReview_content(StringUtil.useBrNoHtml(rs.getString("review_content")));
 				review.setReview_photo1(rs.getString("review_photo1"));
 				review.setReview_score(rs.getInt("review_score"));
-				review.setOrder_num(rs.getInt("order_num"));
+				review.setOrder_detail_num(rs.getInt("order_detail_num"));
 				review.setMem_id(rs.getString("mem_id"));
 				review.setProduct_title(rs.getString("product_title"));
 				
@@ -462,7 +462,7 @@ public class ProductDAO {
 					review.setReview_content(rs.getString("review_content"));
 					review.setReview_photo1(rs.getString("review_photo1"));
 					review.setReview_score(rs.getInt("review_score"));
-					review.setOrder_num(rs.getInt("order_num"));
+					review.setOrder_detail_num(rs.getInt("order_detail_num"));
 					review.setMem_id(rs.getString("mem_id"));
 					
 					list.add(review);
