@@ -31,7 +31,7 @@ public class ProductDetailReviewListAction implements Action {
 		ProductDAO dao = ProductDAO.getInstance();
 		int count = dao.getReviewCount(product_num);	//게시물 수
 
-		int rowCount = 5;	//한 페이지에 나타날 글 수
+		int rowCount = 3;	//한 페이지에 나타날 글 수
 		//int pageCount = 10;	// 한 화면에 보여질 페이지 수
 		PageUtil page = new PageUtil(Integer.parseInt(pageNum), count, rowCount);
 

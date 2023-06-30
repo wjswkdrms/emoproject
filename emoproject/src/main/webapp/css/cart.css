@@ -37,8 +37,8 @@ body{
 	width:1000px;
 	padding:10px 0;
 	margin:50px auto;
-	border:2px solid #E19B50;
-	background: #ddd;
+	border:2px solid  rgb(230, 230, 230);
+	background:  rgb(240, 240, 240);
 	display:flex;
 	align-items:center;/*세로 정렬*/
 	justify-content:center;/*가로 정렬*/
@@ -50,6 +50,12 @@ body{
 }
 .result-text div{
 	margin:10px;
+}
+table{
+	border-collapse: collapse;
+}
+td{
+	border-bottom: 1px solid #E4E4E4;
 }
 /* 공통 정렬
 ------------------*/
@@ -94,7 +100,7 @@ input[id="result"]{
 	width:40px;
 	margin:0;
 	padding:0;
-	border:2px solid #E19B50;
+	border:2px solid  #dbb38a;
 }
 input.quntity{
 	font-size:20pt;
@@ -102,16 +108,24 @@ input.quntity{
 	margin:0;
 	padding:0;
 }
-
+.result-text input{
+	color: white;
+	font-weight: bold;
+}
+/*변경 버튼*/
+.cart-modify{
+	font-weight: bold;;
+	
+}
 
 .button { /* 버튼 디자인 */
     margin: 5px auto;
     width:400px;
     padding: 13px 13px;
-    background-color: #E19B50;
+    background-color: #dbb38a;
     box-sizing: border-box;
     cursor: pointer;
-    border : 2px solid #E19B50;
+    border : 2px solid #dbb38a;
     border-radius: 7px;
 }
 .button:hover{ /* 버튼 디자인 호버링 */
@@ -119,10 +133,10 @@ input.quntity{
     margin: 5px auto;
     width:400px;
     padding: 13px 13px;
-    background-color: field;
+    background-color: #cba680;
     box-sizing: border-box;
     cursor: pointer;
-    border : 2px solid #E19B50;
+    border : 2px solid #cba680;
     border-radius: 7px;
 }
 .cart-del{
@@ -131,8 +145,8 @@ input.quntity{
 }
 .cart-del:hover{
 	width:60px;
-	color:red;
-	background-color:#E19B50;
+	color:white;
+	background-color:#cba680;
 	font-weight:700;
 }
 .qpm{
@@ -145,7 +159,7 @@ input.quntity{
 	width:35px;
 	margin:0;
 	padding:0;
-	background-color: #E19B50;
+	background-color: #cba680;
 	font-size:20pt;
 }
 .cart-modify{
@@ -162,7 +176,7 @@ input.quntity{
 	width:115px;
 	margin:5px 5px;
 	padding:5px;
-	background-color:#E19B50;
+	background-color:#cba680;
 }
 .quantity{
 	display:flex;

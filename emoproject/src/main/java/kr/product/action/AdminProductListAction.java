@@ -41,7 +41,7 @@ public class AdminProductListAction implements Action{
 		int count = dao.getProductCount(keyfield, keyword, 0);
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 2, 10, "productlist.do");
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "productlist.do");
 		//목록 데이터 호출
 		List<ProductManageVO> list = null;
 		if(count > 0) {
