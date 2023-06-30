@@ -30,6 +30,7 @@ public class MemberDAO {
 			PreparedStatement pstmt = null;
 			PreparedStatement pstmt2 = null;
 			PreparedStatement pstmt3 = null;
+			PreparedStatement pstmt4 = null;
 			ResultSet rs = null;
 			String sql = null;
 			int num = 0; //�떆���뒪 踰덊샇 ���옣
@@ -79,6 +80,18 @@ public class MemberDAO {
 				pstmt3.setInt(10, member.getGender());
 				pstmt3.executeUpdate();
 				
+				//home insert
+				sql = "INSERT INTO em_member_home (mem_home_num,mem_num,mem_home_cell,mem_home_zipcode,"
+						+ "mem_home_address1,mem_home_address2,mem_home_name)"
+						+ "VALUES (em_member_home_seq.nextval,?,?,?,?,?,?)";
+				pstmt4 = conn.prepareStatement(sql);
+				pstmt4.setInt(1, num);
+				pstmt4.setString(2, member.getCell());
+				pstmt4.setInt(3, Integer.parseInt(member.getZipcode()));
+				pstmt4.setString(4, member.getAddress1());
+				pstmt4.setString(5, member.getAddress2());
+				pstmt4.setString(6, "");
+				pstmt4.executeUpdate();
 				//SQL臾몄쓣 �떎�뻾�빐�꽌 紐⑤몢 �꽦怨듯븯硫� commit
 				conn.commit();
 			}catch(Exception e) {
@@ -87,6 +100,7 @@ public class MemberDAO {
 				throw new Exception(e);
 			}finally {
 				//�옄�썝�젙由�
+				DBUtil.executeClose(null, pstmt4, null);
 				DBUtil.executeClose(null, pstmt3, null);
 				DBUtil.executeClose(null, pstmt2, null);
 				DBUtil.executeClose(rs, pstmt, conn);

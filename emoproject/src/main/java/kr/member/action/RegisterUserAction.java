@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.order.vo.MemberHomeVO;
 
 public class RegisterUserAction implements Action {
 
@@ -49,6 +50,8 @@ public class RegisterUserAction implements Action {
 		member.setAddress2(request.getParameter("address2"));
 		member.setBirth(request.getParameter("birth"));
 		member.setGender(Integer.parseInt(request.getParameter("gender")));
+		
+		
 		// MemberDAO 호출
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.insertMember(member);
