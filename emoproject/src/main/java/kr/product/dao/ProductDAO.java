@@ -466,7 +466,7 @@ public class ProductDAO {
 					review.setMem_id(rs.getString("mem_id"));
 					
 					list.add(review);
-				}
+				}//커밋
 				
 				
 			}catch(Exception e) {
