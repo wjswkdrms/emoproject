@@ -76,22 +76,26 @@ public class UserOrderAction implements Action{
 		order.setOrder_notice(request.getParameter("notice"));
 		order.setMem_num(user_num);
 		
-		MemberHomeVO home = new MemberHomeVO();
-		home.setMem_home_zipcode(Integer.parseInt(request.getParameter("receive_post")));
-		home.setMem_home_address1(request.getParameter("receive_address1"));
-		home.setMem_home_address2(request.getParameter("receive_address2"));
-		home.setMem_home_cell(request.getParameter("receive_phone"));
-		home.setMem_num(user_num);
-		
-		OrderDAO orderDao = OrderDAO.getInstance();
-		
 		int home_num = 0;
 		int checkmod = 0;
+		OrderDAO orderDao = OrderDAO.getInstance();
+		MemberHomeVO home = new MemberHomeVO();		
+		
 		checkmod = Integer.parseInt(request.getParameter("addr"));
-		System.out.println(checkmod);
+		
+		
+		home.setMem_num(user_num);
 		if(checkmod == 1) {
+			home.setMem_home_zipcode(Integer.parseInt(request.getParameter("receive_postv")));
+			home.setMem_home_address1(request.getParameter("receive_address1v"));
+			home.setMem_home_address2(request.getParameter("receive_address2v"));
+			home.setMem_home_cell(request.getParameter("receive_phonev"));
 			home_num = orderDao.findHome(home);
 		}else if(checkmod == 2) {
+			home.setMem_home_zipcode(Integer.parseInt(request.getParameter("receive_post")));
+			home.setMem_home_address1(request.getParameter("receive_address1"));
+			home.setMem_home_address2(request.getParameter("receive_address2"));
+			home.setMem_home_cell(request.getParameter("receive_phone"));
 			home_num = orderDao.insertHome(home);
 		}
 		order.setMem_home_num(home_num);

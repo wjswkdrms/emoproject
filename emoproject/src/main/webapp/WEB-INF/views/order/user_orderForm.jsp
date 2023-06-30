@@ -19,7 +19,7 @@
 					   '.input_style');
 			 for(let i=0;i<items.length;i++){
 				 
-			    if(items[i].value.trim()==''){
+			    if(items[i].value.trim()=='' && ($("input[name='addr']:checked").val()=="2")){
 					let label = 
 						document.querySelector(
 					 'label[for="'+items[i].id+'"]');
@@ -44,8 +44,13 @@
 				
 			}
 		});
+		var w;
 		$('#select_address').on('click',function(){
-			window.open("popHomeList.do","주소 선택",'target="_blank"');
+			w = window.open("popHomeList.do","주소 선택",'target="_blank"');
+			
+		});
+		w.addEventListener('beforeunload', function() {
+		    document.getElementById('receive_phonel').innerText = document.getElementById('receive_phone').val();
 		});
 	});
 </script>
@@ -74,17 +79,15 @@
 		  <div class="order-form " id="order-form">
 			<ul>
 				<li class="line">
-				
-					<label for="receive_name">이름   </label>
-					
-					<input type="text" name="receive_name" class="input_style" value="${user.getName()}"
+					<label for="receive_name">이름   </label>					
+					<input type="text" name="receive_name" class="input_style"
 					  id="receive_name" maxlength="10">
 				</li>
 				<li class="line">
 				
 					<label for="receive_phone">전화번호</label>
 					
-					<input type="text" name="receive_phone" class="input_style" value="${user.getCell()}"
+					<input type="text" name="receive_phone" class="input_style"
 					  id="receive_phone" maxlength="15">
 				</li>
 			</ul>
@@ -92,32 +95,56 @@
 			<ul>
 				<li class="line">
 					<label for="zipcode">우편번호</label>
-					<input type="text" name="receive_post" class="input_style" value="${user.getZipcode()}"
+					<input type="text" name="receive_post" class="input_style"
 					  id="zipcode" maxlength="5" readonly onclick="execDaumPostcode()">
 					<input type="button" value="우편번호 찾기"  class="input_style" 
 					 onclick="execDaumPostcode()">
 				</li >
 				<li class="line">
 					<label for="address1">주소   </label>
-					<input type="text" name="receive_address1" class="input_style" value="${user.getAddress1()}"
+					<input type="text" name="receive_address1" class="input_style"
 					  id="address1" maxlength="30" readonly>
 				</li>
 				<li class="line">
 					<label for="address2">상세 주소</label>
-					<input type="text" name="receive_address2" class="input_style" value="${user.getAddress2()}"
+					<input type="text" name="receive_address2" class="input_style"
 					  id="address2" maxlength="30">
 				</li>
 			</ul>
 			</div>
 			<div class="order-view" id="order-view">
-			
 			<ul>
-				<li class="line"><input type="button" id="select_address" value="주소목록"></li>
-				<li class="line">이름 : ${user.getName()}</li>
-				<li class="line">전화번호 : ${user.getCell()}</li>
-				<li class="line">우편번호 : ${user.getZipcode()}</li>
-				<li class="line">주소 : ${user.getAddress1()}</li>
-				<li class="line">상세주소 : ${user.getAddress2()}</li>
+				<li class="line">
+					<input type="button" id="select_address" value="기존주소불러오기">
+				</li>
+				<li class="line">
+					<label for="receive_name">이름   </label>					
+					<input type="text" name="receive_namev" class="view_style" value="${user.getName()}"
+					  id="receive_namev" maxlength="10" readonly>
+				</li>
+				<li class="line">			
+					<label for="receive_phone">전화번호</label>
+					<input type="text" name="receive_phonev" class="view_style" value="${user.getCell()}"
+					  id="receive_phonev" maxlength="15" readonly>
+				</li>
+			</ul>
+			<hr size="1" noshade="noshade" width="100%">
+			<ul>
+				<li class="line">
+					<label for="zipcode">우편번호</label>
+					<input type="text" name="receive_postv" class="view_style" value="${user.getZipcode()}"
+					  id="zipcodev" maxlength="5" readonly>
+				</li >
+				<li class="line">
+					<label for="address1">주소   </label>
+					<input type="text" name="receive_address1v" class="view_style" value="${user.getAddress1()}"
+					  id="address1v" maxlength="30" readonly>
+				</li>
+				<li class="line">
+					<label for="address2">상세 주소</label>
+					<input type="text" name="receive_address2v" class="view_style" value="${user.getAddress2()}"
+					  id="address2v" maxlength="30" readonly>
+				</li>
 			</ul>
 			</div>
 		</div>

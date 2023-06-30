@@ -13,12 +13,14 @@
 <script type="text/javascript">
 	$(function(){
 		$('#modify_address').submit(function(){
-			let home = $("#home_num").val();
 			
-			opener.document.getElementById("receive_phone").value = home.getMem_home_cell();
-			opener.document.getElementById("address1").value = home.getMem_home_address1();
-			opener.document.getElementById("address2").value = home.getMem_home_address2();
-			opener.document.getElementById("zipcode").value = home.getMem_home_zipcode();
+			var check = $('input[name="home_num"]:checked').val();
+			let home = $('input[name="home_num"]:checked').parent().siblings();
+			
+			opener.document.getElementById("zipcodev").value = home[1].innerText;
+			opener.document.getElementById("address1v").value = home[2].innerText;
+			opener.document.getElementById("address2v").value = home[3].innerText;
+			opener.document.getElementById("receive_phonev").value = home[4].innerText;
 			
 			window.close();
 		});
@@ -52,12 +54,12 @@
 			</tr>
 			<c:forEach var="home" items="${list}">
 			<tr>
-				<td><input type="radio" name="home_num" id="home_num" value="${home}"></td>
-				<td>${home.getMem_home_name()}</td>
-				<td>${home.getMem_home_zipcode()}</td>
-				<td>${home.getMem_home_address1()}</td>
-				<td>${home.getMem_home_address2()}</td>
-				<td>${home.getMem_home_cell()}</td>
+				<td><input type="radio" name="home_num" value="${home.getMem_home_num()}"></td>
+				<td class="item${home.getMem_home_num()}">${home.getMem_home_name()}</td>
+				<td class="item${home.getMem_home_num()}">${home.getMem_home_zipcode()}</td>
+				<td class="item${home.getMem_home_num()}">${home.getMem_home_address1()}</td>
+				<td class="item${home.getMem_home_num()}">${home.getMem_home_address2()}</td>
+				<td class="item${home.getMem_home_num()}">${home.getMem_home_cell()}</td>
 			</tr>
 			</c:forEach>
 		</table>
