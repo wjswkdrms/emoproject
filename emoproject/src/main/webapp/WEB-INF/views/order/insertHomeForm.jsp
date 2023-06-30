@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>주소생성</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberEditPageAll_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer_style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -36,64 +35,38 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page_outer">	
 	<!-- 내용 시작 -->
-	<div class="page_inner">
-		
-		<form id="order_form" 
+	<div class="page_inner" >
+		<form id="order_form"
 		  action="${pageContext.request.contextPath}/order/userUpdateHome.do" method="post">
 			<ul>
-				<li>
-				<div class="input_idpw_outer" id="input_name">
-            <div class="input_idpw_inner">
-            <div class="input_title">
+				<li class="line">
 					<label for="zipcode">우편번호</label>
-					          </div>
-					          <div class="input_box">
 					<input type="number" name="receive_post" class="input_style" 
 					  id="zipcode" maxlength="5" readonly>
 					  <input type="button" value="우편번호 찾기"  class="input_style"
 					 onclick="execDaumPostcode()">
-					</div></div></div>
 				</li>
-				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="address1">주소</label></div>
-					<div class="input_box">
+				<li class="line">
+					<label for="address1">주소</label>
 					<input type="text" name="receive_address1" class="input_style"
-					  id="address1" maxlength="30" readonly></div></div></div>
+					  id="address1" maxlength="30" readonly>
 				</li>
-				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
+				<li class="line">
 					<label for="address2">상세 주소</label>
-					</div>
-					<div class="input_box">
 					<input type="text" name="receive_address2" class="input_style"
-					  id="address2" maxlength="30"></div></div></div>
+					  id="address2" maxlength="30">
 				</li> 
-				
-				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="receive_name">배송지 이름</label></div>
-					<div class="input_box">
+				<li class="line">
+					<label for="receive_name">배송지 이름</label>
 					<input type="text" name="receive_name" class="input_style" 
-					  id="receive_name" maxlength="10"></div></div></div>
+					  id="receive_name" maxlength="10">
 				</li>
-				<li>
-				<div class="input_idpw_outer" id="input_name">
-				<div class="input_idpw_inner">
-           	<div class="input_title">
-					<label for="receive_phone">전화번호</label></div>
-					<div class="input_box">
+				<li class="line">
+					<label for="receive_phone">전화번호</label>
 					<input type="text" name="receive_phone" class="input_style"
-					  id="receive_phone" maxlength="15"></div></div></div>
+					  id="receive_phone" maxlength="15">
 				</li>
-			
-				<li>
+				<li class="line">
 				<input type="submit" value="추가" class="button">
 				<input type="button" value="홈으로" class="button"
 				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">

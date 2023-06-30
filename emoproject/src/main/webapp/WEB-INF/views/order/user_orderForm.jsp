@@ -138,7 +138,7 @@
 				<li class="line">
 					<label for="address1">주소   </label>
 					<input type="text" name="receive_address1v" class="view_style" value="${user.getAddress1()}"
-					  id="address1v" maxlength="30" readonly>
+					  id="address1v" maxlength="30" size="50" readonly>
 				</li>
 				<li class="line">
 					<label for="address2">상세 주소</label>
