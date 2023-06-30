@@ -51,8 +51,8 @@
             <constraint>
               <height>-1</height>
               <width>-1</width>
-              <x>349</x>
-              <y>742</y>
+              <x>328</x>
+              <y>734</y>
             </constraint>
             <sourceConnections>
               <net.java.amateras.db.visual.model.ForeignKeyModel reference="../../.."/>
@@ -134,7 +134,12 @@
               <net.java.amateras.db.visual.model.ColumnModel>
                 <columnName>mem_zipcode</columnName>
                 <logicalName>mem_zipcode</logicalName>
-                <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel/columnType"/>
+                <columnType class="net.java.amateras.db.dialect.ColumnType">
+                  <name>VARCHAR2</name>
+                  <logicalName>String</logicalName>
+                  <supportSize>true</supportSize>
+                  <type>12</type>
+                </columnType>
                 <size>5</size>
                 <notNull>true</notNull>
                 <primaryKey>false</primaryKey>
