@@ -69,7 +69,7 @@
 		
 		//이메일 중복 체크
 		$('#email_check').click(function(){
-			if(!/^[a-zA-Z0-9._-]{1,46}@[0-9a-zA-Z]+\.[a-zA-Z.]{2,5}+$/.test(
+			if(!/^[a-zA-Z0-9._-]{1,46}@[0-9a-zA-Z]+\.[a-zA-Z]{2,3}$/.test(
 					            $('#email').val())){
 				alert('영문 또는 숫자와 일부 특수문자만 사용, 최대50자를 사용하세요');
 				$('#email').val('');
