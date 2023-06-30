@@ -16,6 +16,8 @@ public class ZZimVO {
 	private int Order_status;
 	private String product_price_sales;
 	private int review_num;
+	private int Order_detail_num;
+	private int Review_score;
 
 	public ZZimVO() {}
 	
@@ -45,6 +47,30 @@ public class ZZimVO {
 	public int getOrder_num() {
 		return Order_num;
 	}
+
+	public int getReview_score() {
+		return Review_score;
+	}
+
+
+
+	public void setReview_score(int review_score) {
+		Review_score = review_score;
+	}
+
+
+
+	public int getOrder_detail_num() {
+		return Order_detail_num;
+	}
+
+
+
+	public void setOrder_detail_num(int order_detail_num) {
+		Order_detail_num = order_detail_num;
+	}
+
+
 
 	public void setOrder_num(int order_num) {
 		Order_num = order_num;

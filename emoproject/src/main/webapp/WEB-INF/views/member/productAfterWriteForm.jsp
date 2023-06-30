@@ -72,7 +72,7 @@ $(function() {
 				<h2>상품 후기 작성</h2>
 				<form id="review_form" action="productAfterWrite.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="product_num" id="product_num" value="${product_num}">
-				<input type="hidden" name="order_num" id="order_num" value="${order_num}">
+				<input type="hidden" name="order_detail_num" id="order_detail_num" value="${order_detail_num}">
 					<table class="form-box">
 						<tr>
 							<td>제목</td>

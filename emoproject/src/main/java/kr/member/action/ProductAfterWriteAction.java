@@ -20,6 +20,7 @@ public class ProductAfterWriteAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();
+		
 		Integer user_num=(Integer)session.getAttribute("user_num");	
 		
 		if(user_num==null) {
@@ -32,14 +33,12 @@ public class ProductAfterWriteAction implements Action{
 		MultipartRequest multi=FileUtil.createFile(request);
 
 		ReviewVO review = new ReviewVO();
-		ProductDetailVO product = new ProductDetailVO();
-		System.out.println(product.getProduct_num());
 		review.setReview_title(multi.getParameter("review_title"));
 		review.setReview_content(multi.getParameter("review_content"));
 		review.setReview_photo1(multi.getFilesystemName("review_photo1"));
 		review.setReview_score(Integer.parseInt(multi.getParameter("review_score")));
 		review.setProduct_num(Integer.parseInt(multi.getParameter("product_num")));
-		review.setOrder_num(Integer.parseInt(multi.getParameter("order_num")));
+		review.setOrder_detail_num(Integer.parseInt(multi.getParameter("order_detail_num")));
 		review.setMem_num(user_num);
 		
 		MemberDAO dao = MemberDAO.getInstance();

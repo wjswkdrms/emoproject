@@ -163,7 +163,6 @@ public class MemberDAO {
 					member = new MemberVO();
 					member.setCell(
 							  rs.getString("mem_cell"));
-System.out.println(rs.getString("mem_cell"));
 				}
 				
 			}catch(Exception e) {
@@ -685,11 +684,9 @@ System.out.println(rs.getString("mem_cell"));
 			try {
 				conn = DBUtil.getConnection();
 	
-	
-				sql = "SELECT count(*) FROM(SELECT de2.product_photo1, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
-						+ "FROM (SELECT ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
-						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
-						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC)";
+				sql = "SELECT count(*) FROM (SELECT ma.order_date, de.order_detail_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
+						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE de.order_detail_num IN (SELECT order_detail_num FROM em_order_manage WHERE mem_num = ?) ORDER BY de.order_detail_num DESC) data "
+						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY data.order_detail_num DESC, data.product_num DESC ";
 				pstmt = conn.prepareStatement(sql);
 				
 				//?에 데이터 바인딩
@@ -707,81 +704,9 @@ System.out.println(rs.getString("mem_cell"));
 			}finally {
 				DBUtil.executeClose(rs, pstmt, conn);
 			}
-			return count;
-		}
-		
-		//상품 후기가 작성 된 것은 못넘기게 막는 카운트
-		public int getOrderListBoardCount4(int mem_num, int product_num) throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			String sql = null;
-			int cnt = 0;
-			int count = 0;
-			try {
-				conn = DBUtil.getConnection();
-	
-	
-				sql = "SELECT count(*) FROM(SELECT de2.product_photo1, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
-						+ "FROM (SELECT ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
-						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
-						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) WHERE product_num=?";
-				pstmt = conn.prepareStatement(sql);
-				
-				//?에 데이터 바인딩
-				pstmt.setInt(++cnt,mem_num);
-				pstmt.setInt(++cnt,product_num);
-				
-				//SQL문 실행
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					count = rs.getInt(1);
-				}
-			}catch(Exception e){
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(rs, pstmt, conn);
-			}
-			return count;
-		}
-		
-		//상품 후기가 작성 된 것은 못넘기게 막는 카운트
-				public int getOrderListBoardCount5(int mem_num, int product_num) throws Exception{
-					Connection conn = null;
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
-					String sql = null;
-					int cnt = 0;
-					int count = 0;
-					try {
-						conn = DBUtil.getConnection();
 			
-			
-						sql = "SELECT COUNT(*) FROM em_review RIGHT INNER JOIN (SELECT de2.product_photo1, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
-								+ " FROM (SELECT ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
-								+ " INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ? AND product_num = ?) ORDER BY ma.order_num DESC) data INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num  ORDER BY order_num DESC) USING (product_num)";
-								
-						pstmt = conn.prepareStatement(sql);
-						
-						//?에 데이터 바인딩
-						pstmt.setInt(++cnt,mem_num);
-						pstmt.setInt(++cnt,product_num);
-						
-						//SQL문 실행
-						rs = pstmt.executeQuery();
-						
-						if(rs.next()) {
-							count = rs.getInt(1);
-						}
-					}catch(Exception e){
-						throw new Exception(e);
-					}finally {
-						DBUtil.executeClose(rs, pstmt, conn);
-					}
-					return count;
-				}
-		
+			return count;
+		}		
 		
 		//주문상세 목록 -- 상품후기
 		public List<ZZimVO> getOrderListBoard3(int start, int end, int mem_num) throws Exception{
@@ -793,18 +718,14 @@ System.out.println(rs.getString("mem_cell"));
 			int cnt = 0;
 			
 			try {
-				conn = DBUtil.getConnection();
-				/*
-				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT de2.product_photo1, data.order_num, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
-						+ "FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
-						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
-						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) a) b WHERE rnum>=? AND rnum<=?";
-				*/
-				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM(SELECT NVL(ev.review_num,0) AS review_num ,list3.* FROM em_review ev RIGHT JOIN (SELECT de2.product_photo1, data.order_num, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
-						+ "FROM (SELECT ma.order_date, ma.order_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
-						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE ma.order_num IN (SELECT order_num FROM em_order_manage WHERE mem_num = ?) ORDER BY ma.order_num DESC) data "
-						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY order_num DESC) list3 ON ev.order_num = list3.order_num)a) b WHERE rnum>=? AND rnum<=?";
+				conn = DBUtil.getConnection();						
 				
+				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM((SELECT NVL(bb.review_score, 0) AS review_score, aa.* FROM (SELECT data.mem_num, de2.product_photo1, "
+						+ "data.order_detail_num, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
+						+ "FROM (SELECT ma.mem_num, ma.order_date, de.order_detail_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, "
+						+ "de.order_product_quantity FROM em_order_detail de INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE de.order_detail_num "
+						+ "IN (SELECT order_detail_num FROM em_order_manage) ) data INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num) aa "
+						+ "LEFT JOIN em_review bb ON aa.product_num = bb.product_num WHERE aa.mem_num=? ORDER BY bb.order_detail_num DESC) a)) b WHERE rnum>=? AND rnum<=?";
 				
 				pstmt = conn.prepareStatement(sql);
 				
@@ -823,10 +744,9 @@ System.out.println(rs.getString("mem_cell"));
 					zzim.setProduct_num(rs.getInt("product_num"));
 					zzim.setProduct_photo1(rs.getString("product_photo1"));
 					zzim.setProduct_quantity(rs.getInt("order_product_quantity"));
-					zzim.setOrder_num(rs.getInt("order_num"));
+					zzim.setOrder_detail_num(rs.getInt("order_detail_num"));
 					zzim.setOrder_status(rs.getInt("order_status"));
-					zzim.setReview_num(rs.getInt("review_num"));
-					
+					zzim.setReview_score(rs.getInt("review_score"));
 					//금액 천단위 , 처리
 					price = rs.getInt("order_product_total") + ""; 
 					price = price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
@@ -1044,7 +964,7 @@ System.out.println(rs.getString("mem_cell"));
 			try {
 				conn = DBUtil.getConnection();
 				
-				sql = "INSERT INTO em_review (review_num,product_num,mem_num,order_num,review_title,review_content,review_photo1,review_score) VALUES (em_review_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";
+				sql = "INSERT INTO em_review (review_num,product_num,mem_num,order_detail_num,review_title,review_content,review_photo1,review_score) VALUES (em_review_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";
 				pstmt = conn.prepareStatement(sql);
 				
 
@@ -1052,7 +972,7 @@ System.out.println(rs.getString("mem_cell"));
 				                              //review_num - nextval
 				pstmt.setInt(1,review.getProduct_num()); //product_num - 쿼리스트링
 				pstmt.setInt(2,review.getMem_num()); //mem_num - 세션
-				pstmt.setInt(3,review.getOrder_num()); //order_num - sql문
+				pstmt.setInt(3,review.getOrder_detail_num()); //order_num - sql문
 				pstmt.setString(4,review.getReview_title()); //review_title - 입력
 				pstmt.setString(5,review.getReview_content()); //review_content - 입력
 				pstmt.setString(6,review.getReview_photo1()); //review_photo1 - 입력
@@ -1185,7 +1105,6 @@ System.out.println(rs.getString("mem_cell"));
 					if((cell_string).indexOf("-")!=-1) {
 						cell_string = (cell_string).replace("-","");
 					}
-					System.out.println(cell_string);
 					sql = "UPDATE em_member_detail SET mem_cell=? WHERE mem_num=?";
 						pstmt2 = conn.prepareStatement(sql);
 						pstmt2.setString(1,cell_string);
