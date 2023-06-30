@@ -230,16 +230,6 @@
               <div class="page_input_title">생년월일</div>
                 <input type="text" class="output_style_check" value="${mem_birth}" readonly>
           </div>
-          </div>
-              <div class="page_input_box">
-              <div class="page_input_title">가입일</div>
-                <input type="text" class="output_style_check" value="${mem_reg_date}" readonly>
-          </div>
-          </div>
-              <div class="page_input_box">
-              <div class="page_input_title">보유 포인트</div>
-                <input type="text" class="output_style_check" value="${mem_point}" readonly>
-          </div>
         <div class="page_button2">
           <div class="page_button_box">
             <input type="submit" class="button3" value="수정 완료">

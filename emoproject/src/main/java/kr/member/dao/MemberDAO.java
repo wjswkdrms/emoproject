@@ -698,9 +698,10 @@ public class MemberDAO {
 			try {
 				conn = DBUtil.getConnection();
 	
-				sql = "SELECT count(*) FROM (SELECT ma.order_date, de.order_detail_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, de.order_product_quantity FROM em_order_detail de "
-						+ "INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE de.order_detail_num IN (SELECT order_detail_num FROM em_order_manage WHERE mem_num = ?) ORDER BY de.order_detail_num DESC) data "
-						+ "INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num ORDER BY data.order_detail_num DESC, data.product_num DESC ";
+				sql = "SELECT COUNT(*) FROM em_order_detail d JOIN em_order_manage m ON d.order_num=m.order_num "
+						+ "						JOIN em_product_detail p ON d.product_num=p.product_num "
+						+ "						LEFT OUTER JOIN em_review r ON d.order_detail_num=r.order_detail_num WHERE m.mem_num=? "
+						+ "						ORDER BY d.order_detail_num DESC";
 				pstmt = conn.prepareStatement(sql);
 				
 				//?에 데이터 바인딩
@@ -734,12 +735,11 @@ public class MemberDAO {
 			try {
 				conn = DBUtil.getConnection();						
 				
-				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM((SELECT NVL(bb.review_score, 0) AS review_score, aa.* FROM (SELECT data.mem_num, de2.product_photo1, "
-						+ "data.order_detail_num, data.order_date, data.order_status, data.product_num, data.order_product_name, data.order_product_total, data.order_product_quantity "
-						+ "FROM (SELECT ma.mem_num, ma.order_date, de.order_detail_num, ma.order_status, de.product_num, de.order_product_name, de.order_product_total, "
-						+ "de.order_product_quantity FROM em_order_detail de INNER JOIN em_order_manage ma ON de.order_num = ma.order_num WHERE de.order_detail_num "
-						+ "IN (SELECT order_detail_num FROM em_order_manage) ) data INNER JOIN em_product_detail de2 ON data.product_num = de2.product_num) aa "
-						+ "LEFT JOIN em_review bb ON aa.product_num = bb.product_num WHERE aa.mem_num=? ORDER BY bb.order_detail_num DESC) a)) b WHERE rnum>=? AND rnum<=?";
+				sql = "SELECT b.* FROM(SELECT a.*, rownum rnum FROM("
+						+ "SELECT * FROM em_order_detail d JOIN em_order_manage m ON d.order_num=m.order_num "
+						+ "JOIN em_product_detail p ON d.product_num=p.product_num "
+						+ "LEFT OUTER JOIN em_review r ON d.order_detail_num=r.order_detail_num WHERE m.mem_num=? "
+						+ "ORDER BY d.order_detail_num DESC)a)b WHERE rnum>=? AND rnum<=?";
 				
 				pstmt = conn.prepareStatement(sql);
 				
