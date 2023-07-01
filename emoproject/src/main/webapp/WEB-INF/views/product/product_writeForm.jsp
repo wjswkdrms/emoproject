@@ -18,8 +18,8 @@
 	$(function() {
 		//입력한 글자수 셋팅
 		let inputLength = $('#info').val().length;
-        let remain = 300 - inputLength;
-		remain += '/300';
+        let remain = 330 - inputLength;
+		remain += '/330';
 		
 		//문서 객체에 반영
 		$('#re_first .letter-count').text(remain);
@@ -29,11 +29,11 @@
 			//입력한 글자수 구함
 			let inputLength = $(this).val().length;
 			
-			if(inputLength>300){//300자를 넘어선 경우
+			if(inputLength>330){//300자를 넘어선 경우
 				$(this).val($(this).val().substring(0,300));
 			}else{//300자 이하인 경우
-				let remain = 300 - inputLength;
-				remain += '/300';
+				let remain = 330 - inputLength;
+				remain += '/330';
 				if($(this).attr('id')=='info'){
 					//등록폼 글자수
 					$('#re_first .letter-count').text(remain);
