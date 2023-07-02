@@ -371,7 +371,7 @@ public class AdminMemberDAO {
 				//자원정리
 				DBUtil.executeClose(null, pstmt, conn);
 			}
-		}		
+		}	
 		//회원 탈퇴
 		public void expMember(int mem_num)
                 throws Exception{
@@ -397,7 +397,6 @@ public class AdminMemberDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
-		
 		//회원 포인트 부여
 		public void giveMemberPoint(int mem_point,int mem_num)
                 throws Exception{

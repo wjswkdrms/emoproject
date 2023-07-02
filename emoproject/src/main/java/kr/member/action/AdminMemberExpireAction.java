@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
-import kr.member.dao.AdminMemberDAO;
+import kr.member.dao.MemberDAO;
 
 public class AdminMemberExpireAction implements Action{
 
@@ -31,12 +31,12 @@ public class AdminMemberExpireAction implements Action{
 			mapAjax.put("result", "logout");
 		}else {//로그인 된 경우
 			int mem_num=Integer.parseInt(request.getParameter("mem_num"));
-			AdminMemberDAO dao=AdminMemberDAO.getInstance();
+			MemberDAO dao=MemberDAO.getInstance();
 			if(user_auth<9) {
 				//관리자 아닐경우
 				mapAjax.put("result", "wrongAccess");
 			}else {
-				dao.expMember(mem_num);
+				dao.MemberOut(mem_num);
 				mapAjax.put("result", "success");
 			}
 		}

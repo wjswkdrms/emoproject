@@ -38,6 +38,9 @@
 							<c:if test="${detail.auth==1}">
 								<input class="small-button" type="button" value="일반" onclick="location.href='adminMemberNor.do?mem_num=${detail.mem_num}'">
 							</c:if>
+							<c:if test="${detail.auth==0}">
+								<input class="small-button" type="button" value="일반" onclick="location.href='adminMemberNor.do?mem_num=${detail.mem_num}'">
+							</c:if>
 							<c:if test="${detail.auth==2}">
 								<input class="small-button" type="button" value="정지" onclick="location.href='adminMemberStop.do?mem_num=${detail.mem_num}'">
 								<input id="expire_btn" class="small-button" type="button" value="탈퇴">
