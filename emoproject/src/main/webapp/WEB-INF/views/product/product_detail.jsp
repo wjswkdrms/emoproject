@@ -336,7 +336,7 @@
 					</div>
 				</div> --%>
 						<div class="paging-button" style="display: none;">
-							<input type="button" value="더 많은 후기 보기">
+							<input type="button" value="더 많은 후기 보기" style='cursor: pointer'>
 						</div>
 					</c:if>
 
