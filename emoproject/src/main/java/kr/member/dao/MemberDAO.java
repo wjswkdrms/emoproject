@@ -64,12 +64,10 @@ public class MemberDAO {
 				pstmt3.setInt(1, num);
 				pstmt3.setString(2, member.getName());
 				pstmt3.setString(3, member.getPasswd());
-				
+				  
 				String cell_string = member.getCell();
 				//-1이 아니면 010-0000-0000 형식, -1이면 0100000000 형식
-				if((cell_string).indexOf("-")!=-1) {
-					(cell_string).replace("-","");
-				}
+			    cell_string.replace("-","");
 				pstmt3.setString(4, cell_string);
 				
 				pstmt3.setString(5, member.getEmail());
@@ -1071,7 +1069,6 @@ public class MemberDAO {
 						mem_name_str += name_arr[i];
 					}
 					mem.setName(mem_name_str);
-					
 					//전화번호 뒤 4자리 *처리
 					String mem_cell_str = "";
 					String[] cell_arr = new String[(rs.getString("mem_cell")).length()];

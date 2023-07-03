@@ -69,7 +69,7 @@
 		
 		//이메일 중복 체크
 		$('#email_check').click(function(){
-			if(!/^[a-zA-Z0-9._-]{1,46}@[0-9a-zA-Z]+\.[a-zA-Z]{2,3}$/.test(
+			if(!/^[a-zA-Z0-9._-]{1,46}@[0-9a-zA-Z]+\.[a-zA-Z.]{2,5}$/.test(
 					            $('#email').val())){
 				alert('영문 또는 숫자와 일부 특수문자만 사용, 최대50자를 사용하세요');
 				$('#email').val('');
@@ -222,7 +222,7 @@
 				return false;
 			}
 			if(!/^[a-zA-Z0-9.@]+$/.test($('#email').val())){
-				alert('이메일은 영문자와 숫자만 입력 가능합니다.');
+				alert('이메일은 영문자와 숫자 및 특정 특수문자 입력 가능합니다.');
 				$('#email').val('').focus();
 				return false;
 			}
@@ -231,8 +231,8 @@
 				$('#zipcode').val('').focus();
 				return false;
 			}
-			if(!/^[0-9]+$/.test($('#birth').val())){
-				alert('생년월일은 숫자만 입력 가능합니다.');
+			if(!/^(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/.test($('#birth').val())){
+				alert('올바른 생년월일을 입력하세요.');
 				$('#birth').val('').focus();
 				return false;
 			}

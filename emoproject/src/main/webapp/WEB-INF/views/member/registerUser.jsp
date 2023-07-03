@@ -14,12 +14,10 @@
 <div class="page">
 <div class="page_outer"> <!-- 전체 페이지 크기 지정 -->
   <div class="page_inner"> <!--메인 페이지 중앙 정렬, 크기 지정-->
-      <div class="page_login">
-        <div class="title">
-              회원가입이 완료되었습니다.<br><br>
+        <h2 id="title">
+              회원가입이 완료되었습니다.<br>
           즐거운 쇼핑 되세요.
-        </div>
-      </div>
+        </h2>
       <div class="page_button2">
         <div class="page_button_box">
           <input type="button" class="button3" value="로그인" onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
