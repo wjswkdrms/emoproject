@@ -226,6 +226,11 @@
 				$('#email').val('').focus();
 				return false;
 			}
+			if(!/^[a-zA-Z0-9]+$/.test($('#passwd').val())){
+				alert('비밀번호는 영문자와 숫자만 입력 가능합니다.');
+				$('#email').val('').focus();
+				return false;
+			}
 			if(!/^[0-9]+$/.test($('#zipcode').val())){
 				alert('우편번호는 숫자만 입력 가능합니다.');
 				$('#zipcode').val('').focus();

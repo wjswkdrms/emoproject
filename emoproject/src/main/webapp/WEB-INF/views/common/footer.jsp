@@ -70,7 +70,7 @@
           <li>광고문의</li>
           <li>입점문의</li>
           <li>이용약관</li>
-          <li>개인정보처리방침</li>
+          <li><a href="${pageContext.request.contextPath}/announce/announceDetail.do?ann_num=141">개인정보처리방침</a></li>
           <li><a href="https://map.naver.com/v5/directions/-/14141273.687056389,4508936.736905865,%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%ED%85%8C%ED%97%A4%EB%9E%80%EB%A1%9C%20132,,/-/car?c=15,0,0,0,dh">찾아오시는 길</a></li>
           <li><a href="${pageContext.request.contextPath}/announce/announce.do">공지사항</a></li>
         </ol>
